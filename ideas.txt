@@ -1,0 +1,12 @@
+Who --- Anyone with access to the app
+What --- Tracks symptoms, stores basic ins. info, medical profile, find doctors on user ins. in their area
+Where --- USA
+Why --- better insight, better treatment, research, 'medi'-data
+How --- form data, database, 
+
+
+Kinds of pain and degree of pain in what area of body
+Symptoms based on area of body or type of ailment
+API data for in-network doctors for each major ins.
+API for prescriptions(prices and names)
+Auto-suggestion for prescriptions
