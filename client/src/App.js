@@ -1,18 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
-const axios = require('axios');
+import axios from 'axios';
 
-const facebook = () => {
-    axios.get('/auth/facebook')
-}
 
-function App() {
+class App extends Component {
 
-  return (
-    <div className="App">
-        <div className="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="true" onClick={facebook}>Facebook login</div>
-    </div>
-  );
+    facebook = () => {
+        axios.get('/auth/facebook')
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <p onClick={this.facebook}>Facebook login</p>
+            </div>
+        );
+    }
 }
 
 export default App;
