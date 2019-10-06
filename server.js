@@ -19,6 +19,7 @@ app.use(passport.session());
 
 require('./routes/passport')(app);
 require('./routes/account')(app);
+require('./routes/fbLogin')(app);
 
 if (process.env.NODE_ENV ==='production'){
     app.get("*", (req, res) => {
