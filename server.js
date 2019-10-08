@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3001;
 const session = require("express-session");
 const bodyParser = require("body-parser");
-const passport = require('passport');
+// const passport = require('passport');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 
@@ -14,12 +14,13 @@ app.use(express.static("public"));
 app.use(cookieParser());
 app.use(session({ secret: "nothing to see here" }));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-require('./routes/passport')(app);
+// require('./routes/passport')(app);
 require('./routes/account')(app);
 require('./routes/fbLogin')(app);
+require('./routes/email')(app);
 
 if (process.env.NODE_ENV ==='production'){
     app.get("*", (req, res) => {
