@@ -17,15 +17,15 @@ module.exports = (app) => {
     app.get('/login/', (req,res)=>{
         const token = req.query.code
         const urlState = req.query.state
-        console.log(urlState)
-        console.log(token)
+        // console.log(urlState)
+        // console.log(token)
         if (urlState===state){
             axios.get(`https://graph.facebook.com/v4.0/oauth/access_token?client_id=${process.env.FACEBOOK_APP_ID}&redirect_uri=${process.env.FACEBOOK_REDIRECT}&client_secret=${process.env.FACEBOOK_APP_SECRET}&code=${token}`)
                 .then(user=>{
-                    console.log(user.data)
-                    axios.get(`graph.facebook.com/debug_token?input_token=${token}&access_token=${process.env.FACEBOOK_APP_TOKEN}`)
-                        .then(user=>console.log(user))
-                })
+                    // console.log(user.data)                    
+                    axios.get(`graph.facebook.com/debug_token?input_token=${user.data.access_token}&access_token=${process.env.FACEBOOK_APP_TOKEN}`)
+                        .then(user=>console.log(user)).catch(err=>console.log(err))
+                }).catch(err=>console.log(err))
             // res.json('hello')
             // .redirect();
         } else {
