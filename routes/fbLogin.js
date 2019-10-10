@@ -14,14 +14,15 @@ module.exports = (app) => {
         const token = req.query.code
         const urlState = req.query.state
         if (urlState === state){
-            axios.get(`https://graph.facebook.com/v4.0/oauth/access_token?client_id=${process.env.FACEBOOK_APP_ID}&redirect_uri=${process.env.FACEBOOK_REDIRECT}&client_secret=${process.env.FACEBOOK_APP_SECRET}&code=${token}`)
+            axios.get(`https://graph.facebook.com/v4.0/oauth/access_token?client_id=${process.env.FACEBOOK_APP_ID}&redirect_uri=${process.env.FACEBOOK_REDIRECT}&client_secret=${process.env.FACEBOOK_APP_SECRET}&token=${token}`)
                 .then(code=>{
                     console.log(code.data)
                     axios.get(`https://graph.facebook.com/debug_token?input_token=${code.data.access_token}&access_token=${process.env.FACEBOOK_APP_TOKEN}`)
-                        .then(user=>{
-                            axios.get(`https://graph.facebook.com/${user.data.data.user_id}?fields=id,email,name&access_token=${code.data.access_token}`)
-                                .then(data=>{
-                                    console.log(data)
+                        .then(debuggedToken=>{
+                            console.log(debuggedToken)
+                            axios.get(`https://graph.facebook.com/${debuggedToken.data.data.user_id}?fields=id,email,name&access_token=${code.data.access_token}`)
+                                .then(userData=>{
+                                    console.log(userData)
                                 })
                         })
                         .catch(err=>console.log(err))
