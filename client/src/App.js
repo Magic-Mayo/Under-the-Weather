@@ -22,7 +22,6 @@ class App extends Component {
     }
 
     email = () => {
-        console.log(process.env.FACEBOOK_APP_ID)
         axios.get('/verify/email')
     }
 
