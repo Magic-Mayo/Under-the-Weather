@@ -2,24 +2,16 @@ import React, {Component} from 'react';
 import './App.css';
 import axios from 'axios';
 
-// if (window.location.href.split('?')[1] && window.location.href.split('?')[1].substring(0,4) === 'code'){
-//     axios.get(`/login/${window.location.href.split('?')[1]}`).then(async user=>{
-//         const newUser = await user;
-//         console.log(newUser)
-//     })
-
-// }
-
 class App extends Component {
 
     state = {
         name: '',
-        password: ' '
+        password: ''
     }
+
 
     facebook = (e) => {
         e.preventDefault();
-        console.log('hi');
         axios.get('/auth/facebook').then(user=>console.log(user))
     }
 
@@ -27,6 +19,11 @@ class App extends Component {
         const {name, value} = event.target
         this.setState({[name]: value})
         console.log(this.state)
+    }
+
+    email = () => {
+        console.log(process.env.FACEBOOK_APP_ID)
+        axios.get('/verify/email')
     }
 
 
