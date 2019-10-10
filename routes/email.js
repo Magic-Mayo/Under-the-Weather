@@ -7,7 +7,7 @@ module.exports = (app) => {
         const user = {
             id: 65146484
         }
-        const tranpsort = mail.createTransport({
+        const transport = mail.createTransport({
             service: 'gmail',
             auth: {
                 user: process.env.EMAIL_ADDRESS,
@@ -23,7 +23,7 @@ module.exports = (app) => {
             html: `<p>Please follow the <a href='https://under-the-weather.herokuapp.com/verify/email/${user.id}'>link</a> to verify your email address. If the link does not work please copy and paste the following into your browser to verify your email address: https://under-the-weather.herokuapp.com/verify/email/${user.id}</p>`
             };
         // })
-        tranpsort.sendMail(message, (err,res)=>{
+        transport.sendMail(message, (err,res)=>{
             if(err){
                 console.log(err)
             }else{
