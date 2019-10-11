@@ -1,0 +1,17 @@
+.card {
+    background-color: $white;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    grid-row: 2/3;
+}
+
+.container-right {
+    grid-column: 9/14;
+    grid-row: 2/3;
+    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-template-rows: auto auto;
+    height: 100%;
+    gap: 1rem;
+}

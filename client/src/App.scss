@@ -1,26 +1,21 @@
+@import "./styles/fonts";
 @import "./styles/variables";
-
 @import "./styles/mixins";
 
+@import "./styles/util";
+@import "./styles/layout/Header";
+@import "./styles/layout/Symptoms";
+@import "./styles/layout/Providers";
+@import "./styles/layout/Contacts";
+@import "./styles/layout/Insurance";
 
 .App {
   text-align: center;
   background-color: $blue-main;
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
+  display: grid;
+  grid-template-columns: 2rem repeat(12,1fr) 2rem;
+  grid-template-rows: 17.5vw auto;
+  gap: 1rem;
+  align-items: flex-start;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: #09d3ac;
 }
