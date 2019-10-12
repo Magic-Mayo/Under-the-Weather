@@ -7,16 +7,23 @@ function SymptomFilter(props) {
     return (
         <div className="filter-form-container">
             <form className="filter-form">
-                <div className="filter-form-input-wrapper">
-                    <select name="type" id="type" className="filter-form-input">
-                        {props.data.types.map(type => {
-                            return (
-                                <option value={type}>{type}</option>
-                            )
-                        })}
-                    </select>
-                    <FontAwesomeIcon icon="angle-down" class="down-arrow"/>
-                </div>
+                {props.data.options.map(option => {
+                    return (
+                        <div className="filter-form-input-wrapper">
+                            <select name={option.name} id={option.name}className="filter-form-input">
+                                <option value="" selected disabled hidden>
+                                    {option.name}
+                                </option>
+                                {option.choices.map(type => {
+                                    return (
+                                        <option value={type}>{type}</option>
+                                    )
+                                })}
+                            </select>
+                            <FontAwesomeIcon icon="angle-down" className="down-arrow"/>
+                        </div>
+                    )
+                })}
             </form>
         </div>
     )

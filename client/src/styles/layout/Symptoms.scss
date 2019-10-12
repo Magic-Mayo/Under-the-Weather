@@ -4,9 +4,10 @@
 }
 
 .filter-form {
+    display: flex;
 
     &-container {
-        background-color: bisque;
+        // background-color: bisque;
         margin-top: 1.5rem;
     }
 
@@ -15,13 +16,30 @@
         font-size: 2.2rem;
         border: none;
         appearance: none;
+        padding-right: 2rem;
+        padding: .5rem 2.5rem .5rem .5rem;
         cursor: pointer;
+        color: $peach-contrast-heavy;
+        text-transform: capitalize;
 
         &:focus {
             outline: none;
         }
 
         &-wrapper {
+            position: relative;
+
+            border-bottom: $peach-contrast-heavy solid .15rem;
+            .down-arrow {
+                position: absolute;
+                top: 50%;
+                right: .5rem;
+                transform: translateY(-50%);
+                // background-color: beige;
+                color: $peach-contrast-heavy;
+                font-size: 2rem;
+                pointer-events: none;
+            }
         }
     }
 }
