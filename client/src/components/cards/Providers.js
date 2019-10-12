@@ -4,7 +4,7 @@ import React from 'react';
 function Providers(props) {
     return (
         <div className="Providers card">
-            <h2>Hello Providers</h2>
+            <h2>Medical Providers</h2>
         </div>
     );
 }

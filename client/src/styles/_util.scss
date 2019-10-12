@@ -1,8 +1,10 @@
 .card {
     background-color: $white;
-    padding: 1rem;
-    border-radius: 1.5rem;
+    padding: 1.5rem 1rem;
+    border-radius: 1rem;
     grid-row: 2/3;
+    position: relative;
+    z-index: 5;
 }
 
 .container-right {

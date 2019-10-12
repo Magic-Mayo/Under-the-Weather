@@ -1,9 +1,10 @@
 .header {
     position: relative;
-    width: 100vw;
     // background-color: $peach-contrast-light;
     padding: 0 2rem;
     grid-row: 1/2;
+    align-self: stretch;
+    grid-column: 1/15;
 
     &-icon-container {
         position: absolute;
@@ -23,7 +24,7 @@
         position: absolute;
         left: 60%;
         bottom: 0;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%,0);
         color: $white;
         text-align: right;
         font-family: 'Merriweather';

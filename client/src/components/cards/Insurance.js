@@ -4,7 +4,7 @@ import React from 'react';
 function Insurance(props) {
     return (
         <div className="Insurance card">
-            <h2>Hello Insurance</h2>
+            <h2>Insurance Details</h2>
         </div>
     );
 }

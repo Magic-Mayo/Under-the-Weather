@@ -1,3 +1,27 @@
 .Symptoms {
     grid-column: 2/9;
+    min-height: 75vh;
+}
+
+.filter-form {
+
+    &-container {
+        background-color: bisque;
+        margin-top: 1.5rem;
+    }
+
+    &-input {
+        background-color: transparent;
+        font-size: 2.2rem;
+        border: none;
+        appearance: none;
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+        }
+
+        &-wrapper {
+        }
+    }
 }
