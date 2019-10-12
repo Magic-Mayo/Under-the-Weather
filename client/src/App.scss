@@ -15,7 +15,7 @@
   display: grid;
   grid-template-columns: 2rem repeat(12,1fr) 2rem;
   grid-template-rows: 17.5vw auto;
-  gap: 1rem;
+  gap: .5rem;
   align-items: flex-start;
   min-height: 100vh;
   overflow-x: hidden;

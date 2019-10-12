@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function SymptomFilter(props) {
-    console.log(props);
+    console.log(props)
     return (
         <div className="filter-form-container">
             <form className="filter-form">
@@ -24,9 +24,15 @@ function SymptomFilter(props) {
                         </div>
                     )
                 })}
+                <button type="button" className="filter-form-btn">
+                    <span>filter</span>
+                    <FontAwesomeIcon icon="filter" className="filter" />
+                </button>
             </form>
         </div>
     )
 }
 
 export default SymptomFilter
+
+
