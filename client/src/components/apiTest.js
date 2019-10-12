@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import API from "../utils/API"
+import API from "../utils/API"
 // import Constants from 'expo-constants';
 // import * as Location from 'expo-location';
 // import * as Permissions from 'expo-permissions';
@@ -12,13 +12,13 @@ class Test extends Component{
     }
    
    componentDidMount(){
-       this.findLocation()
+       this.findLocation();
     //    .then(res => (this.setState({longitude: res.crd.longitude, latitude: res.crd.latitude})));
+    API.SearchLocation("az-mesa").then(res => (console.log(res)));
    }
    
     
     // API.defaultSearch().then(res => (console.log(res.data.data)));
-    // API.SearchLocation("az-mesa").then(res => (console.log(res)));
     // API.SearchSpecialty("pediatrician", "az-mesa").then(res => (console.log(res.data.data)));
 
     findLocation = (pos, err) =>{
@@ -28,9 +28,8 @@ class Test extends Component{
         maximumAge: 0
       },
       
-      success =(pos) => {
-        const crd = pos.coords;
-       
+      success = (pos) => {
+        const crd = pos.coords;       
         console.log('Your current position is:');
         console.log(`Latitude : ${crd.latitude}`);
         console.log(`Longitude: ${crd.longitude}`);
