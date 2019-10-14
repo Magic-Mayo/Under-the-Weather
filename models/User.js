@@ -33,6 +33,12 @@ const UserSchema = new Schema({
             createdAt: Date
         }]
     },
+    emergencyContacts: [{
+        name: String,
+        phone: Number,
+        address: String,
+        relationship: String
+    }],
     symptomHistory: [{
         type: String,
         pain: Number,
@@ -41,6 +47,7 @@ const UserSchema = new Schema({
         diagnosis: String,
         createdAt: Date
     }],
+    emailVerified: Boolean,
     createdAt: Date,
     updatedAt: Date
 });
