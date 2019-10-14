@@ -1,20 +1,28 @@
 import React, { Component }from 'react';
 // import ReactDOM from 'react-dom'
 import Header from './components/Header';
-import Symptoms from './components/cards/Symptoms';
-import MedicalHistory from './components/cards/MedicalHistory';
-import Providers from './components/cards/Providers';
-import Contacts from './components/cards/Contacts';
-import Insurance from './components/cards/Insurance';
-import Nav from './components/Nav';
+import Dashboard from './components/pages/Dashboard'
+import LogInSignUp from './components/pages/LogInSignUp'
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown } from '@fortawesome/free-solid-svg-icons'
 
 import bodyParts from './data/bodyParts.json'
 
 import './App.scss';
+import { userInfo } from 'os';
 
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown)
+
+function Main(props) {
+      const isLoggedIn = props.isLoggedIn
+
+      if (isLoggedIn) {
+        return <Dashboard state={props.state} />
+      } else {
+        return <LogInSignUp state={props.state} />
+      }
+}
 
  class App extends Component {
    state = {
@@ -22,6 +30,10 @@ library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown)
 
      menu: {
        isExpanded: false
+     },
+
+     user: {
+       isLoggedIn: false
      }
    }
 
@@ -30,15 +42,8 @@ library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown)
 
     return (
       <div className="App">
-        <Header name="Sean" />
-        <Symptoms name="Sean" />
-        <section className="container-right">
-          <MedicalHistory name="Sean"/>
-          <Providers name="Sean"/>
-          <Contacts name="Sean"/>
-          <Insurance name="Sean"/>
-        </section>
-        <Nav name="Sean" menu={this.state.menu}/>
+        <Header name="Sean" isLoggedIn={this.state.isLoggedIn}/>
+        <Main state={this.state} isLoggedIn={this.state.isLoggedIn}/>
       </div>
     );
   }
