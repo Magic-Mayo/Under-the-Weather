@@ -1,0 +1,35 @@
+.header {
+    position: relative;
+    // background-color: $peach-contrast-light;
+    padding: 0 2rem;
+    grid-row: 1/2;
+    align-self: stretch;
+    grid-column: 1/15;
+
+    &-icon-container {
+        position: absolute;
+        left: 1.5rem;
+        top: 1rem;
+        width: 25%;
+    }
+
+    &-logo {
+        position: absolute;
+        right: 1.5rem;
+        top: 1rem;
+        width: 10.5%;
+    }
+
+    &-welcome {
+        position: absolute;
+        left: 60%;
+        bottom: 0;
+        transform: translate(-50%,0);
+        color: $white;
+        text-align: right;
+        font-family: 'Merriweather';
+        font-size: 4.5vw;
+        font-weight: 300;
+        width: 50%;
+    }
+}

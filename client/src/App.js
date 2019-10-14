@@ -1,43 +1,47 @@
-import React, {Component} from 'react';
-import './App.css';
-import axios from 'axios';
+import React, { Component }from 'react';
+// import ReactDOM from 'react-dom'
+import Header from './components/Header';
+import Symptoms from './components/cards/Symptoms';
+import MedicalHistory from './components/cards/MedicalHistory';
+import Providers from './components/cards/Providers';
+import Contacts from './components/cards/Contacts';
+import Insurance from './components/cards/Insurance';
+import Nav from './components/Nav';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown } from '@fortawesome/free-solid-svg-icons'
 
-class App extends Component {
+import bodyParts from './data/bodyParts.json'
 
-    state = {
-        name: '',
-        password: ''
-    }
+import './App.scss';
 
+library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown)
 
-    facebook = (e) => {
-        e.preventDefault();
-        axios.get('/auth/facebook').then(user=>console.log(user))
-    }
+ class App extends Component {
+   state = {
+     bodyParts,
 
-    handleChange = (event) => {
-        const {name, value} = event.target
-        this.setState({[name]: value})
-        console.log(this.state)
-    }
+     menu: {
+       isExpanded: false
+     }
+   }
 
-    email = () => {
-        axios.get('/verify/email')
-    }
+  render() {
+    console.log(this.state.bodyParts);
 
-
-    render() {
-        return (
-            <div className="App">
-                {/* <form id='form'>
-                    <input name='name' placeholder='name' onChange={this.handleChange} value={this.state.name}></input>
-                    <input name='password' placeholder='password'onChange={this.handleChange} value={this.state.password}></input>
-                    <button type='submit' onClick={this.facebook}>Facebook login</button>
-                </form> */}
-                <a href='http://localhost:3001/auth/facebook'>Facebook</a>
-            </div>
-        );
-    }
+    return (
+      <div className="App">
+        <Header name="Sean" />
+        <Symptoms name="Sean" />
+        <section className="container-right">
+          <MedicalHistory name="Sean"/>
+          <Providers name="Sean"/>
+          <Contacts name="Sean"/>
+          <Insurance name="Sean"/>
+        </section>
+        <Nav name="Sean" menu={this.state.menu}/>
+      </div>
+    );
+  }
 }
 
 export default App;
