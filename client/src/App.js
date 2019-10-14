@@ -1,43 +1,52 @@
-import React, {Component} from 'react';
-import './App.css';
-import axios from 'axios';
+import React, { Component }from 'react';
+// import ReactDOM from 'react-dom'
+import Header from './components/Header';
+import Dashboard from './components/pages/Dashboard'
+import LogInSignUp from './components/pages/LogInSignUp'
 
-class App extends Component {
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown } from '@fortawesome/free-solid-svg-icons'
 
-    state = {
-        name: '',
-        password: ''
-    }
+import bodyParts from './data/bodyParts.json'
 
+import './App.scss';
+import { userInfo } from 'os';
 
-    facebook = (e) => {
-        e.preventDefault();
-        axios.get('/auth/facebook').then(user=>console.log(user))
-    }
+library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown)
 
-    handleChange = (event) => {
-        const {name, value} = event.target
-        this.setState({[name]: value})
-        console.log(this.state)
-    }
+function Main(props) {
+      const isLoggedIn = props.isLoggedIn
 
-    email = () => {
-        axios.get('/verify/email')
-    }
+      if (isLoggedIn) {
+        return <Dashboard state={props.state} />
+      } else {
+        return <LogInSignUp state={props.state} />
+      }
+}
 
+ class App extends Component {
+   state = {
+     bodyParts,
 
-    render() {
-        return (
-            <div className="App">
-                {/* <form id='form'>
-                    <input name='name' placeholder='name' onChange={this.handleChange} value={this.state.name}></input>
-                    <input name='password' placeholder='password'onChange={this.handleChange} value={this.state.password}></input>
-                    <button type='submit' onClick={this.facebook}>Facebook login</button>
-                </form> */}
-                <a href='http://localhost:3001/auth/facebook'>Facebook</a>
-            </div>
-        );
-    }
+     menu: {
+       isExpanded: false
+     },
+
+     user: {
+       isLoggedIn: false
+     }
+   }
+
+  render() {
+    console.log(this.state.bodyParts);
+
+    return (
+      <div className="App">
+        <Header name="Sean" isLoggedIn={this.state.isLoggedIn}/>
+        <Main state={this.state} isLoggedIn={this.state.isLoggedIn}/>
+      </div>
+    );
+  }
 }
 
 export default App;
