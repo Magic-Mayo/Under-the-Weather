@@ -17,6 +17,8 @@ app.use(passport.session());
 
 require('./routes/fbLogin')(app);
 require('./routes/login')(app);
+require('./routes/email')(app);
+require('./routes/localLogin')(app);
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/public/index.html"));
