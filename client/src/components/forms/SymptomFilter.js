@@ -20,7 +20,7 @@ function SymptomFilter(props) {
                                     )
                                 })}
                             </select>
-                            <FontAwesomeIcon icon="angle-down" className="down-arrow"/>
+                            <FontAwesomeIcon icon="sort-down" className="down-arrow"/>
                         </div>
                     )
                 })}

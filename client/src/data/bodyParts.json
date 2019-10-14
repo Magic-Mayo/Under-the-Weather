@@ -1,0 +1,138 @@
+[
+    {
+      "location": "abdomen, pelvis & buttocks",
+      "ID": 16,
+      "sublocations": [
+         {
+             "ID": 36,
+             "Name": "Abdomen"
+         },
+         {
+             "ID": 40,
+             "Name": "Buttocks & rectum"
+         },
+         {
+             "ID": 38,
+             "Name": "Genitals & groin"
+         },
+         {
+             "ID": 39,
+             "Name": "Hips & hip joint"
+         },
+         {
+             "ID": 37,
+             "Name": "Pelvis"
+         }
+     ]
+    },
+    {
+     "location": "arms & shoulders",
+     "ID": 7,
+     "sublocations": [
+         {
+             "ID": 48,
+             "Name": "Arms general"
+         },
+         {
+             "ID": 30,
+             "Name": "Finger"
+         },
+         {
+             "ID": 28,
+             "Name": "Forearm & elbow"
+         },
+         {
+             "ID": 29,
+             "Name": "Hand & wrist"
+         },
+         {
+             "ID": 26,
+             "Name": "Upper arm & shoulder"
+         }
+     ]
+   },
+   {
+     "location": "chest & back",
+     "ID": 15,
+     "sublocations": [
+         {
+             "ID": 33,
+             "Name": "Back"
+         },
+         {
+             "ID": 31,
+             "Name": "Chest"
+         },
+         {
+             "ID": 32,
+             "Name": "Lateral chest"
+         }
+     ]
+   },
+   {
+     "location": "head, throat & neck",
+     "ID": 6,
+     "sublocations": [
+         {
+             "ID": 23,
+             "Name": "Face & eyes"
+         },
+         {
+             "ID": 22,
+             "Name": "Forehead & head in general"
+         },
+         {
+             "ID": 21,
+             "Name": "Hair & scalp"
+         },
+         {
+             "ID": 25,
+             "Name": "Mouth & jaw"
+         },
+         {
+             "ID": 24,
+             "Name": "Nose, ears, throat & neck"
+         }
+     ]
+   },
+   {
+     "location": "legs",
+     "ID": 10,
+     "sublocations": [
+         {
+             "ID": 44,
+             "Name": "Foot"
+         },
+         {
+             "ID": 49,
+             "Name": "Legs general"
+         },
+         {
+             "ID": 43,
+             "Name": "Lower leg & ankle"
+         },
+         {
+             "ID": 41,
+             "Name": "Thigh & knee"
+         },
+         {
+             "ID": 45,
+             "Name": "Toes"
+         }
+     ]
+   },
+   {
+     "location": "skin, joints & general",
+     "ID": 17,
+     "sublocations": [
+         {
+             "ID": 47,
+             "Name": "General, joints & other"
+         },
+         {
+             "ID": 46,
+             "Name": "Skin"
+         }
+     ]
+   }
+  ]

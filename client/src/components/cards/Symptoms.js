@@ -6,10 +6,6 @@ function Symptoms(props) {
     // DUMMY DATA STARTS HERE
 
     const formData = {
-
-
-        diagnosis: false,
-
         options: [
             {
                 name: 'severity',
