@@ -1,0 +1,50 @@
+.Nav {
+	position: fixed;
+	bottom: 2.75rem;
+	right: 2.75rem;
+    z-index: 50;
+    width: 75rem;
+    height: 10rem;
+}
+
+.expand {
+	color: $peach-contrast-heavy;
+    font-size: 4rem;
+    transform: rotate(0);
+    
+    &-container {
+        background-color: rgb(245, 245, 245);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        padding: 3rem;
+        border-radius: 50%;
+        box-shadow: 0 0 2.5rem rgba(0,0,0,.3);
+        cursor: pointer;
+    }
+
+    &-items {
+        text-decoration: none;
+        font-size: 2.5rem;
+        background-color: #0A3862;
+        color: rgb(245, 245, 245);
+        padding: 1rem 2.5rem;
+        border-radius: 5rem;
+        margin-top: .5rem;
+        box-shadow: 0 0 2.5rem rgba(0,0,0,.3);
+
+        &-container {
+            position: absolute;
+            left: 0;
+            height: 100%;
+            width: calc(100% - 10rem);
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-around;
+        }
+    }
+}
+
+.rotate {
+    transform: rotate(45deg);
+}

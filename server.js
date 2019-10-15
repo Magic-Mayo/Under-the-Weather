@@ -15,7 +15,8 @@ app.use(session({ secret: "cats" }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes/passport')(app);
+require('./routes/fbLogin')(app);
+require('./routes/login')(app);
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/public/index.html"));
