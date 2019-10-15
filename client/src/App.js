@@ -1,5 +1,4 @@
-import React, { Component }from 'react';
-// import ReactDOM from 'react-dom'
+import React, { Component } from 'react';
 import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard'
 import LogInSignUp from './components/pages/LogInSignUp'
@@ -10,7 +9,6 @@ import { faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown } from '
 import bodyParts from './data/bodyParts.json'
 
 import './App.scss';
-import { userInfo } from 'os';
 
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown)
 
@@ -42,8 +40,8 @@ function Main(props) {
 
     return (
       <div className="App">
-        <Header name="Sean" isLoggedIn={this.state.isLoggedIn}/>
-        <Main state={this.state} isLoggedIn={this.state.isLoggedIn}/>
+        <Header name="Sean" isLoggedIn={this.state.user.isLoggedIn}/>
+        <Main state={this.state} isLoggedIn={this.state.user.isLoggedIn}/>
       </div>
     );
   }
