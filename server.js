@@ -15,6 +15,10 @@ app.use(session({ secret: "cats" }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+}
+
 require('./routes/fbLogin')(app);
 require('./routes/login')(app);
 require('./routes/email')(app);
