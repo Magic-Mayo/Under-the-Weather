@@ -42,8 +42,8 @@ function Main(props) {
 
     return (
       <div className="App">
-        <Header name="Sean" isLoggedIn={this.state.isLoggedIn}/>
-        <Main state={this.state} isLoggedIn={this.state.isLoggedIn}/>
+        <Header name="Sean" isLoggedIn={this.state.user.isLoggedIn}/>
+        <Main state={this.state} isLoggedIn={this.state.user.isLoggedIn}/>
       </div>
     );
   }
