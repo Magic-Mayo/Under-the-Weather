@@ -10,7 +10,6 @@ import { faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown } from '
 import bodyParts from './data/bodyParts.json'
 
 import './App.scss';
-import { userInfo } from 'os';
 
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown)
 
@@ -33,7 +32,7 @@ function Main(props) {
      },
 
      user: {
-       isLoggedIn: false
+       isLoggedIn: true
      }
    }
 

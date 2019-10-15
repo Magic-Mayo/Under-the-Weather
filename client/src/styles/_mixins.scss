@@ -1,0 +1,4 @@
+@mixin heading($font-size: 2rem) {
+    font-family: "Merriweather", serif;
+    font-size: $font-size;
+}

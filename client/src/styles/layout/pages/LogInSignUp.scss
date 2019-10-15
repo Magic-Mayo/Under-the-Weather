@@ -12,6 +12,9 @@
 .login {
     &-form {
         grid-row: 2/3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         &-container {
             position: relative;
             z-index: 150;
@@ -58,6 +61,22 @@
         }
 
         &-existing {
+
+            h1 {
+                color: $peach-contrast-light;
+            }
+        }
+
+        &-new {
+
+            h1 {
+                color: $blue-accent;
+            }
+        }
+
+        &-title {
+            @include heading( 2.3rem );
+            padding: 1rem 1.5rem;
         }
     }
 }

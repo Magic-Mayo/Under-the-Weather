@@ -7,25 +7,25 @@ export default class LogInSignUp extends Component {
 
     }
 
-    toggleForm =() => {
-        this.setState(state => ({
-            signupActive: state.loginActive,
-            loginActive: !state.loginActive
-        }))
-    }
+    // toggleForm =() => {
+    //     this.setState({
+    //         signupActive: this.state.loginActive,
+    //         loginActive: !this.state.loginActive
+    //     })
+    // }
 
     setLogIn = () => {
-        this.setState(() => ({
+        this.setState({
             loginActive: true,
             signupActive: false
-        }))
+        })
     }
 
     setSignUp = () => {
-        this.setState(() => ({
+        this.setState({
             signupActive: true,
             loginActive: false
-        }))
+        })
     }
 
     render() {
@@ -41,27 +41,43 @@ export default class LogInSignUp extends Component {
                             Log In
                         </button>
                     </div>
-                    <EntranceForm loginActive={this.state.loginActive} toggleForm={this.toggleForm}/>
+                    <EntranceForm loginActive={this.state.loginActive}/>
                 </section>
             </div>
         )
     }
 }
 
-function EntranceForm({loginActive, toggleForm}) {
-    if (loginActive) {
-        return (
-            <div className="login-form login-form-existing">
-                <h1 className="login-form-title">Please Enter Your Log In Info</h1>
-            </div>
-        )
-    } else {
-        return ( 
-            <div className="login-form login-form-new">
-                <h1 className="login-form-title">Please Enter Your Log In Info</h1>
-            </div>
-        )
+function EntranceForm({loginActive}) {
+    const data = loginActive ? {
+        loginType: "existing",
+        headingText: "Please Enter Your Log In Info",
+        inputs: [
+            {
+                name: "email",
+                label: "Email",
+                type: () => this.name
+            },
+            {
+                name: "password",
+                label: "Password",
+                type: () => this.name
+            },
+            {
+
+            }
+        ]
+    } : {
+        loginType: "new",
+        headingText: "Enter Your Info To Sign Up For a Free Account"
     }
+    console.log(data)
+
+    return ( 
+        <div className={`login-form login-form-${data.loginType}`}>
+            <h1 className={`login-form-title`}>{data.headingText}</h1>
+        </div>
+    )
 }
 
 
