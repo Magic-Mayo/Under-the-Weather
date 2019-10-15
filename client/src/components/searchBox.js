@@ -16,7 +16,9 @@ function drInput(props) {
             type="text"
             placeholder="cardiologist"
           />
-         
+         <h1>
+             {props.results}
+         </h1>
          
           <button type ="submit" onClick ={props.drSearch} >Submit</button>
         </form>
