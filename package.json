@@ -1,6 +1,7 @@
 {
   "name": "under-the-weather",
-  "version": "1.0.0",
+  "version": "0.1.0",
+  "private": true,
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -18,15 +19,17 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "axios": "^0.19.0",
+    "cookie-parser": "^1.4.4",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "if-env": "^1.0.4",
     "moment": "^2.24.0",
     "mongoose": "^5.7.1",
+    "nodemailer": "^6.3.0",
     "passport": "^0.4.0",
-    "passport-facebook": "^3.0.0",
-    "passport-google-oauth": "^2.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "uid-safe": "^2.1.5"
   }
 }
