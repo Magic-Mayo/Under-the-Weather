@@ -48,6 +48,8 @@ const UserSchema = new Schema({
         createdAt: Date
     }],
     emailVerified: Boolean,
+    isLoggedIn: Boolean,
+    lastLogin: Date,
     createdAt: Date,
     updatedAt: Date
 });
