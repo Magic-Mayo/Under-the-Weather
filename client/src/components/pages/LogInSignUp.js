@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import Loading from "../icons/loading"
 
 export default class LogInSignUp extends Component {
     state = {
         loginActive: true,
-        signupActive: false
-
+        signupActive: false,
     }
 
     // toggleForm =() => {
@@ -29,7 +29,7 @@ export default class LogInSignUp extends Component {
     }
 
     render() {
-        console.log(this.state);
+        console.log(this.props);
         return (
             <div className="LogInSignUp">
                 <section className={`login-form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
@@ -41,14 +41,15 @@ export default class LogInSignUp extends Component {
                             Log In
                         </button>
                     </div>
-                    <EntranceForm loginActive={this.state.loginActive}/>
+                    <EntranceForm loginActive={this.state.loginActive} loading={this.props.state.state.loading}/>
                 </section>
             </div>
         )
     }
 }
 
-function EntranceForm({loginActive}) {
+
+function EntranceForm({loginActive, loading}) {
     const data = loginActive ? {
         loginType: "existing",
         headingText: "Please Enter Your Log In Info",
@@ -73,10 +74,12 @@ function EntranceForm({loginActive}) {
     }
     console.log(data)
 
-    return ( 
+    return (
+        !loading ? 
         <div className={`login-form login-form-${data.loginType}`}>
             <h1 className={`login-form-title`}>{data.headingText}</h1>
-        </div>
+        </div>:
+        <Loading loading={loading}/>
     )
 }
 
