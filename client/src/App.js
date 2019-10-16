@@ -16,44 +16,46 @@ import {
 import bodyParts from "./data/bodyParts.json";
 
 import "./App.scss";
+import Axios from 'axios';
 
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown);
 
-function Main(props) {
-  const isLoggedIn = props.isLoggedIn;
+function Main(state) {
+if(window.location.pathname.substring(1,8)==='loading'){
 
-  if (isLoggedIn) {
-    return <Dashboard state={props.state} />;
-  } else {
-    return <LogInSignUp state={props.state} />;
-  }
+    const user = window.location.pathname.split('ing/')[1]
+    console.log(user)
+    Axios.get(`/user/${user}`).then(user=>{
+        console.log(user)
+        return <Dashboard {...user}/>
+    })
+    return <LogInSignUp state={state}/>
+} else {
+        return <LogInSignUp state={state}/>
+}
 }
 
 
-
 class App extends Component {
-  state = {
-    bodyParts,
+    state = {
+        bodyParts,
+        
+        menu: {
+            isExpanded: false
+        },
+        isLoggedIn: false,
+        loading: false,
+        user: ''
+    };
+    
+    handleHTTP = props => {
+        this.setState({loading: true})
+    }
 
-    menu: {
-      isExpanded: false
-    },
-    isLoggedIn: false
-  };
-
-  handleHTTP = props => {
-    console.log("THIS IS THE LOGIN STATUS BEFORE SIGNING IN", props);
-
-    this.switchLoggedIn(props)
-
-    console.log("THIS IS THE LOGIN STATUS AFTER SIGNING IN", this.state.isLoggedIn);
-
-  };
-
-  switchLoggedIn = (logged) => {
+    switchLoggedIn = (logged) => {
 
     this.setState({isLoggedIn: !logged});
-  }
+    }
 
 
 
@@ -62,10 +64,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header name="Sean" isLoggedIn={this.state.isLoggedIn} handleHTTP={this.handleHTTP}/>
-        <Main state={this.state} isLoggedIn={this.state.isLoggedIn} />
+        <Header name="Sean" isLoggedIn={this.state.isLoggedIn} handleHTTP={this.handleHTTP} loading={this.state.loading}/>
+        <Main state={this.state}/>
       </div>
-    );
+    )
   }
 }
 
