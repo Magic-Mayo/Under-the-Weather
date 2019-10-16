@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-// import ReactDOM from 'react-dom'
-import Header from "./components/Header";
-import Dashboard from "./components/pages/Dashboard";
-import LogInSignUp from "./components/pages/LogInSignUp";
+import React, { Component } from 'react';
+import Header from './components/Header';
+import Dashboard from './components/pages/Dashboard'
+import LogInSignUp from './components/pages/LogInSignUp'
+import Loading from './components/icons/loading'
+
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -12,62 +13,71 @@ import {
   faPhone,
   faFilter,
   faSortDown,
-  faChild
+  faChild 
 } from "@fortawesome/free-solid-svg-icons";
 
 import bodyParts from "./data/bodyParts.json";
 
 import "./App.scss";
+import Axios from 'axios';
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faChild);
+library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown);
+
+const FacebookLogin = (props) => {
+    return !props.isLoggedIn && <a className="header-status" href='http://localhost:3001/auth/facebook' onClick={props.onClick}>Sign In With Facebook</a>
+};
 
 function Main(props) {
-  const isLoggedIn = props.isLoggedIn;
-
-  if (isLoggedIn) {
-    return <Dashboard state={props.state} />;
-  } else {
-    return <LogInSignUp state={props.state} />;
-  }
+    if(window.location.pathname.substring(1,8)==='dahsboard'){
+        const user = window.location.pathname.split('ing/')[1];
+        return <Loading path={user} loading={props.state.loading} onClick={props.onClick} onLoad={props.onLoad}/>
+    } else {
+        return (
+            <div>
+                <FacebookLogin isLoggedIn={props.state.isLoggedIn}/>
+                <LogInSignUp state={props}/>
+            </div>
+        )
+    }
 }
 
-
-
 class App extends Component {
-  state = {
-    bodyParts,
+    state = {
+        bodyParts,
+        
+        menu: {
+            isExpanded: false
+        },
+        isLoggedIn: false,
+        loading: false,
+        user: ''
+    };
+    
+    handleHTTP = props => {
+        Axios.get(`/user/${props}`).then(user=>{
+            this.setState({loading: false, user: user.data})
+            console.log(user)
+        })
+    }
 
-    menu: {
-      isExpanded: false
-    },
-    isLoggedIn: true
-  };
+    isLoading = () => {
+        this.setState({loading: true})
+    }
 
-  handleHTTP = props => {
-    console.log("THIS IS THE LOGIN STATUS BEFORE SIGNING IN", props);
-
-    this.switchLoggedIn(props)
-
-    console.log("THIS IS THE LOGIN STATUS AFTER SIGNING IN", this.state.isLoggedIn);
-
-  };
-
-  switchLoggedIn = (logged) => {
+    switchLoggedIn = (logged) => {
 
     this.setState({isLoggedIn: !logged});
-  }
-
-
+    }
 
   render() {
     // console.log(this.state.bodyParts);
 
     return (
       <div className="App">
-        <Header name="Sean" isLoggedIn={this.state.isLoggedIn} handleHTTP={this.handleHTTP}/>
-        <Main state={this.state} isLoggedIn={this.state.isLoggedIn} />
+        <Header name="Sean" isLoggedIn={this.state.isLoggedIn} handleHTTP={this.handleHTTP} loading={this.state.loading}/>
+        <Main state={this.state} onLoad={this.isLoading} onClick={this.handleHTTP}/>
       </div>
-    );
+    )
   }
 }
 

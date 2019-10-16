@@ -1,10 +1,10 @@
 const db = require('../models');
 
 module.exports = {
-    findById: (req,res)=>{
-        db.User.findById(req.params.user)
-            .then(user=>console.log(user)
-            .catch(err=>console.log(err)))
+    findOne: (req,res)=>{
+        db.User.findOne({userName: req.params.user})
+            .then(user=>res.json(user))
+            .catch(err=>console.log(err))
     },
     updateAccount: (req,res)=>{
         db.User.findOneAndUpdate({userName: req.params.user},req.body)
