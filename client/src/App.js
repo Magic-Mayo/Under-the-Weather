@@ -21,24 +21,23 @@ import Axios from 'axios';
 
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown);
 
-const LoginStatus = (props) => {
-    return !props.isLoggedIn && <a className="header-status" href='http://localhost:3001/auth/facebook' onClick={props.onClick}>Sign Out</a>
+const FacebookLogin = (props) => {
+    return !props.isLoggedIn && <a className="header-status" href='http://localhost:3001/auth/facebook' onClick={props.onClick}>Sign In With Facebook</a>
 };
 
 function Main(props) {
-    if(window.location.pathname.substring(1,8)==='loading'){
+    if(window.location.pathname.substring(1,8)==='dahsboard'){
         const user = window.location.pathname.split('ing/')[1];
         return <Loading path={user} loading={props.state.loading} onClick={props.onClick} onLoad={props.onLoad}/>
     } else {
         return (
             <div>
-                <LoginStatus isLoggedIn={props.state.isLoggedIn}/>
+                <FacebookLogin isLoggedIn={props.state.isLoggedIn}/>
                 <LogInSignUp state={props}/>
             </div>
         )
     }
 }
-
 
 class App extends Component {
     state = {
@@ -53,10 +52,13 @@ class App extends Component {
     };
     
     handleHTTP = props => {
-        Axios.get(`/user/${props}`).then(user=>console.log(user))
+        Axios.get(`/user/${props}`).then(user=>{
+            this.setState({loading: false, user: user.data})
+            console.log(user)
+        })
     }
 
-    isLoading = props => {
+    isLoading = () => {
         this.setState({loading: true})
     }
 
