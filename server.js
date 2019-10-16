@@ -15,8 +15,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+}
+
+require('./routes/userData')(app);
 require('./routes/fbLogin')(app);
 require('./routes/login')(app);
+require('./routes/email')(app);
+require('./routes/localLogin')(app);
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/public/index.html"));
