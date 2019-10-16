@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import API from "../utils/API";
 import DrInput from "../components/searchBox";
 import DoctorResults from "../components/searchResults";
+import PDropDown from "../components/practicesDropDown"
 
 
 
@@ -72,11 +73,12 @@ class Doctor extends Component {
                       <DoctorResults
                       firstName ={res.profile.first_name}
                       lastName = {res.profile.last_name} 
-                      bio ={res.profile.bio}
-                      practices ={res.practices.name}
+                      bio ={res.profile.bio}                                          
+                      practices ={res.practices[0].name}
                      
                       />
-                ))}
+                      ))}
+                     
               
 
             </div>
