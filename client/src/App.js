@@ -4,6 +4,7 @@ import Dashboard from './components/pages/Dashboard'
 import LogInSignUp from './components/pages/LogInSignUp'
 import Loading from './components/icons/loading'
 
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faAngleDown,
@@ -11,7 +12,8 @@ import {
   faEnvelope,
   faPhone,
   faFilter,
-  faSortDown
+  faSortDown,
+  faChild 
 } from "@fortawesome/free-solid-svg-icons";
 
 import bodyParts from "./data/bodyParts.json";
@@ -66,8 +68,6 @@ class App extends Component {
 
     this.setState({isLoggedIn: !logged});
     }
-
-
 
   render() {
     // console.log(this.state.bodyParts);
