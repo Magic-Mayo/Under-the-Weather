@@ -10,7 +10,7 @@ export default class Dashboard extends Component {
   state = this.props.state
   render() {
     return (
-      <div class="Dashboard">
+      <div className="Dashboard">
         <Symptoms name="Sean" />
         <section className="container-right">
           <MedicalHistory name="Sean"/>
