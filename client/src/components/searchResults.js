@@ -8,10 +8,11 @@ function doctors(props) {
       <p>Name: {props.firstName}, {props.lastName}</p>
       <p>Bio: {props.bio}</p>
       <p>Practices:  <select>
-        <option value="">Select an Option</option>
-        <option value="">{props.practices}
-        {props.address}
-        </option>
+        <option value="">Office Locations</option>
+        {props.practices.map(res => 
+        <option value="">{res.name}
+        {res.name.address}
+        </option>)}
 
       </select></p>
     </div>
