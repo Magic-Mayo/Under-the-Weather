@@ -40,7 +40,7 @@ class App extends Component {
     menu: {
       isExpanded: false
     },
-    isLoggedIn: false
+    isLoggedIn: true
   };
 
   handleHTTP = props => {
