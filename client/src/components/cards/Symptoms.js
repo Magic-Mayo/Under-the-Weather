@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SymptomFilter from '../forms/SymptomFilter';
+
 function Symptoms(props) {
 
     // DUMMY DATA STARTS HERE
@@ -62,6 +63,13 @@ function Symptoms(props) {
             <SymptomFilter 
                 data={formData}
             />
+
+            <section className="Symptoms-content-container">
+                {/*
+                    BRING FULL ARRAY OF USER'S SYMPTOM DATA & MAP THROUGH IT HERE:
+                        THROUGH EACH ITERATION, RENDER THE FOLLOWING COMPONENT: <SpecificSymptom poass data through attr />
+                */}
+            </section>
         </div>
     );
 }

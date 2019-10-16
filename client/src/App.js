@@ -11,14 +11,15 @@ import {
   faEnvelope,
   faPhone,
   faFilter,
-  faSortDown
+  faSortDown,
+  faChild
 } from "@fortawesome/free-solid-svg-icons";
 
 import bodyParts from "./data/bodyParts.json";
 
 import "./App.scss";
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown);
+library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faChild);
 
 function Main(props) {
   const isLoggedIn = props.isLoggedIn;
