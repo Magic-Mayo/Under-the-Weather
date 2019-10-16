@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {css} from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
+import Axios from 'axios';
 
 const override = css`
     display: block;
@@ -9,12 +10,12 @@ const override = css`
 `;
 
 class Loading extends Component {
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //         loading = false
-    //     }
-    // }
+
+    componentDidMount(){
+        this.props.onLoad();
+        this.props.onClick(this.props.path)
+    }
+
     render(){
         return (
             <div className='sweet-loading'>
