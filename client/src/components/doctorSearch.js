@@ -75,6 +75,7 @@ class Doctor extends Component {
                       lastName = {res.profile.last_name} 
                       bio ={res.profile.bio}                                          
                       practices ={res.practices[0].name}
+                      address ={" " + "address:" + res.practices[0].visit_address.street + " " + res.practices[0].visit_address.city }
                      
                       />
                       ))}

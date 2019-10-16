@@ -9,7 +9,9 @@ function doctors(props) {
       <p>Bio: {props.bio}</p>
       <p>Practices:  <select>
         <option value="">Select an Option</option>
-        <option value="">{props.practices}</option>
+        <option value="">{props.practices}
+        {props.address}
+        </option>
 
       </select></p>
     </div>
