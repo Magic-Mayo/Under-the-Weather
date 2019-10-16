@@ -4,11 +4,14 @@ import React, { Component } from "react";
 import bodyparts from "../bodyparts.json";
 import { Dropdown } from 'react-bootstrap';
 
-
 class SymptomSearchContainer extends Component {
     state = {
         bodyparts
       };
+
+      handleInputChange = event => {
+          console.log(event.target.id)
+      }
     
 
     render() {
@@ -20,11 +23,15 @@ class SymptomSearchContainer extends Component {
         {bodyparts.Name}
         </Dropdown.Toggle>
 
-        <Dropdown.Menu>
-            {this.state.bodyparts.map(bodyparts => (
-          <Dropdown.Item href="/">
-          {bodyparts.Name}</Dropdown.Item>
-          ))}
+        <Dropdown.Menu> 
+            {bodyparts.Sublocation.map(bodyparts => (
+            <Dropdown.Item 
+            id={bodyparts.ID}
+            onClick={this.handleInputChange}
+            >
+                {bodyparts.Name}
+             </Dropdown.Item>
+           ))}
         </Dropdown.Menu>
       </Dropdown>
        ))}
@@ -32,6 +39,7 @@ class SymptomSearchContainer extends Component {
             );
     }
 }
+
 
 
 export default SymptomSearchContainer;
