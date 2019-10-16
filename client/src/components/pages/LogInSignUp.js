@@ -36,7 +36,7 @@ export default class LogInSignUp extends Component {
 							Log In
 						</button>
 					</div>
-					<EntranceForm loginActive={this.state.loginActive} page={this.state.currentPage} />
+					<EntranceForm loginActive={this.state.loginActive} page={this.state.currentPage} message={this.props.message}/>
 				</section>
 			</div>
 		);
