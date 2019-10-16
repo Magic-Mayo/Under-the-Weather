@@ -19,6 +19,7 @@ export default class Dashboard extends Component {
           <Insurance name="Sean"/>
         </section>
         <Nav name="Sean" menu={this.state.menu}/>
+        {/* <Forms /> */}
       </div>
     );
   }
