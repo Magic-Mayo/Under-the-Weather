@@ -14,6 +14,7 @@ module.exports = (app) => {
     app.get('/auth/facebook/login', (req,res)=>{
         const token = req.query.code
         const urlState = req.query.state
+        // res.redirect('/loading')
         if (urlState === state){
             axios.get(`https://graph.facebook.com/v4.0/oauth/access_token?client_id=${process.env.FACEBOOK_APP_ID}&redirect_uri=${process.env.FACEBOOK_REDIRECT}&client_secret=${process.env.FACEBOOK_APP_SECRET}&code=${token}`).then(code=>{
                 
@@ -32,13 +33,13 @@ module.exports = (app) => {
                                     lastLogin: moment()
                                 }).then(newUser=>{
                                     axios.get(`/new/email/${newUser.userName}`)
-                                    .then(res.redirect('http://localhost:3000/'))
+                                    .then(res.redirect(`http://localhost:3000/loading/${newUser.userName}`))
                                 }).catch(err=>console.log(err))
                             }
                             db.User.update({where: {userName: user.userName}, lastLogin: moment()})
-                            .then(user=>{
-                                res.redirect('http://localhost:3000/')
-                            })
+                            .then(
+                                res.redirect(`http://localhost:3000/loading/${user.userName}`)
+                            )
                         }).catch(err=>console.log(err))
                     }).catch(err=>console.log(err))
                 }).catch(err=>console.log(err))
