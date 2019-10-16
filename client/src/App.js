@@ -62,13 +62,8 @@ class App extends Component {
 
     return (
       <div className="App">
-<<<<<<< HEAD
-        <Header name="Sean" isLoggedIn={this.state.user.isLoggedIn}/>
-        <Main state={this.state} isLoggedIn={this.state.user.isLoggedIn}/>
-=======
         <Header name="Sean" isLoggedIn={this.state.isLoggedIn} handleHTTP={this.handleHTTP}/>
         <Main state={this.state} isLoggedIn={this.state.isLoggedIn} />
->>>>>>> sean
       </div>
     );
   }
