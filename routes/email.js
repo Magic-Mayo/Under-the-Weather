@@ -18,8 +18,8 @@ module.exports = (app) => {
             from: process.env.EMAIL_ADDRESS,
             to: user.email,
             subject: 'Under the Weather: E-mail verification',
-            text: `Please follow the link to verify your email address. If the link does not work please copy and paste the following into your browser to verify your email address: https://under-the-weather.herokuapp.com/verify/email/${user.id}`,
-            html: `<p>Please follow the <a href='https://under-the-weather.herokuapp.com/verify/email/${user.id}'>link</a> to verify your email address. If the link does not work please copy and paste the following into your browser to verify your email address: https://under-the-weather.herokuapp.com/verify/email/${user.id}</p>`
+            text: `Please follow the link to verify your email address. If the link does not work please copy and paste the following into your browser to verify your email address: https://under-the-weather.herokuapp.com/verify/email/${user._id}`,
+            html: `<p>Please follow the <a href='https://under-the-weather.herokuapp.com/verify/email/${user._id}'>link</a> to verify your email address. If the link does not work please copy and paste the following into your browser to verify your email address: https://under-the-weather.herokuapp.com/verify/email/${user._id}</p>`
             };
 
             transport.sendMail(message, (err,res)=>{
@@ -27,9 +27,12 @@ module.exports = (app) => {
                     console.log(err)
                 } else {
                     console.log(res)
-                    // res.redirect('/')
                 }
             })
         })
+    })
+
+    app.get('verify/email/:user', (req,res)=>{
+        
     })
 }

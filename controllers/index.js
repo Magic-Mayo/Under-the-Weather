@@ -1,9 +1,16 @@
 const db = require('../models');
+const bcrypt = require('bcrypt');
 
 module.exports = {
-    findOne: (req,res)=>{
-        db.User.findOne({userName: req.params.user})
-            .then(user=>res.json(user))
+    logInorOut: (req,res)=>{
+        db.User.findById(req.params.user)
+            .then(user=>{
+                if (user.isLoggedIn && !req.body){
+                    db.User.updateOne({_id: user._id}, {isLoggedIn: false})
+                        .then(()=>{return res.json({loggedOut: false, path: '/'})})
+                        .catch(err=>res.json({loggedOut: true}))
+                }
+                res.json(user)})
             .catch(err=>console.log(err))
     },
     updateAccount: (req,res)=>{
@@ -21,5 +28,9 @@ module.exports = {
             .then(user=>{console.log(user)})
             .catch(err=>console.log(err))
     },
-
+    checkToken: (req,res)=>{
+        db.User.findOneAndUpdate({userName: req.params.user})
+        .then(loggedOut=>res.json({loggedOut: false, path: '/'}))
+        .catch(err=>{console.log(err);res.json(true)})
+    }
 }
