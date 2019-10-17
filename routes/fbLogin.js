@@ -23,7 +23,7 @@ module.exports = (app) => {
                     axios.get(`https://graph.facebook.com/${debuggedToken.data.data.user_id}?fields=id,email,name&access_token=${code.data.access_token}`).then(userData=>{
 
                         db.User.findOne({userName: userData.data.id}).then(user=>{
-                            // console.log(user)
+                            console.log(user)
                             if(!user){
                                 db.User.create({
                                     userName: userData.data.id,

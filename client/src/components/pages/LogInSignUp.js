@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EntranceForm from '../forms/EntranceForm'
+import Loading from '../icons/loading'
 
 export default class LogInSignUp extends Component {
 	state = {
@@ -22,8 +23,9 @@ export default class LogInSignUp extends Component {
 	}
 
 	render() {
-		console.log(this.state);
+		console.log(this.props);
 		return (
+            !this.props.isLoading ?
 			<div className="LogInSignUp">
 				<section
 					className={`login-form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}
@@ -38,7 +40,8 @@ export default class LogInSignUp extends Component {
 					</div>
 					<EntranceForm loginActive={this.state.loginActive} page={this.state.currentPage} message={this.props.message}/>
 				</section>
-			</div>
+            </div>:
+            <Loading loading={this.props.isLoading}/>
 		);
 	}
 }
