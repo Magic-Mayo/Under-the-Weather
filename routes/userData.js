@@ -2,5 +2,5 @@
 const db = require('../controllers');
 
 module.exports = (app) => {
-    app.get('/user/:user', db.findOne)
+    app.get('/user/:user', db.logInorOut)
 }
