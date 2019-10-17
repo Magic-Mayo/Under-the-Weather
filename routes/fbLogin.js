@@ -34,16 +34,14 @@ module.exports = (app) => {
                                         isLoggedIn: true,
                                         lastLogin: moment()
                                     }).then(newUser=>{
-                                        console.log(newUser)
-                                        axios.get(`/new/email/${newUser.userName}`)
-                                        .then(res.redirect(`http://localhost:3000/dashboard/${newUser._id}`))
+                                        res.redirect(`/new/email/${newUser._id}`)
                                     }).catch(err=>console.log(`create new ${err}`))
                                 }).catch(err=>console.log(`bcrypt ${err}`))
                             }
                             db.User.update({where: {userName: user.userName}, isLoggedIn: true, lastLogin: moment()})
-                            .then(
-                                res.redirect(`http://localhost:3000/dashboard/${user._id}`)
-                            ).catch(err=>console.log(`update login${err}`))
+                                .then(res.redirect(`http://localhost:3000/dashboard/${user._id}`))
+                                .catch(err=>console.log(`update login${err}`))
+                                
                         }).catch(err=>console.log(`find user ${err}`))
                     }).catch(err=>console.log(`final fb axios ${err}`))
                 }).catch(err=>console.log(`second fb axios ${err}`))

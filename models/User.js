@@ -40,8 +40,9 @@ const UserSchema = new Schema({
         relationship: String
     }],
     symptomHistory: [{
-        type: String,
-        pain: Number,
+        bodyPart: String,
+        painType: String,
+        severity: String,
         symptoms: String,
         time: Date,
         diagnosis: String,
