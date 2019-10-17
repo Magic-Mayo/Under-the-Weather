@@ -28,8 +28,8 @@ const FacebookLogin = (props) => {
 };
 
 function Main(props) {
-    if(window.location.pathname.substring(1,8)==='dahsboard'){
-        const user = window.location.pathname.split('ing/')[1];
+    if(window.location.pathname.substring(1,8)==='dashboard'){
+        const user = window.location.pathname.split('dashboard/')[1];
         return <Loading path={user} loading={props.state.loading} onClick={props.onClick} onLoad={props.onLoad}/>
     } else {
         return (

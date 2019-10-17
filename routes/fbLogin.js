@@ -33,12 +33,12 @@ module.exports = (app) => {
                                     lastLogin: moment()
                                 }).then(newUser=>{
                                     axios.get(`/new/email/${newUser.userName}`)
-                                    .then(res.redirect(`http://localhost:3000/loading/${newUser.userName}`))
+                                    .then(res.redirect(`http://localhost:3000/dashboard/${newUser.userName}`))
                                 }).catch(err=>console.log(err))
                             }
                             db.User.update({where: {userName: user.userName}, lastLogin: moment()})
                             .then(
-                                res.redirect(`http://localhost:3000/loading/${user.userName}`)
+                                res.redirect(`http://localhost:3000/dashboard/${user.userName}`)
                             )
                         }).catch(err=>console.log(err))
                     }).catch(err=>console.log(err))
