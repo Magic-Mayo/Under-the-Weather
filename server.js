@@ -19,6 +19,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
+require('./scripts/dbSeeds')(app);
 require('./routes/userData')(app);
 require('./routes/fbLogin')(app);
 require('./routes/logout')(app);
