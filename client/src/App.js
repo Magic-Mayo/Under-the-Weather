@@ -50,15 +50,23 @@ class App extends Component {
         user: ''
     };
     
-    handleHTTP = props => {
+    handleOAuthLogIn = props => {
         Axios.get(`/user/${props}`).then(user=>{
-            this.setState({loading: false, user: user.data, isLoggedIn: true})
-            console.log(user)
+            localStorage.setItem('_underweather', user.data.token);
+            this.setState({loading: false, user: user.data, isLoggedIn: true});
         })
     }
 
     isLoading = () => {
         this.setState({loading: true})
+    }
+
+    handleLogOut = user => {
+        Axios.put(`/logout/${user}`, false).then(loggedOut=>{
+            this.setState({isLoggedIn: loggedOut.data, user: ''});
+            window.location.pathname = loggedOut.data.path
+            console.log(loggedOut)
+        })
     }
 
     switchLoggedIn = (logged) => {
@@ -71,8 +79,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header name={this.state.user.name} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading}/>
-        <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} onClick={this.handleHTTP} loading={this.state.loading}/>
+        <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
+        <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} onClick={this.handleOAuthLogIn} loading={this.state.loading}/>
         {this.state.isLoggedIn && <Dashboard {...this.state.user} menu={this.state.menu}/>}
       </div>
     )

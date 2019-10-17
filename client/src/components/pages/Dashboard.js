@@ -7,18 +7,17 @@ import Insurance from "../cards/Insurance";
 import Nav from "../Nav";
 
 export default class Dashboard extends Component {
-  state = this.props.state
   render() {
     return (
       <div className="Dashboard">
-        <Symptoms name="Sean" />
+        <Symptoms name={this.props.name} symptoms={this.props.symptomHistory}/>
         <section className="container-right">
           <MedicalHistory name="Sean"/>
           <Providers name="Sean"/>
           <Contacts name="Sean"/>
           <Insurance name="Sean"/>
         </section>
-        <Nav name="Sean" menu={this.state.menu}/>
+        <Nav name="Sean" menu={this.props.menu}/>
         {/* <Forms /> */}
       </div>
     );

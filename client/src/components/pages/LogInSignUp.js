@@ -23,7 +23,6 @@ export default class LogInSignUp extends Component {
 	}
 
 	render() {
-		console.log(this.props);
 		return (
             !this.props.isLoading ?
 			<div className="LogInSignUp">

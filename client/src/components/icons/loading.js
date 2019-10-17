@@ -11,7 +11,6 @@ const override = css`
 class Loading extends Component {
 
     componentDidMount(){
-        console.log('mounted')
         this.props.onLoad();
         this.props.onClick(this.props.path)
     }
