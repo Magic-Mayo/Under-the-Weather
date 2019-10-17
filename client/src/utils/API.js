@@ -1,15 +1,14 @@
 import axios from "axios";
 require('dotenv').config()
 
-const BASEURL = "https://priaid-symptom-checker-v1.p.rapidapi.com/symptoms/31/man";
 const APIKEY = process.env.REACT_APP_API_KEY;
 
 
 export default {
-  search: function() {
+  search: function(query) {
     return axios({
       "method":"GET",
-      "url":BASEURL,
+      "url":"https://priaid-symptom-checker-v1.p.rapidapi.com/symptoms/" + query + "/man",
       "headers":{
       "content-type":"application/octet-stream",
       "x-rapidapi-host":"priaid-symptom-checker-v1.p.rapidapi.com",
@@ -17,12 +16,6 @@ export default {
       },"params":{
       "language":"en-gb"
       }
-      })
-      .then((response)=>{
-        console.log(response)
-      })
-      .catch((error)=>{
-        console.log(error)
       })
     }
 
