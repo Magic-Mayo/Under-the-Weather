@@ -23,7 +23,7 @@ module.exports = (app) => {
                     axios.get(`https://graph.facebook.com/${debuggedToken.data.data.user_id}?fields=id,email,name&access_token=${code.data.access_token}`).then(userData=>{
 
                         db.User.findOne({userName: userData.data.id}).then(user=>{
-                            // console.log(user)
+                            console.log(user)
                             if(!user){
                                 db.User.create({
                                     userName: userData.data.id,
@@ -33,12 +33,12 @@ module.exports = (app) => {
                                     lastLogin: moment()
                                 }).then(newUser=>{
                                     axios.get(`/new/email/${newUser.userName}`)
-                                    .then(res.redirect(`http://localhost:3000/loading/${newUser.userName}`))
+                                    .then(res.redirect(`http://localhost:3000/dashboard/${newUser.userName}`))
                                 }).catch(err=>console.log(err))
                             }
                             db.User.update({where: {userName: user.userName}, lastLogin: moment()})
                             .then(
-                                res.redirect(`http://localhost:3000/loading/${user.userName}`)
+                                res.redirect(`http://localhost:3000/dashboard/${user.userName}`)
                             )
                         }).catch(err=>console.log(err))
                     }).catch(err=>console.log(err))
