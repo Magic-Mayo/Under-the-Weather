@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EntranceForm from '../forms/EntranceForm'
+import Loading from '../icons/loading'
 
 export default class LogInSignUp extends Component {
 	state = {
@@ -22,8 +23,9 @@ export default class LogInSignUp extends Component {
 	}
 
 	render() {
-		console.log(this.state);
+		console.log(this.props);
 		return (
+            !this.props.isLoading ?
 			<div className="LogInSignUp">
 				<section
 					className={`login-form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}
@@ -38,44 +40,8 @@ export default class LogInSignUp extends Component {
 					</div>
 					<EntranceForm loginActive={this.state.loginActive} page={this.state.currentPage} />
 				</section>
-			</div>
+            </div>:
+            <Loading loading={this.props.isLoading}/>
 		);
 	}
 }
-
-
-function EntranceForm({loginActive, loading}) {
-    const data = loginActive ? {
-        loginType: "existing",
-        headingText: "Please Enter Your Log In Info",
-        inputs: [
-            {
-                name: "email",
-                label: "Email",
-                type: () => this.name
-            },
-            {
-                name: "password",
-                label: "Password",
-                type: () => this.name
-            },
-            {
-
-            }
-        ]
-    } : {
-        loginType: "new",
-        headingText: "Enter Your Info To Sign Up For a Free Account"
-    }
-    console.log(data)
-
-    return (
-        !loading ? 
-        <div className={`login-form login-form-${data.loginType}`}>
-            <h1 className={`login-form-title`}>{data.headingText}</h1>
-        </div>:
-        <Loading loading={loading}/>
-    )
-}
-
-
