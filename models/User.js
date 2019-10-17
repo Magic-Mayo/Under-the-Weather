@@ -49,6 +49,7 @@ const UserSchema = new Schema({
     }],
     emailVerified: Boolean,
     isLoggedIn: Boolean,
+    socialMedia: {type: Boolean, default: false},
     lastLogin: Date,
     createdAt: Date,
     updatedAt: Date
