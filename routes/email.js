@@ -4,6 +4,7 @@ const db = require('../models');
 
 module.exports = (app) => {
     app.get('/new/email/:user', (req,res) => {
+        console.log(req.params)
         const id = req.params.user.split('#')[0];
         console.log(id)
         const transport = mail.createTransport({
@@ -13,7 +14,7 @@ module.exports = (app) => {
                 pass: process.env.EMAIL_PASS
             }
         })
-        db.User.findOne({userName: id}).then(user=>{
+        db.User.findOne({_id: id}).then(user=>{
             const message = {
             from: process.env.EMAIL_ADDRESS,
             to: user.email,
@@ -29,7 +30,7 @@ module.exports = (app) => {
                     console.log(res)
                 }
             })
-        })
+        }).then(res.redirect(`http://localhost:3000/dashboard/${id}`))
     })
 
     app.get('verify/email/:user', (req,res)=>{
