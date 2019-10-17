@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 
 require('./routes/userData')(app);
 require('./routes/fbLogin')(app);
-require('./routes/login')(app);
+require('./routes/logout')(app);
 require('./routes/email')(app);
 require('./routes/localLogin')(app);
 
