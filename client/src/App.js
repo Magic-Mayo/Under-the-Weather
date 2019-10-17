@@ -3,8 +3,6 @@ import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard'
 import LogInSignUp from './components/pages/LogInSignUp'
 import Loading from './components/icons/loading'
-
-
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faAngleDown,
@@ -15,9 +13,7 @@ import {
   faSortDown,
   faChild 
 } from "@fortawesome/free-solid-svg-icons";
-
 import bodyParts from "./data/bodyParts.json";
-
 import "./App.scss";
 import Axios from 'axios';
 
@@ -28,14 +24,15 @@ const FacebookLogin = (props) => {
 };
 
 function Main(props) {
-    if(window.location.pathname.substring(1,8)==='dahsboard'){
-        const user = window.location.pathname.split('ing/')[1];
-        return <Loading path={user} loading={props.state.loading} onClick={props.onClick} onLoad={props.onLoad}/>
+    if(window.location.pathname.substring(1,10) === 'dashboard'){
+        const user = window.location.pathname.split('board/')[1];
+        console.log(user)
+        return <Loading path={user} loading={props.loading} onClick={props.onClick} onLoad={props.onLoad}/>
     } else {
         return (
             <div>
-                <FacebookLogin isLoggedIn={props.state.isLoggedIn}/>
-                <LogInSignUp state={props}/>
+                <FacebookLogin loading={props.loading} onClick={props.onLoad}/>
+                <LogInSignUp loading={props.loading}/>
             </div>
         )
     }
@@ -55,7 +52,7 @@ class App extends Component {
     
     handleHTTP = props => {
         Axios.get(`/user/${props}`).then(user=>{
-            this.setState({loading: false, user: user.data})
+            this.setState({loading: false, user: user.data, isLoggedIn: true})
             console.log(user)
         })
     }
@@ -74,8 +71,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header name="Sean" isLoggedIn={this.state.isLoggedIn} handleHTTP={this.handleHTTP} loading={this.state.loading}/>
-        <Main state={this.state} onLoad={this.isLoading} onClick={this.handleHTTP}/>
+        <Header name={this.state.user.name} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading}/>
+        <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} onClick={this.handleHTTP} loading={this.state.loading}/>
+        {this.state.isLoggedIn && <Dashboard {...this.state.user} menu={this.state.menu}/>}
       </div>
     )
   }
