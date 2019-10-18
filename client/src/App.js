@@ -27,12 +27,12 @@ function Main(props) {
     if(window.location.pathname.substring(1,10) === 'dashboard'){
         const user = window.location.pathname.split('board/')[1];
         console.log(user)
-        return <Loading path={user} loading={props.loading} onClick={props.onClick} onLoad={props.onLoad}/>
+        return <Loading path={user} loading={props.loading} onClick={props.handleLogIn} onLoad={props.onLoad}/>
     } else {
         return (
             <div>
                 <FacebookLogin loading={props.loading} onClick={props.onLoad}/>
-                <LogInSignUp loading={props.loading}/>
+                <LogInSignUp loading={props.loading} handleLogIn={props.handleLogIn}/>
             </div>
         )
     }
@@ -50,7 +50,15 @@ class App extends Component {
         user: ''
     };
     
-    handleOAuthLogIn = props => {
+    handleLogIn = props => {
+        if (typeof props === 'object'){
+            Axios.post(`/login/${props.username}`, props.password)
+            .then(user=>{
+                localStorage.setItem('_underweather', user.token);
+                return this.setState({loading: false, user: user.data, isLoggedIn: true})
+            })
+        }
+
         Axios.get(`/user/${props}`).then(user=>{
             localStorage.setItem('_underweather', user.data.token);
             this.setState({loading: false, user: user.data, isLoggedIn: true});
@@ -62,8 +70,9 @@ class App extends Component {
     }
 
     handleLogOut = user => {
+        this.setState({loading: true})
         Axios.put(`/logout/${user}`, false).then(loggedOut=>{
-            this.setState({isLoggedIn: loggedOut.data, user: ''});
+            this.setState({isLoggedIn: loggedOut.data, user: '', loading: false});
             window.location.pathname = loggedOut.data.path
             console.log(loggedOut)
         })
@@ -80,7 +89,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
-        <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} onClick={this.handleOAuthLogIn} loading={this.state.loading}/>
+        <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>
         {this.state.isLoggedIn && <Dashboard {...this.state.user} menu={this.state.menu}/>}
       </div>
     )
