@@ -53,11 +53,10 @@ class Nav extends React.Component {
 					<NavExpand onClick={this.toggleMenu} />
 					<NavItems show={this.state.dropDownVisible} />
 				</div>
-        <Route exact path="/provider" component={AddProvider}/>
-        <Route exact path="/contact" component={AddContact}/>
-        <Route exact path="/symptom" component={AddSymptom}/>
-        <Route exact path="/insurance" component={AddInsurance}/>
-
+                <Route exact path="/provider" component={AddProvider}/>
+                <Route exact path="/contact" component={AddContact}/>
+                <Route exact path="/symptom" component={AddSymptom}/>
+                <Route exact path="/insurance" component={AddInsurance}/>
 			</Router>
 		);
 	}
