@@ -56,7 +56,7 @@ export default class EntranceForm extends Component {
                 {
                     data.loginType === "new" 
                     ? <SignupForm data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}/>
-                    : <LoginForm data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}/> 
+                    : <LoginForm handleLogIn={this.props.handleLogIn} data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}/> 
                 }
 			</div>
 		);

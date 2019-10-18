@@ -22,16 +22,16 @@ export default class SignupForm extends Component {
             <form className={`login-form-${this.props.data.loginType}-input-box login-form-input-area`}>
                 <div className="input-container">
                     <label htmlFor="email"><span>*</span> Email: </label>
-                    <input type="email" name="email" id="email" value={this.state.email} placeholder="johndoe@emaildomain.com"/>
+                    <input type="email" name="email" id="email" value={this.state.email} onChange={this.handleInput} placeholder="johndoe@emaildomain.com"/>
                 </div>
                 <div className="input-container">
                     <label htmlFor="password"><span>*</span> Password: </label>
-                    <input type="password" name="password" value={this.state.password} id="password"/>
+                    <input type="password" name="password" value={this.state.password} onChange={this.handleInput} id="password"/>
                     <FontAwesomeIcon icon="eye" className="eye-icon"/>
                 </div>
                 <div className="input-container">
                     <label htmlFor="password-check"><span>*</span> Re-enter Password: </label>
-                    <input type="password-check" name="passwordCheck" value={this.state.passwordCheck} id="password-check"/>
+                    <input type="password-check" name="passwordCheck" value={this.state.passwordCheck} onChange={this.handleInput} id="password-check"/>
                     {/* <FontAwesomeIcon icon="eye" className="eye-icon"/> */}
                 </div>
                 <div className="btn-container">
