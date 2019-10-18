@@ -9,7 +9,7 @@ export default class SignInSocial extends Component {
                 <h1>Otherwise...</h1>
                 <div className="social-btn-container">
                     <div className="social-facebook">
-                        <a className="social-btn social-facebook-btn">Log In With Facebook</a>     
+                        <a href='http://localhost:3001/auth/facebook' className="social-btn social-facebook-btn">Log In With Facebook</a>     
                         <FontAwesomeIcon icon={['fab', 'facebook']} className="brand-icon"/>
 
                     </div>
