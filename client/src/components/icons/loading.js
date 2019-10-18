@@ -9,10 +9,9 @@ const override = css`
 `;
 
 class Loading extends Component {
-
     componentDidMount(){
         this.props.onLoad();
-        this.props.onClick(this.props.path)
+        this.props.onClick(this.props.path);
     }
 
     render(){

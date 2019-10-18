@@ -11,7 +11,6 @@ export default class EntranceForm extends Component {
     }
 
 	render() {
-        console.log(this.props.loginActive)
         const data = this.props.loginActive ? {
                 loginType: 'existing',
                 headingText: 'Please Enter Your Log In Info',
