@@ -11,7 +11,6 @@ import {
   faPhone,
   faFilter,
   faSortDown,
-<<<<<<< HEAD
   faChild 
 } from "@fortawesome/free-solid-svg-icons";
 import bodyParts from "./data/bodyParts.json";
@@ -29,37 +28,11 @@ const Main = props => {
         const user = window.location.pathname.split('board/')[1];
         console.log(user)
         return <Loading path={user} loading={props.loading} onClick={props.handleLogIn} onLoad={props.onLoad}/>
-=======
-  faChild,
-  faEye
-} from "@fortawesome/free-solid-svg-icons";
-import { fab } from '@fortawesome/free-brands-svg-icons'
-
-import bodyParts from "./data/bodyParts.json";
-import "./App.scss";
-import Axios from 'axios';
-
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, fab);
-
-const FacebookLogin = (props) => {
-    return !props.isLoggedIn && <a className="header-status" href='http://localhost:3001/auth/facebook' onClick={props.onClick}>Sign In With Facebook</a>
-};
-
-function Main(props) {
-    if(window.location.pathname.substring(1,10) === 'dashboard'){
-        const user = window.location.pathname.split('board/')[1];
-        console.log(user)
-        return <Loading path={user} loading={props.loading} onClick={props.onClick} onLoad={props.onLoad}/>
->>>>>>> 58208d754f4e42cf4c5fb423cc7c882c7880f1ae
     } else {
         return (
             <div>
                 <FacebookLogin loading={props.loading} onClick={props.onLoad}/>
-<<<<<<< HEAD
                 <LogInSignUp loading={props.loading} handleLogIn={props.handleLogIn} />
-=======
-                <LogInSignUp loading={props.loading}/>
->>>>>>> 58208d754f4e42cf4c5fb423cc7c882c7880f1ae
             </div>
         )
     }
@@ -85,7 +58,7 @@ class App extends Component {
                 this.setState({loading: false, user: user.data, isLoggedIn: true})
                 localStorage.setItem('_underweather', user.token);
             })
-        } 
+        }
         Axios.get(`/user/${props}`).then(user=>{
             localStorage.setItem('_underweather', user.data.token);
             this.setState({loading: false, user: user.data, isLoggedIn: true});

@@ -8,15 +8,8 @@ export default class EntranceForm extends Component {
             page: null
         },
         parentProps: this.props
-<<<<<<< HEAD
-    }
-
-	render() {
-=======
 	}
 	render() {
-        console.log(this.props.loginActive)
->>>>>>> 58208d754f4e42cf4c5fb423cc7c882c7880f1ae
         const data = this.props.loginActive ? {
                 loginType: 'existing',
                 headingText: 'Please Enter Your Log In Info',
