@@ -9,7 +9,6 @@ export default class LoginForm extends Component {
 
     handleInput = (e) => {
         const {name, value} = e.target
-        console.log(name,value)
         this.setState({[name]: value})
     }
 
