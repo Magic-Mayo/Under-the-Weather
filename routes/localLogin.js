@@ -1,10 +1,10 @@
 const db = require('../models');
 const bcrypt = require('bcrypt');
 const uid = require('uid-safe');
+const token = uid.sync(18)
 
 module.exports = (app) => {
     app.post('/newlocal', (req,res)=>{
-        const token = uid.sync(18)
         bcrypt.hash(req.body.credentials.password, 12)
         .then(hash=>{
             db.User.create({
@@ -20,11 +20,18 @@ module.exports = (app) => {
     })
 
     app.post('/login', (req,res)=>{
-        db.User.findOne({userName: req.body.credentials.username}).then(user=>{
-            if (user.password === req.body.credentials.password){
-                return res.json(user)
-            }
-            return res.json('Incorrect username and password combination')
+        const credentials = req.body.credentials;
+        db.User.findOne({userName: credentials.username}).then(user=>{
+            // bcrypt.compare(credentials.password, user.password).then(verified=>{
+                if (user.password === credentials.password){
+                    return db.User.findOneAndUpdate({userName: req.body.credentials.username},
+                    {isLoggedIn: true, token: token},
+                    {new:true})
+                    .then(updated=>res.json(updated))
+                    .catch(err=>console.log(err))
+                }
+                return res.json('Incorrect username and password combination')
+            // })
         }).catch(err=>console.log(err))
     });
 }
