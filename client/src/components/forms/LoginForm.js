@@ -16,7 +16,6 @@ export default class LoginForm extends Component {
     }
 
     render() {
-        // console.log(this.props.data.className)
         return (
             <form className={`login-form-${this.props.data.loginType}-input-box login-form-input-area`}>
                 <div className="input-container">
