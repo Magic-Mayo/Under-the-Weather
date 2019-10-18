@@ -104,7 +104,6 @@ const dummy = {
 
 module.exports = (app) => {
     app.get('/dummydata', (req, res)=>{
-        // console.log(dummy)
         db.User.findOne({userName: dummy.userName})
             .then(user=>{
                 if(!user){
