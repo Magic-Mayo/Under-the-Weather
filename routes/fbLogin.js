@@ -19,7 +19,7 @@ module.exports = (app) => {
         if (urlState === state){
             axios.get(`https://graph.facebook.com/v4.0/oauth/access_token?client_id=${process.env.FACEBOOK_APP_ID}&redirect_uri=${process.env.FACEBOOK_REDIRECT}&client_secret=${process.env.FACEBOOK_APP_SECRET}&code=${token}`).then(code=>{
                 axios.get(`https://graph.facebook.com/debug_token?input_token=${code.data.access_token}&access_token=${process.env.FACEBOOK_APP_TOKEN}`).then(debuggedToken=>{
-                    console.log("DEBUG DATA",debuggedToken.data);
+                    // console.log("DEBUG DATA",debuggedToken.data);
                     axios.get(`https://graph.facebook.com/${debuggedToken.data.data.user_id}?fields=id,email,name&access_token=${code.data.access_token}`).then(userData=>{
 
                         db.User.findOne({userName: userData.data.id}).then(user=>{

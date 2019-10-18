@@ -8,6 +8,7 @@ import Nav from "../Nav";
 
 export default class Dashboard extends Component {
   render() {
+    console.log(this.props.user.DOB);
     return (
       <div className="Dashboard">
         <Symptoms name={this.props.name} symptoms={this.props.symptomHistory}/>

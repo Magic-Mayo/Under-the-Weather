@@ -104,9 +104,10 @@ const dummy = {
 
 module.exports = (app) => {
     app.get('/dummydata', (req, res)=>{
-        // console.log(dummy)
         db.User.findOne({userName: dummy.userName})
             .then(user=>{
+                console.log(user)
+
                 if(!user){
                     db.User.create(dummy)
                         .then(dummy=>res.redirect(`http://localhost:3000/dashboard/${dummy._id}`))
