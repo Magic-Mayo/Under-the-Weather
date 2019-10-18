@@ -9,7 +9,7 @@ function Symptoms(props) {
     const formData = {
         options: [
             {
-                name: 'severity',
+                name: 'Severity',
                 choices: [
                     'mild',
                     'mildly painful',
@@ -18,7 +18,7 @@ function Symptoms(props) {
                 ]
             },
             {
-                name: 'type',
+                name: 'Type',
                 choices: [
                     'throbbing',
                     'sharp',
@@ -27,7 +27,7 @@ function Symptoms(props) {
                 ]
             },
             {
-                name: 'symptoms',
+                name: 'Symptoms',
                 choices: [
                     'headache',
                     'dizziness',
@@ -35,7 +35,7 @@ function Symptoms(props) {
                 ]
             },
             {
-                name: "time",
+                name: "Time",
                 choices: [
                     'today',
                     'yesterday',
@@ -45,7 +45,7 @@ function Symptoms(props) {
                 ]
             },
             {
-                name: 'diagnosis',
+                name: 'Diagnosis',
                 choices: [
                     'none',
                     'clinical migraines',

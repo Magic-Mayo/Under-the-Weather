@@ -1,4 +1,6 @@
 import React from 'react';
+import Doctor from "../../components/doctorSearch";
+
 
 
 function Providers(props) {
@@ -16,6 +18,7 @@ function Providers(props) {
                     Email: 
                     <a href="/">jscott@doctor.phd</a>
                 </p>
+                <Doctor />
             </div>
         </div>
     );

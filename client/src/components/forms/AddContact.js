@@ -6,7 +6,7 @@ export default class AddContact extends Component {
         return (
             <div className="AddContact">
                 ADD CONTACT
-                <LogInSignUp />
+                <LogInSignUp message="ADD CONTACT"/>
             </div>
         )
     }
