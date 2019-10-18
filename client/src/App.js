@@ -3,8 +3,6 @@ import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard'
 import LogInSignUp from './components/pages/LogInSignUp'
 import Loading from './components/icons/loading'
-// import Umbrella from "./components/icons/Umbrella";
-// import Logo from "./components/icons/Logo";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faAngleDown,
@@ -21,11 +19,11 @@ import Axios from 'axios';
 
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown);
 
-const FacebookLogin = (props) => {
+const FacebookLogin = props => {
     return !props.isLoggedIn && <a className="header-status" href='http://localhost:3001/auth/facebook' onClick={props.onClick}>Sign In With Facebook</a>
 };
 
-function Main(props) {
+const Main = props => {
     if(window.location.pathname.substring(1,10) === 'dashboard'){
         const user = window.location.pathname.split('board/')[1];
         console.log(user)
@@ -53,11 +51,12 @@ class App extends Component {
     };
     
     handleLogIn = props => {
+        this.setState({loading: true})
         if (typeof props === 'object'){
-            return Axios.post(`/login/`, props)
+            return Axios.post(`/login`, props)
             .then(user=>{
-                localStorage.setItem('_underweather', user.token);
                 this.setState({loading: false, user: user.data, isLoggedIn: true})
+                localStorage.setItem('_underweather', user.token);
             })
         } 
         Axios.get(`/user/${props}`).then(user=>{
@@ -73,7 +72,7 @@ class App extends Component {
     handleLogOut = () => {
         this.setState({loading: true})
         console.log('clicked')
-        Axios.put(`/logout/${this.state.user._id}`, false).then(loggedOut=>{
+        Axios.put(`/logout/${this.state.user._id}`, {loggedIn: 'logout'}).then(loggedOut=>{
             localStorage.removeItem('_underweather')
             this.setState({isLoggedIn: loggedOut.data, user: '', loading: false});
             window.location.pathname = loggedOut.data.path
@@ -82,8 +81,6 @@ class App extends Component {
     }
 
   render() {
-    // console.log(this.state.bodyParts);
-
     return (
         <div className="App">
             <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
