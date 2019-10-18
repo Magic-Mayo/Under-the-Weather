@@ -87,16 +87,10 @@ class App extends Component {
     // console.log(this.state.bodyParts);
 
     return (
-<<<<<<< HEAD
-      <div className="App">       
-        <Header name="Sean" isLoggedIn={this.state.isLoggedIn} handleHTTP={this.handleHTTP} loading={this.state.loading}/>
-        <Main state={this.state} onLoad={this.isLoading} onClick={this.handleHTTP}/>
-=======
       <div className="App">
         <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
         <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>
         {this.state.isLoggedIn && <Dashboard {...this.state.user} menu={this.state.menu}/>}
->>>>>>> 9edfc4b2af1e52ba417ace25f2d3657abf70db4b
       </div>
     )
   }
