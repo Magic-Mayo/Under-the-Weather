@@ -8,9 +8,15 @@ export default class EntranceForm extends Component {
             page: null
         },
         parentProps: this.props
+<<<<<<< HEAD
     }
 
 	render() {
+=======
+	}
+	render() {
+        console.log(this.props.loginActive)
+>>>>>>> 58208d754f4e42cf4c5fb423cc7c882c7880f1ae
         const data = this.props.loginActive ? {
                 loginType: 'existing',
                 headingText: 'Please Enter Your Log In Info',
@@ -52,9 +58,12 @@ export default class EntranceForm extends Component {
 			<div className={`login-form login-form-${data.loginType}`}>
                 <h1 className="login-form-title">{data.headingText}</h1>
                 {
-                    data.loginType === "existing" 
-                    ? <LoginForm data={data} handleLogIn={this.props.handleLogIn} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}/> 
-                    : <SignupForm data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}/>
+                    this.props.message && <p>{this.props.message}</p>
+                }
+                {
+                    data.loginType === "new" 
+                    ? <SignupForm data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}/>
+                    : <LoginForm data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}/> 
                 }
 			</div>
 		);

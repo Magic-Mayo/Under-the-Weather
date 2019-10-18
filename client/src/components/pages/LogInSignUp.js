@@ -37,7 +37,7 @@ export default class LogInSignUp extends Component {
 							Log In
 						</button>
 					</div>
-					<EntranceForm handleLogIn={this.props.handleLogIn} loginActive={this.state.loginActive} page={this.state.currentPage} />
+					<EntranceForm handleLogIn={this.props.handleLogIn} loginActive={this.state.loginActive} page={this.state.currentPage} message={this.props.message}/>
 				</section>
             </div>:
             <Loading loading={this.props.isLoading}/>
