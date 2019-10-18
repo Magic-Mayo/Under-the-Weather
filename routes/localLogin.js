@@ -21,10 +21,11 @@ module.exports = (app) => {
 
     app.post('/login', (req,res)=>{
         const credentials = req.body.credentials;
-        db.User.findOne({userName: credentials.username}).then(user=>{
+        console.log(credentials)
+        db.User.findOne({userName: credentials.email}).then(user=>{
             // bcrypt.compare(credentials.password, user.password).then(verified=>{
                 if (user.password === credentials.password){
-                    return db.User.findOneAndUpdate({userName: req.body.credentials.username},
+                    return db.User.findOneAndUpdate({userName: credentials.email},
                     {isLoggedIn: true, token: token},
                     {new:true})
                     .then(updated=>res.json(updated))
