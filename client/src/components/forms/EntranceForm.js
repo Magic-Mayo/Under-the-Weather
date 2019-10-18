@@ -8,7 +8,8 @@ export default class EntranceForm extends Component {
             page: null
         },
         parentProps: this.props
-	}
+    }
+
 	render() {
         console.log(this.props.loginActive)
         const data = this.props.loginActive ? {
@@ -52,8 +53,8 @@ export default class EntranceForm extends Component {
 			<div className={`login-form login-form-${data.loginType}`}>
                 <h1 className="login-form-title">{data.headingText}</h1>
                 {
-                    data.loginType === "new" 
-                    ? <LoginForm data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}/> 
+                    data.loginType === "existing" 
+                    ? <LoginForm data={data} handleLogIn={this.props.handleLogIn} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}/> 
                     : <SignupForm data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}/>
                 }
 			</div>
