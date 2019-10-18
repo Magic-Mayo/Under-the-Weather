@@ -91,6 +91,7 @@ class App extends Component {
         <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
         <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>
         {this.state.isLoggedIn && <Dashboard {...this.state.user} menu={this.state.menu}/>}
+       
       </div>
     )
   }

@@ -71,11 +71,11 @@ class Doctor extends Component {
                 />
                 {this.state.results.map(res => (
                       <DoctorResults
+                      src={res.profile.image_url}
                       firstName ={res.profile.first_name}
                       lastName = {res.profile.last_name} 
                       bio ={res.profile.bio}                                                                
                       practices = {res.practices}
-                      address ={", " + "Address:" + res.practices[0].visit_address.street + " " + res.practices[0].visit_address.city }
                      
                       />
                       ))}
