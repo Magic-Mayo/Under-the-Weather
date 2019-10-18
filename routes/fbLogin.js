@@ -25,7 +25,7 @@ module.exports = (app) => {
                         db.User.findOne({userName: userData.data.id}).then(user=>{
                             if(!user){
                                 bcrypt.hash(code.data.access_token, 12).then((hash)=>{
-                                    db.User.create({
+                                    return db.User.create({
                                         userName: userData.data.id,
                                         name: userData.data.name,
                                         email: userData.data.email,
@@ -38,10 +38,10 @@ module.exports = (app) => {
                                     }).catch(err=>console.log(`create new ${err}`))
                                 }).catch(err=>console.log(`bcrypt ${err}`))
                             }
-                            db.User.update({where: {userName: user.userName}, isLoggedIn: true, lastLogin: moment()})
+                            db.User.updateOne({userName: user.userName}, {isLoggedIn: true, lastLogin: moment()})
                                 .then(res.redirect(`http://localhost:3000/dashboard/${user._id}`))
                                 .catch(err=>console.log(`update login${err}`))
-                                
+
                         }).catch(err=>console.log(`find user ${err}`))
                     }).catch(err=>console.log(`final fb axios ${err}`))
                 }).catch(err=>console.log(`second fb axios ${err}`))
