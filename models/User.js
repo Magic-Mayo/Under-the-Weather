@@ -40,8 +40,9 @@ const UserSchema = new Schema({
         relationship: String
     }],
     symptomHistory: [{
-        type: String,
-        pain: Number,
+        bodyPart: String,
+        painType: String,
+        severity: String,
         symptoms: String,
         time: Date,
         diagnosis: String,
@@ -49,6 +50,7 @@ const UserSchema = new Schema({
     }],
     emailVerified: Boolean,
     isLoggedIn: Boolean,
+    socialMedia: {type: Boolean, default: false},
     lastLogin: Date,
     createdAt: Date,
     updatedAt: Date

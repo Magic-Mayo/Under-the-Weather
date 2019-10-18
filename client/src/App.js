@@ -3,9 +3,6 @@ import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard'
 import LogInSignUp from './components/pages/LogInSignUp'
 import Loading from './components/icons/loading'
-
-
-
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faAngleDown,
@@ -16,9 +13,7 @@ import {
   faSortDown,
   faChild 
 } from "@fortawesome/free-solid-svg-icons";
-
 import bodyParts from "./data/bodyParts.json";
-
 import "./App.scss";
 import Axios from 'axios';
 
@@ -29,14 +24,15 @@ const FacebookLogin = (props) => {
 };
 
 function Main(props) {
-    if(window.location.pathname.substring(1,8)==='dahsboard'){
-        const user = window.location.pathname.split('ing/')[1];
-        return <Loading path={user} loading={props.state.loading} onClick={props.onClick} onLoad={props.onLoad}/>
+    if(window.location.pathname.substring(1,10) === 'dashboard'){
+        const user = window.location.pathname.split('board/')[1];
+        console.log(user)
+        return <Loading path={user} loading={props.loading} onClick={props.handleLogIn} onLoad={props.onLoad}/>
     } else {
         return (
             <div>
-                <FacebookLogin isLoggedIn={props.state.isLoggedIn}/>
-                <LogInSignUp state={props}/>
+                <FacebookLogin loading={props.loading} onClick={props.onLoad}/>
+                <LogInSignUp loading={props.loading} handleLogIn={props.handleLogIn}/>
             </div>
         )
     }
@@ -54,15 +50,32 @@ class App extends Component {
         user: ''
     };
     
-    handleHTTP = props => {
+    handleLogIn = props => {
+        if (typeof props === 'object'){
+            Axios.post(`/login/${props.username}`, props.password)
+            .then(user=>{
+                localStorage.setItem('_underweather', user.token);
+                return this.setState({loading: false, user: user.data, isLoggedIn: true})
+            })
+        }
+
         Axios.get(`/user/${props}`).then(user=>{
-            this.setState({loading: false, user: user.data})
-            console.log(user)
+            localStorage.setItem('_underweather', user.data.token);
+            this.setState({loading: false, user: user.data, isLoggedIn: true});
         })
     }
 
     isLoading = () => {
         this.setState({loading: true})
+    }
+
+    handleLogOut = user => {
+        this.setState({loading: true})
+        Axios.put(`/logout/${user}`, false).then(loggedOut=>{
+            this.setState({isLoggedIn: loggedOut.data, user: '', loading: false});
+            window.location.pathname = loggedOut.data.path
+            console.log(loggedOut)
+        })
     }
 
     switchLoggedIn = (logged) => {
@@ -74,9 +87,16 @@ class App extends Component {
     // console.log(this.state.bodyParts);
 
     return (
+<<<<<<< HEAD
       <div className="App">       
         <Header name="Sean" isLoggedIn={this.state.isLoggedIn} handleHTTP={this.handleHTTP} loading={this.state.loading}/>
         <Main state={this.state} onLoad={this.isLoading} onClick={this.handleHTTP}/>
+=======
+      <div className="App">
+        <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
+        <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>
+        {this.state.isLoggedIn && <Dashboard {...this.state.user} menu={this.state.menu}/>}
+>>>>>>> 9edfc4b2af1e52ba417ace25f2d3657abf70db4b
       </div>
     )
   }

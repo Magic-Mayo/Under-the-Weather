@@ -65,10 +65,9 @@ function Symptoms(props) {
             />
 
             <section className="Symptoms-content-container">
-                {/*
-                    BRING FULL ARRAY OF USER'S SYMPTOM DATA & MAP THROUGH IT HERE:
-                        THROUGH EACH ITERATION, RENDER THE FOLLOWING COMPONENT: <SpecificSymptom poass data through attr />
-                */}
+                {/* {this.props.symptomHistory.map(symptoms=>{
+                    map out symptoms with map function in place
+                })} */}
             </section>
         </div>
     );

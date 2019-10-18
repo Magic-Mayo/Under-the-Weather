@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {css} from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
-import Axios from 'axios';
 
 const override = css`
     display: block;
