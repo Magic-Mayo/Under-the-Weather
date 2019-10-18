@@ -4,6 +4,8 @@ import Dashboard from './components/pages/Dashboard'
 import LogInSignUp from './components/pages/LogInSignUp'
 import Loading from './components/icons/loading'
 import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from '@fortawesome/free-brands-svg-icons'
+
 import {
   faAngleDown,
   faPlus,
@@ -11,13 +13,13 @@ import {
   faPhone,
   faFilter,
   faSortDown,
-  faChild 
+  faChild
 } from "@fortawesome/free-solid-svg-icons";
 import bodyParts from "./data/bodyParts.json";
 import "./App.scss";
 import Axios from 'axios';
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown);
+library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown,fab);
 
 const FacebookLogin = props => {
     return !props.isLoggedIn && <a className="header-status" href='http://localhost:3001/auth/facebook' onClick={props.onClick}>Sign In With Facebook</a>
