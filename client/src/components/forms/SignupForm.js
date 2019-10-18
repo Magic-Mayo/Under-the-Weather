@@ -31,7 +31,7 @@ export default class SignupForm extends Component {
                 </div>
                 <div className="input-container">
                     <label htmlFor="password-check"><span>*</span> Re-enter Password: </label>
-                    <input type="password-check" name="passwordCheck" value={this.state.passwordCheck} onChange={this.handleInput} id="password-check"/>
+                    <input type="password" name="passwordCheck" value={this.state.passwordCheck} onChange={this.handleInput} id="password-check"/>
                     {/* <FontAwesomeIcon icon="eye" className="eye-icon"/> */}
                 </div>
                 <div className="btn-container">
