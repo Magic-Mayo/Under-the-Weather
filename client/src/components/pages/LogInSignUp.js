@@ -44,38 +44,38 @@ export default class LogInSignUp extends Component {
 }
 
 
-function EntranceForm({loginActive, loading}) {
-    const data = loginActive ? {
-        loginType: "existing",
-        headingText: "Please Enter Your Log In Info",
-        inputs: [
-            {
-                name: "email",
-                label: "Email",
-                type: () => this.name
-            },
-            {
-                name: "password",
-                label: "Password",
-                type: () => this.name
-            },
-            {
+// function EntranceForm({loginActive, loading}) {
+//     const data = loginActive ? {
+//         loginType: "existing",
+//         headingText: "Please Enter Your Log In Info",
+//         inputs: [
+//             {
+//                 name: "email",
+//                 label: "Email",
+//                 type: () => this.name
+//             },
+//             {
+//                 name: "password",
+//                 label: "Password",
+//                 type: () => this.name
+//             },
+//             {
 
-            }
-        ]
-    } : {
-        loginType: "new",
-        headingText: "Enter Your Info To Sign Up For a Free Account"
-    }
-    console.log(data)
+//             }
+//         ]
+//     } : {
+//         loginType: "new",
+//         headingText: "Enter Your Info To Sign Up For a Free Account"
+//     }
+//     console.log(data)
 
-    return (
-        !loading ? 
-        <div className={`login-form login-form-${data.loginType}`}>
-            <h1 className={`login-form-title`}>{data.headingText}</h1>
-        </div>:
-        <Loading loading={loading}/>
-    )
-}
+//     return (
+//         !loading ? 
+//         <div className={`login-form login-form-${data.loginType}`}>
+//             <h1 className={`login-form-title`}>{data.headingText}</h1>
+//         </div>:
+//         <Loading loading={loading}/>
+//     )
+// }
 
 

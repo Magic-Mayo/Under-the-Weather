@@ -5,6 +5,7 @@ import LogInSignUp from './components/pages/LogInSignUp'
 import Loading from './components/icons/loading'
 
 
+
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faAngleDown,
@@ -73,7 +74,7 @@ class App extends Component {
     // console.log(this.state.bodyParts);
 
     return (
-      <div className="App">
+      <div className="App">       
         <Header name="Sean" isLoggedIn={this.state.isLoggedIn} handleHTTP={this.handleHTTP} loading={this.state.loading}/>
         <Main state={this.state} onLoad={this.isLoading} onClick={this.handleHTTP}/>
       </div>
