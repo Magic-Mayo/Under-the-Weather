@@ -58,7 +58,7 @@ class App extends Component {
                 this.setState({loading: false, user: user.data, isLoggedIn: true})
                 localStorage.setItem('_underweather', user.token);
             })
-        }
+        } 
         Axios.get(`/user/${props}`).then(user=>{
             localStorage.setItem('_underweather', user.data.token);
             this.setState({loading: false, user: user.data, isLoggedIn: true});
