@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import EntranceForm from '../forms/EntranceForm'
 import Loading from '../icons/loading'
 
-export default class LogInSignUp extends Component {
+export default class FormContainer extends Component {
 	state = {
 		loginActive: true,
 		signupActive: false,

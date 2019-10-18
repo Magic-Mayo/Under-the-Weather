@@ -29,8 +29,9 @@ export default class LoginForm extends Component {
                     <FontAwesomeIcon icon="eye" className="eye-icon"/>
                 </div>               
                 <div className="btn-container">
-                    <SignInSocial />
                     <button type="button" className="btn" onClick={()=>this.props.handleLogIn({credentials: this.state})}>Log In</button>
+                    <SignInSocial/>
+
                 </div>
             </form>
         )

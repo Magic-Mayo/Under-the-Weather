@@ -35,8 +35,9 @@ export default class SignupForm extends Component {
                     {/* <FontAwesomeIcon icon="eye" className="eye-icon"/> */}
                 </div>
                 <div className="btn-container">
-                    <SignInSocial />
                     <button type="button" className="btn">Continue</button>
+                    <SignInSocial/>
+
                 </div>
             </form>
         )

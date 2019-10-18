@@ -4,11 +4,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import AddProvider from '../forms/AddProvider'
-import AddContact from '../forms/AddContact'
-import AddSymptom from '../forms/AddSymptom'
-import AddInsurance from '../forms/AddInsurance'
-
+import AddProvider from '../forms/AddProvider';
+import AddContact from '../forms/AddContact';
+import AddSymptom from '../forms/AddSymptom';
+import AddInsurance from '../forms/AddInsurance';
 
 const NavItems = ({ show }) => {
 	return (
@@ -53,10 +52,10 @@ class Nav extends React.Component {
 					<NavExpand onClick={this.toggleMenu} />
 					<NavItems show={this.state.dropDownVisible} />
 				</div>
-                <Route exact path="/provider" component={AddProvider}/>
-                <Route exact path="/contact" component={AddContact}/>
-                <Route exact path="/symptom" component={AddSymptom}/>
-                <Route exact path="/insurance" component={AddInsurance}/>
+				<Route exact path="/provider" render={(props) => <AddProvider {...props} />} />
+				<Route exact path="/contact" render={(props) => <AddContact {...props} />} />
+				<Route exact path="/symptom" render={(props) => <AddSymptom {...props} />} />
+				<Route exact path="/insurance" render={(props) => <AddInsurance {...props} />} />
 			</Router>
 		);
 	}
