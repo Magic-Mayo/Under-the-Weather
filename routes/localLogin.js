@@ -1,31 +1,30 @@
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const db = require('../models')
-
-passport.use(new LocalStrategy(
-    function(username, password, done) {
-        db.User.findOne({ username: username }, function(err, user) {
-            if (err) { return done(err); }
-            if (!user) {
-                return done(null, false, { message: 'Incorrect username.' });
-            }
-            if (!user.validPassword(password)) {
-                return done(null, false, { message: 'Incorrect password.' });
-            }
-            return done(null, user);
-        });
-    }
-));
+const db = require('../models');
+const bcrypt = require('bcrypt');
+const uid = require('uid-safe');
 
 module.exports = (app) => {
     app.post('/newlocal', (req,res)=>{
-        console.log(req.body)
+        const token = uid.sync(18)
+        bcrypt.hash(req.body.credentials.password, 12)
+        .then(hash=>{
+            db.User.create({
+                userName: req.body.credentials.username,
+                password: hash,
+                token: token
+            })
+            .then(user=>{
+                res.json(user)
+            })
+            .catch(err=>res.json(`Error: ${err}`))
+        })
     })
 
-    app.post('/login',
-        passport.authenticate('local'),
-        (req,res)=>{
-            res.redirect(`home/${req.user.username}`)
-        }
-    );
+    app.post('/login', (req,res)=>{
+        db.User.findOne({userName: req.body.credentials.username}).then(user=>{
+            if (user.password === req.body.credentials.password){
+                return res.json(user)
+            }
+            return res.json('Incorrect username and password combination')
+        }).catch(err=>console.log(err))
+    });
 }
