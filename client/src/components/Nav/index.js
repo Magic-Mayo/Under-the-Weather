@@ -13,10 +13,10 @@ import Dashboard from '../pages/Dashboard';
 const NavItems = (props) => {
 	return (
 		<div className="expand-items-container" style={{ visibility: props.show ? 'visible' : 'hidden' }}>
-			<Link to={"/provider"} className="expand-items">
+			<Link to={window.location.pathname + "/provider"} className="expand-items">
 				provider
 			</Link>
-			<Link to={"/contact"} className="expand-items">
+			<Link to={window.location.pathname + "/contact"} className="expand-items">
 				contact
 			</Link>
 			<Link to={"/symptom"} className="expand-items">
@@ -55,8 +55,8 @@ class Nav extends React.Component {
 					<NavExpand onClick={this.toggleMenu} />
 					<NavItems show={this.state.dropDownVisible}/>
 				</div>
-				<Route exact path="/provider" render={() => <AddProvider {...this.data} />} />
-				<Route exact path="/contact" render={() => <AddContact {...this.data} />} />
+				<Route exact path={window.location.pathname + "/provider"} render={() => <AddProvider {...this.data} />} />
+				<Route exact path={window.location.pathname + "/contact"} render={() => <AddContact {...this.data} />} />
 				<Route exact path="/symptom" render={() => <AddSymptom {...this.data} />} />
 				<Route exact path="/insurance" render={() => <AddInsurance {...this.data} />} />
 			</Router>

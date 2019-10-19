@@ -8,7 +8,7 @@ import Nav from "../Nav";
 
 export default class Dashboard extends Component {
   render() {
-    console.log("HERE ARE THE USER DETAILS", this.props)
+    console.log("HERE ARE THE USER DETAILS", this.props.user)
 
     return (
       <div className="Dashboard">
