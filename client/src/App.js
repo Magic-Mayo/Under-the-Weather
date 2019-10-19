@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard'
-import LogInSignUp from './components/pages/LogInSignUp'
+import FormContainer from './components/pages/FormContainer'
 import Loading from './components/icons/loading'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -13,18 +13,16 @@ import {
   faPhone,
   faFilter,
   faSortDown,
-  faChild
+  faChild,
+  faEye,
+  faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
 
 import bodyParts from "./data/bodyParts.json";
 import "./App.scss";
 import Axios from 'axios';
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown,fab);
-
-const FacebookLogin = props => {
-    return !props.isLoggedIn && <a className="header-status" href='http://localhost:3001/auth/facebook' onClick={props.onClick}>Sign In With Facebook</a>
-};
+library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, fab);
 
 const Main = props => {
     if(window.location.pathname.substring(1,10) === 'dashboard'){
@@ -34,8 +32,7 @@ const Main = props => {
     } else {
         return (
             <div>
-                <FacebookLogin loading={props.loading} onClick={props.onLoad}/>
-                <LogInSignUp loading={props.loading} handleLogIn={props.handleLogIn} />
+                <FormContainer loading={props.loading} handleLogIn={props.handleLogIn}/>
             </div>
         )
     }
@@ -85,12 +82,12 @@ class App extends Component {
 
   render() {
     return (
-        <div className="App">
-            <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
-            {!this.state.isLoggedIn ? 
-            <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>:
-            <Dashboard {...this.state.user} menu={this.state.menu}/>}
-        </div>
+      <div className="App">
+        <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
+        <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>
+        {this.state.isLoggedIn && <Dashboard {...this.state.user} menu={this.state.menu}/>}
+       
+      </div>
     )
   }
 }
