@@ -15,6 +15,7 @@ import {
   faSortDown,
   faChild
 } from "@fortawesome/free-solid-svg-icons";
+
 import bodyParts from "./data/bodyParts.json";
 import "./App.scss";
 import Axios from 'axios';
