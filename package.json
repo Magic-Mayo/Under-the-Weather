@@ -26,6 +26,11 @@
     "express": "^4.17.1",
     "moment": "^2.24.0",
     "mongoose": "^5.7.1",
+<<<<<<< HEAD
+=======
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth": "^2.0.0",
+>>>>>>> 3a90a198b1f710220929d5441db9132b09316fc4
     "nodemailer": "^6.3.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
