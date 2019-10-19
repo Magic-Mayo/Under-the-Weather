@@ -81,12 +81,12 @@ class App extends Component {
 
   render() {
     return (
-        <div className="App">
-            <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
-            {!this.state.isLoggedIn ? 
-            <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>:
-            <Dashboard {...this.state.user} menu={this.state.menu}/>}
-        </div>
+      <div className="App">
+        <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
+        <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>
+        {this.state.isLoggedIn && <Dashboard {...this.state.user} menu={this.state.menu}/>}
+       
+      </div>
     )
   }
 }
