@@ -19,8 +19,4 @@ function doctors(props) {
     </div>
   )
 }
-<<<<<<< HEAD
 export default doctors
-=======
-export default doctors
->>>>>>> 3a90a198b1f710220929d5441db9132b09316fc4
