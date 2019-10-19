@@ -6,7 +6,7 @@ export default class AddContact extends Component {
         return (
             <div className="AddContact">
                 ADD CONTACT
-                <FormContainer message="ADD CONTACT"/>
+                <FormContainer message="ADD CONTACT" isLoggedIn={this.props.isLoggedIn}/>
             </div>
         )
     }

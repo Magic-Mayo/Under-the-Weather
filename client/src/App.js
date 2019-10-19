@@ -31,7 +31,7 @@ const Main = props => {
     } else {
         return (
             <div>
-                <FormContainer loading={props.loading} handleLogIn={props.handleLogIn}/>
+                <FormContainer loading={props.loading} handleLogIn={props.handleLogIn} isLoggedIn={props.isLoggedIn}/>
             </div>
         )
     }
@@ -80,12 +80,13 @@ class App extends Component {
     }
 
   render() {
+      console.log("ARE YOU LOGGED IN???", this.state.loading)
     return (
         <div className="App">
             <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
             {!this.state.isLoggedIn ? 
-            <Main isLoggedIn={this.state.loading} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>:
-            <Dashboard {...this.state.user} menu={this.state.menu}/>}
+            <Main isLoggedIn={this.state.isLoggedIn} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>:
+            <Dashboard {...this.state.user} menu={this.state.menu} isLoggedIn={this.state.isLoggedIn}/>}
         </div>
     )
   }

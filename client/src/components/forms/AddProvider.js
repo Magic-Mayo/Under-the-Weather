@@ -6,7 +6,7 @@ export default class AddProvider extends Component {
         return (
             <div className="AddProvider">
                 ADD PROVIDER
-                <FormContainer message="ADD PROVIDER"/>
+                <FormContainer message="ADD PROVIDER" isLoggedIn={this.props.isLoggedIn}/>
 
             </div>
         )

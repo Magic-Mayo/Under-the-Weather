@@ -6,7 +6,7 @@ export default class AddSymptom extends Component {
         return (
             <div className="AddSymptom">
                 ADD SYMPTOM
-                <FormContainer message="ADD SYMPTOM"/>
+                <FormContainer isLoggedIn={this.props.isLoggedIn} message="ADD SYMPTOM"/>
 
             </div>
         )

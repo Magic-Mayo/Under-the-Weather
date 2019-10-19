@@ -6,7 +6,7 @@ export default class SignInSocial extends Component {
     render() {
         return (
             <aside className="social-container">
-                <h1 className="login-form-title">Or you can...</h1>
+                <h1 className="form-title">Or you can...</h1>
                 <div className="social-btn-container">
                     <div className="social-facebook">
                         <a href='http://localhost:3001/auth/facebook' className="social-btn social-facebook-btn">Log In With Facebook</a>

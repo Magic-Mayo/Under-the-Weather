@@ -8,20 +8,21 @@ import AddProvider from '../forms/AddProvider';
 import AddContact from '../forms/AddContact';
 import AddSymptom from '../forms/AddSymptom';
 import AddInsurance from '../forms/AddInsurance';
+import Dashboard from '../pages/Dashboard';
 
-const NavItems = ({ show }) => {
+const NavItems = (props) => {
 	return (
-		<div className="expand-items-container" style={{ visibility: show ? 'visible' : 'hidden' }}>
-			<Link to="/provider" className="expand-items">
+		<div className="expand-items-container" style={{ visibility: props.show ? 'visible' : 'hidden' }}>
+			<Link to={"/provider"} className="expand-items">
 				provider
 			</Link>
-			<Link to="/contact" className="expand-items">
+			<Link to={"/contact"} className="expand-items">
 				contact
 			</Link>
-			<Link to="/symptom" className="expand-items">
+			<Link to={"/symptom"} className="expand-items">
 				symptoms
 			</Link>
-			<Link to="/insurance" className="expand-items">
+			<Link to={"/insurance"} className="expand-items">
 				insurance
 			</Link>
 		</div>
@@ -38,24 +39,26 @@ const NavExpand = ({ onClick }) => {
 
 class Nav extends React.Component {
 	state = {
-		navItemsVisible: false
+		navItemsVisible: false,
+		// DashboardURL: window.location.pathname
 	};
 	toggleMenu = () =>
 		this.setState((state) => ({
 			dropDownVisible: !state.dropDownVisible
 		}));
 
+	data = this.props
 	render() {
 		return (
 			<Router>
 				<div className="Nav">
 					<NavExpand onClick={this.toggleMenu} />
-					<NavItems show={this.state.dropDownVisible} />
+					<NavItems show={this.state.dropDownVisible}/>
 				</div>
-				<Route exact path="/provider" render={(props) => <AddProvider {...props} />} />
-				<Route exact path="/contact" render={(props) => <AddContact {...props} />} />
-				<Route exact path="/symptom" render={(props) => <AddSymptom {...props} />} />
-				<Route exact path="/insurance" render={(props) => <AddInsurance {...props} />} />
+				<Route exact path="/provider" render={() => <AddProvider {...this.data} />} />
+				<Route exact path="/contact" render={() => <AddContact {...this.data} />} />
+				<Route exact path="/symptom" render={() => <AddSymptom {...this.data} />} />
+				<Route exact path="/insurance" render={() => <AddInsurance {...this.data} />} />
 			</Router>
 		);
 	}

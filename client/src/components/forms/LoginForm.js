@@ -17,9 +17,9 @@ export default class LoginForm extends Component {
 	render() {
 		// console.log(this.props.data.className)
 		return (
-			<div className="login-grid">
-				<form className={`login-form-${this.props.data.loginType}-input-box login-form-input-area`}>
-					<h1 className="login-form-title">{this.props.data.headingText}</h1>
+			<div className="grid">
+				<form className={`form-${this.props.data.loginType}-input-box form-input-area`}>
+					<h1 className="form-title">{this.props.data.headingText}</h1>
 					<div className="input-container">
 						<label htmlFor="username">
 							<span>*</span> Username:{' '}

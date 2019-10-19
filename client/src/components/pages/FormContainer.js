@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import EntranceForm from '../forms/EntranceForm'
-import Loading from '../icons/loading'
+import Loading from '../icons/loading';
 
 export default class FormContainer extends Component {
 	state = {
@@ -8,52 +8,62 @@ export default class FormContainer extends Component {
 		signupActive: false,
 		currentPage: 0,
 		showPassword: false
-	}
+	};
 	setLogIn = () => {
 		this.setState({
 			loginActive: true,
 			signupActive: false,
 			showPassword: false
-		})
-	}
+		});
+	};
 
 	setSignUp = () => {
 		this.setState({
 			signupActive: true,
 			loginActive: false,
 			showPassword: false
-		})
-	}
+		});
+	};
 
 	togglePassword = () => {
-        this.setState(
-            {
-                showPassword: !this.state.showPassword
-            }
-        )
-    }
+		this.setState({
+			showPassword: !this.state.showPassword
+		});
+	};
 
 	render() {
-		return (
-            !this.props.isLoading ?
-			<div className="LogInSignUp">
+		return !this.props.isLoading ? (
+			<div className="FormContainer">
 				<section
-					className={`login-form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}
+					className={`form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}
 				>
-					<div className="login-form-btn-wrapper">
-						<button className="login-form-btn login-form-btn-signup" onClick={this.setSignUp}>
-							Sign Up
-						</button>
-						<button className="login-form-btn login-form-btn-login" onClick={this.setLogIn}>
-							Log In
-						</button>
-					</div>
-					<EntranceForm handleLogIn={this.props.handleLogIn} loginActive={this.state.loginActive} page={this.state.currentPage} message={this.props.message} togglePassword=
-					{this.togglePassword} showPassword=
-					{this.state.showPassword}/>
+					{!this.props.isLoggedIn &&
+						<div className="form-btn-wrapper">
+							<button className="form-btn form-btn-signup" onClick={this.setSignUp}>
+								Sign Up
+							</button>
+							<button className="form-btn form-btn-login" onClick={this.setLogIn}>
+								Log In
+							</button>
+						</div>
+					}
+
+					{this.props.isLoggedIn ? (
+						''
+					) : (
+						<EntranceForm
+							handleLogIn={this.props.handleLogIn}
+							state={this.state}
+							message={this.props.message}
+							togglePassword={this.togglePassword}
+							setSignUp={this.setSignUp}
+							setLogIn={this.setLogIn}
+						/>
+					)}
 				</section>
-            </div>:
-            <Loading loading={this.props.isLoading}/>
+			</div>
+		) : (
+			<Loading loading={this.props.isLoading} />
 		);
 	}
 }

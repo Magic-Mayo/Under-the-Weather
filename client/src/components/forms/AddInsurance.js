@@ -6,7 +6,7 @@ export default class AddInsurance extends Component {
         console.log(this.props);
         return (
             <div className="AddInsurance">
-                <FormContainer message="ADD INSURANCE"/>
+                <FormContainer message="ADD INSURANCE" isLoggedIn={this.props.isLoggedIn}/>
 
             </div>
         )
