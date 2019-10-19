@@ -6,21 +6,32 @@ export default class FormContainer extends Component {
 	state = {
 		loginActive: true,
 		signupActive: false,
-		currentPage: 0
+		currentPage: 0,
+		showPassword: false
 	}
 	setLogIn = () => {
 		this.setState({
 			loginActive: true,
-			signupActive: false
+			signupActive: false,
+			showPassword: false
 		})
 	}
 
 	setSignUp = () => {
 		this.setState({
 			signupActive: true,
-			loginActive: false
+			loginActive: false,
+			showPassword: false
 		})
 	}
+
+	togglePassword = () => {
+        this.setState(
+            {
+                showPassword: !this.state.showPassword
+            }
+        )
+    }
 
 	render() {
 		return (
@@ -37,7 +48,9 @@ export default class FormContainer extends Component {
 							Log In
 						</button>
 					</div>
-					<EntranceForm handleLogIn={this.props.handleLogIn} loginActive={this.state.loginActive} page={this.state.currentPage} message={this.props.message}/>
+					<EntranceForm handleLogIn={this.props.handleLogIn} loginActive={this.state.loginActive} page={this.state.currentPage} message={this.props.message} togglePassword=
+					{this.togglePassword} showPassword=
+					{this.state.showPassword}/>
 				</section>
             </div>:
             <Loading loading={this.props.isLoading}/>

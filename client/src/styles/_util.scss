@@ -65,50 +65,76 @@
 .social-container {
     // background-color: aquamarine;
     width: 100%;
-    flex-grow: 10;
-    min-height: 10vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 3.75rem;
+    justify-content: flex-start;
+    margin: 4rem 0;
+    background-color: azure;
+    box-shadow: inset 0 0 3rem rgba($black, .2);
+    max-height: 75%;
 
-    h1 {
-        @include heading;
-        margin-bottom: 3rem;
-    }
+    // h1 {
+    //     @include heading;
+    //     margin-bottom: 3rem;
+    // }
 
     .social-btn-container {
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 5;
 
         .social-facebook,
         .social-google {
-            background-color: $white;
+            position: relative;
             box-shadow: 0 -.15rem 3rem rgba($black, .2);
             border-radius: .25rem;
             font-size: 2.25rem;
-            padding: 1.75rem 1.5rem;
+            padding: 1.75rem 5.5rem 1.75rem 1.5rem;
+            margin: 3rem 0;
             cursor: pointer;
-        }
+            width: 90%;
 
-        div {
+            a {
+                color: $white;
 
-            &:first-child {
-                margin-left: 2rem;
-            }
-
-            &:last-child {
-                margin-right: 2rem;
+                &:hover {
+                    text-decoration: none;
+                }
             }
         }
+
+        .social-google {
+            background-color: #1A73E8;
+        }
+
+        .social-facebook {
+            background-color: #3C5A99;
+        }
+
+        // div {
+
+        //     &:first-child {
+        //         margin-left: 2rem;
+        //     }
+
+        //     &:last-child {
+        //         margin-right: 2rem;
+        //     }
+        // }
     }
 }
 
 
 .brand-icon {
-    
-    font-size: 2.25rem;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translate(0, -50%);
+    font-size: 3.5rem;
     margin-left: .5rem;
+    color: $white;
 }

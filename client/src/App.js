@@ -14,13 +14,14 @@ import {
   faFilter,
   faSortDown,
   faChild,
-  faEye
+  faEye,
+  faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
 import bodyParts from "./data/bodyParts.json";
 import "./App.scss";
 import Axios from 'axios';
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, fab);
+library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, fab);
 
 const Main = props => {
     if(window.location.pathname.substring(1,10) === 'dashboard'){

@@ -7,7 +7,7 @@ const Greeting = (props) => props.isLoggedIn && <h1 className="header-welcome">W
 const Header = props => {
     return (
         <div className="header">
-            {props.isLoggedIn && <button onClick={props.handleLogOut}>Sign Out</button>}
+            {props.isLoggedIn && <button onClick={props.handleLogOut} className="header-sign-out">Sign Out</button>}
             <Umbrella width={"100%"} height={"100%"} />
             <Logo width={"100%"} height={"100%"} />
             <Greeting isLoggedIn={props.isLoggedIn} name={props.name} />
