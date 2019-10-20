@@ -27,7 +27,7 @@ module.exports = (app) => {
                 if (user.password === credentials.password){
                     return db.User.findOneAndUpdate(
                     {userName: credentials.username},
-                    {isLoggedIn: true, $upsert: {token: token}},
+                    {isLoggedIn: true, $upsert: [{token: token}]},
                     {new:true})
                     .then(updated=>res.json(updated))
                     .catch(err=>console.log(err))
@@ -40,7 +40,6 @@ module.exports = (app) => {
     app.post('/token/', (req,res)=>{
         const token = req.body.token;
         db.User.findOne({token: token}).then(user=>{
-            console.log(user)
             if (user.token){
                 if (user.token === token){
                     return res.json(user._id)
