@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard'
-import LogInSignUp from './components/pages/LogInSignUp'
+import FormContainer from './components/pages/FormContainer'
 import Loading from './components/icons/loading'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -13,17 +13,15 @@ import {
   faPhone,
   faFilter,
   faSortDown,
-  faChild
+  faChild,
+  faEye,
+  faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
 import bodyParts from "./data/bodyParts.json";
 import "./App.scss";
 import Axios from 'axios';
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown,fab);
-
-const FacebookLogin = props => {
-    return !props.isLoggedIn && <a className="header-status" href='http://localhost:3001/auth/facebook' onClick={props.onClick}>Sign In With Facebook</a>
-};
+library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, fab);
 
 const Main = props => {
     if(window.location.pathname.substring(1,10) === 'dashboard'){
@@ -33,8 +31,7 @@ const Main = props => {
     } else {
         return (
             <div>
-                <FacebookLogin loading={props.loading} onClick={props.onLoad}/>
-                <LogInSignUp loading={props.loading} handleLogIn={props.handleLogIn} />
+                <FormContainer loading={props.loading} handleLogIn={props.handleLogIn}/>
             </div>
         )
     }

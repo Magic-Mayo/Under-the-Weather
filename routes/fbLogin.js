@@ -24,19 +24,17 @@ module.exports = (app) => {
 
                         db.User.findOne({userName: userData.data.id}).then(user=>{
                             if(!user){
-                                bcrypt.hash(code.data.access_token, 12).then((hash)=>{
-                                    return db.User.create({
-                                        userName: userData.data.id,
-                                        name: userData.data.name,
-                                        email: userData.data.email,
-                                        token: hash,
-                                        socialMedia: true,
-                                        isLoggedIn: true,
-                                        lastLogin: moment()
-                                    }).then(newUser=>{
-                                        res.redirect(`/new/email/${newUser._id}`)
-                                    }).catch(err=>console.log(`create new ${err}`))
-                                }).catch(err=>console.log(`bcrypt ${err}`))
+                                return db.User.create({
+                                    userName: userData.data.id,
+                                    name: userData.data.name,
+                                    email: userData.data.email,
+                                    token: code.data.access_token,
+                                    socialMedia: true,
+                                    isLoggedIn: true,
+                                    lastLogin: moment()
+                                }).then(newUser=>{
+                                    res.redirect(`/new/email/${newUser._id}`)
+                                }).catch(err=>console.log(`create new ${err}`))
                             }
                             db.User.updateOne({userName: user.userName}, {isLoggedIn: true, lastLogin: moment()})
                                 .then(res.redirect(`http://localhost:3000/dashboard/${user._id}`))

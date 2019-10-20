@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import LogInSignUp from '../pages/LogInSignUp'
+import FormContainer from '../pages/FormContainer'
 
 export default class AddInsurance extends Component {
     render() {
+        console.log(this.props);
         return (
             <div className="AddInsurance">
-                ADD INSURANCE
-                <LogInSignUp message="ADD INSURANCE"/>
+                <FormContainer message="ADD INSURANCE"/>
 
             </div>
         )
