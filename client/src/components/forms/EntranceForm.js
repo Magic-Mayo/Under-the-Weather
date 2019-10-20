@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
+import axios from 'axios'
 
 export default class EntranceForm extends Component {
 	state = {
@@ -8,7 +9,20 @@ export default class EntranceForm extends Component {
             page: null
         },
         parentProps: this.props
-	}
+    }
+    
+    componentWillMount(){
+        const UTWtoken = localStorage.getItem('_underweather');
+        if (UTWtoken && !this.state.isLoggedIn){
+            axios.post('/token', {token: UTWtoken}).then(user=>{
+                console.log(user)
+                if(user){
+                    return window.location.pathname = `dashboard/${user}`
+                }
+            }).catch(err=>console.log(err))
+        }
+    }
+
 	render() {
         const data = this.props.loginActive ? {
                 loginType: 'existing',
