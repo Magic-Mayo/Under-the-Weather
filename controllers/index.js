@@ -10,7 +10,7 @@ module.exports = {
                         .then(res.json({loggedOut: false, path: '/'}))
                         .catch(err=>res.json({loggedOut: true}))
                 }
-                res.json(user)})
+                res.json(user.data)})
             .catch(err=>console.log(err))
     },
     updateAccount: (req,res)=>{
