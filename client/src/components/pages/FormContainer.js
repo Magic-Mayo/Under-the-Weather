@@ -35,7 +35,7 @@ export default class FormContainer extends Component {
 
 	render() {
 		return (
-            !this.props.isLoading ?
+            !this.props.loading ?
 			<div className="LogInSignUp">
 				<section
 					className={`login-form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}
@@ -48,12 +48,11 @@ export default class FormContainer extends Component {
 							Log In
 						</button>
 					</div>
-					<EntranceForm handleLogIn={this.props.handleLogIn} loginActive={this.state.loginActive} page={this.state.currentPage} message={this.props.message} togglePassword=
-					{this.togglePassword} showPassword=
-					{this.state.showPassword}/>
+					<EntranceForm loginActive={this.state.loginActive} page={this.state.currentPage} message={this.props.message} togglePassword=
+					{this.togglePassword} showPassword={this.state.showPassword} handleLogIn={this.props.handleLogIn}/>
 				</section>
-            </div>:
-            <Loading loading={this.props.isLoading}/>
+            </div>
+            :<Loading loading={this.props.isLoading} handleLogIn={this.props.handleLogIn}/>
 		);
 	}
 }
