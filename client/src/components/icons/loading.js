@@ -10,8 +10,7 @@ const override = css`
 
 class Loading extends Component {
     componentDidMount(){
-        this.props.onLoad();
-        this.props.handleLogIn(this.props.path);
+        this.props.handleLogIn(this.props.user);
     }
 
     render(){
