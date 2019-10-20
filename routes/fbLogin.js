@@ -25,12 +25,14 @@ module.exports = (app) => {
                         db.User.findOne({userName: userData.data.id}).then(user=>{
                             if(!user){
                                 return db.User.create({
-                                    userName: userData.data.id,
-                                    name: userData.data.name,
-                                    email: userData.data.email,
-                                    token: code.data.access_token,
+                                    data: {
+                                        userName: userData.data.id,
+                                        name: userData.data.name,
+                                        email: userData.data.email,
+                                        isLoggedIn: true
+                                    },
+                                    fbToken: code.data.access_token,
                                     socialMedia: true,
-                                    isLoggedIn: true,
                                     lastLogin: moment()
                                 }).then(newUser=>{
                                     res.redirect(`/new/email/${newUser._id}`)
