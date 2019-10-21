@@ -8,7 +8,8 @@ import Nav from "../Nav";
 
 export default class Dashboard extends Component {
   render() {
-    console.log("HERE ARE THE USER DETAILS", this.props.user)
+    // console.log("HERE ARE THE USER DETAILS", this.props.user)
+		// console.log("DASHBOARD HAS THESE PROPS", this.props);
 
     return (
       <div className="Dashboard">
@@ -19,7 +20,7 @@ export default class Dashboard extends Component {
           <Contacts name="Sean"/>
           <Insurance name="Sean"/>
         </section>
-        <Nav name="Sean" menu={this.props.menu} isLoggedIn={this.props.isLoggedIn}/>
+        <Nav name="Sean" menu={this.props.menu} isLoggedIn={this.props.isLoggedIn} formOpen={this.props.formOpen} toggleForm={this.props.toggleForm}/>
         {/* <Forms /> */}
       </div>
     );

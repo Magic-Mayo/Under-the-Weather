@@ -46,9 +46,11 @@ class App extends Component {
         },
         isLoggedIn: false,
         loading: false,
-        user: ''
-    };
-    
+        user: '',
+        pathname: window.location.pathname,
+        formOpen: false
+    }
+
     handleLogIn = props => {
         this.setState({loading: true})
         if (typeof props === 'object'){
@@ -79,14 +81,28 @@ class App extends Component {
         })
     }
 
+    logTarget = (e) => {
+        console.log(e.target);
+
+        if ((e.target.className !== 'form-container') && (this.state.formOpen)) {
+            window.location.pathname = this.state.pathname
+        }
+    }
+
+    toggleForm = (e) => {
+        this.setState({
+            formOpen: !this.state.formOpen
+        })
+    }
+
   render() {
       console.log("ARE YOU LOGGED IN???", this.state.loading)
     return (
-        <div className="App">
+        <div className="App" onClick={this.logTarget}>
             <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
             {!this.state.isLoggedIn ? 
             <Main isLoggedIn={this.state.isLoggedIn} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>:
-            <Dashboard user={this.state.user} menu={this.state.menu} isLoggedIn={this.state.isLoggedIn}/>}
+            <Dashboard user={this.state.user} menu={this.state.menu} isLoggedIn={this.state.isLoggedIn} formOpen={this.state.formOpen} toggleForm={this.toggleForm}/>}
         </div>
     )
   }
