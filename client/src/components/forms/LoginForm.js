@@ -30,7 +30,8 @@ export default class LoginForm extends Component {
 							id="username"
 							value={this.state.username}
 							onChange={this.handleInput}
-							placeholder="janedoe24"
+                            placeholder="janedoe24"
+                            required
 						/>
 					</div>
 					<div className="input-container">
@@ -42,7 +43,8 @@ export default class LoginForm extends Component {
 							name="password"
 							value={this.state.password}
 							onChange={this.handleInput}
-							id="password"
+                            id="password"
+                            required
 						/>
 						<FontAwesomeIcon icon="eye" className="eye-icon" onClick={this.props.togglePassword} />
 					</div>
