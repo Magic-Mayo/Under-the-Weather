@@ -11,14 +11,13 @@ export default class EntranceForm extends Component {
         parentProps: this.props
     }
     
-    componentWillMount(){
+    componentDidMount(){
         const UTWtoken = localStorage.getItem('_underweather');
         if (UTWtoken && !this.state.isLoggedIn){
-            axios.post('/token', {token: UTWtoken}).then(user=>{
-                console.log(user)
-                if(user){
-                    return window.location.pathname = `dashboard/${user}`
-                }
+            return axios.post('/token', {token: UTWtoken}).then(user=>{
+                if (!user.data){return}
+                
+                return window.location.pathname = `dashboard/${user.data._id}`
             }).catch(err=>console.log(err))
         }
     }
