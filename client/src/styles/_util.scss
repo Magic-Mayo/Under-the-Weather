@@ -26,10 +26,10 @@
 
 .input-container {
     position: relative;
-    width: 100%;
+    width: 95%;
     // background-color: rgb(58, 102, 184);
     text-align: left;
-    padding: 2rem 5rem 2rem .5rem;
+    padding: 1.5rem 5rem 1.5rem .5rem;
 
     input,
     label {
@@ -44,7 +44,7 @@
 
     input {
         font-size: 2rem;
-        padding: 1.75rem .25rem 1.75rem 2.5rem;
+        padding: 1.5rem .25rem 1.5rem 2.5rem;
         margin-left: 2rem;
         background-color: $white;
         border: 0;
@@ -54,9 +54,10 @@
 
     .eye-icon {
         position: absolute;
-        top: 50%;
+        height: 5rem;
+        bottom: 15%;
         right: 6rem;
-        font-size: 4rem;
+        font-size: 3rem;
         color: $blue-accent;
         cursor: pointer;
     }
@@ -70,7 +71,7 @@
     align-items: center;
     justify-content: flex-start;
     margin: 4rem 0;
-    background-color: azure;
+    background-color: rgba(244, 249, 255, 0.568);
     box-shadow: inset 0 0 3rem rgba($black, .2);
     max-height: 75%;
 
@@ -98,7 +99,7 @@
             cursor: pointer;
             width: 90%;
 
-            a {
+            span {
                 color: $white;
 
                 &:hover {
@@ -109,6 +110,7 @@
 
         .social-google {
             background-color: #1A73E8;
+            background-color: #E57373;
         }
 
         .social-facebook {
@@ -137,4 +139,9 @@
     font-size: 3.5rem;
     margin-left: .5rem;
     color: $white;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
 }

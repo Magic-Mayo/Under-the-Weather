@@ -32,6 +32,8 @@ class App extends Component {
         },
         isLoggedIn: false,
         loading: false,
+        pathname: window.location.pathname,
+        formOpen: false,
         user: false
     };
 
@@ -46,14 +48,11 @@ class App extends Component {
         this.setState({loading: true})
         return axios.post(`/login`, props)
             .then(user=>{
+                console.log(user)
                 this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
-                localStorage.setItem('_underweather', user.data.loginToken);
+                localStorage.setItem('_underweather', user.data.token);
                 window.history.pushState(null, '', '/dashboard')
             })
-    }
-
-    isLoading = () => {
-        this.setState({loading: true})
     }
 
     logIn = () => {
@@ -61,7 +60,13 @@ class App extends Component {
     }
 
     setUser = props => {
-        this.setState(props)
+        this.setState(props);
+        this.logIn()
+    }
+
+    setUser = props => {
+        this.setState(props);
+        this.setState({isLoggedIn: true});
     }
 
     handleLogOut = () => {
@@ -73,14 +78,27 @@ class App extends Component {
         })
     }
 
+    logTarget = (e) => {
+        console.log(e.target);
+
+        if ((e.target.className !== 'form-container') && (this.state.formOpen)) {
+            window.location.pathname = this.state.pathname
+        }
+    }
+
+    toggleForm = (e) => {
+        this.setState({
+            formOpen: !this.state.formOpen
+        })
+    }
     
     render() {
         return (
             <div className="App">
                 <Header name={this.state.user.name} isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut}/>
                 {!this.state.isLoggedIn && !this.state.user ? 
-                <FormContainer setUser={this.setUser} loading={this.state.loading} handleLogIn={this.handleLogIn} isLoading={this.isLoading}/>:
-                <Dashboard user={this.state.user} menu={this.state.menu}/>}
+                <FormContainer setUser={this.setUser} loading={this.state.loading} handleLogIn={this.handleLogIn} isLoading={this.isLoading} isLoggedIn={this.state.isLoggedIn}/>:
+                <Dashboard user={this.state.user} menu={this.state.menu} toggleForm={this.toggleForm} formOpen={this.state.formOpen} isLoggedIn={this.state.isLoggedIn}/>}
             </div>
         )
     }
