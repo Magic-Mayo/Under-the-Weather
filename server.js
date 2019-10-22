@@ -2,18 +2,15 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const PORT = process.env.PORT || 3001;
-// const session = require("express-session");
+const session = require("express-session");
 const bodyParser = require("body-parser");
-const passport = require('passport');
 const path = require('path');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(session({ secret: "cats" }));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(session({ secret: "nothing to see here" }));
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));

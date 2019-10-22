@@ -5,12 +5,13 @@ module.exports = {
     logInorOut: (req,res)=>{
         db.User.findById(req.params.user)
             .then(user=>{
-                if (user.isLoggedIn && req.body.loggedIn === 'logout'){
+                if (user.data.isLoggedIn && req.body.loggedIn === 'logout'){
                     return db.User.updateOne({_id: user._id}, {isLoggedIn: false})
                         .then(res.json({loggedOut: false, path: '/'}))
                         .catch(err=>res.json({loggedOut: true}))
                 }
-                res.json(user)})
+                res.json({userId: user._id, user: user.data, userName: user.userName})
+            })
             .catch(err=>console.log(err))
     },
     updateAccount: (req,res)=>{

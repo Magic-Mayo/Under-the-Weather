@@ -1,4 +1,7 @@
 require('dotenv').config();
 const uid = require('uid-safe');
-const
-const 
+const bcrypt = require('bcrypt');
+
+module.exports = (app) => {
+    app.get()
+}
