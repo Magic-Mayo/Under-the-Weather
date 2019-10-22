@@ -67,8 +67,8 @@ export default class EntranceForm extends Component {
                 }
                 {
                     data.loginType === "new" 
-                    ? <SignupForm data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`} togglePassword={this.props.togglePassword} showPassword={this.props.showPassword}/>
-                    : <LoginForm handleLogIn={this.props.handleLogIn} data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}  togglePassword={this.props.togglePassword} showPassword={this.props.showPassword}/> 
+                    ? <SignupForm setUser={this.props.setUser} data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`} togglePassword={this.props.togglePassword} showPassword={this.props.showPassword}/>
+                    : <LoginForm setUser={this.props.setUser} handleLogIn={this.props.handleLogIn} data={data} classNames={`login-form-input-box login-form-${data.loginType}-input-box`}  togglePassword={this.props.togglePassword} showPassword={this.props.showPassword}/> 
                 }
 			</div>
 		);

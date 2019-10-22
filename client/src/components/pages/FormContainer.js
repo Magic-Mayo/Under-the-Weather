@@ -48,7 +48,7 @@ export default class FormContainer extends Component {
 							Log In
 						</button>
 					</div>
-					<EntranceForm loginActive={this.state.loginActive} page={this.state.currentPage} message={this.props.message} togglePassword=
+					<EntranceForm setUser={this.props.setUser} loginActive={this.state.loginActive} page={this.state.currentPage} message={this.props.message} togglePassword=
 					{this.togglePassword} showPassword={this.state.showPassword} handleLogIn={this.props.handleLogIn}/>
 				</section>
             </div>
