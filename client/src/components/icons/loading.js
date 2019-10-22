@@ -9,9 +9,6 @@ const override = css`
 `;
 
 class Loading extends Component {
-    componentDidMount(){
-        this.props.handleLogIn(this.props.user);
-    }
 
     render(){
         return (
