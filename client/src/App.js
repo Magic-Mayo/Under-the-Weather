@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard'
 import FormContainer from './components/pages/FormContainer'
-import Loading from './components/icons/loading'
+// import Loading from './components/icons/loading'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from '@fortawesome/free-brands-svg-icons'
 
@@ -13,14 +13,13 @@ import {
   faPhone,
   faFilter,
   faSortDown,
-  faChild,
+//   faChild,
   faEye,
   faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
 import bodyParts from "./data/bodyParts.json";
 import "./App.scss";
 import axios from 'axios';
-import Axios from 'axios';
 
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, fab);
 
@@ -36,36 +35,29 @@ class App extends Component {
         user: false
     };
 
-    componentDidMount() {
-        if(window.location.pathname.substring(1,10) === 'dashboard' && !this.state.isLoggedIn){
+    componentDidMount(){        
+        if(window.location.pathname.substring(1,11) === 'dashboard/' && !this.state.isLoggedIn){
             const user = window.location.pathname.split('board/')[1];
-            return <Loading user={user} handleLogIn={this.handleLogIn} loading={this.state.loading}/>
-        } else {
-            return (
-                <div>
-                    <FormContainer loading={this.state.loading} handleLogIn={this.handleLogIn}/>
-                </div>
-            )
+            return this.handleLogIn(user);
         }
     }
 
     handleLogIn = props => {
-        console.log(props)
         this.setState({loading: true})
         if (typeof props === 'object'){
             return axios.post(`/login`, props)
             .then(user=>{
-                console.log(user)
-                this.setState({loading: false, user: user.data, isLoggedIn: true})
-                localStorage.setItem('_underweather', user.data.token);
+                this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
+                localStorage.setItem('_underweather', user.data.loginToken);
+                window.history.pushState(null, '', 'dashboard')
+            })
+        } else if(!undefined){
+            axios.get(`/user/${props}`).then(user=>{
+                localStorage.setItem('_underweather', user.data.loginToken);
+                this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true});
+                window.history.pushState(null, '', '/dashboard')
             })
         }
-
-        axios.get(`/user/${props}`).then(user=>{
-            window.location.pathname = '/dashboard';
-            localStorage.setItem('_underweather', user.data.token);
-            this.setState({loading: false, user: user.data, isLoggedIn: true});
-        })
     }
 
     isLoading = () => {
@@ -78,10 +70,10 @@ class App extends Component {
 
     handleLogOut = () => {
         this.setState({loading: true})
-        axios.put(`/logout/${this.state.user._id}`, {loggedIn: 'logout'}).then(loggedOut=>{
+        axios.put(`/logout/${this.state.userId}`, {loggedIn: 'logout'}).then(loggedOut=>{
             localStorage.removeItem('_underweather')
-            this.setState({isLoggedIn: loggedOut.data.loggedOut, user: '', loading: false});
-            window.location.pathname = loggedOut.data.path
+            this.setState({isLoggedIn: loggedOut.data.loggedOut, user: '', userId: '', loading: false});
+            window.history.pushState(null, '',loggedOut.data.path)
         })
     }
 
@@ -89,11 +81,10 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
+                <Header name={this.state.user.name} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
                 {!this.state.isLoggedIn && !this.state.user ? 
-                <FormContainer loading={this.state.loading} handleLogIn={this.handleLogIn}/>:
+                <FormContainer loading={this.state.loading} handleLogIn={this.handleLogIn} isLoading={this.isLoading}/>:
                 <Dashboard user={this.state.user} menu={this.state.menu}/>}
-                {/* <Main isLoggedIn={this.state.loading} logIn={this.logIn} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>: */}
             </div>
         )
     }
