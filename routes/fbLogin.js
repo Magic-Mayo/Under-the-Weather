@@ -4,6 +4,7 @@ const axios = require('axios');
 const controller = require('../controllers');
 const db = require('../models');
 const state = uid.sync(18);
+const browserToken = uid.sync(24);
 const moment = require('moment');
 const bcrypt = require('bcrypt');
 
@@ -21,16 +22,16 @@ module.exports = (app) => {
                 axios.get(`https://graph.facebook.com/debug_token?input_token=${code.data.access_token}&access_token=${process.env.FACEBOOK_APP_TOKEN}`).then(debuggedToken=>{
                     
                     axios.get(`https://graph.facebook.com/${debuggedToken.data.data.user_id}?fields=id,email,name&access_token=${code.data.access_token}`).then(userData=>{
-
                         db.User.findOne({userName: userData.data.id}).then(user=>{
                             if(!user){
                                 return db.User.create({
                                     data: {
-                                        userName: userData.data.id,
                                         name: userData.data.name,
                                         email: userData.data.email,
                                         isLoggedIn: true
                                     },
+                                    userName: userData.data.id,
+                                    loginToken: browserToken,
                                     fbToken: code.data.access_token,
                                     socialMedia: true,
                                     lastLogin: moment()
@@ -38,7 +39,7 @@ module.exports = (app) => {
                                     res.redirect(`/new/email/${newUser._id}`)
                                 }).catch(err=>console.log(`create new ${err}`))
                             }
-                            db.User.updateOne({userName: user.userName}, {isLoggedIn: true, lastLogin: moment()})
+                            db.User.updateOne({userName: user.userName}, {isLoggedIn: true, lastLogin: moment(), loginToken: browserToken})
                                 .then(res.redirect(`http://localhost:3000/dashboard/${user._id}`))
                                 .catch(err=>console.log(`update login${err}`))
 
