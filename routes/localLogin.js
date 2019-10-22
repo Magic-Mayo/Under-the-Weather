@@ -35,14 +35,13 @@ module.exports = (app) => {
     app.post('/login', (req,res)=>{
         const credentials = req.body.credentials;
         db.User.findOne({userName: credentials.username}).then(user=>{
-            // bcrypt.compare(credentials.password, user.password).then(verified=>{
-                // if(verified){
-                if (user.password === credentials.password){
+            bcrypt.compare(credentials.password, user.password).then(verified=>{
+                if(verified){
                     return res.json({userId: user._id, user: user.data, userName: user.userName})
                 }
                 res.json('Incorrect username and password combination')
             }).catch(err=>console.log(err))
-        // }).catch(err=>console.log(err))
+        }).catch(err=>console.log(err))
     });
 
     app.post('/token/', (req,res)=>{
