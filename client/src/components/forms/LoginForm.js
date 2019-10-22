@@ -17,9 +17,9 @@ export default class LoginForm extends Component {
 	render() {
 		// console.log(this.props.data.className)
 		return (
-			<div className="login-grid">
-				<form className={`login-form-${this.props.data.loginType}-input-box login-form-input-area`}>
-					<h1 className="login-form-title">{this.props.data.headingText}</h1>
+			<div className="grid">
+				<form className={`form-${this.props.data.loginType}-input-box form-input-area`}>
+					<h1 className="form-title">{this.props.data.headingText}</h1>
 					<div className="input-container">
 						<label htmlFor="username">
 							<span>*</span> Username:{' '}
@@ -30,7 +30,8 @@ export default class LoginForm extends Component {
 							id="username"
 							value={this.state.username}
 							onChange={this.handleInput}
-							placeholder="janedoe24"
+                            placeholder="janedoe24"
+                            required
 						/>
 					</div>
 					<div className="input-container">
@@ -42,7 +43,8 @@ export default class LoginForm extends Component {
 							name="password"
 							value={this.state.password}
 							onChange={this.handleInput}
-							id="password"
+                            id="password"
+                            required
 						/>
 						<FontAwesomeIcon icon="eye" className="eye-icon" onClick={this.props.togglePassword} />
 					</div>
@@ -56,7 +58,7 @@ export default class LoginForm extends Component {
 						</button>
 					</div>
 				</form>
-                <SignInSocial />
+                <SignInSocial setUser={this.props.setUser} />
 			</div>
 		);
 	}

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
-class SymptomFilter extends Component {
+class Filter extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -81,6 +81,6 @@ class SymptomFilter extends Component {
     }
 }
 
-export default SymptomFilter
+export default Filter
 
 
