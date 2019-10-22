@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SignInSocial from './SignInSocial';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 
 export default class SignupForm extends Component {
 	state = {
@@ -20,7 +21,36 @@ export default class SignupForm extends Component {
 	handleInput = (e) => {
 		const { name, value } = e.target;
 		this.setState({ [name]: value });
-	};
+    };
+    
+    signUpUser = () => {
+        if (this.state.password !== this.state.passwordCheck || !this.validatePassword()){
+            return console.log('pass no match')
+        }
+        if (this.state.username && this.state.password){
+            axios.post('/newlocal', this.state).then(user=>{
+
+                this.setState({user: user.data.data, userId: user.data._id, page: this.state.page + 1})
+                console.log(user)
+            })
+        }
+    }
+
+    validatePassword = () => {
+        // Validates password as having one upper and lower case, one number, and at least 8 characters
+        if (this.state.password.match(/^(?=.*[0-9].*)(?=.*[a-z].*)(?=.*[A-Z].*)([a-zA-Z0-9]+)$/) && this.state.password.length>=8){
+            return true
+        }
+    }
+
+    checkUser = () => {
+        axios.get('/check', this.state.username).then(user=>{
+            // Let client know user already exists
+            if(user.data){
+                return console.log('user taken')
+            }
+        })
+    }
 
 	nextPage = (e) => {
 		console.log(this.state.currentPage);
@@ -79,6 +109,7 @@ const FirstPage = (props) => {
 					value={props.username}
 					onChange={props.handleInput}
 					placeholder="johndoe24"
+					required
 				/>
 			</div>
 			<div className="input-container">
@@ -91,6 +122,7 @@ const FirstPage = (props) => {
 					value={props.password}
 					onChange={props.handleInput}
 					id="password"
+					required
 				/>
 				<FontAwesomeIcon
 					icon={props.showPassword ? 'eye-slash' : 'eye'}
@@ -108,6 +140,7 @@ const FirstPage = (props) => {
 					value={props.passwordCheck}
 					onChange={props.handleInput}
 					id="password-check"
+					required
 				/>
 			</div>
 		</span>
@@ -128,6 +161,7 @@ function SecondPage(props) {
 					value={props.firstname}
 					onChange={props.handleInput}
 					placeholder="John"
+					required
 				/>
 			</div>
 			<div className="input-container">
@@ -140,7 +174,8 @@ function SecondPage(props) {
 					id="lastname"
 					value={props.lastname} 
 					onChange={props.handleInput}
-					placeholder="Doe"  />
+					placeholder="Doe"  
+					/>
 			</div>
 			<div className="flex-between">
 				<div className="input-container">
@@ -153,6 +188,8 @@ function SecondPage(props) {
 						id="sex"
 						value={props.lastname}
 						onChange={props.handleInput}
+						// required
+
 					/>
 				</div>
 				<div className="input-container">
@@ -166,6 +203,8 @@ function SecondPage(props) {
 						value={props.age}
 						onChange={props.handleInput}
 						placeholder="36"
+						// required
+
 					/>
 				</div>
 			</div>

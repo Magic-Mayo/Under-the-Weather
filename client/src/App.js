@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard'
 import FormContainer from './components/pages/FormContainer'
-import Loading from './components/icons/loading'
+// import Loading from './components/icons/loading'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from '@fortawesome/free-brands-svg-icons'
 
@@ -13,29 +13,15 @@ import {
   faPhone,
   faFilter,
   faSortDown,
-  faChild,
+//   faChild,
   faEye,
   faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
 import bodyParts from "./data/bodyParts.json";
 import "./App.scss";
-import Axios from 'axios';
+import axios from 'axios';
 
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, fab);
-
-const Main = props => {
-    if(window.location.pathname.substring(1,10) === 'dashboard'){
-        const user = window.location.pathname.split('board/')[1];
-        console.log(user)
-        return <Loading path={user} loading={props.loading} onClick={props.handleLogIn} onLoad={props.onLoad}/>
-    } else {
-        return (
-            <div>
-                <FormContainer loading={props.loading} handleLogIn={props.handleLogIn} isLoggedIn={props.isLoggedIn}/>
-            </div>
-        )
-    }
-}
 
 class App extends Component {
     state = {
@@ -46,38 +32,46 @@ class App extends Component {
         },
         isLoggedIn: false,
         loading: false,
-        user: '',
         pathname: window.location.pathname,
-        formOpen: false
+        formOpen: false,
+        user: false
+    };
+
+    componentDidMount(){        
+        if(window.location.pathname.substring(1,11) === 'dashboard/' && !this.state.isLoggedIn){
+            const user = window.location.pathname.split('board/')[1];
+            return this.handleLogIn(user);
+        }
     }
 
     handleLogIn = props => {
         this.setState({loading: true})
         if (typeof props === 'object'){
-            return Axios.post(`/login`, props)
+            return axios.post(`/login`, props)
             .then(user=>{
-                this.setState({loading: false, user: user.data, isLoggedIn: true})
-                localStorage.setItem('_underweather', user.token);
+                this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
+                localStorage.setItem('_underweather', user.data.loginToken);
+                window.history.pushState(null, '', '/dashboard')
             })
-        } 
-        Axios.get(`/user/${props}`).then(user=>{
-            localStorage.setItem('_underweather', user.data.token);
-            this.setState({loading: false, user: user.data, isLoggedIn: true});
-        })
+        } else if(!undefined){
+            axios.get(`/user/${props}`).then(user=>{
+                localStorage.setItem('_underweather', user.data.loginToken);
+                this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true});
+                window.history.pushState(null, '', '/dashboard')
+            })
+        }
     }
 
-    isLoading = () => {
-        this.setState({loading: true})
+    logIn = () => {
+        this.setState({isLoggedIn: true})
     }
 
     handleLogOut = () => {
         this.setState({loading: true})
-        console.log('clicked')
-        Axios.put(`/logout/${this.state.user._id}`, {loggedIn: 'logout'}).then(loggedOut=>{
+        axios.put(`/logout/${this.state.userId}`, {loggedIn: 'logout'}).then(loggedOut=>{
             localStorage.removeItem('_underweather')
-            this.setState({isLoggedIn: loggedOut.data, user: '', loading: false});
-            window.location.pathname = loggedOut.data.path
-            console.log(loggedOut)
+            this.setState({isLoggedIn: loggedOut.data.loggedOut, user: '', userId: '', loading: false});
+            window.history.pushState(null, '',loggedOut.data.path)
         })
     }
 
@@ -94,18 +88,17 @@ class App extends Component {
             formOpen: !this.state.formOpen
         })
     }
-
-  render() {
-      console.log("ARE YOU LOGGED IN???", this.state.loading)
-    return (
-        <div className="App" onClick={this.logTarget}>
-            <Header name={this.state.user.name} user={this.state.user._id} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
-            {!this.state.isLoggedIn ? 
-            <Main isLoggedIn={this.state.isLoggedIn} onLoad={this.isLoading} handleLogIn={this.handleLogIn} loading={this.state.loading}/>:
-            <Dashboard user={this.state.user} menu={this.state.menu} isLoggedIn={this.state.isLoggedIn} formOpen={this.state.formOpen} toggleForm={this.toggleForm}/>}
-        </div>
-    )
-  }
+    
+    render() {
+        return (
+            <div className="App">
+                <Header name={this.state.user.name} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
+                {!this.state.isLoggedIn && !this.state.user ? 
+                <FormContainer loading={this.state.loading} handleLogIn={this.handleLogIn} />:
+                <Dashboard user={this.state.user} menu={this.state.menu} toggleForm={this.toggleForm} formOpen={this.state.formOpen} />}
+            </div>
+        )
+    }
 }
 
 export default App;
