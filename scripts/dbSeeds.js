@@ -1,4 +1,5 @@
 const db = require('../models');
+const bcrypt = require('bcrypt')
 
 const dummy = {
     data: {
@@ -104,16 +105,21 @@ const dummy = {
     updatedAt: Date.now()
 }
 
+
+
 module.exports = (app) => {
     app.get('/dummydata', (req, res)=>{
-        db.User.findOne({userName: dummy.userName})
-            .then(user=>{
-                console.log(user)
-                if(!user){
-                    db.User.create(dummy)
-                        .then(dummy=>res.redirect(`http://localhost:3000/dashboard/${dummy._id}`))
-                        .catch(err=>console.log(err))
-                }
-            })
+        bcrypt.hash(dummy.password, 12).then(pass=>{
+            dummy.password = pass;
+            db.User.findOne({userName: dummy.userName})
+                .then(user=>{
+                    console.log(user)
+                    if(!user){
+                        db.User.create(dummy)
+                            .then(dummy=>res.redirect(`http://localhost:3000/dashboard/${dummy._id}`))
+                            .catch(err=>console.log(err))
+                    }
+                })
+        })
     })
 }
