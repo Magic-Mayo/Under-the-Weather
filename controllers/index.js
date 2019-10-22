@@ -9,7 +9,7 @@ module.exports = {
         db.User.findById(req.params.user)
             .then(user=>{
                 if (user.data.isLoggedIn && req.body.loggedIn === 'logout'){
-                    return db.User.updateOne({_id: user._id}, {'data.isLoggedIn': false})
+                    return db.User.updateOne({_id: user._id}, {loginToken: '', 'data.isLoggedIn': false})
                         .then(res.json({loggedOut: false, path: '/'}))
                         .catch(err=>res.json({loggedOut: true}))
                 }
