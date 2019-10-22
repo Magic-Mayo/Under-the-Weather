@@ -22,10 +22,10 @@ module.exports = (app) => {
                 db.User.create({
                     userName: req.body.username,
                     password: hash,
-                    token: token
+                    loginToken: token
                 })
                 .then(user=>{
-                    res.json(user)
+                    res.json({userId: user._id, user: user.data, userName: user.userName})
                 })
                 .catch(err=>console.log(`Error: ${err}`))
             })
@@ -34,10 +34,10 @@ module.exports = (app) => {
 
     app.post('/login', (req,res)=>{
         const credentials = req.body.credentials;
-        db.User.findOne({userName: credentials.username}).then(user=>{
+        db.User.findOneAndUpdate({userName: credentials.username}, {loginToken: token, 'data.isLoggedIn': true}, {new: true}).then(user=>{
             bcrypt.compare(credentials.password, user.password).then(verified=>{
                 if(verified){
-                    return res.json({userId: user._id, user: user.data, userName: user.userName})
+                    return res.json({userId: user._id, user: user.data, userName: user.userName, token: user.loginToken})
                 }
                 res.json('Incorrect username and password combination')
             }).catch(err=>console.log(err))
@@ -46,11 +46,12 @@ module.exports = (app) => {
 
     app.post('/token/', (req,res)=>{
         const token = req.body.token;
-        db.User.findOne({token: token}).then(user=>{
+        db.User.findOne({loginToken: token}).then(user=>{
+            console.log(user)
             if (!user){return res.json(false)};
 
-            if (user.token === token){
-                return res.json(user._id)
+            if (user.loginToken === token){
+                return res.json({userId: user._id, user: user.data, userName: user.userName})
             }
         }).catch(err=>console.log(err))
     })
