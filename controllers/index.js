@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const uid = require('uid-safe');
 const token = uid.sync(24);
 
+
 module.exports = {
     logInorOut: (req,res)=>{
         db.User.findById(req.params.user)

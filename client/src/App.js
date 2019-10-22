@@ -64,6 +64,11 @@ class App extends Component {
         this.logIn()
     }
 
+    setUser = props => {
+        this.setState(props);
+        this.setState({isLoggedIn: true});
+    }
+
     handleLogOut = () => {
         this.setState({loading: true})
         axios.put(`/logout/${this.state.userId}`, {loggedIn: 'logout'}).then(loggedOut=>{
