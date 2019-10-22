@@ -1,6 +1,4 @@
 require('dotenv').config();
-const uid = require('uid-safe');
-const bcrypt = require('bcrypt');
 const db = require('../controllers')
 
 module.exports = (app) => {
