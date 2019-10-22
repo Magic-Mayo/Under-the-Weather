@@ -10,23 +10,23 @@ export default class EntranceForm extends Component {
 		},
 		parentProps: this.props
 	};
-	componentDidMount() {
-		const UTWtoken = localStorage.getItem('_underweather');
-		if (UTWtoken && !this.state.isLoggedIn) {
+	componentDidMount = () => {
+        const UTWtoken = localStorage.getItem('_underweather');
+		if (!this.props.isLoggedIn && UTWtoken) {
 			return axios
 				.post('/token', { token: UTWtoken })
 				.then((user) => {
 					if (!user.data) {
 						return;
-					}
-					return (window.location.pathname = `dashboard/${user.data._id}`);
+                    }
+					window.history.pushState(null, '', '/dashboard')
+                    this.props.setUser(user.data, {userId: user.data.userId})
 				})
 				.catch((err) => console.log(err));
 		}
 	}
 
 	render() {
-		console.log(this.props);
 		const data = this.props.state.loginActive
 			? {
 					loginType: 'existing',
