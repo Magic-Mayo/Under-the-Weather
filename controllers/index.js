@@ -14,6 +14,15 @@ module.exports = {
             })
             .catch(err=>console.log(err))
     },
+    findByName: (req,res)=>{
+        db.User.findOne(req.body)
+            .then(user=>{
+                if(user){
+                    return res.json(false)
+                }
+                res.json(true)
+            })
+    },
     updateAccount: (req,res)=>{
         db.User.findOneAndUpdate({userName: req.params.user}, req.body, {new: true})
             .then(updated=>console.log(updated))
