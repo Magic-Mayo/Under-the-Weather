@@ -37,6 +37,9 @@ export default class ProviderForm extends Component {
                     <button type="button" className="provider-form-submit">
                         Add Provider
                     </button>
+                    <button type="button" className="provider-form-close">
+                        CLose X
+                    </button>
                 </div>
 			</div>
 		);
