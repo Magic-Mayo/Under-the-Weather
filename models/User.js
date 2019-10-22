@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-    data: {
-        userName: {type: String, unique: true},
+    data:{
         name: {type: String, default: ''},
         email: {type: String, default: ''},
         DOB: {type: Date, default: ''},
@@ -50,13 +49,14 @@ const UserSchema = new Schema({
         }],
         isLoggedIn: Boolean,
     },
+    userName: {type: String, unique: true},
+    loginToken: String,
     lastLogin: Date,
     createdAt: Date,
     updatedAt: Date,
     socialMedia: {type: Boolean, default: false},
     emailVerified: Boolean,
-    password: {type: String, default: ''},
-    loginToken: String
+    password: {type: String, default: ''}
 });
 
 const User = mongoose.model('UserSchema', UserSchema);
