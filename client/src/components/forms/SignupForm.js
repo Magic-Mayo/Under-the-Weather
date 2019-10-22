@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SignInSocial from './SignInSocial';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 
 export default class SignupForm extends Component {
 	state = {
@@ -12,7 +13,36 @@ export default class SignupForm extends Component {
 	handleInput = (e) => {
 		const { name, value } = e.target;
 		this.setState({ [name]: value });
-	};
+    };
+    
+    signUpUser = () => {
+        if (this.state.password !== this.state.passwordCheck || !this.validatePassword()){
+            return console.log('pass no match')
+        }
+        if (this.state.username && this.state.password){
+            axios.post('/newlocal', this.state).then(user=>{
+
+                this.setState({user: user.data.data, userId: user.data._id, page: this.state.page + 1})
+                console.log(user)
+            })
+        }
+    }
+
+    validatePassword = () => {
+        // Validates password as having one upper and lower case, one number, and at least 8 characters
+        if (this.state.password.match(/^(?=.*[0-9].*)(?=.*[a-z].*)(?=.*[A-Z].*)([a-zA-Z0-9]+)$/) && this.state.password.length>=8){
+            return true
+        }
+    }
+
+    checkUser = () => {
+        axios.get('/check', this.state.username).then(user=>{
+            // Let client know user already exists
+            if(user.data){
+                return console.log('user taken')
+            }
+        })
+    }
 
 	render() {
 		return (
@@ -29,7 +59,9 @@ export default class SignupForm extends Component {
 							id="username"
 							value={this.state.username}
 							onChange={this.handleInput}
-							placeholder="johndoe24"
+                            placeholder="johndoe24"
+                            onBlur={this.checkUser}
+                            required
 						/>
 					</div>
 					<div className="input-container">
@@ -40,8 +72,10 @@ export default class SignupForm extends Component {
 							type={this.props.showPassword ? 'text' : 'password'}
 							name="password"
 							value={this.state.password}
-							onChange={this.handleInput}
-							id="password"
+                            onChange={this.handleInput}
+                            onBlur={this.validatePassword}
+                            id="password"
+                            required
 						/>
 						<FontAwesomeIcon
 							icon={this.props.showPassword ? 'eye-slash' : 'eye'}
@@ -57,12 +91,13 @@ export default class SignupForm extends Component {
 							type="password"
 							name="passwordCheck"
 							value={this.state.passwordCheck}
-							onChange={this.handleInput}
-							id="password-check"
+                            onChange={this.handleInput}
+                            id="password-check"
+                            required
 						/>
 					</div>
 					<div className="btn-container">
-						<button type="button" className="btn">
+						<button type="button" className="btn" onClick={this.signUpUser}>
 							Continue
 						</button>
 					</div>
