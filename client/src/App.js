@@ -49,7 +49,7 @@ class App extends Component {
             .then(user=>{
                 this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
                 localStorage.setItem('_underweather', user.data.loginToken);
-                window.history.pushState(null, '', 'dashboard')
+                window.history.pushState(null, '', '/dashboard')
             })
         } else if(!undefined){
             axios.get(`/user/${props}`).then(user=>{
