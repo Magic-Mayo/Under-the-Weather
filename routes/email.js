@@ -17,7 +17,7 @@ module.exports = (app) => {
         db.User.findOne({_id: id}).then(user=>{
             const message = {
             from: process.env.EMAIL_ADDRESS,
-            to: user.email,
+            to: user.data.email,
             subject: 'Under the Weather: E-mail verification',
             text: `Please follow the link to verify your email address. If the link does not work please copy and paste the following into your browser to verify your email address: https://under-the-weather.herokuapp.com/verify/email/${user._id}`,
             html: `<p>Please follow the <a href='https://under-the-weather.herokuapp.com/verify/email/${user._id}'>link</a> to verify your email address. If the link does not work please copy and paste the following into your browser to verify your email address: https://under-the-weather.herokuapp.com/verify/email/${user._id}</p>`
