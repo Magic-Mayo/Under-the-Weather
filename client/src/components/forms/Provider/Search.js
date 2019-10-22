@@ -49,65 +49,82 @@ class Search extends Component {
 
 	render() {
 		return (
-			<div >
+			<div>
+				<h1 className="provider-form-title form-title">What type of doctor are you looking for?</h1>
+				<h3 className="provider-form-subtitle">We'll Search Around The Area For You</h3>
+
 				<Input
 					latitude={this.state.latitude}
 					longitude={this.state.longitude}
 					drSearch={this.drSearch}
 					handleInputChange={this.handleInputChange}
 				/>
-				{this.state.results.map((res) => (
-					<Results
-						src={res.profile.image_url}
-						firstName={res.profile.first_name}
-						lastName={res.profile.last_name}
-						bio={res.profile.bio}
-						practices={res.practices}
-					/>
-				))}
+				<section className="provider-form-results">
+					{this.state.results.map((res) => (
+						<Results
+							src={res.profile.image_url}
+							firstName={res.profile.first_name}
+							lastName={res.profile.last_name}
+							bio={res.profile.bio}
+							practices={res.practices}
+						/>
+					))}
+				</section>
 			</div>
 		);
 	}
 }
 function Input(props) {
-    return (
-        <div>
-        <p>
-          Hello {props.latitude} {props.longitude}
-        </p>
-        <form className="form">
-          <input
-            value={props.search}
-            name="Dr search"
-            onChange={props.handleInputChange}
-            type="text"
-            placeholder="cardiologist"
-          />
-         <h1>
-             {props.results}
-         </h1>
-          <button type ="submit" onClick ={props.drSearch} >Submit</button>
-        </form>
-      </div>
-    );
+	return (
+		<div>
+			<form className="provider-form">
+				<input
+					value={props.search}
+					name="Dr search"
+					onChange={props.handleInputChange}
+					type="text"
+					placeholder="cardiologist"
+					className="provider-form-search-input"
+				/>
+				<h1>{props.results}</h1>
+				<button type="submit" onClick={props.drSearch} 					className="provider-form-search-submit">
+					Submit
+				</button>
+			</form>
+		</div>
+	);
 }
 
 function Results(props) {
+	console.log(props)
 	return (
-	  <div>
-		<img src={props.src} alt="Smiley face" height="42" width="42"></img>
-		<p>Name: {props.firstName}, {props.lastName}</p>
-		<p>Bio: {props.bio}</p>
-		<p>Practices:  <select>
-		  <option value="">Office Locations</option>
-		  {props.practices.map(res => 
-		  <option value="">{res.name}
-		  { " Address: " +res.visit_address.street + " " + res.visit_address.city + " " + res.visit_address.state + " " + res.visit_address.zip}
-		  </option>)}
-  
-		</select></p>
-	  </div>
-	)
-  }
+		<div className="provider-form-results-item">
+			<img src={props.src} alt="Smiley face" height="42" width="42" />
+			<p>
+				Name: {props.firstName}, {props.lastName}
+			</p>
+			<p>Bio: {props.bio}</p>
+			<p>
+				Practices:{' '}
+				<select>
+					<option value="">Office Locations</option>
+					{props.practices.map((res) => (
+						<option value="">
+							{res.name}
+							{' Address: ' +
+								res.visit_address.street +
+								' ' +
+								res.visit_address.city +
+								' ' +
+								res.visit_address.state +
+								' ' +
+								res.visit_address.zip}
+						</option>
+					))}
+				</select>
+			</p>
+		</div>
+	);
+}
 
 export default Search;
