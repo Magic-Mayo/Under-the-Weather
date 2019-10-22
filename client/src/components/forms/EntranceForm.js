@@ -67,9 +67,12 @@ export default class EntranceForm extends Component {
 				};
 		return (
 			<div className={`form form-${data.loginType}`}>
-				{this.props.message && <p>{this.props.message}</p>}
+				{
+					this.props.message && <p>{this.props.message}</p>
+				}
 				{data.loginType === 'new' ? (
 					<SignupForm
+						setUser={this.props.setUser} 
 						data={data}
 						classNames={`form-input-box form-${data.loginType}-input-box`}
 						togglePassword={this.props.togglePassword}
@@ -77,6 +80,7 @@ export default class EntranceForm extends Component {
 					/>
 				) : (
 					<LoginForm
+						setUser={this.props.setUser} 
 						handleLogIn={this.props.handleLogIn}
 						data={data}
 						classNames={`form-input-box form-${data.loginType}-input-box`}

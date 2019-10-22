@@ -88,7 +88,7 @@ export default class SignupForm extends Component {
 						</button>
 					</div>
 				</form>
-				<SignInSocial />
+                <SignInSocial setUser={this.props.setUser} />
 			</div>
 		);
 	}

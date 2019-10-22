@@ -46,24 +46,20 @@ class App extends Component {
 
     handleLogIn = props => {
         this.setState({loading: true})
-        if (typeof props === 'object'){
-            return axios.post(`/login`, props)
+        return axios.post(`/login`, props)
             .then(user=>{
                 this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
                 localStorage.setItem('_underweather', user.data.loginToken);
                 window.history.pushState(null, '', '/dashboard')
             })
-        } else if(!undefined){
-            axios.get(`/user/${props}`).then(user=>{
-                localStorage.setItem('_underweather', user.data.loginToken);
-                this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true});
-                window.history.pushState(null, '', '/dashboard')
-            })
-        }
     }
 
     logIn = () => {
         this.setState({isLoggedIn: true})
+    }
+
+    setUser = props => {
+        this.setState(props)
     }
 
     handleLogOut = () => {
@@ -92,10 +88,10 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Header name={this.state.user.name} isLoggedIn={this.state.isLoggedIn} loading={this.state.loading} handleLogOut={this.handleLogOut}/>
+                <Header name={this.state.user.name} isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut}/>
                 {!this.state.isLoggedIn && !this.state.user ? 
-                <FormContainer loading={this.state.loading} handleLogIn={this.handleLogIn} />:
-                <Dashboard user={this.state.user} menu={this.state.menu} toggleForm={this.toggleForm} formOpen={this.state.formOpen} />}
+                <FormContainer setUser={this.setUser} loading={this.state.loading} handleLogIn={this.handleLogIn} isLoading={this.isLoading}/>:
+                <Dashboard user={this.state.user} menu={this.state.menu} toggleForm={this.toggleForm} formOpen={this.state.formOpen}/>}
             </div>
         )
     }
