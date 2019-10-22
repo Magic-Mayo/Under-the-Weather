@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import API from '../../../utils/API';
-import PDropDown from '../../practicesDropDown';
+import Specialist from '../../../data/specialist.json'
 
 class Search extends Component {
 	state = {
@@ -12,6 +12,7 @@ class Search extends Component {
 	};
 	componentDidMount() {
 		this.userLocation();
+		// console.log("Look here Zeb" +Specialist.data[0].name)
 	}
 
 	userLocation = () => {
