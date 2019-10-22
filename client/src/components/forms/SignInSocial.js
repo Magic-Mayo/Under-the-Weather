@@ -9,12 +9,12 @@ export default class SignInSocial extends Component {
                 <h1 className="form-title">Or you can...</h1>
                 <div className="social-btn-container">
                     <div className="social-facebook">
-                        <a href='http://localhost:3001/auth/facebook' className="social-btn social-facebook-btn">Log In With Facebook</a>
+                        <span href='http://localhost:3001/auth/facebook' className="social-btn social-facebook-btn">Log In With Facebook</span>
                         <FontAwesomeIcon icon={['fab', 'facebook']} className="brand-icon"/>
 
                     </div>
                     <div className="social-google">
-                        <a className="social-btn social-google-btn">Log In With Google</a>
+                        <span className="social-btn social-google-btn">Log In With Google</span>
                         <FontAwesomeIcon icon={['fab', 'google']} className="brand-icon"/>
 
                     </div>

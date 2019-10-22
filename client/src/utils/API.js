@@ -11,8 +11,8 @@ export default {
 		return axios.get(BASEURL + location + loc + DAPIKEY);
 	},
 	SearchSpecialty: function(spec, lat, long) {
-		return axios.get(`https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${spec}&location=${lat},${long}&user_location=${lat},${long}&skip=0&limit=10&user_key=f320e780451ce257e7d2c4d42220f6ea`);
-	},
+		return axios.get(`https://api.betterdoctor.com/2016-03-01/doctors?specialty_uid=${spec}&location=${lat},${long},5&user_location=${lat},${long}&skip=0&limit=10&user_key=f320e780451ce257e7d2c4d42220f6ea`);
+  },
 	defaultSearch: function() {
 		return axios.get(BASEURL + location + DAPIKEY);
 	},

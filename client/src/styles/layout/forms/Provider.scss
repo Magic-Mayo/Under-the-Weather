@@ -99,4 +99,13 @@
             display: flex;
         }
     }
+
+    &-submit {
+
+        &-container {
+            position: absolute;
+            z-index: 100;
+            bottom: 0;
+        }
+    }
 }

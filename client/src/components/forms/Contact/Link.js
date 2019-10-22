@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import FormContainer from '../../pages/FormContainer'
 
 export default class ContactLink extends Component {
-    // componentDidMount() {
+	componentDidMount = () => this.props.toggleMenu()
 
-    // }
     render() {
         return (
             <div className="ContactLink">
