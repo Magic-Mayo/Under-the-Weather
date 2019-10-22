@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Umbrella from "../icons/Umbrella";
 import Logo from "../icons/Logo";
 
