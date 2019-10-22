@@ -49,25 +49,27 @@ export default class FormContainer extends Component {
 							</button>
 						</div>
 					)}
-					{ this.props.isLoggedIn ? (this.props.formType === 'Contact' ? (
-						<ContactForm {...this.props}/>
-					) : this.props.formType === 'Provider' ? (
-						<ProviderForm {...this.props}/>
-					) : this.props.formType === 'Symptom' ? (
-						<SymptomForm {...this.props}/>
-					) : this.props.formType === 'Insurance' ? (
-						<InsuranceForm {...this.props}/>
-					) : null
-					) : (
-					<EntranceForm
-						handleLogIn={this.props.handleLogIn}
-						state={this.state}
-						message={this.props.message}
-						togglePassword={this.togglePassword}
-						setSignUp={this.setSignUp}
-						setLogIn={this.setLogIn}
-						setUser={this.props.setUser}
-					/>
+					{
+						this.props.isLoggedIn ? (
+							this.props.formType === 'Contact' ? (
+								<ContactForm {...this.props}/>
+							) : this.props.formType === 'Provider' ? (
+								<ProviderForm {...this.props}/>
+							) : this.props.formType === 'Symptom' ? (
+								<SymptomForm {...this.props}/>
+							) : this.props.formType === 'Insurance' ? (
+								<InsuranceForm {...this.props}/>
+							) : null
+						) : (
+						<EntranceForm
+							handleLogIn={this.props.handleLogIn}
+							state={this.state}
+							message={this.props.message}
+							togglePassword={this.togglePassword}
+							setSignUp={this.setSignUp}
+							setLogIn={this.setLogIn}
+							setUser={this.props.setUser}
+						/>
 					)}
 				</section>
 			</div>
