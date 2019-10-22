@@ -52,7 +52,7 @@ export default class FormContainer extends Component {
 					{this.togglePassword} showPassword={this.state.showPassword} handleLogIn={this.props.handleLogIn}/>
 				</section>
             </div>
-            :<Loading loading={this.props.isLoading} handleLogIn={this.props.handleLogIn}/>
+            :<Loading loading={this.props.isLoading}/>
 		);
 	}
 }
