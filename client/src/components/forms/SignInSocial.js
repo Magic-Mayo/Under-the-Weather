@@ -13,7 +13,7 @@ export default class SignInSocial extends Component {
                         <FontAwesomeIcon icon={['fab', 'facebook']} className="brand-icon"/>
                     </div>
                     <div className="social-google">
-                        <a className="social-btn social-google-btn">Log In With Google</a>
+                        <a href="/auth/google" className="social-btn social-google-btn">Log In With Google</a>
                         <FontAwesomeIcon icon={['fab', 'google']} className="brand-icon"/>
 
                     </div>
