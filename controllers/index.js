@@ -15,7 +15,7 @@ module.exports = {
             .catch(err=>console.log(err))
     },
     updateAccount: (req,res)=>{
-        db.User.findOneAndUpdate({userName: req.params.user},req.body)
+        db.User.findOneAndUpdate({userName: req.params.user}, req.body, {new: true})
             .then(updated=>console.log(updated))
             .catch(err=>console.log(err))
     },

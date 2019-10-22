@@ -10,7 +10,7 @@ const UserSchema = new Schema({
         mediData: {
             insurance: [{
                 provider: {type: String, default: ''},
-                type: {type: String, default: ''},
+                insuranceType: {type: String, default: ''},
                 idNumber: {type: String, default: ''},
                 deductible: {type: String, default: ''},
                 copay: [{
@@ -36,7 +36,8 @@ const UserSchema = new Schema({
             name: String,
             phone: Number,
             address: String,
-            relationship: String
+            relationship: String,
+            createdAt: String
         }],
         symptomHistory: [{
             bodyPart: String,
