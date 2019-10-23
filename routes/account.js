@@ -16,8 +16,7 @@ module.exports = (app) => {
     app.post('/account/provider', db.updateAccount);
     app.put('/account/provider', db.updateAccount);
     app.delete('/account/provider', db.updateAccount);
-    
-    app.post('/account/profile', db.updateAccount);
-    app.put('/account/profile', db.updateAccount);
-    app.delete('/account/profile', db.updateAccount);
+
+    app.put('/account/profile/:userId', db.updateAccount);
+    app.delete('/account/profile/:userId', db.updateAccount);
 }
