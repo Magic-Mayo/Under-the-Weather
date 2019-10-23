@@ -1,0 +1,6 @@
+.symptom-form {
+    &-title {
+        @include heading(2.75rem);
+        margin-top: 2rem;
+    }
+}
