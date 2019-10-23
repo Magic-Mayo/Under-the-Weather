@@ -21,6 +21,7 @@ require('./routes/userData')(app);
 require('./routes/socialLogin')(app);
 require('./routes/logout')(app);
 require('./routes/email')(app);
+require('./routes/account')(app);
 require('./routes/localLogin')(app);
 
 app.get("*", (req, res) => {
