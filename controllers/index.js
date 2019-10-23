@@ -26,26 +26,26 @@ module.exports = {
                 res.json(true)
             })
     },
-    updateAccount: (req,res,next)=>{
-        let route;
-        switch(req.body.route){
-            case 'addprovider': route = {$push: {'data.mediData.doctors': req.body.provider}}; break;
-            case 'addcontact': route = {$push: {'data.mediData.doctors': req.body.contact}}; break;
-            case 'addsymptom': route = {$push: {'data.mediData.doctors': req.body.symptom}}; break;
-            case 'addinsurance': route = {$push: {'data.mediData.doctors': req.body.insurance}}; break;
-            case 'updateinsurance': route = 
-        }
-        if()
-        db.User.findOneAndUpdate({_id: req.body.userId}, route)
-            .then(provider=>{
-                console.log(provider)
-                if (provider){
-                    res.json('Provider added!')
-                }
-            })
-            .catch(err=>res.json('Error adding provider.  Please try again later.'));
-        next();
-    },
+    // updateAccount: (req,res,next)=>{
+    //     let route;
+    //     switch(req.body.route){
+    //         case 'addprovider': route = {$push: {'data.mediData.doctors': req.body.provider}}; break;
+    //         case 'addcontact': route = {$push: {'data.mediData.doctors': req.body.contact}}; break;
+    //         case 'addsymptom': route = {$push: {'data.mediData.doctors': req.body.symptom}}; break;
+    //         case 'addinsurance': route = {$push: {'data.mediData.doctors': req.body.insurance}}; break;
+    //         case 'updateinsurance': route = 
+    //     }
+    //     if()
+    //     db.User.findOneAndUpdate({_id: req.body.userId}, route)
+    //         .then(provider=>{
+    //             console.log(provider)
+    //             if (provider){
+    //                 res.json('Provider added!')
+    //             }
+    //         })
+    //         .catch(err=>res.json('Error adding provider.  Please try again later.'));
+    //     next();
+    // },
     addSymptom: (req,res,next)=>{
         db.User.findOneAndUpdate({_id: req.body.userId}, {$push: {'data.symptomHistory': req.body.symptom}})
             .then(symptom=>{

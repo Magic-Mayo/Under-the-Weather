@@ -49,9 +49,10 @@ export default class InsuranceForm extends Component {
 
 		}
 
-		this.setState({provider: '', policy_number:'', group_number:'', policy_type:'',deductible:''})
 		Axios.post('/account/insurance', insurance).then(
 			data =>{
+				console.log(data)
+				this.setState({provider: '', policy_number:'', group_number:'', policy_type:'',deductible:''})
 			}
 		)
 	}
@@ -63,7 +64,8 @@ export default class InsuranceForm extends Component {
 			name={this.props.name}
 			provider={this.state.provider}
 			policy_number={this.state.policy_number}
-			group_number={this.state.policy_type}
+			group_number={this.state.group_number}
+			policy_type={this.state.policy_type}
 			deductible={this.state.deductible}
 			handleInsuranceChange={this.handleInsuranceChange}
 			insuranceToDatabase={this.insuranceToDatabase}

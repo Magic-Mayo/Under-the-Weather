@@ -17,7 +17,9 @@ export default class Dashboard extends Component {
           <MedicalHistory name="Sean"/>
           <Providers name="Sean"/>
           <Contacts name="Sean"/>
-          <Insurance name="Sean"/>
+          <Insurance name={this.props.name}
+          user={this.props.user}
+          />
         </section>
         <Nav name={this.props.name} menu={this.props.menu} isLoggedIn={this.props.isLoggedIn} formOpen={this.props.formOpen} toggleForm={this.props.toggleForm}/>
         {/* <Forms /> */}
