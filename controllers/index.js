@@ -54,8 +54,14 @@ module.exports = {
             .catch(err=>console.log(err))
     },
     checkToken: (req,res)=>{
-        db.User.findOneAndUpdate({userName: req.params.user})
-        .then(res.json({loggedOut: false, path: '/'}))
-        .catch(err=>{console.log(err);res.json(true)})
+        const token = req.body.token;
+        db.User.findOne({loginToken: token}).then(user=>{
+            console.log(user)
+            if (!user){return res.json(false)};
+
+            if (user.loginToken === token){
+                return res.json({userId: user._id, user: user.data, userName: user.userName})
+            }
+        }).catch(err=>console.log(err))
     }
 }
