@@ -37,13 +37,6 @@ class App extends Component {
         user: false
     };
 
-    componentDidMount(){        
-        if(window.location.pathname.substring(1,11) === 'dashboard/' && !this.state.isLoggedIn){
-            const user = window.location.pathname.split('board/')[1];
-            return this.handleLogIn(user);
-        }
-    }
-
     handleLogIn = props => {
         this.setState({loading: true})
         return axios.post(`/login`, props)
@@ -60,13 +53,11 @@ class App extends Component {
     }
 
     setUser = props => {
-        this.setState(props);
-        this.logIn()
-    }
-
-    setUser = props => {
-        this.setState(props);
-        this.setState({isLoggedIn: true, loading: false});
+        if(props){
+            this.setState(props);
+            return this.setState({isLoggedIn: true, loading: false});
+        }
+        this.setState({loading: false})
     }
 
     handleLogOut = () => {
