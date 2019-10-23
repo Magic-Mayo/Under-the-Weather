@@ -1,26 +1,74 @@
 import React, { Component } from 'react';
+import Axios from 'axios'
+
 
 function InsuranceInput(props) {
 	return (
 		<div>
-			<h1>Hello, {props.name}</h1>			
+			<h1>Hello, {props.name}</h1>
+			<h2>Add insurance information</h2>			
 			<form>
-				Insurace Name:<input type="text"></input>
-				Policy/Identification Number:<input type="text"></input>
-				Group Number:<input type="text"></input>
+				Insurace Name:<input type="text" name ="provider" value={props.provider} 
+				onChange={props.handleInsuranceChange}></input>
+				Policy/Identification Number:<input type="text" name ="policy_number" value={props.policy_number}
+				onChange={props.handleInsuranceChange}></input>
+				Group Number:<input type="text" name ="group_number" value={props.group_number}
+				onChange={props.handleInsuranceChange}></input>
+				Policy Type:<input type="text" name ="policy_type"  value={props.policy_type} 
+				onChange={props.handleInsuranceChange}></input>
+				Deductible:<input type="text" name ="deductible" value={props.deductible}
+				onChange={props.handleInsuranceChange}></input>
 				{/* <input type="text"></input> */}
 			</form>
+			<button onClick= {props.insuranceToDatabase}>Submit</button>
 		</div>
 	)
-}
+};
 
 export default class InsuranceForm extends Component {
+	state ={
+		provider: '',
+		policy_number:'',
+		group_number:'',
+		policy_type:'',
+		deductible:''
+	};
+	
+	handleInsuranceChange = (e) => {
+		const { name, value } = e.target;
+		this.setState({ [name]: value });
+	};
+
+	insuranceToDatabase =()=>{		
+		const insurance={
+				provider:this.state.provider,
+				policy_number:this.state.policy_number,
+				group_number:this.state.group_number,
+				policy_type:this.state.policy_type,
+				deductible:this.state.deductible
+
+		}
+
+		this.setState({provider: '', policy_number:'', group_number:'', policy_type:'',deductible:''})
+		Axios.post('/account/insurance', insurance).then(
+			data =>{
+			}
+		)
+	}
+		
 	render() {
-		console.log(this.props.name)
 		return (
+			<div>			
 			<InsuranceInput 
 			name={this.props.name}
-			/>
+			provider={this.state.provider}
+			policy_number={this.state.policy_number}
+			group_number={this.state.policy_type}
+			deductible={this.state.deductible}
+			handleInsuranceChange={this.handleInsuranceChange}
+			insuranceToDatabase={this.insuranceToDatabase}
+			/>			
+			</div>
 		);
 	}
 }
