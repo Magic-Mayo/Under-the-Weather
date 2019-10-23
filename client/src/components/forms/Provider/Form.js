@@ -34,11 +34,11 @@ export default class ProviderForm extends Component {
                     )
                 }
                 <div className="provider-form-submit-container">
-                    <button type="button" className="provider-form-submit">
+                    {/* <button type="button" className="provider-form-submit">
                         Add Provider
-                    </button>
+                    </button> */}
                     <button type="button" className="provider-form-close">
-                        CLose X
+                        Close Form X
                     </button>
                 </div>
 			</div>
