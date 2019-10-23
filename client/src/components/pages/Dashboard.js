@@ -14,9 +14,15 @@ export default class Dashboard extends Component {
       <div className="Dashboard">
         <Symptoms name={this.props.name} symptoms={this.props.symptomHistory}/>
         <section className="container-right">
-          <MedicalHistory name="Sean"/>
-          <Providers name="Sean"/>
-          <Contacts name="Sean"/>
+          <MedicalHistory name={this.props.name}
+          user={this.props.user}
+          />
+          <Providers name={this.props.name}
+          user={this.props.user}
+          />
+          <Contacts name={this.props.name}
+          user={this.props.user}
+          />
           <Insurance name={this.props.name}
           user={this.props.user}
           />
