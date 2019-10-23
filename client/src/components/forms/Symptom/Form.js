@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import SymptomList from './symptoms.json';
-import Symptoms from './Symptoms'
+import Symptoms from './Symptoms';
 
 export default class SymptomForm extends Component {
 	state = {
 		SymptomList
-	}
+	};
 	render() {
-		console.log("THIS IS THE SYMPTOM LIST", this.state.SymptomList)
+		console.log('PROPS IN SYMPTOM FORM', this.props);
 		return (
 			<div className="symptom-form-container">
 				<h1 className="symptom-form-title">What type of symptom are you experiencing?</h1>
@@ -15,14 +15,14 @@ export default class SymptomForm extends Component {
 
 				<Input />
 				<div className="symptom-form-submit-container">
-                    {/* <button type="button" className="symptom-form-submit">
+					{/* <button type="button" className="symptom-form-submit">
                         Add symptom
                     </button> */}
-                    <button type="button" className="symptom-form-close">
-                        Close Form X
-                    </button>
-                </div>
-				<Symptoms />
+					<button type="button" className="symptom-form-close">
+						Close Form X
+					</button>
+				</div>
+				<Symptoms handleSubmit={this.props.handleSubmit} handleChange={this.props.handleChange} />
 			</div>
 		);
 	}
@@ -46,4 +46,3 @@ function Input(props) {
 		</div>
 	);
 }
-

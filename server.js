@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 3001;
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const path = require('path');
+const routes = require("./routes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -22,6 +23,7 @@ require('./routes/socialLogin')(app);
 require('./routes/logout')(app);
 require('./routes/email')(app);
 require('./routes/localLogin')(app);
+app.use(routes);
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/public/index.html"));
@@ -31,5 +33,5 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/under-the-we
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.listen(PORT, function() {
-    console.log(`App listening on PORT: ${PORT}`);
+    console.log(`🌎 ==> App listening on PORT: ${PORT}`);
 });
