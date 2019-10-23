@@ -4,8 +4,8 @@ import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
-import API from "../utils/API";
-import symptoms from "../symptoms.json";
+import API from '../../../utils/SymptomAPI';
+import symptoms from "./symptoms.json";
 
 class Symptoms extends Component {
     // Setting component's initial state
