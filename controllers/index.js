@@ -35,9 +35,9 @@ module.exports = {
             case 'addsymptom': route = {$push: {'data.symptomHistory': body.symptom}}; break;
             case 'addinsurance': route = {$push: {'data.mediData.insurance': body.insurance}}; break;
             case 'updateinsurance': route = {$set: body.insurance}; break;
-            case 'updatecontact': route = {$upsert: body.contact}; break;
-            case 'updateprovider': route = {$upsert: body.provider}; break;
-            case 'updatesymptom': route = {$upsert: body.symptom}; break;
+            case 'updatecontact': route = {$set: body.contact}; break;
+            case 'updateprovider': route = {$set: body.doctors}; break;
+            case 'updatesymptom': route = {$set: body.symptom}; break;
             case 'deletesymptom': route = {$pull: {'data.symptomHistory': {_id: body.symptomId}}}; break;
             case 'deleteinsurance': route = {$pull: {'data.mediData.insurance': {_id: body.insuranceId}}}; break;
             case 'deletecontact': route = {$pull: {'data.emergencyContacts': {_id: body.contactId}}}; break;
@@ -55,7 +55,7 @@ module.exports = {
                 })
                 .catch(err=>res.json('Error adding data.  Please try again later.'));
         } else if(body.route.substring(0,3) === 'upd'){
-            return db.User.findOneAndUpdate({[body.key]: body.id}, route, {new:true})
+            return db.User.findOneAndUpdate({[body.key]: body.userId}, route, {new:true})
                 .then(data=>{
                     console.log(data)
                     if (!data){return}
@@ -74,9 +74,9 @@ module.exports = {
     },
     updateProfile: (req,res,next)=>{
         console.log(req.body)
-        db.User.findOneAndUpdate({_id: req.params.userId}, {$upsert: req.body}, {new: true})
+        return db.User.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true})
             .then(updated=>res.json(updated))
-            .catch(err=>res.json(err))
+            .catch(err=>console.log(err))
         next();
     },
     findorCreate: (req,res)=>{
