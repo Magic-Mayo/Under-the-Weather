@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard'
 import FormContainer from './components/pages/FormContainer'
-// import Loading from './components/icons/loading'
+import Loading from './components/icons/loading'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from '@fortawesome/free-brands-svg-icons'
 
@@ -31,7 +31,7 @@ class App extends Component {
             isExpanded: false
         },
         isLoggedIn: false,
-        loading: false,
+        loading: true,
         pathname: window.location.pathname,
         formOpen: false,
         user: false
@@ -66,7 +66,7 @@ class App extends Component {
 
     setUser = props => {
         this.setState(props);
-        this.setState({isLoggedIn: true});
+        this.setState({isLoggedIn: true, loading: false});
     }
 
     handleLogOut = () => {
@@ -96,9 +96,10 @@ class App extends Component {
         return (
             <div className="App">
                 <Header name={this.state.user.name} isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut}/>
-                {!this.state.isLoggedIn && !this.state.user ? 
-                <FormContainer setUser={this.setUser} loading={this.state.loading} handleLogIn={this.handleLogIn} isLoading={this.isLoading} isLoggedIn={this.state.isLoggedIn}/>:
-                <Dashboard user={this.state.user} menu={this.state.menu} toggleForm={this.toggleForm} formOpen={this.state.formOpen} isLoggedIn={this.state.isLoggedIn}/>}
+                {this.state.loading ? <Loading loading={this.state.loading} setUser={this.setUser}/>:
+                (!this.state.isLoggedIn && !this.state.user ? 
+                    <FormContainer setUser={this.setUser} loading={this.state.loading} handleLogIn={this.handleLogIn} isLoading={this.isLoading} isLoggedIn={this.state.isLoggedIn}/>:
+                    <Dashboard user={this.state.user} menu={this.state.menu} toggleForm={this.toggleForm} formOpen={this.state.formOpen} isLoggedIn={this.state.isLoggedIn}/>)}
             </div>
         )
     }
