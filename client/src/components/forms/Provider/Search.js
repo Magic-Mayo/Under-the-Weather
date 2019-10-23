@@ -12,7 +12,6 @@ class Search extends Component {
 	};
 	componentDidMount() {
 		this.userLocation();
-		// console.log("Look here Zeb" +Specialist.data[0].name)
 	}
 
 	userLocation = () => {

@@ -51,8 +51,7 @@ class Nav extends React.Component {
 		}));
 
 	render() {
-		// console.log('NAV HAS THESE PROPS', this.props);
-
+		// console.log('NAV HAS THESE PROPS', this.props);		
 		return (
 			<Router>
 				<div className="Nav">
@@ -111,7 +110,8 @@ class Nav extends React.Component {
                                 isLoggedIn={this.props.isLoggedIn}
                                 toggleMenu={this.toggleMenu}
 								dropDownVisible={this.state.dropDownVisible}
-							/>)
+								name={this.props.name}
+								/>)
 					}}
 				/>
 			</Router>
