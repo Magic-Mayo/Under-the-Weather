@@ -1,5 +1,7 @@
 const db = require('../models');
 const bcrypt = require('bcrypt');
+const uid = require('uid-safe');
+const token = uid.sync(24);
 
 
 module.exports = {
@@ -7,7 +9,7 @@ module.exports = {
         db.User.findById(req.params.user)
             .then(user=>{
                 if (user.data.isLoggedIn && req.body.loggedIn === 'logout'){
-                    return db.User.updateOne({_id: user._id}, {isLoggedIn: false})
+                    return db.User.updateOne({_id: user._id}, {'data.isLoggedIn': false})
                         .then(res.json({loggedOut: false, path: '/'}))
                         .catch(err=>res.json({loggedOut: true}))
                 }
@@ -32,13 +34,18 @@ module.exports = {
     findorCreate: (req,res)=>{
         console.log(req.body)
         db.User.findOne({userName: req.body.userName}).then(user=>{
-            console.log(user)
             if(!user){
                 return db.User.create(req.body)
-                    .then(newUser=>res.json({userId: newUser._id, user: newUser.data, userName: newUser.userName}))
-                    .catch(err=>console.log(err))
+                    .then(newUser=>{
+                        db.User.findOneAndUpdate({_id: newUser._id}, {loginToken: token}, {new:true}).then(token=>{
+                            res.json({userId: token._id, user: token.data, userName: token.userName, token: token.loginToken})
+                        })
+                        .catch(err=>console.log(err))
+                    }).catch(err=>console.log(err))
             }
-            res.json({userId: user._id, user: user.data, userName: user.userName})
+            db.User.findOneAndUpdate({_id: user._id}, {loginToken: token, 'data.isLoggedIn': true}, {new: true}).then(user=>{
+                res.json({userId: user._id, user: user.data, userName: user.userName, token: user.loginToken})
+            }).catch(err=>console.log(err))
         }).catch(err=>console.log(err))
     },
     logSymptom: (req,res)=>{

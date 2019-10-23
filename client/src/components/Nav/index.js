@@ -43,15 +43,15 @@ const NavExpand = ({ onClick }) => {
 class Nav extends React.Component {
 	state = {
 		dropDownVisible: false
-	};
+    };
+
 	toggleMenu = () =>
 		this.setState((state) => ({
 			dropDownVisible: !state.dropDownVisible
 		}));
 
-	data = this.props;
 	render() {
-		console.log('NAV HAS THESE PROPS', this.props);
+		// console.log('NAV HAS THESE PROPS', this.props);
 
 		return (
 			<Router>
@@ -69,7 +69,7 @@ class Nav extends React.Component {
 					render={() => {
 						return (
 							<ProviderLink
-								{...this.data}
+								isLoggedIn={this.props.isLoggedIn}
 								toggleMenu={this.toggleMenu}
 								dropDownVisible={this.state.dropDownVisible}
 							/>
@@ -82,8 +82,8 @@ class Nav extends React.Component {
 					render={() => {
 						return (
 							<ContactLink
-								{...this.data}
-								toggleMenu={this.toggleMenu}
+                                isLoggedIn={this.props.isLoggedIn}
+                                toggleMenu={this.toggleMenu}
 								dropDownVisible={this.state.dropDownVisible}
 							/>
 						);
@@ -95,8 +95,8 @@ class Nav extends React.Component {
 					render={() => {
 						return (
 							<SymptomLink 
-								{...this.data} 
-								toggleMenu={this.toggleMenu}
+                                isLoggedIn={this.props.isLoggedIn}
+                                toggleMenu={this.toggleMenu}
 								dropDownVisible={this.state.dropDownVisible}
 							/>
 						)
@@ -108,8 +108,8 @@ class Nav extends React.Component {
 					render={() => {
 						return (
 							<InsuranceLink 
-								{...this.data} 
-								toggleMenu={this.toggleMenu}
+                                isLoggedIn={this.props.isLoggedIn}
+                                toggleMenu={this.toggleMenu}
 								dropDownVisible={this.state.dropDownVisible}
 							/>)
 					}}

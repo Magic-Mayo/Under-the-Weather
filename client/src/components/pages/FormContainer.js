@@ -68,7 +68,8 @@ export default class FormContainer extends Component {
 							togglePassword={this.togglePassword}
 							setSignUp={this.setSignUp}
 							setLogIn={this.setLogIn}
-							setUser={this.props.setUser}
+                            setUser={this.props.setUser}
+                            isLoggedIn={this.props.isLoggedIn}
 						/>
 					)}
 				</section>

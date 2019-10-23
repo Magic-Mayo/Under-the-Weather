@@ -8,7 +8,6 @@ import Axios from 'axios'
 export default class SignInSocial extends Component {
 
       logIn = res => {
-        console.log(res)
         if(res.profile){
             const user = res.profile
             const data = {
@@ -20,9 +19,10 @@ export default class SignInSocial extends Component {
                 }
             }
 
-            return Axios.post('/auth/facebook', data).then(user=>{
+            return Axios.post('/auth/facebook', data).then(facebook=>{
+                localStorage.setItem('_underweather', facebook.data.token)
                 window.history.pushState(null, '', '/dashboard')
-                this.props.setUser({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
+                this.props.setUser({loading: false, user: facebook.data.user, userId: facebook.data.userId, isLoggedIn: true})
             })
         }
 
