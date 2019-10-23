@@ -1,5 +1,22 @@
 const db = require('../controllers/index');
 
 module.exports = (app) => {
-    app.put('/account/:user', db.update)
+    app.post('/account/insurance', db.updateAccount);
+    app.put('/account/insurance', db.updateAccount);
+    app.delete('/account/insurance', db.updateAccount);
+
+    app.post('/account/contact', db.updateAccount);
+    app.put('/account/contact', db.updateAccount);
+    app.delete('/account/contact', db.updateAccount);
+
+    app.post('/account/symptom', db.updateAccount);
+    app.put('/account/symptom', db.updateAccount);
+    app.delete('/account/symptom', db.updateAccount);
+
+    app.post('/account/provider', db.updateAccount);
+    app.put('/account/provider', db.updateAccount);
+    app.delete('/account/provider', db.updateAccount);
+
+    app.put('/account/profile/:userId', db.updateAccount);
+    app.delete('/account/profile/:userId', db.updateAccount);
 }

@@ -21,6 +21,7 @@ require('./routes/userData')(app);
 require('./routes/socialLogin')(app);
 require('./routes/logout')(app);
 require('./routes/email')(app);
+require('./routes/account')(app);
 require('./routes/localLogin')(app);
 
 app.get("*", (req, res) => {
@@ -28,7 +29,7 @@ app.get("*", (req, res) => {
 });
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/under-the-weather";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.listen(PORT, function() {
     console.log(`App listening on PORT: ${PORT}`);

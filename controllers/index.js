@@ -9,7 +9,7 @@ module.exports = {
         db.User.findById(req.params.user)
             .then(user=>{
                 if (user.data.isLoggedIn && req.body.loggedIn === 'logout'){
-                    return db.User.updateOne({_id: user._id}, {'data.isLoggedIn': false})
+                    return db.User.updateOne({_id: user._id}, {loginToken: '', 'data.isLoggedIn': false})
                         .then(res.json({loggedOut: false, path: '/'}))
                         .catch(err=>res.json({loggedOut: true}))
                 }
@@ -26,10 +26,58 @@ module.exports = {
                 res.json(true)
             })
     },
-    updateAccount: (req,res)=>{
-        db.User.findOneAndUpdate({userName: req.params.user}, req.body, {new: true})
-            .then(updated=>console.log(updated))
-            .catch(err=>console.log(err))
+    updateAccount: (req,res,next)=>{
+        const body = req.body;
+        let route;
+        switch(body.route){
+            case 'addprovider': route = {$push: {'data.mediData.doctors': body.provider}}; break;
+            case 'addcontact': route = {$push: {'data.emergencyContacts': body.contact}}; break;
+            case 'addsymptom': route = {$push: {'data.symptomHistory': body.symptom}}; break;
+            case 'addinsurance': route = {$push: {'data.mediData.insurance': body.insurance}}; break;
+            case 'updateinsurance': route = {$set: body.insurance}; break;
+            case 'updatecontact': route = {$upsert: body.contact}; break;
+            case 'updateprovider': route = {$upsert: body.provider}; break;
+            case 'updatesymptom': route = {$upsert: body.symptom}; break;
+            case 'deletesymptom': route = {$pull: {'data.symptomHistory': {_id: body.symptomId}}}; break;
+            case 'deleteinsurance': route = {$pull: {'data.mediData.insurance': {_id: body.insuranceId}}}; break;
+            case 'deletecontact': route = {$pull: {'data.emergencyContacts': {_id: body.contactId}}}; break;
+            case 'deleteprovider': route = {$pull: {'data.mediData.doctors': {_id: body.providerId}}}; break;
+        }
+
+        console.log(body)
+
+        if(body.route.substring(0,3) === 'add'){
+            return db.User.findOneAndUpdate({_id: req.body.userId}, route, {new: true})
+                .then(data=>{
+                    // console.log(data)
+                    if (!data){return}
+                    res.json(data)
+                })
+                .catch(err=>res.json('Error adding data.  Please try again later.'));
+        } else if(body.route.substring(0,3) === 'upd'){
+            return db.User.findOneAndUpdate({[body.key]: body.id}, route, {new:true})
+                .then(data=>{
+                    console.log(data)
+                    if (!data){return}
+                    res.json(data)
+                })
+                .catch(err=>res.json(err));
+        } else if(body.route.substring(0,3) === 'del'){
+            return db.User.findOneAndUpdate({_id: body.userId}, route, {new:true})
+                .then(data=>{
+                    console.log('delete',data)
+                    return res.json(data)
+                })
+                .catch(err=>res.json('Error removing data.  Please try again later.'));
+        }
+        next();
+    },
+    updateProfile: (req,res,next)=>{
+        console.log(req.body)
+        db.User.findOneAndUpdate({_id: req.params.userId}, {$upsert: req.body}, {new: true})
+            .then(updated=>res.json(updated))
+            .catch(err=>res.json(err))
+        next();
     },
     findorCreate: (req,res)=>{
         console.log(req.body)
@@ -54,8 +102,14 @@ module.exports = {
             .catch(err=>console.log(err))
     },
     checkToken: (req,res)=>{
-        db.User.findOneAndUpdate({userName: req.params.user})
-        .then(res.json({loggedOut: false, path: '/'}))
-        .catch(err=>{console.log(err);res.json(true)})
+        const token = req.body.token;
+        db.User.findOne({loginToken: token}).then(user=>{
+            console.log(user)
+            if (!user){return res.json(false)};
+
+            if (user.loginToken === token){
+                return res.json({userId: user._id, user: user.data, userName: user.userName})
+            }
+        }).catch(err=>console.log(err))
     }
 }
