@@ -28,7 +28,7 @@ app.get("*", (req, res) => {
 });
 
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/under-the-weather";
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.listen(PORT, function() {
     console.log(`App listening on PORT: ${PORT}`);
