@@ -34,7 +34,7 @@ module.exports = {
             case 'addcontact': route = {$push: {'data.emergencyContacts': body.contact}}; break;
             case 'addsymptom': route = {$push: {'data.symptomHistory': body.symptom}}; break;
             case 'addinsurance': route = {$push: {'data.mediData.insurance': body.insurance}}; break;
-            case 'updateinsurance': route = {$upsert: body.insurance}; break;
+            case 'updateinsurance': route = {$set: body.insurance}; break;
             case 'updatecontact': route = {$upsert: body.contact}; break;
             case 'updateprovider': route = {$upsert: body.provider}; break;
             case 'updatesymptom': route = {$upsert: body.symptom}; break;
@@ -55,15 +55,13 @@ module.exports = {
                 })
                 .catch(err=>res.json('Error adding data.  Please try again later.'));
         } else if(body.route.substring(0,3) === 'upd'){
-            return db.User.findOneAndUpdate({_id: body.userId, [body.key]: {_id: body.id}}, route, {new:true})
+            return db.User.findOneAndUpdate({[body.key]: body.id}, route, {new:true})
                 .then(data=>{
                     console.log(data)
-                    if (data){
-                        res.json('Data added!')
-                    }
-                    // res.json(data)
+                    if (!data){return}
+                    res.json(data)
                 })
-                .catch(err=>res.json('Error adding data.  Please try again later.'));
+                .catch(err=>res.json(err));
         } else if(body.route.substring(0,3) === 'del'){
             return db.User.findOneAndUpdate({_id: body.userId}, route, {new:true})
                 .then(data=>{
@@ -74,10 +72,12 @@ module.exports = {
         }
         next();
     },
-    updateProfile: (req,res)=>{
-        db.User.findOneAndUpdate({userName: req.params.user}, req.body, {new: true})
-            .then(updated=>console.log(updated))
-            .catch(err=>console.log(err))
+    updateProfile: (req,res,next)=>{
+        console.log(req.body)
+        db.User.findOneAndUpdate({_id: req.params.userId}, {$upsert: req.body}, {new: true})
+            .then(updated=>res.json(updated))
+            .catch(err=>res.json(err))
+        next();
     },
     findorCreate: (req,res)=>{
         console.log(req.body)
