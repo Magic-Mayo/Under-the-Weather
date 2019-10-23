@@ -24,7 +24,8 @@ class Loading extends Component {
                     this.props.setUser(user.data, {userId: user.data.userId})
 				})
 				.catch((err) => console.log(err));
-		}
+        }
+        this.props.setUser();
     }
     
     render(){
