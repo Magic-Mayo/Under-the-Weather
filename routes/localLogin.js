@@ -44,15 +44,5 @@ module.exports = (app) => {
         }).catch(err=>console.log(err))
     });
 
-    app.post('/token/', (req,res)=>{
-        const token = req.body.token;
-        db.User.findOne({loginToken: token}).then(user=>{
-            console.log(user)
-            if (!user){return res.json(false)};
-
-            if (user.loginToken === token){
-                return res.json({userId: user._id, user: user.data, userName: user.userName})
-            }
-        }).catch(err=>console.log(err))
-    })
+    app.post('/token', controller.checkToken)
 }
