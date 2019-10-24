@@ -17,7 +17,6 @@ export default class LoginForm extends Component {
 	};
 
 	render() {
-		console.log(this.state.loginpersist)
 		return (
 			<div className="grid">
 				<form className={`form-${this.props.data.loginType}-input-box form-input-area`}>
