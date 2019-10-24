@@ -75,8 +75,9 @@ export default class FormContainer extends Component {
 					)}
 				</section>
 			</div>
-        // )
-        //  : (			<Loading loading={this.props.isLoading} />
-		);
+        )
+         : (			<Loading loading={this.props.isLoading} />
+	);
+	
 	}
 }
