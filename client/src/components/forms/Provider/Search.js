@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import API from '../../../utils/API';
-import PDropDown from '../../practicesDropDown';
+import API from '../../../utils/ProviderAPI';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Search extends Component {
 	state = {
@@ -15,8 +16,7 @@ class Search extends Component {
 	}
 
 	userLocation = () => {
-		const
-		 options = {
+		const options = {
 				enableHighAccuracy: true,
 				timeout: 5000,
 				maximumAge: 0
@@ -88,7 +88,7 @@ function Input(props) {
 					className="provider-form-search-input"
 				/>
 				<h1>{props.results}</h1>
-				<button type="submit" onClick={props.drSearch} 					className="provider-form-search-submit">
+				<button type="submit" onClick={props.drSearch} className="provider-form-search-submit">
 					Submit
 				</button>
 			</form>
@@ -97,33 +97,38 @@ function Input(props) {
 }
 
 function Results(props) {
-	console.log(props)
+	console.log(props);
 	return (
 		<div className="provider-form-results-item">
-			<img src={props.src} alt="Smiley face" height="42" width="42" />
-			<p>
-				Name: {props.firstName}, {props.lastName}
-			</p>
-			<p>Bio: {props.bio}</p>
-			<p>
-				Practices:{' '}
-				<select>
-					<option value="">Office Locations</option>
-					{props.practices.map((res) => (
-						<option value="">
-							{res.name}
+			{/* <img src={props.src} alt="Smiley face" height="42" width="42" /> */}
+
+			<h4 className="provider-form-results-name">
+				{/* <span className="preface">Name:</span> */}
+				{props.firstName}, {props.lastName}
+			</h4>
+			<p className="provider-form-results-bio">{props.bio}</p>
+			<label className="provider-form-results-location">
+				<span>Locations:</span>
+				<select name="locations" id="locations">
+					{props.practices.map((practice, i) => (
+						<option value="" className="location-item">
+							{practice.name}
+
 							{' Address: ' +
-								res.visit_address.street +
+								practice.visit_address.street +
 								' ' +
-								res.visit_address.city +
+								practice.visit_address.city +
 								' ' +
-								res.visit_address.state +
+								practice.visit_address.state +
 								' ' +
-								res.visit_address.zip}
+								practice.visit_address.zip}
 						</option>
 					))}
 				</select>
-			</p>
+			</label>
+			<button className="provider-form-results-item-select">
+				<FontAwesomeIcon icon="plus" />
+			</button>
 		</div>
 	);
 }

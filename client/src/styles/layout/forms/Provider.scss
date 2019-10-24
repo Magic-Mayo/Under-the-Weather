@@ -4,8 +4,7 @@
     max-width: 750px;
     justify-content: center;
     margin: 4rem auto;
-    font-size: 2.35rem;
-
+    font-size: 2.15rem;
     &-container {
         // background-color: bisque;
         height: 100%;
@@ -25,7 +24,7 @@
             width: 50%;
             color: $white;
             font-size: 2rem;
-            padding: 2.5rem 0;
+            padding: 2rem 0;
         }
 
         &-search {
@@ -41,12 +40,12 @@
 
     &-title {
         @include heading(2.75rem);
-        margin-top: 2.5rem;
+        margin-top: 2rem;
     }
 
     &-subtitle {
         @include heading(2.2rem);
-        margin-top: .5rem;
+        margin-top: .25rem;
     }
 
     &-search {
@@ -55,9 +54,9 @@
             padding: 1.5rem 2.5rem;
             border: 3px solid transparent;
             box-shadow:inset 0 0 2.5rem rgba($black, .15);
-            border-top-left-radius: 10rem;
-            border-bottom-left-radius: 10rem;
-
+            border-top-left-radius: 2.5rem;
+            border-bottom-left-radius: 2.5rem;
+            background-color: white;
             box-shadow: 0 -.5rem 3.25rem rgba($black, .15);
 
 
@@ -78,8 +77,8 @@
             color: $white;
             transition: .2s all;
 
-            border-top-right-radius: 10rem;
-            border-bottom-right-radius: 10rem;
+            border-top-right-radius: 2.5rem;
+            border-bottom-right-radius: 2.5rem;
 
 
             &:hover {
@@ -93,19 +92,96 @@
         position: absolute;
         max-height: 60%;
         box-shadow: inset 0 0 1.25rem rgba($blue-dark, .15);
-        padding: 1rem 5rem;
+        padding: 1rem 0 12rem;
+        background-color: rgb(255, 255, 255);
 
         &-item {
+            position: relative;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid $blue-dark;
+            border-radius: 2rem;
+            // width: 100%;
+            padding: 3.5rem;
+            margin: 4rem 2rem;
+
+            &-select {
+                position: absolute;
+                background-color: $white;
+                top: 0;
+                right: 0;
+                transform: translate(-50%, -50%);
+                // border: 1px solid $blue-dark;
+                border: none;
+                border-radius: 50%;
+                background-color: $blue-accent;
+                width: 6.5rem;
+                height: 6.5rem;
+                box-shadow: inset 0 0 1.25rem rgba($blue-dark, .15);
+
+                * {
+                    font-size: 2rem;
+                    color: $blue-dark;
+                }
+            }
         }
+
+        &-name {
+            font-size: 2.25rem;
+            border-bottom: 4px solid $peach-contrast-heavy;
+            padding: 1rem 10%;
+            margin-bottom: 2.5rem;
+        }
+
+        &-bio {
+            font-size: 1.7rem;
+            width: 80%;
+        }
+
+        &-location {
+            font-size: 2.5rem;
+            display: flex;
+            flex-direction: column;
+
+            select {
+                font-size: 1.75rem;
+                margin: 1rem;
+            }
+        }
+
     }
 
     &-submit {
+        background-color: $peach-contrast-heavy;
+        border: 3px solid $peach-contrast-light;
+        color: $white;
 
         &-container {
             position: absolute;
             z-index: 100;
             bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(to top, rgba($white, .75) 0%, rgba(255, 255, 255, 0) 100%);
+            padding-top: 3rem;
+
+            button {
+                padding: 1.75rem 1.5rem;
+                font-size: 2.325rem;
+                font-weight: 700;
+                width: 45%;
+                margin: 2rem 5rem 3.5rem;
+                border-radius: 1.25rem;
+            }
         }
+    }
+
+    &-close {
+        background-color: transparent;
+        border: 3px solid $peach-contrast-heavy;
+        color: $peach-contrast-heavy;
+
     }
 }

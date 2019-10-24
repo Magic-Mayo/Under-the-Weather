@@ -36,8 +36,8 @@ export default class FormContainer extends Component {
 	};
 
 	render() {
-        return (
-        // !this.props.loading ? (
+		console.log("PROPS IN FORM CONTAINER", this.props)
+		return !this.props.loading ? (
 			<div className="FormContainer">
 				<section className={`form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
 					{!this.props.isLoggedIn && (

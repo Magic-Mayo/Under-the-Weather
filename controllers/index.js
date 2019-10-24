@@ -102,14 +102,43 @@ module.exports = {
             .catch(err=>console.log(err))
     },
     checkToken: (req,res)=>{
-        const token = req.body.token;
-        db.User.findOne({loginToken: token}).then(user=>{
-            console.log(user)
-            if (!user){return res.json(false)};
-
-            if (user.loginToken === token){
-                return res.json({userId: user._id, user: user.data, userName: user.userName})
-            }
-        }).catch(err=>console.log(err))
-    }
+        db.User.findOneAndUpdate({userName: req.params.user})
+        .then(res.json({loggedOut: false, path: '/'}))
+        .catch(err=>{console.log(err);res.json(true)})
+    },
+    findAll: function(req, res) {
+        db.User
+          .find(req.query)
+          .sort({ date: -1 })
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      },
+      findById: function(req, res) {
+        db.User
+          .findById(req.params.id)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      },
+      create: function(req, res) {
+        db.User
+          .create(req.body)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      },
+      update: function(req, res) {
+        console.log("HEY ", req.body.symptomHistory)
+        db.User
+          .findOneAndUpdate(
+              { _id: req.params.id }, 
+              {$push: req.body.symptomHistory}, {new: true})
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      },
+      remove: function(req, res) {
+        db.User
+          .findById({ _id: req.params.id })
+          .then(dbModel => dbModel.remove())
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+      }
 }
