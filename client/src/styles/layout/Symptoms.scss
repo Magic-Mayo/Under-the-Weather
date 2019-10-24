@@ -1,0 +1,62 @@
+.Symptoms {
+    grid-column: 2/9;
+    min-height: 105vh;
+}
+
+.filter-form {
+    display: grid;
+    grid-template-columns: repeat(5,auto);
+    column-gap: 1.35vw;
+    row-gap: .5vw;
+    grid-template-rows: 3.5rem 1fr;
+    margin-top: 1.5rem;
+    width: 95%;
+    margin: 0 auto;
+
+    &-input {
+        position: relative;
+        background-color: transparent;
+        font-size: 1.2vw;
+        border: none;
+        appearance: none;
+        padding-right: 2rem;
+        padding: .3vw 1.3vw .3vw .3vw;
+        cursor: pointer;
+        color: $peach-contrast-heavy;
+        // text-transform: capitalize;
+        border-bottom: $peach-contrast-heavy solid .15rem;
+        &:focus {
+            outline: none;
+        }
+
+        .down-arrow {
+            position: absolute;
+            top: 50%;
+            right: .5rem;
+            transform: translateY(-50%);
+            // background-color: beige;
+            color: $peach-contrast-heavy;
+            font-size: 2rem;
+            pointer-events: none;
+        }
+
+        p {
+            margin-bottom: 2rem;
+        }
+
+        li {
+            list-style: none;
+            text-align: left;
+            background: $peach-contrast-heavy;
+            padding: 1rem;
+            color: $white;
+            box-shadow: 0 0 1rem rgba($black, .35);
+
+            &:nth-child(even) {
+                // color: $peach-contrast-heavy;
+                background: $peach-contrast-light;
+            }
+        }
+        
+    }
+}

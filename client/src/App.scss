@@ -1,0 +1,32 @@
+@import "./styles/fonts";
+@import "./styles/variables";
+@import "./styles/mixins";
+
+@import "./styles/layout/pages/FormContainer";
+@import "./styles/layout/pages/Dashboard";
+
+
+@import "./styles/util";
+@import "./styles/layout/Header";
+@import "./styles/layout/Symptoms";
+@import "./styles/layout/Providers";
+@import "./styles/layout/Contacts";
+@import "./styles/layout/Insurance";
+@import "./styles/layout/MedicalHistory";
+@import "./styles/layout/Nav";
+
+@import "./styles/layout/forms/Provider";
+
+.App {
+  text-align: center;
+  background-color: $blue-main;
+  display: grid;
+  grid-template-columns: 2rem repeat(12,1fr) 2rem;
+  grid-template-rows: 17.5vw auto;
+  gap: .5rem;
+  align-items: flex-start;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-bottom: 12.5rem;
+}
+
