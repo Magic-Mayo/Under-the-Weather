@@ -65,8 +65,8 @@ class App extends Component {
         this.setState({loading: true})
         axios.put(`/logout/${this.state.userId}`, {loggedIn: 'logout'}).then(loggedOut=>{
             localStorage.removeItem('_underweather')
-            this.setState({isLoggedIn: loggedOut.data.loggedOut, user: '', userId: '', loading: false});
-            window.history.pushState(null, '',loggedOut.data.path)
+            this.setState({isLoggedIn: false, user: '', userId: '', loading: false});
+            window.history.pushState(null, '', '/')
         })
     }
 
