@@ -2,6 +2,7 @@ const db = require('../models');
 const bcrypt = require('bcrypt');
 const uid = require('uid-safe');
 const token = uid.sync(24);
+const moment = require('moment');
 
 
 module.exports = {
@@ -51,7 +52,7 @@ module.exports = {
                 .then(data=>{
                     // console.log(data)
                     if (!data){return}
-                    res.json(data)
+                    res.json({user: data.data})
                 })
                 .catch(err=>res.json('Error adding data.  Please try again later.'));
         } else if(body.route.substring(0,3) === 'upd'){
@@ -59,14 +60,14 @@ module.exports = {
                 .then(data=>{
                     console.log(data)
                     if (!data){return}
-                    res.json(data)
+                    res.json({user: data.data})
                 })
                 .catch(err=>res.json(err));
         } else if(body.route.substring(0,3) === 'del'){
             return db.User.findOneAndUpdate({_id: body.userId}, route, {new:true})
                 .then(data=>{
                     console.log('delete',data)
-                    return res.json(data)
+                    return res.json({user: data})
                 })
                 .catch(err=>res.json('Error removing data.  Please try again later.'));
         }
@@ -74,9 +75,11 @@ module.exports = {
     },
     updateProfile: (req,res,next)=>{
         console.log(req.body)
-        return db.User.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true})
-            .then(updated=>res.json(updated))
-            .catch(err=>console.log(err))
+        if(req.body.update){
+            return db.User.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true})
+                .then(updated=>res.json(updated.data))
+                .catch(err=>console.log(err))
+        }
         next();
     },
     findorCreate: (req,res)=>{
