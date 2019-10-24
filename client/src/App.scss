@@ -2,7 +2,7 @@
 @import "./styles/variables";
 @import "./styles/mixins";
 
-@import "./styles/layout/pages/LogInSignUp";
+@import "./styles/layout/pages/FormContainer";
 @import "./styles/layout/pages/Dashboard";
 
 
@@ -14,6 +14,8 @@
 @import "./styles/layout/Insurance";
 @import "./styles/layout/MedicalHistory";
 @import "./styles/layout/Nav";
+
+@import "./styles/layout/forms/Provider";
 
 .App {
   text-align: center;
