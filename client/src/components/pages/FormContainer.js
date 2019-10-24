@@ -36,48 +36,47 @@ export default class FormContainer extends Component {
 	};
 
 	render() {
-		console.log("PROPS IN FORM CONTAINER", this.props)
-		return !this.props.loading ? (
-			<div className="FormContainer">
-				<section className={`form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
-					{!this.props.isLoggedIn && (
-						<div className="form-btn-wrapper">
-							<button className="form-btn form-btn-signup" onClick={this.setSignUp}>
-								Sign Up
-							</button>
-							<button className="form-btn form-btn-login" onClick={this.setLogIn}>
-								Log In
-							</button>
-						</div>
-					)}
-					{
-						this.props.isLoggedIn ? (
-							this.props.formType === 'Contact' ? (
-								<ContactForm {...this.props}/>
-							) : this.props.formType === 'Provider' ? (
-								<ProviderForm {...this.props}/>
-							) : this.props.formType === 'Symptom' ? (
-								<SymptomForm {...this.props}/>
-							) : this.props.formType === 'Insurance' ? (
-								<InsuranceForm {...this.props}/>
-							) : null
-						) : (
-						<EntranceForm
-							handleLogIn={this.props.handleLogIn}
-							state={this.state}
-							message={this.props.message}
-							togglePassword={this.togglePassword}
-							setSignUp={this.setSignUp}
-							setLogIn={this.setLogIn}
-                            setUser={this.props.setUser}
-                            isLoggedIn={this.props.isLoggedIn}
-						/>
-					)}
-				</section>
-			</div>
-        )
-         : (			<Loading loading={this.props.isLoading} />
-	);
-	
-	}
+		return (
+			// !this.props.loading ? (
+				<div className="FormContainer">
+					<section className={`form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
+						{!this.props.isLoggedIn && (
+							<div className="form-btn-wrapper">
+								<button className="form-btn form-btn-signup" onClick={this.setSignUp}>
+									Sign Up
+								</button>
+								<button className="form-btn form-btn-login" onClick={this.setLogIn}>
+									Log In
+								</button>
+							</div>
+						)}
+						{
+							this.props.isLoggedIn ? (
+								this.props.formType === 'Contact' ? (
+									<ContactForm {...this.props}/>
+								) : this.props.formType === 'Provider' ? (
+									<ProviderForm {...this.props}/>
+								) : this.props.formType === 'Symptom' ? (
+									<SymptomForm {...this.props}/>
+								) : this.props.formType === 'Insurance' ? (
+									<InsuranceForm {...this.props}/>
+								) : null
+							) : (
+							<EntranceForm
+								handleLogIn={this.props.handleLogIn}
+								state={this.state}
+								message={this.props.message}
+								togglePassword={this.togglePassword}
+								setSignUp={this.setSignUp}
+								setLogIn={this.setLogIn}
+								setUser={this.props.setUser}
+								isLoggedIn={this.props.isLoggedIn}
+							/>
+						)}
+					</section>
+				</div>
+			// )
+			//  : (			<Loading loading={this.props.isLoading} />
+			);
+		}
 }
