@@ -6,16 +6,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default class LoginForm extends Component {
 	state = {
 		username: '',
-		password: ''
+        password: '',
+        loginpersist: false
 	};
 
 	handleInput = (e) => {
-		const { name, value } = e.target;
+        const { name } = e.target;
+        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
 		this.setState({ [name]: value });
 	};
 
 	render() {
-		// console.log(this.props.data.className)
+		console.log(this.state.loginpersist)
 		return (
 			<div className="grid">
 				<form className={`form-${this.props.data.loginType}-input-box form-input-area`}>
@@ -56,6 +58,12 @@ export default class LoginForm extends Component {
 						>
 							Log In
 						</button>
+                        <label htmlFor="login-persist" className="login-persist">Keep me logged in</label>
+                        <input type="checkbox"
+                            onChange={this.handleInput}
+                            checked={this.state.loginpersist}
+                            name="loginpersist"
+                        />
 					</div>
 				</form>
                 <SignInSocial setUser={this.props.setUser} />
