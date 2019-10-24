@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Filter from '../forms/Symptom/Filter';
+import SymptomFilter from '../forms/SymptomFilter';
 
 function Symptoms(props) {
 
@@ -60,7 +60,7 @@ function Symptoms(props) {
     return (
         <div className="Symptoms card">
             <h2>Symptom History</h2>
-            <Filter 
+            <SymptomFilter 
                 data={formData}
             />
 
