@@ -41,7 +41,7 @@ class App extends Component {
         this.setState({loading: true})
         return axios.post(`/login`, props)
             .then(user=>{
-                if (props.loginpersist){
+                if (props.credentials.loginpersist){
                     localStorage.setItem('_underweather', user.data.token);
                 } else {
                     sessionStorage.setItem('_underweather', user.data.token);
@@ -66,9 +66,9 @@ class App extends Component {
 
     handleLogOut = () => {
         this.setState({loading: true})
+        localStorage.removeItem('_underweather')
+        sessionStorage.removeItem('_underweather')
         axios.put(`/logout/${this.state.userId}`, {loggedIn: 'logout'}).then(loggedOut=>{
-            localStorage.removeItem('_underweather')
-            sessionStorage.removeItem('_underweather')
             this.setState({isLoggedIn: false, user: '', userId: '', loading: false});
             window.history.pushState(null, '', '/')
         })
