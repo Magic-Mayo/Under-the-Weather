@@ -11,6 +11,7 @@ const override = css`
 
 class Loading extends Component {
     componentDidMount = () => {
+        console.log("MOUNTED")
         const UTWtoken = localStorage.getItem('_underweather');
 		if (!this.props.isLoggedIn && UTWtoken) {
             console.log(UTWtoken)

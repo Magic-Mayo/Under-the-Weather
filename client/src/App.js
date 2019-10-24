@@ -32,7 +32,7 @@ class App extends Component {
 			isExpanded: false
 		},
 		isLoggedIn: false,
-		loading: false,
+		loading: true,
 		pathname: window.location.pathname,
 		formOpen: false,
 		user: false,

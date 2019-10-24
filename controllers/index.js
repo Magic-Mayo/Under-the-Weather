@@ -161,7 +161,7 @@ module.exports = {
 		db.User
 			.findOne({ loginToken: token })
 			.then((user) => {
-				console.log(user);
+				console.log("THIS IS WHERE USER IS", user);
 				if (!user) {
 					return res.json(false);
 				}
