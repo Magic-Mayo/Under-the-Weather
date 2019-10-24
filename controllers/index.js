@@ -26,6 +26,7 @@ module.exports = {
                 res.json(true)
             })
     },
+<<<<<<< HEAD
     // updateAccount: (req,res,next)=>{
     //     let route;
     //     switch(req.body.route){
@@ -110,23 +111,60 @@ module.exports = {
                 }
             })
             .catch(err=>res.json('Error updating insurance.  Please try again later.'))
+=======
+    updateAccount: (req,res,next)=>{
+        const body = req.body;
+        let route;
+        switch(body.route){
+            case 'addprovider': route = {$push: {'data.mediData.doctors': body.provider}}; break;
+            case 'addcontact': route = {$push: {'data.emergencyContacts': body.contact}}; break;
+            case 'addsymptom': route = {$push: {'data.symptomHistory': body.symptom}}; break;
+            case 'addinsurance': route = {$push: {'data.mediData.insurance': body.insurance}}; break;
+            case 'updateinsurance': route = {$set: body.insurance}; break;
+            case 'updatecontact': route = {$upsert: body.contact}; break;
+            case 'updateprovider': route = {$upsert: body.provider}; break;
+            case 'updatesymptom': route = {$upsert: body.symptom}; break;
+            case 'deletesymptom': route = {$pull: {'data.symptomHistory': {_id: body.symptomId}}}; break;
+            case 'deleteinsurance': route = {$pull: {'data.mediData.insurance': {_id: body.insuranceId}}}; break;
+            case 'deletecontact': route = {$pull: {'data.emergencyContacts': {_id: body.contactId}}}; break;
+            case 'deleteprovider': route = {$pull: {'data.mediData.doctors': {_id: body.providerId}}}; break;
+        }
+
+        console.log(body)
+
+        if(body.route.substring(0,3) === 'add'){
+            return db.User.findOneAndUpdate({_id: req.body.userId}, route, {new: true})
+                .then(data=>{
+                    // console.log(data)
+                    if (!data){return}
+                    res.json(data)
+                })
+                .catch(err=>res.json('Error adding data.  Please try again later.'));
+        } else if(body.route.substring(0,3) === 'upd'){
+            return db.User.findOneAndUpdate({[body.key]: body.id}, route, {new:true})
+                .then(data=>{
+                    console.log(data)
+                    if (!data){return}
+                    res.json(data)
+                })
+                .catch(err=>res.json(err));
+        } else if(body.route.substring(0,3) === 'del'){
+            return db.User.findOneAndUpdate({_id: body.userId}, route, {new:true})
+                .then(data=>{
+                    console.log('delete',data)
+                    return res.json(data)
+                })
+                .catch(err=>res.json('Error removing data.  Please try again later.'));
+        }
+>>>>>>> 3c0da9e2a241c43211df0f652a8dc877c05c8de7
         next();
     },
-    updateSymptom: (req,res,next)=>{
-        db.User.findOneAndUpdate({_id: req.body.userId, 'data.symptomHistory': req.body.symptom}, req.body.newSymptom, {new: true})
-            .then(insurance=>{
-                console.log(insurance)
-                if (insurance){
-                    res.json({msg: 'Insurance updated', update: insurance})
-                }
-            })
-            .catch(err=>res.json('Error updating insurance.  Please try again later.'))
+    updateProfile: (req,res,next)=>{
+        console.log(req.body)
+        db.User.findOneAndUpdate({_id: req.params.userId}, {$upsert: req.body}, {new: true})
+            .then(updated=>res.json(updated))
+            .catch(err=>res.json(err))
         next();
-    },
-    updateAccount: (req,res)=>{
-        db.User.findOneAndUpdate({userName: req.params.user}, req.body, {new: true})
-            .then(updated=>console.log(updated))
-            .catch(err=>console.log(err))
     },
     findorCreate: (req,res)=>{
         console.log(req.body)
