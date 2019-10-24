@@ -11,9 +11,8 @@ const override = css`
 
 class Loading extends Component {
     componentDidMount = () => {
-        const UTWtoken = localStorage.getItem('_underweather');
+        const UTWtoken = sessionStorage.getItem('_underweather') || localStorage.getItem('_underweather');
 		if (!this.props.isLoggedIn && UTWtoken) {
-            console.log(UTWtoken)
 			return axios
 				.post('/token', { token: UTWtoken })
 				.then((user) => {
@@ -23,7 +22,7 @@ class Loading extends Component {
 					window.history.pushState(null, '', '/dashboard')
                     this.props.setUser(user.data, {userId: user.data.userId})
 				})
-				.catch((err) => console.log(err));
+				.catch(err=>console.log(err));
         }
         this.props.setUser();
     }
