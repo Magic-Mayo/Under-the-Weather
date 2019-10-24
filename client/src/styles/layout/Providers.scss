@@ -3,3 +3,14 @@
     grid-row: 2/3;
     min-height: 45vh;
 }
+
+.provider {
+
+    &-manual-entry {
+        // background-color: blue;
+        max-height: 100%;
+        &-grid {
+            display: grid;
+        }
+    }
+}

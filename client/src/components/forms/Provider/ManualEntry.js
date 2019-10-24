@@ -2,9 +2,9 @@ import React from 'react';
 
 const ManualEntry = props => {
         return (
-            <div className="grid">
-                <form className="form-input-area">
-                    <div className="input-container">
+            <div className="provider-manual-entry">
+                <form className="provider-manual-entry-grid">
+                    <div className="input-container provider-grid-item">
                         <label htmlFor="doctorName">&nbsp;<span>*</span>Doctor's Name:</label>
                         <input
                         name="name"
@@ -15,7 +15,7 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-grid-item">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Specialty:</label>
                         <input
                         name="type"
@@ -26,7 +26,7 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-grid-item">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Accepted Insurance:</label>
                         <input
                         name="insurance"
@@ -37,7 +37,7 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-grid-item">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Address:</label>
                         <input
                         name="address"
@@ -48,7 +48,7 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-grid-item">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;City:</label>
                         <input
                         name="city"
@@ -59,7 +59,7 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-grid-item">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;State:</label>
                         <input
                         name="state"
@@ -70,7 +70,7 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-grid-item">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;ZIP:</label>
                         <input
                         name="zip"
@@ -81,7 +81,7 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-grid-item">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Phone Number:</label>
                         <input
                         name="phone"
@@ -92,11 +92,11 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="provider-form-submit-container">
+                    {/* <div className="provider-form-submit-container">
                         <button type="button" className="provider-form-submit" onClick={props.submitProvider}>
                             Add Provider
                         </button>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         )
