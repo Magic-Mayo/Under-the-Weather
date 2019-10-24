@@ -17,6 +17,7 @@ import {
   faEye,
   faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
+
 import bodyParts from "./data/bodyParts.json";
 import "./App.scss";
 import axios from 'axios';
