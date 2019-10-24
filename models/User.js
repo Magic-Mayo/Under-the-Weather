@@ -27,8 +27,10 @@ const UserSchema = new Schema({
             }],
             doctors: [{
                 name: {type: String, default: ''},
-                type: {type: String, default: ''},
-                insuranceKey: {type: String, default: ''},
+                doctorType: {type: String, default: ''},
+                insurance: {type: String, default: ''},
+                address: {type: String, default: ''},
+                phone: {type: String, default: ''},
                 createdAt: Date
             }]
         },
