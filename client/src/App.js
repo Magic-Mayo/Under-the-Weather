@@ -41,9 +41,13 @@ class App extends Component {
         this.setState({loading: true})
         return axios.post(`/login`, props)
             .then(user=>{
+                if (props.loginpersist){
+                    localStorage.setItem('_underweather', user.data.token);
+                } else {
+                    sessionStorage.setItem('_underweather', user.data.token);
+                }
                 console.log(user)
                 this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
-                localStorage.setItem('_underweather', user.data.token);
                 window.history.pushState(null, '', '/dashboard')
             })
     }
@@ -64,8 +68,9 @@ class App extends Component {
         this.setState({loading: true})
         axios.put(`/logout/${this.state.userId}`, {loggedIn: 'logout'}).then(loggedOut=>{
             localStorage.removeItem('_underweather')
-            this.setState({isLoggedIn: loggedOut.data.loggedOut, user: '', userId: '', loading: false});
-            window.history.pushState(null, '',loggedOut.data.path)
+            sessionStorage.removeItem('_underweather')
+            this.setState({isLoggedIn: false, user: '', userId: '', loading: false});
+            window.history.pushState(null, '', '/')
         })
     }
 
