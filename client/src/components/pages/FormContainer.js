@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EntranceForm from '../forms/EntranceForm';
-import Loading from '../icons/loading';
 import ProviderForm from '../forms/Provider/Form'
 import SymptomForm from '../forms/Symptom/Form'
 import ContactForm from '../forms/Contact/Form'

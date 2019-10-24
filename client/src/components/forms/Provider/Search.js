@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 class Search extends Component {
 	state = {
 		doctors: [],
-		search: '',
 		latitude: '',
 		longitude: '',
 		results: []
@@ -36,13 +35,9 @@ class Search extends Component {
 		navigator.geolocation.getCurrentPosition(success, error, options);
 	};
 
-	handleInputChange = (event) => {
-		this.setState({ search: event.target.value });
-	};
-
 	drSearch = (event) => {
 		event.preventDefault();
-		API.SearchSpecialty(this.state.search, this.state.latitude, this.state.longitude).then((res) => {
+		API.SearchSpecialty(this.props.search, this.state.latitude, this.state.longitude).then((res) => {
 			console.log(res.data.data);
 			this.setState({ results: res.data.data });
 		});
@@ -57,8 +52,8 @@ class Search extends Component {
 				<Input
 					latitude={this.state.latitude}
 					longitude={this.state.longitude}
-					drSearch={this.drSearch}
-					handleInputChange={this.handleInputChange}
+                    drSearch={this.drSearch}
+					handleInputChange={this.props.handleInput}
 				/>
 				<section className="provider-form-results">
 					{this.state.results.map((res) => (
@@ -88,7 +83,11 @@ function Input(props) {
 					className="provider-form-search-input"
 				/>
 				<h1>{props.results}</h1>
-				<button type="submit" onClick={props.drSearch} className="provider-form-search-submit">
+                <button
+                    type="submit"
+                    onClick={props.drSearch}
+                    className="provider-form-search-submit"
+                >
 					Submit
 				</button>
 			</form>

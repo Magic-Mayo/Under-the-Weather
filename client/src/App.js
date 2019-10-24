@@ -26,18 +26,33 @@ import axios from 'axios';
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, fab);
 
 class App extends Component {
-	state = {
-		bodyParts,
-		menu: {
-			isExpanded: false
-		},
-		isLoggedIn: false,
-		loading: true,
-		pathname: window.location.pathname,
-		formOpen: false,
-		user: false,
-		symptomsValue: ''
-	};
+    state = {
+        bodyParts,
+        
+        menu: {
+            isExpanded: false
+        },
+        isLoggedIn: false,
+        loading: true,
+        pathname: window.location.pathname,
+        formOpen: false,
+        user: false
+    };
+
+    handleLogIn = props => {
+        this.setState({loading: true})
+        return axios.post(`/login`, props)
+            .then(user=>{
+                if (props.credentials.loginpersist){
+                    localStorage.setItem('_underweather', user.data.token);
+                } else {
+                    sessionStorage.setItem('_underweather', user.data.token);
+                }
+                console.log(user)
+                this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
+                window.history.pushState(null, '', '/dashboard')
+            })
+    }
 
 	componentDidMount() {
 		if (window.location.pathname.substring(1, 11) === 'dashboard/' && !this.state.isLoggedIn) {
@@ -68,14 +83,15 @@ class App extends Component {
         this.setState({loading: false})
     }
 
-	handleLogOut = () => {
-		this.setState({ loading: true });
-		axios.put(`/logout/${this.state.userId}`, { loggedIn: 'logout' }).then((loggedOut) => {
-			localStorage.removeItem('_underweather');
-			this.setState({ isLoggedIn: loggedOut.data.loggedOut, user: '', userId: '', loading: false });
-			window.history.pushState(null, '', loggedOut.data.path);
-		});
-	};
+    handleLogOut = () => {
+        this.setState({loading: true})
+        localStorage.removeItem('_underweather')
+        sessionStorage.removeItem('_underweather')
+        axios.put(`/logout/${this.state.userId}`, {loggedIn: 'logout'}).then(loggedOut=>{
+            this.setState({isLoggedIn: false, user: '', userId: '', loading: false});
+            window.history.pushState(null, '', '/')
+        })
+    }
 
 	logTarget = (e) => {
 		console.log(e.target);
