@@ -3,6 +3,8 @@ import Search from './Search';
 import ManualEntry from './ManualEntry';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
+import moment from 'moment'
+
 export default class ProviderForm extends Component {
     initialState = {
         userId: this.props.userId,
@@ -47,7 +49,8 @@ export default class ProviderForm extends Component {
                 city: this.state.city,
                 state: this.state.state,
                 zip: this.state.zip,
-                phone: this.state.phone
+                phone: this.state.phone,
+                createdAt: moment()
             }
         };
 
