@@ -5,7 +5,7 @@ function ContactInput(props) {
     return (
         <div>
             <h1>Hello, {props.name}</h1>
-            <h2>Add insurance information</h2>
+            <h2>Add Emergency Contact</h2>
             <form>
                 Emergency Contact Name:<input type="text" name="cName" value={props.name}
                     onChange={props.handleContactChange}></input>
@@ -21,7 +21,7 @@ function ContactInput(props) {
     )
 };
 
-export default class Form extends Component {
+export default class ContactForm extends Component {
     state = {
         contact:{
         userId: this.props.userId,
@@ -34,7 +34,7 @@ export default class Form extends Component {
         const { name, value } = e.target;
         this.setState({ [name]: value });
     };    
-    insuranceToDatabase = () => {
+    contactToDatabase = () => {
         const contacts = {
             cName: this.state.cName,
             phone: this.state.phone,
@@ -60,7 +60,7 @@ export default class Form extends Component {
 			address={this.state.address}
 			relationship={this.state.policy_type}			
 			handleContactChange={this.handleContactChange}
-			contactToDatabase={this.insuranceToDatabase}
+			contactToDatabase={this.contactToDatabase}
 			/>			
 			</div>
 		);
