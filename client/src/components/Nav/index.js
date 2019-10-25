@@ -87,6 +87,7 @@ class Nav extends React.Component {
                                 isLoggedIn={this.props.isLoggedIn}
                                 toggleMenu={this.toggleMenu}
 								dropDownVisible={this.state.dropDownVisible}
+								name={this.props.name}
 								userId={this.props.userId}
                                 getNewUserInfo={this.props.getNewUserInfo}
                                 user={this.props.user}
@@ -116,7 +117,7 @@ class Nav extends React.Component {
                                 isLoggedIn={this.props.isLoggedIn}
                                 toggleMenu={this.toggleMenu}
 								dropDownVisible={this.state.dropDownVisible}
-								// name={this.props.name}
+								name={this.props.name}
 								userId={this.props.userId}
                                 getNewUserInfo={this.props.getNewUserInfo}
                                 user={this.props.user}

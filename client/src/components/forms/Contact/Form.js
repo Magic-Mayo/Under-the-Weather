@@ -13,7 +13,7 @@ export default class Form extends Component {
         this.setState({ [name]: value });
     };    
     submitContact = () => {
-        const contacts = {
+        const contact = {
             userId: this.state.userId,
             route: 'addcontact',
             contact: {
@@ -23,7 +23,7 @@ export default class Form extends Component {
             relationship: this.state.relationship || ''
             }
         };
-        Axios.post('/account/contact', contacts).then(
+        Axios.post('/account/contact', contact).then(
             contact=> {
                 this.props.getNewUserInfo(this.props.userId)                
                 this.setState({ name: '', phone: '', address: '', relationship: '' })
