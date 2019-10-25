@@ -83,6 +83,7 @@
     }
 
     &-close {
+        transform: scale(.75);
         background-color: transparent;
         border: 3px solid $peach-contrast-heavy;
         color: $peach-contrast-heavy;

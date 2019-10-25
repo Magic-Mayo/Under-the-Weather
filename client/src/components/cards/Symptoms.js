@@ -43,16 +43,16 @@ function Symptoms(props) {
                     'past month',
                     'all time'
                 ]
-            },
-            {
-                name: 'Diagnosis',
-                choices: [
-                    'none',
-                    'clinical migraines',
-                    'flu',
-                    'kidney infection'
-                ]
             }
+            // {
+            //     name: 'Diagnosis',
+            //     choices: [
+            //         'none',
+            //         'clinical migraines',
+            //         'flu',
+            //         'kidney infection'
+            //     ]
+            // }
         ],
     };
 
