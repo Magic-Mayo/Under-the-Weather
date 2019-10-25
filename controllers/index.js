@@ -44,12 +44,12 @@ module.exports = {
             case 'deleteprovider': route = {$pull: {'data.mediData.doctors': {_id: body.providerId}}}; break;
         }
 
-		console.log(body);
-
+        
         if(body.route.substring(0,3) === 'add'){
+            console.log(body)
             return db.User.findOneAndUpdate({_id: req.body.userId}, route, {new: true})
                 .then(data=>{
-                    // console.log(data)
+                    console.log(data)
                     if (!data){return}
                     res.json({user: data.data})
                 })
@@ -123,7 +123,7 @@ module.exports = {
 			.catch((err) => res.status(422).json(err));
 	},
 	findById: function(req, res) {
-		db.User.findById(req.params.id).then((dbModel) => res.json(dbModel)).catch((err) => res.status(422).json(err));
+		db.User.findById(req.params.id || req.params.user).then((dbModel) => res.json(dbModel)).catch((err) => res.status(422).json(err));
 	},
 	create: function(req, res) {
 		db.User.create(req.body).then((dbModel) => res.json(dbModel)).catch((err) => res.status(422).json(err));

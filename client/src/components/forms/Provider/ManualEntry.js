@@ -10,7 +10,7 @@ const ManualEntry = props => {
                         name="name"
                         placeholder="Dr. John Smith"
                         type="text"
-                        value={props.doctorName}
+                        value={props.name}
                         onChange={props.handleInput}
                         required
                         />

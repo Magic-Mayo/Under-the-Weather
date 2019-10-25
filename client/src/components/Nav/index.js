@@ -71,9 +71,10 @@ class Nav extends React.Component {
 							<ProviderLink
 								isLoggedIn={this.props.isLoggedIn}
 								toggleMenu={this.toggleMenu}
-								dropDownVisible={this.state.dropDownVisible}
-								handleSubmit={this.props.handleSubmit}
-								handleChange={this.props.handleChange}
+                                dropDownVisible={this.state.dropDownVisible}
+                                userId={this.props.userId}
+                                setUser={this.props.setUser}
+                                user={this.props.user}
 							/>
 						);
 					}}

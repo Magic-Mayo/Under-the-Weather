@@ -28,87 +28,77 @@ import axios from 'axios';
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, fab);
 
 class App extends Component {
-	state = {
-		bodyParts,
+    state = {
+        bodyParts,
+        
+        menu: {
+            isExpanded: false
+        },
+        isLoggedIn: false,
+        loading: true,
+        pathname: window.location.pathname,
+        formOpen: false,
+        user: false
+    };
 
-		menu: {
-			isExpanded: false
-		},
-		isLoggedIn: false,
-		loading: true,
-		pathname: window.location.pathname,
-		formOpen: false,
-		user: false
-	};
+    handleLogIn = props => {
+        this.setState({loading: true})
+        return axios.post(`/login`, props)
+            .then(user=>{
+                if (props.credentials.loginpersist){
+                    localStorage.setItem('_underweather', user.data.token);
+                } else {
+                    sessionStorage.setItem('_underweather', user.data.token);
+                }
+                console.log(user)
+                this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
+                window.history.pushState(null, '', '/dashboard')
+            })
+    }
 
-	handleLogIn = (props) => {
-		this.setState({ loading: true });
-		return axios.post(`/login`, props).then((user) => {
-			if (props.credentials.loginpersist) {
-				localStorage.setItem('_underweather', user.data.token);
-			} else {
-				sessionStorage.setItem('_underweather', user.data.token);
-			}
-			console.log(user);
-			this.setState({ loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true });
-			window.history.pushState(null, '', '/dashboard');
-		});
-	};
+    logIn = () => {
+        this.setState({isLoggedIn: true})
+    }
 
-	componentDidMount() {
-		if (window.location.pathname.substring(1, 11) === 'dashboard/' && !this.state.isLoggedIn) {
-			const user = window.location.pathname.split('board/')[1];
-			return this.handleLogIn(user);
-		}
-	}
+    setUser = props => {
+        if(props){
+            this.setState(props);
+            return this.setState({isLoggedIn: true, loading: false});
+        }
+        this.setState({loading: false})
+    }
 
-	handleLogIn = (props) => {
-		this.setState({ loading: true });
-		return axios.post(`/login`, props).then((user) => {
-			console.log(user);
-			this.setState({ loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true });
-			localStorage.setItem('_underweather', user.data.token);
-			window.history.pushState(null, '', '/dashboard');
-		});
-	};
+    getNewUserInfo = () => {
+        axios.get(`/user/${this.state.userId}`).then(user=>{
+            this.setState({user: user.data})
+        })
+    }
 
-	logIn = () => {
-		this.setState({ isLoggedIn: true });
-	};
+    handleLogOut = () => {
+        this.setState({loading: true})
+        localStorage.removeItem('_underweather')
+        sessionStorage.removeItem('_underweather')
+        axios.put(`/logout/${this.state.userId}`, {loggedIn: 'logout'}).then(loggedOut=>{
+            this.setState({isLoggedIn: false, user: '', userId: '', loading: false});
+            window.history.pushState(null, '', '/')
+        })
+    }
 
-	setUser = (props) => {
-		if (props) {
-			this.setState(props);
-			return this.setState({ isLoggedIn: true, loading: false });
-		}
-		this.setState({ loading: false });
-	};
+    logTarget = (e) => {
+        console.log(e.target);
 
-	handleLogOut = () => {
-		this.setState({ loading: true });
-		localStorage.removeItem('_underweather');
-		sessionStorage.removeItem('_underweather');
-		axios.put(`/logout/${this.state.userId}`, { loggedIn: 'logout' }).then((loggedOut) => {
-			this.setState({ isLoggedIn: false, user: '', userId: '', loading: false });
-			window.history.pushState(null, '', '/');
-		});
-	};
+        if ((e.target.className !== 'form-container') && (this.state.formOpen)) {
+            window.location.pathname = this.state.pathname
+        }
+    }
 
-	logTarget = (e) => {
-		console.log(e.target);
+    toggleForm = (e) => {
+        this.setState({
+            formOpen: !this.state.formOpen
+        })
+    }
 
-		if (e.target.className !== 'form-container' && this.state.formOpen) {
-			window.location.pathname = this.state.pathname;
-		}
-	};
-
-	toggleForm = (e) => {
-		this.setState({
-			formOpen: !this.state.formOpen
-		});
-	};
-
-	handleChange = (event) => {
+    handleChange = (event) => {
 		this.setState({
 			symptomsValue: event.target.value
 		});
@@ -133,48 +123,36 @@ class App extends Component {
 			.then((res) => console.log(res.data))
 			.catch((err) => console.log(err));
 	};
+    
+    render() {
+        return (
+            <div className="App">
+                <Header name={this.state.user.name} isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut}/>
+                {this.state.loading ? <Loading loading={this.state.loading} setUser={this.setUser}/>:
+                (!this.state.isLoggedIn && !this.state.user ? 
+                    <FormContainer setUser={this.setUser} loading={this.state.loading} handleLogIn={this.handleLogIn} isLoading={this.isLoading} isLoggedIn={this.state.isLoggedIn}/>:
+                    <Router>
+                        <Route
+                            path="/dashboard"
+                            render={() => {
+                                return (
+                                <Dashboard
+                                setUser={this.setUser}
+                                user={this.state.user}
+                                userId={this.state.userId}
+                                menu={this.state.menu}
+                                toggleForm={this.toggleForm}
+                                formOpen={this.state.formOpen}
+                                isLoggedIn={this.state.isLoggedIn}/>
+                                )
+                            }}
+                        />
+                    </Router>
 
-	render() {
-		return (
-			<div className="App">
-				<Header
-					name={this.state.user.name}
-					isLoggedIn={this.state.isLoggedIn}
-					handleLogOut={this.handleLogOut}
-				/>
-				{this.state.loading ? (
-					<Loading loading={this.state.loading} setUser={this.setUser} />
-				) : !this.state.isLoggedIn && !this.state.user ? (
-					<FormContainer
-						setUser={this.setUser}
-						loading={this.state.loading}
-						handleLogIn={this.handleLogIn}
-						isLoading={this.isLoading}
-						isLoggedIn={this.state.isLoggedIn}
-					/>
-				) : (
-					<Router>
-						<Route
-							path="/dashboard"
-							render={() => {
-								return (
-									<Dashboard
-									user={this.state.user}
-									menu={this.state.menu}
-									toggleForm={this.toggleForm}
-									formOpen={this.state.formOpen}
-									isLoggedIn={this.state.isLoggedIn}
-									handleSubmit={this.handleSubmit}
-									handleChange={this.handleChange}
-								/>
-								)
-							}}
-						/>
-					</Router>
-				)}
-			</div>
-		);
-	}
+                        
+            </div>
+        )
+    }
 }
 
 export default App;

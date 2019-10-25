@@ -71,8 +71,9 @@ export default class SignupForm extends Component {
 							password={this.state.password}
 							showPassword={this.props.showPassword}
 							togglePassword={this.props.togglePassword}
-							passwordCheck={this.state.passwordCheck}
-						/>
+                            passwordCheck={this.state.passwordCheck}
+                            checkUser={this.checkUser}
+                        />
 					) : this.state.currentPage === 1 ? (
 						<SecondPage
 							handleInput={this.handleInput}
@@ -109,7 +110,8 @@ const FirstPage = (props) => {
 					value={props.username}
 					onChange={props.handleInput}
 					placeholder="johndoe24"
-					required
+                    required
+                    onBlur={props.checkUser}
 				/>
 			</div>
 			<div className="input-container">
