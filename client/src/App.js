@@ -33,7 +33,6 @@ class App extends Component {
         },
         isLoggedIn: false,
         loading: true,
-        pathname: window.location.pathname,
         formOpen: false,
         user: false
     };
@@ -79,14 +78,6 @@ class App extends Component {
             this.setState({isLoggedIn: false, user: '', userId: '', loading: false});
             window.history.pushState(null, '', '/')
         })
-    }
-
-    logTarget = (e) => {
-        console.log(e.target);
-
-        if ((e.target.className !== 'form-container') && (this.state.formOpen)) {
-            window.location.pathname = this.state.pathname
-        }
     }
 
     toggleForm = (e) => {
