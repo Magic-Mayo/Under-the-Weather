@@ -17,6 +17,7 @@ export default class ProviderForm extends Component {
         state:  '',
         zip: '',
         phone:  '',
+        errors:'',
         searchActive: true
     }
 
@@ -53,11 +54,14 @@ export default class ProviderForm extends Component {
                 createdAt: moment()
             }
         };
-
+        if(this.state.name !== ''){
         Axios.post('/account/provider', provider).then(user=>{
             this.props.setUser(user.data);
             this.setState(this.initialState)
-        });
+        });}
+        else{           
+            this.setState({errors: "This field required"});
+        }
     }
 
 	render() {
@@ -89,7 +93,8 @@ export default class ProviderForm extends Component {
 						phone={this.state.phone}
 						city={this.state.city}
 						state={this.state.state}
-						zip={this.state.zip}
+                        zip={this.state.zip}
+                        errors={this.state.errors}
 					/>
 				)}
 				<div className="provider-form-submit-container">
