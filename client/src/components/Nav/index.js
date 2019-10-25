@@ -12,7 +12,7 @@ import InsuranceLink from '../forms/Insurance/Link';
 
 const NavItems = (props) => {
 	return (
-		<div className="expand-items-container" style={{ visibility: props.show ? 'visible' : 'hidden' }}>
+		<div className="expand-items-container" style={{ display: props.show ? 'flex' : 'none' }}>
 			<Link to={'/provider'} className="expand-items">
 				provider
 			</Link>

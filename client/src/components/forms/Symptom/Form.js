@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import SymptomList from './symptoms.json';
 import Symptoms from './Symptoms';
 
+import { Link } from 'react-router-dom';
+
+
 export default class SymptomForm extends Component {
 	state = {
 		SymptomList,
@@ -26,9 +29,11 @@ export default class SymptomForm extends Component {
 					{/* <button type="button" className="symptom-form-submit">
                         Add symptom
                     </button> */}
-					<button type="button" className="symptom-form-close">
-						Close Form X
-					</button>
+					<Link to="/dashboard" className="closeForm">
+						<button type="button" className="symptom-form-close">
+							Close Form X
+						</button>
+					</Link>
 				</div>
 				<Symptoms handleSubmit={this.props.handleSubmit} handleChange={this.props.handleChange} />
 			</div>

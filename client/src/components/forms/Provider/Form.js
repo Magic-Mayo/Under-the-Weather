@@ -1,39 +1,38 @@
 import React, { Component } from 'react';
 import Search from './Search';
-import ManualEntry from './ManualEntry'
+import ManualEntry from './ManualEntry';
+import { Link } from 'react-router-dom';
+
 export default class ProviderForm extends Component {
-    state = {
-        name: '',
-        type: '',
-        insurance: '',
-        address: '',
-        phone: '',
-        city: '',
-        state: '',
-        zip: '',
-        search: '',
-        searchActive: true
-    }
+	state = {
+		name: '',
+		type: '',
+		insurance: '',
+		address: '',
+		phone: '',
+		city: '',
+		state: '',
+		zip: '',
+		search: '',
+		searchActive: true
+	};
 
-    handleInput = (e) => {
-        const {name, value} = e.target;
-        this.setState({[name]: value})
-    }
+	handleInput = (e) => {
+		const { name, value } = e.target;
+		this.setState({ [name]: value });
+	};
 
-    toggleOption = (e) => {
-        e.persist();
+	toggleOption = (e) => {
+		e.persist();
 
-        const active = e.target.className.includes('search') ? true : false
+		const active = e.target.className.includes('search') ? true : false;
 
-        this.setState({
-            searchActive: active,
-        })
+		this.setState({
+			searchActive: active
+		});
+	};
 
-    }
-
-    submitProvider = (props) => {
-
-    }
+	submitProvider = (props) => {};
 
 	render() {
 		return (
@@ -46,35 +45,36 @@ export default class ProviderForm extends Component {
 						Enter Info Manually
 					</button>
 				</div>
-                {
-                    this.state.searchActive ?
-                        <Search
-                        search={this.state.search}
-                        submitProvider={this.submitProvider}
-                        handleInput={this.handleInput}/>
-                    : (
-                        <ManualEntry
-                        submitProvider={this.submitProvider}
-                        handleInput={this.handleInput}
-                        name={this.state.name}
-                        insurance={this.state.insurance}
-                        type={this.state.type}
-                        address={this.state.address}
-                        phone={this.state.phone}
-                        city={this.state.city}
-                        state={this.state.state}
-                        zip={this.state.zip}
-                        />
-                    )
-                }
-                <div className="provider-form-submit-container">
-                    {/* <button type="button" className="provider-form-submit">
+				{this.state.searchActive ? (
+					<Search
+						search={this.state.search}
+						submitProvider={this.submitProvider}
+						handleInput={this.handleInput}
+					/>
+				) : (
+					<ManualEntry
+						submitProvider={this.submitProvider}
+						handleInput={this.handleInput}
+						name={this.state.name}
+						insurance={this.state.insurance}
+						type={this.state.type}
+						address={this.state.address}
+						phone={this.state.phone}
+						city={this.state.city}
+						state={this.state.state}
+						zip={this.state.zip}
+					/>
+				)}
+				<div className="provider-form-submit-container">
+					{/* <button type="button" className="provider-form-submit">
                         Add Provider
                     </button> */}
-                    <button type="button" className="provider-form-close">
-                        Close Form X
-                    </button>
-                </div>
+					<Link to="/dashboard" className="closeForm">
+						<button type="button" className="provider-form-close">
+							Close Form X
+						</button>
+					</Link>
+				</div>
 			</div>
 		);
 	}
