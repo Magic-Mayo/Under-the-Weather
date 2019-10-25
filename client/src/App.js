@@ -41,9 +41,13 @@ class App extends Component {
         this.setState({loading: true})
         return axios.post(`/login`, props)
             .then(user=>{
+                if (props.credentials.loginpersist){
+                    localStorage.setItem('_underweather', user.data.token);
+                } else {
+                    sessionStorage.setItem('_underweather', user.data.token);
+                }
                 console.log(user)
                 this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
-                localStorage.setItem('_underweather', user.data.token);
                 window.history.pushState(null, '', '/dashboard')
             })
     }
@@ -60,10 +64,17 @@ class App extends Component {
         this.setState({loading: false})
     }
 
+    getNewUserInfo = () => {
+        axios.get(`/user/${this.state.userId}`).then(user=>{
+            this.setState({user: user.data})
+        })
+    }
+
     handleLogOut = () => {
         this.setState({loading: true})
+        localStorage.removeItem('_underweather')
+        sessionStorage.removeItem('_underweather')
         axios.put(`/logout/${this.state.userId}`, {loggedIn: 'logout'}).then(loggedOut=>{
-            localStorage.removeItem('_underweather')
             this.setState({isLoggedIn: false, user: '', userId: '', loading: false});
             window.history.pushState(null, '', '/')
         })
@@ -87,9 +98,10 @@ class App extends Component {
         return (
             <div className="App">
                 <Header name={this.state.user.name} isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut}/>
-                {!this.state.isLoggedIn && !this.state.user ? 
-                <FormContainer setUser={this.setUser} loading={this.state.loading} handleLogIn={this.handleLogIn} isLoading={this.isLoading} isLoggedIn={this.state.isLoggedIn}/>:
-                <Dashboard user={this.state.user} menu={this.state.menu} toggleForm={this.toggleForm} formOpen={this.state.formOpen} isLoggedIn={this.state.isLoggedIn} name={this.state.user.name}/>}
+                {this.state.loading ? <Loading loading={this.state.loading} setUser={this.setUser}/>:
+                (!this.state.isLoggedIn && !this.state.user ? 
+                    <FormContainer setUser={this.setUser} loading={this.state.loading} handleLogIn={this.handleLogIn} isLoading={this.isLoading} isLoggedIn={this.state.isLoggedIn}/>:
+                    <Dashboard getNewUserInfo={this.getNewUserInfo} user={this.state.user} userId={this.state.userId} menu={this.state.menu} toggleForm={this.toggleForm} formOpen={this.state.formOpen} isLoggedIn={this.state.isLoggedIn}/>)}
             </div>
         )
     }

@@ -8,8 +8,12 @@ export default class ProviderLink extends Component {
 	render() {
 		return (
 			<div className="ProviderLink">
-				ADD PROVIDER
-				<FormContainer message="ADD PROVIDER" isLoggedIn={this.props.isLoggedIn} formType="Provider" />
+                <FormContainer 
+                message="ADD PROVIDER"
+                getNewUserInfo={this.props.getNewUserInfo}
+                userId={this.props.userId}
+                isLoggedIn={this.props.isLoggedIn}
+                formType="Provider" />
 			</div>
 		);
 	}
