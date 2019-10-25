@@ -50,7 +50,6 @@ module.exports = {
             console.log(body)
             return db.User.findOneAndUpdate({_id: req.body.userId}, route, {new: true})
                 .then(data=>{
-                    console.log(data)
                     if (!data){return}
                     res.json({user: data.data})
                 })
@@ -117,7 +116,6 @@ module.exports = {
     },
     findById: (req,res)=>{
         db.User.findById(req.params.user).then(user=>{
-            console.log(user)
             if (!user){return}
             res.json(user.data)
         })
