@@ -9,25 +9,33 @@ import Nav from "../Nav";
 export default class Dashboard extends Component {
   render() {
     // console.log("HERE ARE THE USER DETAILS", this.props.user)
-		// console.log("DASHBOARD HAS THESE PROPS", this.props);
-
+		// console.log("DASHBOARD HAS THESE PROPS", this.props);    
     return (
       <div className="Dashboard">
         <Symptoms name={this.props.name} symptoms={this.props.symptomHistory}/>
         <section className="container-right">
-          <MedicalHistory name="Sean"/>
-          <Providers name="Sean"/>
-          <Contacts name="Sean"/>
-          <Insurance name="Sean"/>
+          <MedicalHistory name={this.props.name}
+          user={this.props.user}
+          />
+          <Providers name={this.props.name}
+          user={this.props.user}
+          />
+          <Contacts name={this.props.name}
+          user={this.props.user}
+          />
+          <Insurance name={this.props.name}
+          user={this.props.user}
+          />
         </section>
-        <Nav 
-          name="Sean" 
-          menu={this.props.menu} 
-          isLoggedIn={this.props.isLoggedIn} 
-          formOpen={this.props.formOpen}
-          toggleForm={this.props.toggleForm}
-          handleSubmit={this.props.handleSubmit}
-          handleChange={this.props.handleChange}
+        <Nav
+        name={this.props.user.name}
+        menu={this.props.menu}
+        isLoggedIn={this.props.isLoggedIn}
+        formOpen={this.props.formOpen}
+        toggleForm={this.props.toggleForm}
+        userId={this.props.userId}
+        user={this.props.user}
+        getNewUserInfo={this.props.getNewUserInfo}
         />
         {/* <Forms /> */}
       </div>

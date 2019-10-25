@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import API from '../../../utils/ProviderAPI';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import API from '../../../utils/API';
+import Specialist from '../../../data/specialist.json'
 
 class Search extends Component {
 	state = {
@@ -15,7 +14,8 @@ class Search extends Component {
 	}
 
 	userLocation = () => {
-		const options = {
+		const
+		 options = {
 				enableHighAccuracy: true,
 				timeout: 5000,
 				maximumAge: 0
@@ -96,38 +96,33 @@ function Input(props) {
 }
 
 function Results(props) {
-	console.log(props);
+	console.log(props)
 	return (
 		<div className="provider-form-results-item">
-			{/* <img src={props.src} alt="Smiley face" height="42" width="42" /> */}
-
-			<h4 className="provider-form-results-name">
-				{/* <span className="preface">Name:</span> */}
-				{props.firstName}, {props.lastName}
-			</h4>
-			<p className="provider-form-results-bio">{props.bio}</p>
-			<label className="provider-form-results-location">
-				<span>Locations:</span>
-				<select name="locations" id="locations">
-					{props.practices.map((practice, i) => (
-						<option value="" className="location-item">
-							{practice.name}
-
+			<img src={props.src} alt="Smiley face" height="42" width="42" />
+			<p>
+				Name: {props.firstName}, {props.lastName}
+			</p>
+			<p>Bio: {props.bio}</p>
+			<p>
+				Practices:{' '}
+				<select>
+					<option value="">Office Locations</option>
+					{props.practices.map((res) => (
+						<option value="">
+							{res.name}
 							{' Address: ' +
-								practice.visit_address.street +
+								res.visit_address.street +
 								' ' +
-								practice.visit_address.city +
+								res.visit_address.city +
 								' ' +
-								practice.visit_address.state +
+								res.visit_address.state +
 								' ' +
-								practice.visit_address.zip}
+								res.visit_address.zip}
 						</option>
 					))}
 				</select>
-			</label>
-			<button className="provider-form-results-item-select">
-				<FontAwesomeIcon icon="plus" />
-			</button>
+			</p>
 		</div>
 	);
 }

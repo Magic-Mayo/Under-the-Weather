@@ -7,13 +7,8 @@ export default class SymptomLink extends Component {
     render() {
         return (
             <div className="SymptomLink">
-                <FormContainer 
-                    isLoggedIn={this.props.isLoggedIn} 
-                    message="ADD SYMPTOM" 
-                    formType="Symptom"
-                    handleSubmit={this.props.handleSubmit}
-                    handleChange={this.props.handleChange}
-                />
+                ADD SYMPTOM
+                <FormContainer isLoggedIn={this.props.isLoggedIn} message="ADD SYMPTOM" formType="Symptom"/>
             </div>
         )
     }

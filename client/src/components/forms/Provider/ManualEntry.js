@@ -10,7 +10,7 @@ const ManualEntry = props => {
                         name="name"
                         placeholder="Dr. John Smith"
                         type="text"
-                        value={props.doctorName}
+                        value={props.name}
                         onChange={props.handleInput}
                         required
                         />
@@ -92,11 +92,6 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    {/* <div className="provider-form-submit-container">
-                        <button type="button" className="provider-form-submit" onClick={props.submitProvider}>
-                            Add Provider
-                        </button>
-                    </div> */}
                 </form>
             </div>
         )

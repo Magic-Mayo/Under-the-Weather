@@ -2,27 +2,25 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from './components/Header';
-import Dashboard from './components/pages/Dashboard';
-import FormContainer from './components/pages/FormContainer';
-import Loading from './components/icons/loading';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
+import Dashboard from './components/pages/Dashboard'
+import FormContainer from './components/pages/FormContainer'
+import Loading from './components/icons/loading'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from '@fortawesome/free-brands-svg-icons'
 
-import API from './utils/SymptomAPI';
 import {
-	faAngleDown,
-	faPlus,
-	faEnvelope,
-	faPhone,
-	faFilter,
-	faSortDown,
-	//   faChild,
-	faEye,
-	faEyeSlash
-} from '@fortawesome/free-solid-svg-icons';
-
-import bodyParts from './data/bodyParts.json';
-import './App.scss';
+  faAngleDown,
+  faPlus,
+  faEnvelope,
+  faPhone,
+  faFilter,
+  faSortDown,
+//   faChild,
+  faEye,
+  faEyeSlash
+} from "@fortawesome/free-solid-svg-icons";
+import bodyParts from "./data/bodyParts.json";
+import "./App.scss";
 import axios from 'axios';
 
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, fab);
@@ -51,23 +49,6 @@ class App extends Component {
 			}
 			console.log(user);
 			this.setState({ loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true });
-			window.history.pushState(null, '', '/dashboard');
-		});
-	};
-
-	componentDidMount() {
-		if (window.location.pathname.substring(1, 11) === 'dashboard/' && !this.state.isLoggedIn) {
-			const user = window.location.pathname.split('board/')[1];
-			return this.handleLogIn(user);
-		}
-	}
-
-	handleLogIn = (props) => {
-		this.setState({ loading: true });
-		return axios.post(`/login`, props).then((user) => {
-			console.log(user);
-			this.setState({ loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true });
-			localStorage.setItem('_underweather', user.data.token);
 			window.history.pushState(null, '', '/dashboard');
 		});
 	};
@@ -107,6 +88,12 @@ class App extends Component {
 			formOpen: !this.state.formOpen
 		});
 	};
+
+	getNewUserInfo = () => {
+        axios.get(`/user/${this.state.userId}`).then(user=>{
+            this.setState({user: user.data})
+        })
+    }
 
 	handleChange = (event) => {
 		this.setState({

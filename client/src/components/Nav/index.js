@@ -51,8 +51,7 @@ class Nav extends React.Component {
 		}));
 
 	render() {
-		// console.log('NAV HAS THESE PROPS', this.props);
-
+		// console.log('NAV HAS THESE PROPS', this.props);		
 		return (
 			<Router>
 				<div className="Nav">
@@ -71,9 +70,10 @@ class Nav extends React.Component {
 							<ProviderLink
 								isLoggedIn={this.props.isLoggedIn}
 								toggleMenu={this.toggleMenu}
-								dropDownVisible={this.state.dropDownVisible}
-								handleSubmit={this.props.handleSubmit}
-								handleChange={this.props.handleChange}
+                                dropDownVisible={this.state.dropDownVisible}
+                                userId={this.props.userId}
+                                getNewUserInfo={this.props.getNewUserInfo}
+                                user={this.props.user}
 							/>
 						);
 					}}
@@ -100,8 +100,6 @@ class Nav extends React.Component {
                                 isLoggedIn={this.props.isLoggedIn}
                                 toggleMenu={this.toggleMenu}
 								dropDownVisible={this.state.dropDownVisible}
-								handleSubmit={this.props.handleSubmit}
-								handleChange={this.props.handleChange}
 							/>
 						)
 					}}
@@ -115,7 +113,8 @@ class Nav extends React.Component {
                                 isLoggedIn={this.props.isLoggedIn}
                                 toggleMenu={this.toggleMenu}
 								dropDownVisible={this.state.dropDownVisible}
-							/>)
+								name={this.props.name}
+								/>)
 					}}
 				/>
 			</Router>
