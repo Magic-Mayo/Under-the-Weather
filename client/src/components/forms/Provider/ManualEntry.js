@@ -42,7 +42,7 @@ const ManualEntry = props => {
                         <input
                         name="address"
                         placeholder="123 W Main St"
-                        type="adress"
+                        type="text"
                         value={props.address}
                         onChange={props.handleInput}
                         required
@@ -53,7 +53,7 @@ const ManualEntry = props => {
                         <input
                         name="city"
                         placeholder="Phoenix"
-                        type="adress"
+                        type="text"
                         value={props.city}
                         onChange={props.handleInput}
                         required
@@ -64,7 +64,9 @@ const ManualEntry = props => {
                         <input
                         name="state"
                         placeholder="AZ"
-                        type="adress"
+                        minLength="2"
+                        maxLength="2"
+                        type="text"
                         value={props.state}
                         onChange={props.handleInput}
                         required
@@ -75,7 +77,9 @@ const ManualEntry = props => {
                         <input
                         name="zip"
                         placeholder="85008"
-                        type="adress"
+                        type="number"
+                        min="00000"
+                        max="99999"
                         value={props.zip}
                         onChange={props.handleInput}
                         required
@@ -92,11 +96,11 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    {/* <div className="provider-form-submit-container">
+                    <div className="provider-form-submit-container">
                         <button type="button" className="provider-form-submit" onClick={props.submitProvider}>
                             Add Provider
                         </button>
-                    </div> */}
+                    </div>
                 </form>
             </div>
         )
