@@ -6,6 +6,7 @@ import FormContainer from './components/pages/FormContainer'
 import Loading from './components/icons/loading'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from '@fortawesome/free-brands-svg-icons'
+import API from './utils/SymptomAPI'
 
 import {
 	faAngleDown,

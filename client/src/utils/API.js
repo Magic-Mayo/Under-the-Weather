@@ -4,7 +4,7 @@ const BASEURL = 'https://api.betterdoctor.com/2016-03-01/doctors?';
 // const specialty = 'specialty_uid=';  
 const location = '&location=';
 const DAPIKEY = process.env.REACT_APP_DR_API_KEY;
-const APIKEY = process.env.REACT_APP_API_KEY;
+// const APIKEY = process.env.REACT_APP_API_KEY;
 
 export default {
 	SearchLocation: function(loc) {
@@ -24,7 +24,7 @@ export default {
 			headers: {
 				'content-type': 'application/octet-stream',
 				'x-rapidapi-host': 'priaid-symptom-checker-v1.p.rapidapi.com',
-				'x-rapidapi-key': APIKEY
+				'x-rapidapi-key': DAPIKEY
 			},
 			params: {
 				language: 'en-gb'
