@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-
-function MedicalHistory(props) {
+export default class MedicalHist extends Component{
+    state ={
+        results:[]
+    };
+    render(){
+        console.log(this.props.user)
+        return(
+            <MedicalHistory />
+        )
+    }
+}
+function MedicalHistory(props) {    
     return (
         <div className="Medical card">
             <h2>Medical History</h2>
@@ -9,4 +19,3 @@ function MedicalHistory(props) {
     );
 }
 
-export default MedicalHistory;

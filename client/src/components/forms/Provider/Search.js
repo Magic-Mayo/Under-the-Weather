@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import API from '../../../utils/API';
-import PDropDown from '../../practicesDropDown';
+import Specialist from '../../../data/specialist.json'
 
 class Search extends Component {
 	state = {
