@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import {Link} from 'react-router-dom';
 
 function ContactInput(props) {
     return (
@@ -53,16 +54,23 @@ export default class Form extends Component {
     render() {
 		return (
 			<div>			
-			<ContactInput 
-			name={this.props.name}
-			cName={this.state.cName}
-			phone={this.state.phone}
-			address={this.state.address}
-			relationship={this.state.policy_type}			
-			handleContactChange={this.handleContactChange}
-			contactToDatabase={this.insuranceToDatabase}
-			/>			
-			</div>
-		);
+                <ContactInput 
+                    name={this.props.name}
+                    cName={this.state.cName}
+                    phone={this.state.phone}
+                    address={this.state.address}
+                    relationship={this.state.policy_type}			
+                    handleContactChange={this.handleContactChange}
+                    contactToDatabase={this.insuranceToDatabase}
+                />	    		
+                <div className="contact-form-submit-container">
+                    <Link to="/dashboard" className="closeForm">
+                        <button type="button" className="contact-form-close">
+                            Close Form X
+                        </button>
+                    </Link>
+                </div>
+            </div>
+    );
 	};
 }

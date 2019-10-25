@@ -63,11 +63,6 @@ export default class InsuranceForm extends Component {
 			<div>
 				<h1>{this.props.formType}</h1>
 				<p>Enter a {this.props.formType}</p>
-				<Link to="/dashboard" className="closeForm">
-					<button type="button" className="insurance-form-close">
-						Close Form X
-					</button>
-				</Link>
                 <div>			
                     <InsuranceInput 
                     name={this.props.name}
@@ -79,6 +74,13 @@ export default class InsuranceForm extends Component {
                     handleInsuranceChange={this.handleInsuranceChange}
                     insuranceToDatabase={this.insuranceToDatabase}
                     />			
+                </div>
+                <div className="insurance-form-submit-container">
+                    <Link to="/dashboard" className="closeForm">
+                        <button type="button" className="insurance-form-close">
+                            Close Form X
+                        </button>
+                    </Link>
                 </div>
             </div>
 		);
