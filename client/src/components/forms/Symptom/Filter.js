@@ -10,7 +10,7 @@ class Filter extends Component {
             Type: '',
             Symptoms: '',
             Time: '',
-            Diagnosis: '',
+            // Diagnosis: '',
 
             inputs: [
                 {
@@ -29,10 +29,10 @@ class Filter extends Component {
                     name: 'Time',
                     active: false,
                 },
-                {
-                    name: 'Diagnosis',
-                    active: false,
-                }
+                // {
+                //     name: 'Diagnosis',
+                //     active: false,
+                // }
             ]
         }
       }

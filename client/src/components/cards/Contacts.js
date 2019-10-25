@@ -1,39 +1,20 @@
 import React, { Component } from 'react';
 
-export default class ContactsCard extends Component {
-    state = {
-        userContacts: []
-    }
+export default function ContactsCard(props) {
 
-    render() {
-        return (
-            <div className="Contacts card">
-            <h2>Emergency Contacts</h2>
-            {this.props.user.emergencyContacts.map((res) => (
-                <EmerContacts
-                    name={res.name}
-                    number={res.phone}
-                    address={res.address}
-                    relationship={res.relationship}
-                />
-            ))}
-
-        </div>
-
-        )
-    };
-
-};
-
-
-function EmerContacts(props) {
     return (
-        <div>
-            <h4>Name: {props.name}</h4>
-            <h4>Phone Number: {props.number}</h4>
-            <h4>Address: {props.address}</h4>
-            <h4>Relatonship: {props.relationship}</h4>
-            <br></br>
+        <div className="Contacts card">
+        <h2>Emergency Contacts</h2>
+        {props.user.emergencyContacts.map(contact => (
+            <div key={contact._id}>
+                <h4>Name: {contact.name}</h4>
+                <h4>Phone Number: {contact.phone}</h4>
+                {contact.address && <h4>Address: {contact.address.streetAddress}</h4>}
+                {contact.address && <h4>&ensp;{contact.address.city}, {contact.address.state, contact.address.zip}</h4>}
+                {contact.relationship && <h4>Relatonship: {contact.relationship}</h4>}
+                <br/>
+            </div>
+        ))}
         </div>
     )
-}
+};

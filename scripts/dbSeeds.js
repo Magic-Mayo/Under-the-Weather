@@ -40,17 +40,32 @@ const dummy = {
         emergencyContacts: [{
             name: 'Smart McDumberson',
             phone: 3365555000,
-            address: '123 Oxymoron St Whynot, NC 27340',
+            address: {
+                streetAddress: '123 Oxymoron St',
+                city: 'Whynot',
+                state: 'NC',
+                zip: 27340
+            },
             relationship: 'Mother'
         },{
             name: 'Slightly Dumber McDumberson',
             phone: 3365555000,
-            address: '123 Oxymoron St Whynot, NC 27340',
+            address: {
+                streetAddress: '123 Oxymoron St',
+                city: 'Whynot',
+                state: 'NC',
+                zip: 27340
+            },
             relationship: 'Father'
         },{
             name: 'Normal McNormal',
             phone: 5205552365,
-            address: '456 Normal Rd Why, AZ 85789',
+            address: {
+                streetAddress: '456 Normal Rd',
+                city: 'Why',
+                state: 'AZ',
+                zip: 85789
+            },
             relationship: 'Sister'
         }],
         symptomHistory: [{

@@ -2,14 +2,9 @@ import React from 'react';
 
 const ManualEntry = props => {
         return (
-            <div className="grid">
-                <form className="form-input-area">
-                    <div className="input-container">
-                <div className="provider-form-submit-container">
-                        <button type="button" className="provider-form-submit" onClick={props.submitProvider}>
-                            Add Provider
-                        </button>
-                    </div>
+            <div className="provider-manual-entry">
+                <form className="provider-manual-entry-grid">
+                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-name">
                         <label htmlFor="doctorName">&nbsp;<span>*</span>Doctor's Name:</label>
                         <input
                         name="name"
@@ -20,7 +15,7 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-specialty">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Specialty:</label>
                         <input
                         name="type"
@@ -31,7 +26,7 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-insurance">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Accepted Insurance:</label>
                         <input
                         name="insurance"
@@ -42,51 +37,55 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-address">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Address:</label>
                         <input
                         name="address"
                         placeholder="123 W Main St"
-                        type="adress"
+                        type="text"
                         value={props.address}
                         onChange={props.handleInput}
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-city">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;City:</label>
                         <input
                         name="city"
-                        placeholder="123 W Main St"
-                        type="adress"
+                        placeholder="Phoenix"
+                        type="text"
                         value={props.city}
                         onChange={props.handleInput}
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-state">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;State:</label>
                         <input
                         name="state"
-                        placeholder="123 W Main St"
-                        type="adress"
+                        placeholder="AZ"
+                        minLength="2"
+                        maxLength="2"
+                        type="text"
                         value={props.state}
                         onChange={props.handleInput}
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-zip">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;ZIP:</label>
                         <input
                         name="zip"
-                        placeholder="123 W Main St"
-                        type="adress"
+                        placeholder="85008"
+                        type="number"
+                        min="00000"
+                        max="99999"
                         value={props.zip}
                         onChange={props.handleInput}
                         required
                         />
                     </div>
-                    <div className="input-container">
+                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-phone">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Phone Number:</label>
                         <input
                         name="phone"
@@ -96,6 +95,11 @@ const ManualEntry = props => {
                         onChange={props.handleInput}
                         required
                         />
+                    </div>
+                    <div className="provider-form-submit-container">
+                        <button type="button" className="provider-form-submit" onClick={props.submitProvider}>
+                            Add Provider
+                        </button>
                     </div>
                 </form>
             </div>

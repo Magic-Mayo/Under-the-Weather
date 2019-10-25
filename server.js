@@ -24,6 +24,10 @@ require('./routes/email')(app);
 require('./routes/account')(app);
 require('./routes/localLogin')(app);
 
+app.get('/googleb7dbc79786b470be.html',(req,res)=>{
+    res.sendFile(path.join(__dirname, "./client/public/googleb7dbc79786b470be.html"));
+})
+
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });

@@ -3,7 +3,7 @@
 	bottom: 2.75rem;
 	right: 2.75rem;
     z-index: 50;
-    width: 75rem;
+    max-width: 75rem;
     height: 10rem;
 }
 
@@ -34,10 +34,11 @@
         box-shadow: 0 0 2.5rem rgba(0,0,0,.3);
 
         &-container {
+            transform: translateX(-125%);
             position: absolute;
             left: 0;
             height: 100%;
-            width: calc(100% - 10rem);
+            width: calc(65rem);
             display: flex;
             align-items: flex-start;
             justify-content: space-around;

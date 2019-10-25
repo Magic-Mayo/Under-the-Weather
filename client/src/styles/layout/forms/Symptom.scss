@@ -1,52 +1,20 @@
-.provider-form {
+.symptom-form {
     display: flex;
     width: 80%;
     max-width: 750px;
     justify-content: center;
     margin: 4rem auto;
-    font-size: 2.35rem;
+    font-size: 2.15rem;
 
     &-container {
-        // background-color: bisque;
         height: 100%;
         position: absolute;
         width: 100%;
-        // overflow-y: auto;
-
-    }
-
-    &-options {
-        // position: relative;
-        width: 100%;
-        display: flex;
-
-        &-search,
-        &-manual {
-            width: 50%;
-            color: $white;
-            font-size: 2rem;
-            padding: 2.5rem 0;
-        }
-
-        &-search {
-            background: $peach-contrast-heavy;
-            border: none;
-        }
-
-        &-manual {
-            background: $peach-contrast-light;
-            border: none;
-        }
     }
 
     &-title {
         @include heading(2.75rem);
-        margin-top: 2.5rem;
-    }
-
-    &-subtitle {
-        @include heading(2.2rem);
-        margin-top: .5rem;
+        margin-top: 7rem;
     }
 
     &-search {
@@ -55,9 +23,9 @@
             padding: 1.5rem 2.5rem;
             border: 3px solid transparent;
             box-shadow:inset 0 0 2.5rem rgba($black, .15);
-            border-top-left-radius: 10rem;
-            border-bottom-left-radius: 10rem;
-
+            border-top-left-radius: 2.5rem;
+            border-bottom-left-radius: 2.5rem;
+            background-color: white;
             box-shadow: 0 -.5rem 3.25rem rgba($black, .15);
 
 
@@ -78,8 +46,8 @@
             color: $white;
             transition: .2s all;
 
-            border-top-right-radius: 10rem;
-            border-bottom-right-radius: 10rem;
+            border-top-right-radius: 2.5rem;
+            border-bottom-right-radius: 2.5rem;
 
 
             &:hover {
@@ -88,19 +56,10 @@
         }
     }
 
-    &-results {
-        overflow-y: scroll;
-        position: absolute;
-        max-height: 60%;
-        box-shadow: inset 0 0 1.25rem rgba($blue-dark, .15);
-        padding: 1rem 5rem;
-
-        &-item {
-            display: flex;
-        }
-    }
-
     &-submit {
+        background-color: $peach-contrast-heavy;
+        border: 3px solid $peach-contrast-light;
+        color: $white;
 
         &-container {
             position: absolute;
@@ -117,7 +76,7 @@
                 font-size: 2.325rem;
                 font-weight: 700;
                 width: 100%;
-                margin: 2rem 0 3.5rem;
+                margin: 2rem 0 2.5rem;
                 border-radius: 1.25rem;
             }
         }
@@ -125,7 +84,6 @@
 
     &-close {
         transform: scale(.75);
-        transform-origin: center;
         background-color: transparent;
         border: 3px solid $peach-contrast-heavy;
         color: $peach-contrast-heavy;

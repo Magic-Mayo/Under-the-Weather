@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import ManualEntry from './ManualEntry';
+import { Link } from 'react-router-dom';
 import Axios from 'axios';
+import moment from 'moment'
+
 export default class ProviderForm extends Component {
-    state = {
+    initialState = {
         userId: this.props.userId,
         search: '',
+        name:  '',
+        type:  '',
+        insurance: '',
+        address:  '',
+        city:  '',
+        state:  '',
+        zip: '',
+        phone:  '',
         searchActive: true
+    }
+
+    state = {
+        ...this.initialState
     }
 
     handleInput = (e) => {
@@ -14,15 +29,12 @@ export default class ProviderForm extends Component {
         this.setState({[name]: value})
     }
 
-    toggleOption = (e) => {
-        e.persist();
-
-        const active = e.target.className.includes('search') ? true : false
-
+	toggleOption = (e) => {
+		e.persist();
+        const active = e.target.className.includes('search') ? true : false;
         this.setState({
             searchActive: active,
         })
-
     }
 
     submitProvider = () => {
@@ -30,19 +42,21 @@ export default class ProviderForm extends Component {
             userId: this.state.userId,
             route: 'addprovider',
             provider: {
-                name: this.state.name || '',
-                type: this.state.type || '',
-                insurance: this.state.insurance || '',
-                address: this.state.address || '',
-                city: this.state.city || '',
-                state: this.state.state || '',
-                zip: this.state.zip || '',
-                phone: this.state.phone || ''
+                name: this.state.name,
+                doctorType: this.state.type,
+                insurance: this.state.insurance,
+                address: this.state.address,
+                city: this.state.city,
+                state: this.state.state,
+                zip: this.state.zip,
+                phone: this.state.phone,
+                createdAt: moment()
             }
         };
 
-        Axios.post('/account/provider', provider).then(provider=>{
-            this.props.getNewUserInfo(this.props.userId)
+        Axios.post('/account/provider', provider).then(user=>{
+            this.props.setUser(user.data);
+            this.setState(this.initialState)
         });
     }
 
@@ -58,28 +72,37 @@ export default class ProviderForm extends Component {
 						Enter Info Manually
 					</button>
 				</div>
-                {
-                    this.state.searchActive ?
-                        <Search
-                        search={this.state.search}
-                        submitProvider={this.submitProvider}
-                        handleInput={this.handleInput}/>
-                    : (
-                        <ManualEntry
-                        submitProvider={this.submitProvider}
-                        handleInput={this.handleInput}
-                        name={this.state.name}
-                        insurance={this.state.insurance}
-                        type={this.state.type}
-                        address={this.state.address}
-                        phone={this.state.phone}
-                        city={this.state.city}
-                        state={this.state.state}
-                        zip={this.state.zip}
-                        />
-                    )
-                }
-			</div>
+				{this.state.searchActive ? (
+					<Search
+						search={this.state.search}
+						submitProvider={this.submitProvider}
+						handleInput={this.handleInput}
+					/>
+				) : (
+					<ManualEntry
+						submitProvider={this.submitProvider}
+						handleInput={this.handleInput}
+						name={this.state.name}
+						insurance={this.state.insurance}
+						type={this.state.type}
+						address={this.state.address}
+						phone={this.state.phone}
+						city={this.state.city}
+						state={this.state.state}
+						zip={this.state.zip}
+					/>
+				)}
+				<div className="provider-form-submit-container">
+					{/* <button type="button" className="provider-form-submit">
+                        Add Provider
+                    </button> */}
+					<Link to="/dashboard" className="closeForm">
+						<button type="button" className="provider-form-close">
+							Close Form X
+						</button>
+					</Link>
+				</div>
+            </div>
 		);
 	}
 }

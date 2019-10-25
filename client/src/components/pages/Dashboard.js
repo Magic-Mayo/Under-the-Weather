@@ -14,18 +14,22 @@ export default class Dashboard extends Component {
       <div className="Dashboard">
         <Symptoms name={this.props.name} symptoms={this.props.symptomHistory}/>
         <section className="container-right">
-          <MedicalHistory name={this.props.name}
-          user={this.props.user}
-          />
-          <Providers name={this.props.name}
-          user={this.props.user}
-          />
-          <Contacts name={this.props.name}
-          user={this.props.user}
-          />
-          <Insurance name={this.props.name}
-          user={this.props.user}
-          />
+            <MedicalHistory
+            name={this.props.name}
+            user={this.props.user}
+            />
+            <Providers
+            name={this.props.name}
+            user={this.props.user}
+            />
+            <Contacts
+            name={this.props.name}
+            user={this.props.user}
+            />
+            <Insurance
+            name={this.props.name}
+            user={this.props.user}
+            />
         </section>
         <Nav
         name={this.props.user.name}
@@ -35,7 +39,7 @@ export default class Dashboard extends Component {
         toggleForm={this.props.toggleForm}
         userId={this.props.userId}
         user={this.props.user}
-        getNewUserInfo={this.props.getNewUserInfo}
+        setUser={this.props.setUser}
         />
         {/* <Forms /> */}
       </div>
