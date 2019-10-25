@@ -20,9 +20,9 @@ export default class SignInSocial extends Component {
             }
 
             return Axios.post('/auth/facebook', data).then(facebook=>{
-                localStorage.setItem('_underweather', facebook.data.token)
-                window.history.pushState(null, '', '/dashboard')
-                this.props.setUser({loading: false, user: facebook.data.user, userId: facebook.data.userId, isLoggedIn: true})
+                localStorage.setItem('_underweather', facebook.data.token);
+                window.history.pushState(null, '', '/dashboard');
+                this.props.setUser({loading: false, user: facebook.data.user, userId: facebook.data.userId, isLoggedIn: true});
             })
         }
 
@@ -36,10 +36,10 @@ export default class SignInSocial extends Component {
             }
         }
 
-        Axios.post('/auth/google', data).then(user=>{
-            window.history.pushState(null, '', '/dashboard')
-            console.log(user)
-            this.props.setUser({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
+        Axios.post('/auth/google', data).then(google=>{
+            localStorage.setItem('_underweather', google.data.token);
+            window.history.pushState(null, '', '/dashboard');
+            this.props.setUser({loading: false, user: google.data.user, userId: google.data.userId, isLoggedIn: true});
         })
     }
 
