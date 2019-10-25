@@ -11,6 +11,7 @@ const UserSchema = new Schema({
             insurance: [{
                 provider: {type: String, default: ''},
                 insuranceType: {type: String, default: ''},
+                groupNumber: {type: String, default: ''},
                 idNumber: {type: String, default: ''},
                 deductible: {type: String, default: ''},
                 copay: [{

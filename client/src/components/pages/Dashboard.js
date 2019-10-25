@@ -9,16 +9,23 @@ import Nav from "../Nav";
 export default class Dashboard extends Component {
   render() {
     // console.log("HERE ARE THE USER DETAILS", this.props.user)
-		// console.log("DASHBOARD HAS THESE PROPS", this.props);
-
+		// console.log("DASHBOARD HAS THESE PROPS", this.props);    
     return (
       <div className="Dashboard">
         <Symptoms name={this.props.name} symptoms={this.props.symptomHistory}/>
         <section className="container-right">
-          <MedicalHistory name="Sean"/>
-          <Providers name="Sean"/>
-          <Contacts name="Sean"/>
-          <Insurance name="Sean"/>
+          <MedicalHistory name={this.props.name}
+          user={this.props.user}
+          />
+          <Providers name={this.props.name}
+          user={this.props.user}
+          />
+          <Contacts name={this.props.name}
+          user={this.props.user}
+          />
+          <Insurance name={this.props.name}
+          user={this.props.user}
+          />
         </section>
         <Nav
         name={this.props.user.name}
