@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import Search from './Search';
-import ManualEntry from './ManualEntry'
+import ManualEntry from './ManualEntry';
+import Axios from 'axios';
 export default class ProviderForm extends Component {
     state = {
-        name: '',
-        type: '',
-        insurance: '',
-        address: '',
-        phone: '',
-        city: '',
-        state: '',
-        zip: '',
+        userId: this.props.userId,
         search: '',
         searchActive: true
     }
@@ -31,11 +25,29 @@ export default class ProviderForm extends Component {
 
     }
 
-    submitProvider = (props) => {
+    submitProvider = () => {
+        const provider = {
+            userId: this.state.userId,
+            route: 'addprovider',
+            provider: {
+                name: this.state.name || '',
+                type: this.state.type || '',
+                insurance: this.state.insurance || '',
+                address: this.state.address || '',
+                city: this.state.city || '',
+                state: this.state.state || '',
+                zip: this.state.zip || '',
+                phone: this.state.phone || ''
+            }
+        };
 
+        Axios.post('/account/provider', provider).then(provider=>{
+            this.props.getNewUserInfo(this.props.userId)
+        });
     }
 
 	render() {
+        console.log(this.props)
 		return (
 			<div className="provider-form-container">
 				<div className="provider-form-options">
