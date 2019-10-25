@@ -5,12 +5,17 @@ const ManualEntry = props => {
             <div className="grid">
                 <form className="form-input-area">
                     <div className="input-container">
+                <div className="provider-form-submit-container">
+                        <button type="button" className="provider-form-submit" onClick={props.submitProvider}>
+                            Add Provider
+                        </button>
+                    </div>
                         <label htmlFor="doctorName">&nbsp;<span>*</span>Doctor's Name:</label>
                         <input
                         name="name"
                         placeholder="Dr. John Smith"
                         type="text"
-                        value={props.doctorName}
+                        value={props.name}
                         onChange={props.handleInput}
                         required
                         />
@@ -91,11 +96,6 @@ const ManualEntry = props => {
                         onChange={props.handleInput}
                         required
                         />
-                    </div>
-                    <div className="provider-form-submit-container">
-                        <button type="button" className="provider-form-submit" onClick={props.submitProvider}>
-                            Add Provider
-                        </button>
                     </div>
                 </form>
             </div>
