@@ -73,8 +73,8 @@ class Nav extends React.Component {
 								toggleMenu={this.toggleMenu}
                                 dropDownVisible={this.state.dropDownVisible}
                                 userId={this.props.userId}
-                                getNewUserInfo={this.props.getNewUserInfo}
                                 user={this.props.user}
+                                setUser={this.props.setUser}
 							/>
 						);
 					}}

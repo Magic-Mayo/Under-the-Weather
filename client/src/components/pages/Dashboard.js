@@ -28,7 +28,7 @@ export default class Dashboard extends Component {
         toggleForm={this.props.toggleForm}
         userId={this.props.userId}
         user={this.props.user}
-        getNewUserInfo={this.props.getNewUserInfo}
+        setUser={this.props.setUser}
         />
         {/* <Forms /> */}
       </div>

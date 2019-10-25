@@ -101,7 +101,7 @@ class App extends Component {
                 {this.state.loading ? <Loading loading={this.state.loading} setUser={this.setUser}/>:
                 (!this.state.isLoggedIn && !this.state.user ? 
                     <FormContainer setUser={this.setUser} loading={this.state.loading} handleLogIn={this.handleLogIn} isLoading={this.isLoading} isLoggedIn={this.state.isLoggedIn}/>:
-                    <Dashboard getNewUserInfo={this.getNewUserInfo} user={this.state.user} userId={this.state.userId} menu={this.state.menu} toggleForm={this.toggleForm} formOpen={this.state.formOpen} isLoggedIn={this.state.isLoggedIn}/>)}
+                    <Dashboard setUser={this.setUser} getNewUserInfo={this.getNewUserInfo} user={this.state.user} userId={this.state.userId} menu={this.state.menu} toggleForm={this.toggleForm} formOpen={this.state.formOpen} isLoggedIn={this.state.isLoggedIn}/>)}
             </div>
         )
     }
