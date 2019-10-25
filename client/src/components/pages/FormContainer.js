@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import EntranceForm from '../forms/EntranceForm';
-import Loading from '../icons/loading';
 import ProviderForm from '../forms/Provider/Form'
 import SymptomForm from '../forms/Symptom/Form'
 import ContactForm from '../forms/Contact/Form'
@@ -37,7 +36,6 @@ export default class FormContainer extends Component {
 
 	render() {
         return (
-        // !this.props.loading ? (
 			<div className="FormContainer">
 				<section className={`form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
 					{!this.props.isLoggedIn && (
@@ -75,8 +73,6 @@ export default class FormContainer extends Component {
 					)}
 				</section>
 			</div>
-        // )
-        //  : (			<Loading loading={this.props.isLoading} />
 		);
 	}
 }

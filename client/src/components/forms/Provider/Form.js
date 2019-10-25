@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import Search from './Search';
+import ManualEntry from './ManualEntry';
+import Axios from 'axios';
 export default class ProviderForm extends Component {
     state = {
+        userId: this.props.userId,
+        search: '',
         searchActive: true
     }
+
+    handleInput = (e) => {
+        const {name, value} = e.target;
+        this.setState({[name]: value})
+    }
+
     toggleOption = (e) => {
         e.persist();
 
@@ -14,7 +24,30 @@ export default class ProviderForm extends Component {
         })
 
     }
+
+    submitProvider = () => {
+        const provider = {
+            userId: this.state.userId,
+            route: 'addprovider',
+            provider: {
+                name: this.state.name || '',
+                type: this.state.type || '',
+                insurance: this.state.insurance || '',
+                address: this.state.address || '',
+                city: this.state.city || '',
+                state: this.state.state || '',
+                zip: this.state.zip || '',
+                phone: this.state.phone || ''
+            }
+        };
+
+        Axios.post('/account/provider', provider).then(provider=>{
+            this.props.getNewUserInfo(this.props.userId)
+        });
+    }
+
 	render() {
+        console.log(this.props)
 		return (
 			<div className="provider-form-container">
 				<div className="provider-form-options">
@@ -26,18 +59,26 @@ export default class ProviderForm extends Component {
 					</button>
 				</div>
                 {
-                    this.state.searchActive ? <Search />
+                    this.state.searchActive ?
+                        <Search
+                        search={this.state.search}
+                        submitProvider={this.submitProvider}
+                        handleInput={this.handleInput}/>
                     : (
-                        <span>
-                            Hello Manual
-                        </span>
+                        <ManualEntry
+                        submitProvider={this.submitProvider}
+                        handleInput={this.handleInput}
+                        name={this.state.name}
+                        insurance={this.state.insurance}
+                        type={this.state.type}
+                        address={this.state.address}
+                        phone={this.state.phone}
+                        city={this.state.city}
+                        state={this.state.state}
+                        zip={this.state.zip}
+                        />
                     )
                 }
-                <div className="provider-form-submit-container">
-                    <button type="button" className="provider-form-submit">
-                        Add Provider
-                    </button>
-                </div>
 			</div>
 		);
 	}

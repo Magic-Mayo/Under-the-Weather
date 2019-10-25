@@ -20,7 +20,16 @@ export default class Dashboard extends Component {
           <Contacts name="Sean"/>
           <Insurance name="Sean"/>
         </section>
-        <Nav name="Sean" menu={this.props.menu} isLoggedIn={this.props.isLoggedIn} formOpen={this.props.formOpen} toggleForm={this.props.toggleForm}/>
+        <Nav
+        name={this.props.user.name}
+        menu={this.props.menu}
+        isLoggedIn={this.props.isLoggedIn}
+        formOpen={this.props.formOpen}
+        toggleForm={this.props.toggleForm}
+        userId={this.props.userId}
+        user={this.props.user}
+        getNewUserInfo={this.props.getNewUserInfo}
+        />
         {/* <Forms /> */}
       </div>
     );

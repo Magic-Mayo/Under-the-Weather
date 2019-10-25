@@ -2,6 +2,7 @@ const db = require('../models');
 const bcrypt = require('bcrypt');
 const uid = require('uid-safe');
 const token = uid.sync(24);
+const moment = require('moment');
 
 
 module.exports = {
@@ -44,29 +45,29 @@ module.exports = {
             case 'deleteprovider': route = {$pull: {'data.mediData.doctors': {_id: body.providerId}}}; break;
         }
 
-        console.log(body)
-
+        
         if(body.route.substring(0,3) === 'add'){
+            console.log(body)
             return db.User.findOneAndUpdate({_id: req.body.userId}, route, {new: true})
-                .then(data=>{
-                    // console.log(data)
-                    if (!data){return}
-                    res.json(data)
-                })
-                .catch(err=>res.json('Error adding data.  Please try again later.'));
-        } else if(body.route.substring(0,3) === 'upd'){
-            return db.User.findOneAndUpdate({[body.key]: body.id}, route, {new:true})
                 .then(data=>{
                     console.log(data)
                     if (!data){return}
-                    res.json(data)
+                    res.json({user: data.data})
+                })
+                .catch(err=>res.json('Error adding data.  Please try again later.'));
+        } else if(body.route.substring(0,3) === 'upd'){
+            return db.User.findOneAndUpdate({[body.key]: body.userId}, route, {new:true})
+                .then(data=>{
+                    console.log(data)
+                    if (!data){return}
+                    res.json({user: data.data})
                 })
                 .catch(err=>res.json(err));
         } else if(body.route.substring(0,3) === 'del'){
             return db.User.findOneAndUpdate({_id: body.userId}, route, {new:true})
                 .then(data=>{
                     console.log('delete',data)
-                    return res.json(data)
+                    return res.json({user: data})
                 })
                 .catch(err=>res.json('Error removing data.  Please try again later.'));
         }
@@ -74,9 +75,11 @@ module.exports = {
     },
     updateProfile: (req,res,next)=>{
         console.log(req.body)
-        db.User.findOneAndUpdate({_id: req.params.userId}, {$upsert: req.body}, {new: true})
-            .then(updated=>res.json(updated))
-            .catch(err=>res.json(err))
+        if(req.body.update){
+            return db.User.findOneAndUpdate({_id: req.params.userId}, req.body, {new: true})
+                .then(updated=>res.json(updated.data))
+                .catch(err=>console.log(err))
+        }
         next();
     },
     findorCreate: (req,res)=>{
@@ -111,5 +114,12 @@ module.exports = {
                 return res.json({userId: user._id, user: user.data, userName: user.userName})
             }
         }).catch(err=>console.log(err))
+    },
+    findById: (req,res)=>{
+        db.User.findById(req.params.user).then(user=>{
+            console.log(user)
+            if (!user){return}
+            res.json(user.data)
+        })
     }
 }
