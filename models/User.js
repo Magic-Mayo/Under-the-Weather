@@ -24,6 +24,7 @@ const UserSchema = new Schema({
                         generic: Number
                     }
                 }],
+                updatedAt: Date,
                 createdAt: Date
             }],
             doctors: [{
@@ -32,6 +33,7 @@ const UserSchema = new Schema({
                 insurance: {type: String, default: ''},
                 address: {type: String, default: ''},
                 phone: {type: String, default: ''},
+                updatedAt: Date,
                 createdAt: Date
             }]
         },
@@ -40,6 +42,7 @@ const UserSchema = new Schema({
             phone: Number,
             address: String,
             relationship: String,
+            updatedAt: Date,
             createdAt: String
         }],
         symptomHistory: [{
@@ -49,6 +52,7 @@ const UserSchema = new Schema({
             symptoms: String,
             time: Date,
             diagnosis: String,
+            updatedAt: Date,
             createdAt: Date
         }],
         isLoggedIn: Boolean,
