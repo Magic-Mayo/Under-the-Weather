@@ -22,7 +22,6 @@ export default class Form extends Component {
             address: this.state.address || '',
             relationship: this.state.relationship || ''
             }
-
         };
         Axios.post('/account/contact', contacts).then(
             contact=> {

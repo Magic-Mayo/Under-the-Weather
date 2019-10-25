@@ -9,6 +9,7 @@ export default class ContactLink extends Component {
             <div className="ContactLink">
                 ADD CONTACT
                 <FormContainer message="ADD CONTACT"
+                  name={this.props.name}
                   getNewUserInfo={this.props.getNewUserInfo}
                   userId={this.props.userId}
                   isLoggedIn={this.props.isLoggedIn}

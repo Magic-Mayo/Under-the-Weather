@@ -1,6 +1,61 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 
+export default class InsuranceForm extends Component {
+	state ={
+		userId: this.props.userId,
+		provider: '',
+		policy_number:'',
+		group_number:'',
+		policy_type:'',
+		deductible:''
+	};
+	
+	handleInsuranceChange = (e) => {
+		const { name, value } = e.target;
+		this.setState({ [name]: value });
+	};
+
+	submitInsurance =()=>{		
+		const insurances={
+			userId: this.state.userId,
+            route: 'addinsurance',
+				insurance:{
+				provider:this.state.provider || '',
+				policy_number:this.state.policy_number || '',
+				group_number:this.state.group_number ||'',
+				policy_type:this.state.policy_type ||'',
+				deductible:this.state.deductible || ''
+		}
+
+		};
+
+		Axios.post('/account/insurance', insurances).then(
+			data =>{
+				console.log(data)
+				this.props.getNewUserInfo(this.props.userId)
+				this.setState({provider: '', policy_number:'', group_number:'', policy_type:'',deductible:''})
+			}
+		)
+	};
+		
+	render() {
+		return (
+			<div>			
+			<InsuranceInput 
+			name={this.props.name}
+			provider={this.state.provider}
+			policy_number={this.state.policy_number}
+			group_number={this.state.group_number}
+			policy_type={this.state.policy_type}
+			deductible={this.state.deductible}
+			handleInsuranceChange={this.handleInsuranceChange}
+			submitInsurance={this.submitInsurance}
+			/>			
+			</div>
+		);
+	}
+}
 
 function InsuranceInput(props) {
 	return (
@@ -20,57 +75,8 @@ function InsuranceInput(props) {
 				onChange={props.handleInsuranceChange}></input>
 				{/* <input type="text"></input> */}
 			</form>
-			<button onClick= {props.insuranceToDatabase}>Submit</button>
+			<button onClick= {props.submitInsurance}>Submit</button>
 		</div>
 	)
 };
 
-export default class InsuranceForm extends Component {
-	state ={
-		provider: '',
-		policy_number:'',
-		group_number:'',
-		policy_type:'',
-		deductible:''
-	};
-	
-	handleInsuranceChange = (e) => {
-		const { name, value } = e.target;
-		this.setState({ [name]: value });
-	};
-
-	insuranceToDatabase =()=>{		
-		const insurance={
-				provider:this.state.provider,
-				policy_number:this.state.policy_number,
-				group_number:this.state.group_number,
-				policy_type:this.state.policy_type,
-				deductible:this.state.deductible
-
-		};
-
-		Axios.post('/account/insurance', insurance).then(
-			data =>{
-				console.log(data)
-				this.setState({provider: '', policy_number:'', group_number:'', policy_type:'',deductible:''})
-			}
-		)
-	};
-		
-	render() {
-		return (
-			<div>			
-			<InsuranceInput 
-			name={this.props.name}
-			provider={this.state.provider}
-			policy_number={this.state.policy_number}
-			group_number={this.state.group_number}
-			policy_type={this.state.policy_type}
-			deductible={this.state.deductible}
-			handleInsuranceChange={this.handleInsuranceChange}
-			insuranceToDatabase={this.insuranceToDatabase}
-			/>			
-			</div>
-		);
-	}
-}
