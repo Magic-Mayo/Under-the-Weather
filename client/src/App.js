@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
 import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard';
 import FormContainer from './components/pages/FormContainer';
 import Loading from './components/icons/loading';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-
 import API from './utils/SymptomAPI';
 import {
 	faAngleDown,
@@ -20,7 +18,6 @@ import {
 	faEye,
 	faEyeSlash
 } from '@fortawesome/free-solid-svg-icons';
-
 import bodyParts from './data/bodyParts.json';
 import './App.scss';
 import axios from 'axios';
@@ -148,8 +145,8 @@ class App extends Component {
                             }}
                         />
                     </Router>
-
-                        
+                )
+            }
             </div>
         )
     }

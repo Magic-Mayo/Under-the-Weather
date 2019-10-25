@@ -26,7 +26,8 @@ export default class ProviderForm extends Component {
 	toggleOption = (e) => {
 		e.persist();
 
-		const active = e.target.className.includes('search') ? true : false;
+        const active = e.target.className.includes('search') ? true : false;
+    }
 
     submitProvider = () => {
         const provider = {
@@ -91,7 +92,7 @@ export default class ProviderForm extends Component {
 						</button>
 					</Link>
 				</div>
-			</div>
+            </div>
 		);
 	}
 }
