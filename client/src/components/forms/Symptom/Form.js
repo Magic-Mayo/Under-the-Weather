@@ -18,7 +18,7 @@ export default class SymptomForm extends Component {
 	render() {
 		return (
 			<div>
-				<h1>{this.props.formT ype}</h1>
+				<h1>{this.props.formType}</h1>
 				<p>Enter a {this.props.formType}</p>
 
 				<Input updateDropDown={this.updateDropDown} searchVal={this.state.searchVal}/>
