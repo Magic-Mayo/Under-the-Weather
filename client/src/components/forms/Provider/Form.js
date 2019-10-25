@@ -55,7 +55,7 @@ export default class ProviderForm extends Component {
         };
 
         Axios.post('/account/provider', provider).then(user=>{
-            this.props.setUser(user);
+            this.props.setUser(user.data);
             this.setState(this.initialState)
         });
     }
