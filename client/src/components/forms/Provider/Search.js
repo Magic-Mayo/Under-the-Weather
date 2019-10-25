@@ -44,6 +44,7 @@ class Search extends Component {
 	};
 
 	render() {
+		console.log(process.env)
 		return (
 			<div>
 				<h1 className="provider-form-title form-title">What type of doctor are you looking for?</h1>
