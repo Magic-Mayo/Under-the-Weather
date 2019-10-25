@@ -38,6 +38,8 @@ const UserSchema = new Schema({
                     zip: Number
                 },
                 phone: {type: String, default: ''},
+                email: String,
+                website: String,
                 updatedAt: Date,
                 createdAt: Date
             }]
