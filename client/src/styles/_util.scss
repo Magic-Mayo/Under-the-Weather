@@ -145,3 +145,16 @@
     display: flex;
     justify-content: space-between;
 }
+
+.preface {
+    display: inline-block;
+    padding: 0 2rem;
+}
+
+.closeForm {
+    min-width: 20rem;
+
+     * {
+        width: 100%;
+    }
+}

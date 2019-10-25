@@ -24,22 +24,37 @@ const UserSchema = new Schema({
                         generic: Number
                     }
                 }],
+                updatedAt: Date,
                 createdAt: Date
             }],
             doctors: [{
                 name: {type: String, default: ''},
                 doctorType: {type: String, default: ''},
                 insurance: {type: String, default: ''},
-                address: {type: String, default: ''},
+                address: {
+                    streetAddress: String,
+                    city: String,
+                    state: String,
+                    zip: Number
+                },
                 phone: {type: String, default: ''},
+                email: String,
+                website: String,
+                updatedAt: Date,
                 createdAt: Date
             }]
         },
         emergencyContacts: [{
             name: String,
             phone: Number,
-            address: String,
+            address: {
+                streetAddress: String,
+                city: String,
+                state: String,
+                zip: Number
+            },
             relationship: String,
+            updatedAt: Date,
             createdAt: String
         }],
         symptomHistory: [{
@@ -49,6 +64,7 @@ const UserSchema = new Schema({
             symptoms: String,
             time: Date,
             diagnosis: String,
+            updatedAt: Date,
             createdAt: Date
         }],
         isLoggedIn: Boolean,
@@ -56,11 +72,11 @@ const UserSchema = new Schema({
     userName: {type: String, unique: true},
     loginToken: String,
     lastLogin: Date,
-    createdAt: Date,
-    updatedAt: Date,
     socialMedia: {type: Boolean, default: false},
     emailVerified: Boolean,
-    password: {type: String, default: ''}
+    password: {type: String, default: ''},
+    createdAt: Date,
+    updatedAt: Date
 });
 
 const User = mongoose.model('UserSchema', UserSchema);

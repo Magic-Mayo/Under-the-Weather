@@ -4,7 +4,6 @@ const uid = require('uid-safe');
 const token = uid.sync(24);
 const moment = require('moment');
 
-
 module.exports = {
     logInorOut: (req,res)=>{
         db.User.findById(req.params.user)
@@ -48,9 +47,8 @@ module.exports = {
         
         if(body.route.substring(0,3) === 'add'){
             console.log(body)
-            return db.User.findOneAndUpdate({_id: req.body.userId}, route, {new: true})
+            return db.User.findOneAndUpdate({_id: body.userId}, route, {new: true})
                 .then(data=>{
-                    console.log(data)
                     if (!data){return}
                     res.json({user: data.data})
                 })
@@ -110,16 +108,37 @@ module.exports = {
             console.log(user)
             if (!user){return res.json(false)};
 
-            if (user.loginToken === token){
-                return res.json({userId: user._id, user: user.data, userName: user.userName})
-            }
-        }).catch(err=>console.log(err))
-    },
-    findById: (req,res)=>{
-        db.User.findById(req.params.user).then(user=>{
-            console.log(user)
-            if (!user){return}
-            res.json(user.data)
-        })
-    }
-}
+				if (user.loginToken === token) {
+					return res.json({ userId: user._id, user: user.data, userName: user.userName });
+				}
+			})
+			.catch((err) => console.log(err));
+	},
+	findAll: function(req, res) {
+		db.User
+			.find(req.query)
+			.sort({ date: -1 })
+			.then((dbModel) => res.json(dbModel))
+			.catch((err) => res.status(422).json(err));
+	},
+	findById: function(req, res) {
+		db.User.findById(req.params.id || req.params.user).then((dbModel) => res.json(dbModel)).catch((err) => res.status(422).json(err));
+	},
+	create: function(req, res) {
+		db.User.create(req.body).then((dbModel) => res.json(dbModel)).catch((err) => res.status(422).json(err));
+	},
+	update: function(req, res) {
+		console.log('HEY ', req.body.symptomHistory);
+		db.User
+			.findOneAndUpdate({ _id: req.params.id }, { $push: req.body.symptomHistory }, { new: true })
+			.then((dbModel) => res.json(dbModel))
+			.catch((err) => res.status(422).json(err));
+	},
+	remove: function(req, res) {
+		db.User
+			.findById({ _id: req.params.id })
+			.then((dbModel) => dbModel.remove())
+			.then((dbModel) => res.json(dbModel))
+			.catch((err) => res.status(422).json(err));
+	}
+};

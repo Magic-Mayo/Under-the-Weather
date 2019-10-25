@@ -1,25 +1,17 @@
 import React from 'react';
 
-
-
-function Providers(props) {
+export default function Providers(props) {
     return (
         <div className="Providers card">
             <h2>Medical Providers</h2>
-            <div className="provider-wrapper">
-                <h4 className="provider-name">John Scott</h4>
-                <p className="provider-title">Dentist</p>
-                <p className="provider-phone">
-                    Phone: 
-                    <a href="/">123-456-7899</a>
-                </p>
-                <p className="provider-phone">
-                    Email: 
-                    <a href="/">jscott@doctor.phd</a>
-                </p>
-            </div>
+            {props.user.mediData.doctors.map(doc=>{
+            return (<div key={doc._id} className="provider-wrapper">
+                <h4 className="provider-name">{doc.name}</h4>
+                {doc.doctorType && <p className="provider-title">{doc.doctorType}</p>}
+                {doc.phone && <p className="provider-phone">Phone: {doc.phone}</p>}
+                {doc.email && <p className="provider-email">Email: {doc.email}</p>}
+            </div>)
+            })}
         </div>
     );
 }
-
-export default Providers;
