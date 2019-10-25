@@ -52,7 +52,7 @@ const ManualEntry = props => {
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;City:</label>
                         <input
                         name="city"
-                        placeholder="123 W Main St"
+                        placeholder="Phoenix"
                         type="adress"
                         value={props.city}
                         onChange={props.handleInput}
@@ -63,7 +63,7 @@ const ManualEntry = props => {
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;State:</label>
                         <input
                         name="state"
-                        placeholder="123 W Main St"
+                        placeholder="AZ"
                         type="adress"
                         value={props.state}
                         onChange={props.handleInput}
@@ -74,7 +74,7 @@ const ManualEntry = props => {
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;ZIP:</label>
                         <input
                         name="zip"
-                        placeholder="123 W Main St"
+                        placeholder="85008"
                         type="adress"
                         value={props.zip}
                         onChange={props.handleInput}

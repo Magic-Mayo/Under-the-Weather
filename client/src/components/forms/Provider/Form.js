@@ -29,8 +29,10 @@ export default class ProviderForm extends Component {
 
 	toggleOption = (e) => {
 		e.persist();
-
         const active = e.target.className.includes('search') ? true : false;
+        this.setState({
+            searchActive: active,
+        })
     }
 
     submitProvider = () => {
