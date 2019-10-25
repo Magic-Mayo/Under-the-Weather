@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 function InsuranceInput(props) {
 	return (
@@ -42,8 +42,8 @@ function InsuranceInput(props) {
 			</form>
 			<button onClick={props.insuranceToDatabase}>Submit</button>
 		</div>
-	);
-}
+	)
+};
 
 export default class InsuranceForm extends Component {
 	state = {
@@ -79,22 +79,26 @@ export default class InsuranceForm extends Component {
 			<div>
 				<h1>{this.props.formType}</h1>
 				<p>Enter a {this.props.formType}</p>
-				<InsuranceInput
-					name={this.props.name}
-					provider={this.state.provider}
-					policy_number={this.state.policy_number}
-					group_number={this.state.group_number}
-					policy_type={this.state.policy_type}
-					deductible={this.state.deductible}
-					handleInsuranceChange={this.handleInsuranceChange}
-					insuranceToDatabase={this.insuranceToDatabase}
-				/>
-				<Link to="/dashboard" className="closeForm">
-					<button type="button" className="insurance-form-close">
-						Close Form X
-					</button>
-				</Link>
-			</div>
+                <div>			
+                    <InsuranceInput 
+                    name={this.props.name}
+                    provider={this.state.provider}
+                    policy_number={this.state.policy_number}
+                    group_number={this.state.group_number}
+                    policy_type={this.state.policy_type}
+                    deductible={this.state.deductible}
+                    handleInsuranceChange={this.handleInsuranceChange}
+                    insuranceToDatabase={this.insuranceToDatabase}
+                    />			
+                </div>
+                <div className="insurance-form-submit-container">
+                    <Link to="/dashboard" className="closeForm">
+                        <button type="button" className="insurance-form-close">
+                            Close Form X
+                        </button>
+                    </Link>
+                </div>
+            </div>
 		);
 	}
 }

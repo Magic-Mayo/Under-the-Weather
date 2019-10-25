@@ -10,10 +10,10 @@ export default class ProviderLink extends Component {
 			<div className="ProviderLink">
                 <FormContainer 
                 message="ADD PROVIDER"
-                getNewUserInfo={this.props.getNewUserInfo}
                 userId={this.props.userId}
                 isLoggedIn={this.props.isLoggedIn}
-                formType="Provider" />
+                formType="Provider"
+                setUser={this.props.setUser}/>
 			</div>
 		);
 	}

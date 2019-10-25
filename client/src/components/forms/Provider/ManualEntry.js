@@ -42,7 +42,7 @@ const ManualEntry = props => {
                         <input
                         name="address"
                         placeholder="123 W Main St"
-                        type="adress"
+                        type="text"
                         value={props.address}
                         onChange={props.handleInput}
                         required
@@ -52,8 +52,8 @@ const ManualEntry = props => {
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;City:</label>
                         <input
                         name="city"
-                        placeholder="123 W Main St"
-                        type="adress"
+                        placeholder="Phoenix"
+                        type="text"
                         value={props.city}
                         onChange={props.handleInput}
                         required
@@ -63,8 +63,10 @@ const ManualEntry = props => {
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;State:</label>
                         <input
                         name="state"
-                        placeholder="123 W Main St"
-                        type="adress"
+                        placeholder="AZ"
+                        minLength="2"
+                        maxLength="2"
+                        type="text"
                         value={props.state}
                         onChange={props.handleInput}
                         required
@@ -74,8 +76,10 @@ const ManualEntry = props => {
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;ZIP:</label>
                         <input
                         name="zip"
-                        placeholder="123 W Main St"
-                        type="adress"
+                        placeholder="85008"
+                        type="number"
+                        min="00000"
+                        max="99999"
                         value={props.zip}
                         onChange={props.handleInput}
                         required
@@ -91,6 +95,11 @@ const ManualEntry = props => {
                         onChange={props.handleInput}
                         required
                         />
+                    </div>
+                    <div className="provider-form-submit-container">
+                        <button type="button" className="provider-form-submit" onClick={props.submitProvider}>
+                            Add Provider
+                        </button>
                     </div>
                 </form>
             </div>

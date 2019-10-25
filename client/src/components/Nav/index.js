@@ -72,7 +72,7 @@ class Nav extends React.Component {
 								toggleMenu={this.toggleMenu}
                                 dropDownVisible={this.state.dropDownVisible}
                                 userId={this.props.userId}
-                                getNewUserInfo={this.props.getNewUserInfo}
+                                setUser={this.props.setUser}
                                 user={this.props.user}
 							/>
 						);
@@ -84,6 +84,9 @@ class Nav extends React.Component {
 					render={() => {
 						return (
 							<ContactLink
+                                setUser={this.props.setUser}
+                                name={this.props.name}
+                                userId={this.props.userId}
                                 isLoggedIn={this.props.isLoggedIn}
                                 toggleMenu={this.toggleMenu}
 								dropDownVisible={this.state.dropDownVisible}

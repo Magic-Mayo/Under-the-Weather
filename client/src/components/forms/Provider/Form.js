@@ -1,57 +1,62 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import ManualEntry from './ManualEntry';
-import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
+import moment from 'moment'
 
 export default class ProviderForm extends Component {
-	state = {
-		userId: this.props.userId,
-		name: '',
-		type: '',
-		insurance: '',
-		address: '',
-		phone: '',
-		city: '',
-		state: '',
-		zip: '',
-		search: '',
-		searchActive: true
-	};
+    initialState = {
+        userId: this.props.userId,
+        search: '',
+        name:  '',
+        type:  '',
+        insurance: '',
+        address:  '',
+        city:  '',
+        state:  '',
+        zip: '',
+        phone:  '',
+        searchActive: true
+    }
 
-	handleInput = (e) => {
-		const { name, value } = e.target;
-		this.setState({ [name]: value });
-	};
+    state = {
+        ...this.initialState
+    }
+
+    handleInput = (e) => {
+        const {name, value} = e.target;
+        this.setState({[name]: value})
+    }
 
 	toggleOption = (e) => {
 		e.persist();
-
-		const active = e.target.className.includes('search') ? true : false;
-
-		this.setState({
-			searchActive: active
-		});
-	};
+        const active = e.target.className.includes('search') ? true : false;
+        this.setState({
+            searchActive: active,
+        })
+    }
 
     submitProvider = () => {
         const provider = {
             userId: this.state.userId,
             route: 'addprovider',
             provider: {
-                name: this.state.name || '',
-                type: this.state.type || '',
-                insurance: this.state.insurance || '',
-                address: this.state.address || '',
-                city: this.state.city || '',
-                state: this.state.state || '',
-                zip: this.state.zip || '',
-                phone: this.state.phone || ''
+                name: this.state.name,
+                doctorType: this.state.type,
+                insurance: this.state.insurance,
+                address: this.state.address,
+                city: this.state.city,
+                state: this.state.state,
+                zip: this.state.zip,
+                phone: this.state.phone,
+                createdAt: moment()
             }
         };
 
-        Axios.post('/account/provider', provider).then(provider=>{
-            this.props.getNewUserInfo(this.props.userId)
+        Axios.post('/account/provider', provider).then(user=>{
+            this.props.setUser(user.data);
+            this.setState(this.initialState)
         });
     }
 
@@ -97,7 +102,7 @@ export default class ProviderForm extends Component {
 						</button>
 					</Link>
 				</div>
-			</div>
+            </div>
 		);
 	}
 }

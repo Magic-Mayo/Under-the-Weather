@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-
 import { Link } from 'react-router-dom';
-
+import SymptomList from './symptoms.json';
+import Symptoms from './Symptoms'
 
 export default class SymptomForm extends Component {
 	state = {

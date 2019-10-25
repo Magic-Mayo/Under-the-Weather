@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
 import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard'
 import FormContainer from './components/pages/FormContainer'
@@ -9,18 +8,18 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from '@fortawesome/free-brands-svg-icons'
 
 import {
-  faAngleDown,
-  faPlus,
-  faEnvelope,
-  faPhone,
-  faFilter,
-  faSortDown,
-//   faChild,
-  faEye,
-  faEyeSlash
-} from "@fortawesome/free-solid-svg-icons";
-import bodyParts from "./data/bodyParts.json";
-import "./App.scss";
+	faAngleDown,
+	faPlus,
+	faEnvelope,
+	faPhone,
+	faFilter,
+	faSortDown,
+	//   faChild,
+	faEye,
+	faEyeSlash
+} from '@fortawesome/free-solid-svg-icons';
+import bodyParts from './data/bodyParts.json';
+import './App.scss';
 import axios from 'axios';
 
 library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, fab);
@@ -95,7 +94,7 @@ class App extends Component {
         })
     }
 
-	handleChange = (event) => {
+    handleChange = (event) => {
 		this.setState({
 			symptomsValue: event.target.value
 		});
@@ -146,7 +145,9 @@ class App extends Component {
 							render={() => {
 								return (
 									<Dashboard
+									setUser={this.setUser}
 									user={this.state.user}
+									userId={this.state.userId}
 									menu={this.state.menu}
 									toggleForm={this.toggleForm}
 									formOpen={this.state.formOpen}

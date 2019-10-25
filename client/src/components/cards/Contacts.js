@@ -13,7 +13,10 @@ export default class ContactsCard extends Component {
                 <EmerContacts
                     name={res.name}
                     number={res.phone}
-                    address={res.address}
+                    address={res.address.streetAddress}
+                    city={res.address.city}
+                    state={res.address.state}
+                    zip={res.address.zip}
                     relationship={res.relationship}
                 />
             ))}
@@ -32,6 +35,7 @@ function EmerContacts(props) {
             <h4>Name: {props.name}</h4>
             <h4>Phone Number: {props.number}</h4>
             <h4>Address: {props.address}</h4>
+            <h4>&ensp;{props.city}, {props.state, props.zip} </h4>
             <h4>Relatonship: {props.relationship}</h4>
             <br></br>
         </div>
