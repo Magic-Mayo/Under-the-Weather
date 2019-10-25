@@ -3,25 +3,29 @@ import Search from './Search';
 import ManualEntry from './ManualEntry';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-
 export default class ProviderForm extends Component {
-	state = {
-		name: '',
-		type: '',
-		insurance: '',
-		address: '',
-		phone: '',
-		city: '',
-		state: '',
-		zip: '',
-		search: '',
-		searchActive: true
-	};
+    initialState = {
+        userId: this.props.userId,
+        search: '',
+        name:  '',
+        type:  '',
+        insurance: '',
+        address:  '',
+        city:  '',
+        state:  '',
+        zip: '',
+        phone:  '',
+        searchActive: true 
+    }
 
-	handleInput = (e) => {
-		const { name, value } = e.target;
-		this.setState({ [name]: value });
-	};
+    state = {
+        ...this.initialState
+    }
+
+    handleInput = (e) => {
+        const {name, value} = e.target;
+        this.setState({[name]: value})
+    }
 
 	toggleOption = (e) => {
 		e.persist();
@@ -34,19 +38,20 @@ export default class ProviderForm extends Component {
             userId: this.state.userId,
             route: 'addprovider',
             provider: {
-                name: this.state.name || '',
-                type: this.state.type || '',
-                insurance: this.state.insurance || '',
-                address: this.state.address || '',
-                city: this.state.city || '',
-                state: this.state.state || '',
-                zip: this.state.zip || '',
-                phone: this.state.phone || ''
+                name: this.state.name,
+                doctorType: this.state.type,
+                insurance: this.state.insurance,
+                address: this.state.address,
+                city: this.state.city,
+                state: this.state.state,
+                zip: this.state.zip,
+                phone: this.state.phone
             }
         };
 
-        Axios.post('/account/provider', provider).then(provider=>{
-            this.props.getNewUserInfo(this.props.userId)
+        Axios.post('/account/provider', provider).then(user=>{
+            this.props.setUser(user);
+            this.setState(this.initialState)
         });
     }
 

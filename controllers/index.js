@@ -36,7 +36,7 @@ module.exports = {
             case 'addinsurance': route = {$push: {'data.mediData.insurance': body.insurance}}; break;
             case 'updateinsurance': route = {$set: body.insurance}; break;
             case 'updatecontact': route = {$set: body.contact}; break;
-            case 'updateprovider': route = {$set: body.doctors}; break;
+            case 'updateprovider': route = {$set: body.provider}; break;
             case 'updatesymptom': route = {$set: body.symptom}; break;
             case 'deletesymptom': route = {$pull: {'data.symptomHistory': {_id: body.symptomId}}}; break;
             case 'deleteinsurance': route = {$pull: {'data.mediData.insurance': {_id: body.insuranceId}}}; break;
@@ -49,7 +49,6 @@ module.exports = {
             console.log(body)
             return db.User.findOneAndUpdate({_id: req.body.userId}, route, {new: true})
                 .then(data=>{
-                    console.log(data)
                     if (!data){return}
                     res.json({user: data.data})
                 })
