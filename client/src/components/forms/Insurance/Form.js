@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios'
+import Axios from 'axios';
 
 
 function InsuranceInput(props) {
@@ -47,7 +47,7 @@ export default class InsuranceForm extends Component {
 				policy_type:this.state.policy_type,
 				deductible:this.state.deductible
 
-		}
+		};
 
 		Axios.post('/account/insurance', insurance).then(
 			data =>{
@@ -55,7 +55,7 @@ export default class InsuranceForm extends Component {
 				this.setState({provider: '', policy_number:'', group_number:'', policy_type:'',deductible:''})
 			}
 		)
-	}
+	};
 		
 	render() {
 		return (

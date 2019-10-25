@@ -10,21 +10,25 @@ export default class InsuranceCard extends Component {
     render(){
         console.log(this.props.user.mediData)
         return(
+            <div className="Insurance card">
+            <h2>Insurance Information</h2>
+            {this.props.user.mediData.insurance.map((res)=>(
             <Insurance 
-            provider ={this.props.user.mediData.insurance[0].provider}
-            type ={this.props.user.mediData.insurance[0].insuranceType}
-            groupNumber ={this.props.user.mediData.insurance[0].groupNumber}
-            idNumber= {this.props.user.mediData.insurance[0].idNumber}
-            deductible={this.props.user.mediData.insurance[0].deductible}
+            provider ={res.provider}
+            type ={res.insuranceType}
+            groupNumber ={res.groupNumber}
+            idNumber= {res.idNumber}
+            deductible={res.deductible}
             />
+            ))}
+            </div>
         )
     };
 };
 
 function Insurance(props) {
     return (
-        <div className="Insurance card">
-            <h1>Insurance Information</h1>
+        <div className="Insurance card">            
             <h3>{props.provider}</h3>
             <h4>{props.type}</h4>
             <h4>Group Number: {props.groupNumber}</h4>
