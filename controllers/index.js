@@ -47,7 +47,7 @@ module.exports = {
         
         if(body.route.substring(0,3) === 'add'){
             console.log(body)
-            return db.User.findOneAndUpdate({_id: req.body.userId}, route, {new: true})
+            return db.User.findOneAndUpdate({_id: body.userId}, route, {new: true})
                 .then(data=>{
                     if (!data){return}
                     res.json({user: data.data})
