@@ -11,8 +11,8 @@ export default class Dashboard extends Component {
 
   deleteObject = props=> {   
     Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then(user=>{
-      this.props.setUser(user.data.user.data);
-      // console.log(user.data.user.data.mediData)
+      // this.props.setUser({user:user});
+      console.log({user:user})
     })    
   };
 
