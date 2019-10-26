@@ -7,7 +7,7 @@ function ContactInput(props) {
     return (
         <div className="contact-entry">
                 <form className="contact-entry-grid">
-                    <div>
+                    <div className="contact-entry-grid-item input-container contact-entry-grid-item-name">
                         <label htmlFor="cName">Emergency Contact Name:</label>
                         <label style={{color: "red", fontSize: "10px"}}>{props.errors}</label>
                         <input
@@ -139,9 +139,9 @@ export default class Form extends Component {
 
     render() {
 		return (
-			<div>
-                <h1>Hello, {this.props.name}</h1>
-                <h2>Add Emergency Contact information</h2>
+            <div className="contact-form-container">
+                <h1 className="contact-form-title">Hello, {this.props.name}</h1>
+                <h2 className="contact-form-subtitle">Add Emergency Contact information</h2>
                 <ContactInput 
                     cName={this.state.cName}
                     phone={this.state.phone}

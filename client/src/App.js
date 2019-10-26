@@ -6,7 +6,6 @@ import FormContainer from './components/pages/FormContainer';
 import Loading from './components/icons/loading';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import API from './utils/SymptomAPI';
 
 import {
 	faAngleDown,
@@ -90,32 +89,8 @@ class App extends Component {
 		});
 	};
 
-    handleChange = (event) => {
-		this.setState({
-			symptomsValue: event.target.value
-		});
-		console.log(event.target.value);
-	};
-
-	handleSubmit = (event) => {
-		event.preventDefault();
-		console.log(this.state.symptomsValue);
-		console.log(this.state.userId);
-
-		// set state to reflect the new symptoms in the user - push new symptom
-		// once we pushed new symptom, submit the whole edited user to the db.
-		API.updateUser({
-			userId: this.state.userId,
-			symptom: {
-				symptoms: this.state.symptomsValue
-			},
-			route: "addsymptom"
-		})
-			.then((res) => this.setUser(res.data))
-			.catch((err) => console.log(err));
-	};
-
 	render() {
+		console.log("USER DATA (APP JS)", this.state.userId)
 		return (
 			<div className="App">
 				<Header
@@ -147,8 +122,6 @@ class App extends Component {
 										toggleForm={this.toggleForm}
 										formOpen={this.state.formOpen}
 										isLoggedIn={this.state.isLoggedIn}
-										handleSubmit={this.handleSubmit}
-										handleChange={this.handleChange}
 									/>
 								);
 							}}
