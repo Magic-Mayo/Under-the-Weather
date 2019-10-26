@@ -9,6 +9,7 @@ function ContactInput(props) {
                 <form className="contact-entry-grid">
                     <div className="contact-entry-grid-item input-container contact-entry-grid-item-name">
                         <label htmlFor="cName">Emergency Contact Name:</label>
+                        <label style={{color: "red", fontSize: "10px"}}>{props.errors}</label>
                         <input
                             type="text"
                             name="cName"
@@ -18,15 +19,17 @@ function ContactInput(props) {
                     </div>
                     <div>
                         <label htmlFor="phone">Emergency Contact Phone Number:</label>
+                        <label style={{color: "red", fontSize: "10px"}}>{props.errors}</label>
                         <input
                             type="number"
                             name="phone"
                             value={props.phone}
                             onChange={props.handleInput}>
+                            {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                         </input>
                     </div>
                     <div>
-                        <label htmlFor="address">Emergency Contact Address:</label>
+                        <label htmlFor="address">Emergency Contact Address:</label>                        
                         <input
                             type="text"
                             name="address"
@@ -70,12 +73,14 @@ function ContactInput(props) {
                     </div>
                     <div>
                         <label htmlFor="relationship">Emergency Contact Relationship to User:</label>
+                        <label style={{color: "red", fontSize: "10px"}}>{props.errors}</label>
                         <input
                             type="text"
                             name="relationship"
                             value={props.relationship}
                             onChange={props.handleInput}>
                         </input>
+                        {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                     </div>
                 </form>
             <button onClick={props.contactToDatabase}>Submit</button>
@@ -92,7 +97,8 @@ export default class Form extends Component {
         city: '',
         state: '',
         zip: '',
-        relationship: ''
+        relationship: '',
+        errors:''
     }
 
     state = {
@@ -119,12 +125,16 @@ export default class Form extends Component {
             },
             userId: this.state.userId
         };
+        if(this.state.cName !=='' && this.state.phone !== '' && this.state.relationship !== ''){
         Axios.post('/account/contact', contacts).then(
             data => {
                 this.setState(this.initialState);
                 this.props.setUser(data.data)
             }
-        )
+        )}
+        else{
+            this.setState({errors: '*Required*'})
+        }
     };
 
     render() {
@@ -139,6 +149,7 @@ export default class Form extends Component {
                     relationship={this.state.relationship}
                     handleInput={this.handleInput}
                     contactToDatabase={this.contactToDatabase}
+                    errors={this.state.errors}
                 />
                 <div className="contact-form-submit-container">
                     <Link to="/dashboard" className="closeForm">

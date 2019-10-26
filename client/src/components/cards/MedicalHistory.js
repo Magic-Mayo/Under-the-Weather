@@ -5,7 +5,6 @@ export default class MedicalHist extends Component{
         results:[]
     };
     render(){
-        console.log(this.props.user)
         return(
             <MedicalHistory />
         )
