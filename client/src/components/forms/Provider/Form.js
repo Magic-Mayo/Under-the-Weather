@@ -19,16 +19,16 @@ export default class ProviderForm extends Component {
         phone:  '',
         errors:'',
         searchActive: true
-    }
+    };
 
     state = {
         ...this.initialState
-    }
+    };
 
     handleInput = (e) => {
         const {name, value} = e.target;
         this.setState({[name]: value})
-    }
+    };
 
 	toggleOption = (e) => {
 		e.persist();
@@ -36,7 +36,7 @@ export default class ProviderForm extends Component {
         this.setState({
             searchActive: active,
         })
-    }
+    };
 
     submitProvider = () => {
         const provider = {
@@ -61,8 +61,8 @@ export default class ProviderForm extends Component {
         });}
         else{           
             this.setState({errors: "This field required"});
-        }
-    }
+        };
+    };
 
 	render() {
         console.log(this.props)

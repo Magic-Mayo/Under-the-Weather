@@ -8,7 +8,7 @@ export default function InsuranceCard(props) {
         {props.user.mediData.insurance.map(ins=>(
             <div className="Insurance card" key={ins._id}>
                 <h3>{ins.provider}</h3>
-                <h4>{ins.type}</h4>
+                <h4>{ins.insuranceType}</h4>
                 {ins.groupNumber && <h4>Group Number: {ins.groupNumber}</h4>}
                 {ins.idNumber && <h4>Id Number: {ins.idNumber}</h4>}
                 {ins.deductible && <h4>Deductible: {ins.deductible}</h4>}

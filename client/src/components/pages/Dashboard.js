@@ -5,11 +5,21 @@ import Providers from "../cards/Providers";
 import Contacts from "../cards/Contacts";
 import Insurance from "../cards/Insurance";
 import Nav from "../Nav";
+import Axios from 'axios';
 
 export default class Dashboard extends Component {
+
+  deleteObject = props=>{
+    const del = {
+      route: props.route,
+      _id: props.id
+    }    
+    Axios.delete("deletecontact" + del._id)    
+  };
+
   render() {
     // console.log("HERE ARE THE USER DETAILS", this.props.user)
-		// console.log("DASHBOARD HAS THESE PROPS", this.props);    
+    // console.log("DASHBOARD HAS THESE PROPS", this.props);    
     return (
       <div className="Dashboard">
         <Symptoms name={this.props.name} symptoms={this.props.user.symptomHistory}/>
@@ -25,6 +35,7 @@ export default class Dashboard extends Component {
             <Contacts
             name={this.props.name}
             user={this.props.user}
+            deleteObject={this.deleteObject}                       
             />
             <Insurance
             name={this.props.name}
@@ -46,3 +57,6 @@ export default class Dashboard extends Component {
     );
   }
 }
+
+
+
