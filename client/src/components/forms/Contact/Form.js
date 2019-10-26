@@ -70,8 +70,8 @@ function ContactInput(props) {
                         />
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-relationship">
-                        <label htmlFor="relationship">Emergency Contact Relationship to User:</label>
-                        <label style={{color: "red", fontSize: "10px"}}>{props.errors}</label>
+                        <label htmlFor="relationship">Relationship:</label>
+                        {/* <label style={{color: "red", fontSize: "10px"}}>{props.errors}</label> */}
                         <input
                             type="text"
                             name="relationship"
@@ -81,7 +81,9 @@ function ContactInput(props) {
                         {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                     </div>
                 </form>
+            <div class="contact-form-submit-container button">
             <button onClick={props.contactToDatabase}>Submit</button>
+            </div>
         </div>
     )
 };
@@ -138,6 +140,8 @@ export default class Form extends Component {
     render() {
 		return (
 			<div className="contact-form-container">
+                {/* <h1>Hello, {this.props.name}</h1>
+                <h2>Add Emergency Contact information</h2> */}
                 <ContactInput 
                     cName={this.state.cName}
                     phone={this.state.phone}

@@ -7,40 +7,54 @@ function InsuranceInput(props) {
 		<div className="insurance-entry">
 			<form className="insurance-entry-grid">
 				<div className="input-container insurance-entry-grid-item insurance-entry-grid-item-name"> 
-				Insurace Name:<input
+				<label htmlFor="provider">Insurance Name:</label>
+				<input
 					type="text"
 					name="provider"
 					value={props.provider}
 					onChange={props.handleInsuranceChange}
 				/>
 				</div>
-				Policy/Identification Number:<input
+				<div className="input-container insurance-entry-grid-item insurance-entry-grid-item-number"> 
+				<label htmlFor="idNumber">Policy/Identification Number</label>
+				<input
 					type="text"
 					name="idNumber"
 					value={props.idNumber}
 					onChange={props.handleInsuranceChange}
 				/>
-				Group Number:<input
+				</div>
+				<div className="input-container insurance-entry-grid-item insurance-entry-grid-item-grpnumber"> 
+				<label htmlFor="groupNumber">Group Number:</label>
+				<input
 					type="text"
 					name="groupNumber"
 					value={props.groupNumber}
 					onChange={props.handleInsuranceChange}
 				/>
-				Policy Type:<input
+				</div>
+				<div className="input-container insurance-entry-grid-item insurance-entry-grid-item-type"> 
+				<label htmlFor="insuranceType">Policy Type:</label>
+				<input
 					type="text"
 					name="insuranceType"
 					value={props.insuranceType}
 					onChange={props.handleInsuranceChange}
 				/>
-				Deductible:<input
+				</div>
+				<div className="input-container insurance-entry-grid-item insurance-entry-grid-item-deduct"> 
+				<label htmlFor="deductible">Deductible:</label>
+				<input
 					type="text"
 					name="deductible"
 					value={props.deductible}
 					onChange={props.handleInsuranceChange}
 				/>
-				{/* <input type="text"></input> */}
+				</div>
 			</form>
+			<div class="insurance-form-submit-container button">
 			<button onClick={props.insuranceToDatabase}>Submit</button>
+			</div>
 		</div>
 	)
 };
@@ -81,10 +95,9 @@ export default class InsuranceForm extends Component {
 
 	render() {
 		return (
-			<div>
-				<h1>{this.props.formType}</h1>
-				<p>Enter a {this.props.formType}</p>
-                <div>			
+			<div className="insurance-form-container">
+				{/* <h1>{this.props.formType}</h1>
+				<p>Enter a {this.props.formType}</p> */}
                     <InsuranceInput 
                     name={this.props.name}
                     provider={this.state.provider}
@@ -95,7 +108,6 @@ export default class InsuranceForm extends Component {
                     handleInsuranceChange={this.handleInsuranceChange}
                     insuranceToDatabase={this.insuranceToDatabase}
                     />			
-                </div>
                 <div className="insurance-form-submit-container">
                     <Link to="/dashboard" className="closeForm">
                         <button type="button" className="insurance-form-close">
