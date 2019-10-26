@@ -60,3 +60,37 @@
         
     }
 }
+
+.symptoms-result {
+
+    &-container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 60% 40%;
+        grid-template-rows: 1fr 1fr;
+        padding: 0 1.75rem
+    }
+
+    &-item {
+        &-type {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: left;
+            grid-row: 1/2;
+            grid-column: 1/2;
+        }
+        &-severity {
+            font-style: italic;
+            font-size: 1.75rem;
+            text-align: left;
+            grid-column: 1/2;
+            grid-row: 2/3;
+        }
+        &-time {
+            font-weight: 600;
+            font-size: 2rem;
+            grid-column: 2/3;
+            grid-row: 1/2;
+        }
+    }
+}

@@ -23,6 +23,7 @@ function ContactInput(props) {
                             name="phone"
                             value={props.phone}
                             onChange={props.handleInput}>
+                            {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                         </input>
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-address">
@@ -70,12 +71,14 @@ function ContactInput(props) {
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-relationship">
                         <label htmlFor="relationship">Emergency Contact Relationship to User:</label>
+                        <label style={{color: "red", fontSize: "10px"}}>{props.errors}</label>
                         <input
                             type="text"
                             name="relationship"
                             value={props.relationship}
                             onChange={props.handleInput}>
                         </input>
+                        {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                     </div>
                 </form>
             <button onClick={props.contactToDatabase}>Submit</button>
@@ -92,7 +95,8 @@ export default class Form extends Component {
         city: '',
         state: '',
         zip: '',
-        relationship: ''
+        relationship: '',
+        errors:''
     }
 
     state = {
@@ -119,12 +123,16 @@ export default class Form extends Component {
             },
             userId: this.state.userId
         };
+        if(this.state.cName !=='' && this.state.phone !== '' && this.state.relationship !== ''){
         Axios.post('/account/contact', contacts).then(
             data => {
                 this.setState(this.initialState);
                 this.props.setUser(data.data)
             }
-        )
+        )}
+        else{
+            this.setState({errors: '*Required*'})
+        }
     };
 
     render() {
@@ -137,6 +145,7 @@ export default class Form extends Component {
                     relationship={this.state.relationship}
                     handleInput={this.handleInput}
                     contactToDatabase={this.contactToDatabase}
+                    errors={this.state.errors}
                 />
                 <div className="contact-form-submit-container">
                     <Link to="/dashboard" className="closeForm">

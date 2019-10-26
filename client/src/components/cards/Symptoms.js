@@ -1,8 +1,8 @@
 import React from 'react';
-
+import moment from 'moment';
 import Filter from '../forms/Symptom/Filter';
 
-function Symptoms(props) {
+export default function Symptoms(props) {
 
     // DUMMY DATA STARTS HERE
 
@@ -65,12 +65,20 @@ function Symptoms(props) {
             />
 
             <section className="Symptoms-content-container">
-                {/* {this.props.symptomHistory.map(symptoms=>{
-                    map out symptoms with map function in place
-                })} */}
+                {props.symptoms.map(symptoms=>(
+                    <div key={symptoms._id} className="symptoms-result-container">
+                        <p className="symptoms-result-item-type" >{symptoms.painType} {symptoms.symptoms}</p>
+                        <p className="symptoms-result-item-severity">{symptoms.severity}</p>
+                        <p className="symptoms-result-item-time">{
+                            // console.log(moment().diff(symptoms.time, 'hours'))
+                            // moment().diff(symptoms.time, 'hours') > 0 && moment().diff(symptoms.time, 'hours') < 24 ? 
+                            //     (moment().to(symptoms.time) > 24 && moment().to(symptoms.time) > 48 ? 'Yesterday' : 
+                            //     moment(symptoms.time).format('h:MM A - DD MMM')
+                            }
+                        </p>
+                    </div>
+                ))}
             </section>
         </div>
     );
 }
-
-export default Symptoms;

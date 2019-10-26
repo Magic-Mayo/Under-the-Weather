@@ -16,20 +16,20 @@ function InsuranceInput(props) {
 				</div>
 				Policy/Identification Number:<input
 					type="text"
-					name="policy_number"
-					value={props.policy_number}
+					name="idNumber"
+					value={props.idNumber}
 					onChange={props.handleInsuranceChange}
 				/>
 				Group Number:<input
 					type="text"
-					name="group_number"
-					value={props.group_number}
+					name="groupNumber"
+					value={props.groupNumber}
 					onChange={props.handleInsuranceChange}
 				/>
 				Policy Type:<input
 					type="text"
-					name="policy_type"
-					value={props.policy_type}
+					name="insuranceType"
+					value={props.insuranceType}
 					onChange={props.handleInsuranceChange}
 				/>
 				Deductible:<input
@@ -47,10 +47,11 @@ function InsuranceInput(props) {
 
 export default class InsuranceForm extends Component {
 	state = {
+		userId: this.props.userId,
 		provider: '',
-		policy_number: '',
-		group_number: '',
-		policy_type: '',
+		idNumber: '',
+		groupNumber: '',
+		insuranceType: '',
 		deductible: ''
 	};
 
@@ -61,16 +62,20 @@ export default class InsuranceForm extends Component {
 
 	insuranceToDatabase = () => {
 		const insurance = {
+			route:"addinsurance",
+			insurance:{
 			provider: this.state.provider,
-			policy_number: this.state.policy_number,
-			group_number: this.state.group_number,
-			policy_type: this.state.policy_type,
+			idNumber: this.state.idNumber,
+			groupNumber: this.state.groupNumber,
+			insuranceType: this.state.insuranceType,
 			deductible: this.state.deductible
+			},
+			userId:this.state.userId
 		};
 
 		Axios.post('/account/insurance', insurance).then((data) => {
 			console.log(data);
-			this.setState({ provider: '', policy_number: '', group_number: '', policy_type: '', deductible: '' });
+			this.setState({ provider: '', idNumber: '', groupNumber: '', insuranceType: '', deductible: '' });
 		});
 	};
 
@@ -83,9 +88,9 @@ export default class InsuranceForm extends Component {
                     <InsuranceInput 
                     name={this.props.name}
                     provider={this.state.provider}
-                    policy_number={this.state.policy_number}
-                    group_number={this.state.group_number}
-                    policy_type={this.state.policy_type}
+                    idNumber={this.state.idNumber}
+                    groupNumber={this.state.groupNumber}
+                    insuranceType={this.state.insuranceType}
                     deductible={this.state.deductible}
                     handleInsuranceChange={this.handleInsuranceChange}
                     insuranceToDatabase={this.insuranceToDatabase}
