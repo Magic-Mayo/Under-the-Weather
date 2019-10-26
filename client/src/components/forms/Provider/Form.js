@@ -61,7 +61,7 @@ export default class ProviderForm extends Component {
     }
 
 	render() {
-        console.log(this.props)
+        console.log("THIS IS THE PROVIDER FORM PROPS",this.props)
 		return (
 			<div className="provider-form-container">
 				<div className="provider-form-options">
