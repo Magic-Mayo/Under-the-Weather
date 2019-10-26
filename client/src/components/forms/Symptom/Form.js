@@ -29,6 +29,7 @@ export default class SymptomForm extends Component {
 			(symptom, index) => (this.state.SymptomList[index].Name = symptom.Name.toLowerCase())
 		);
 
+	//SEANS STUFF WITH SEARCH BAR 
 	updateDropDown = (e) => {
 		e.persist()
 		this.setState({
@@ -147,11 +148,28 @@ export default class SymptomForm extends Component {
 	}
 }
 
-// function Input(props) {
-// 	console.log(props)
-// 	return (
-// 		<div>
 
-// 		</div>
-// 	);
-// }
+
+//SEANS SEARCH BAR + BUTTON 
+function Input(props) {
+	console.log(props)
+	return (
+		<div>
+			<form className="symptom-form">
+				<input
+					value={props.searchVal}
+					name="Symptom Search"
+					type="text"
+					placeholder="migraine"
+					className="symptom-form-search-input"
+					onChange={props.updateDropDown}
+				/>
+				<button type="button" className="symptom-form-search-submit">
+					Enter
+				</button>
+			</form>
+		</div>
+	);
+}
+
+//END OF SEANS SHIT
