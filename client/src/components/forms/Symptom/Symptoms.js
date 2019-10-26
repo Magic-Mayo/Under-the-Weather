@@ -18,7 +18,7 @@ class Symptoms extends Component {
                 <Form onSubmit={this.props.handleSubmit}>
                     <Form.Group>
                         <Form.Label>Select Symptom</Form.Label>
-                        <Form.Control as="select" value={this.state.symptomsValue} onChange={this.props.handleChange}>
+                        <Form.Control as="select" value={this.props.symptomsValue} onChange={this.props.handleChange}>
                             <option></option>
                             {this.state.symptoms.map(symptoms => (
                                 <option id={symptoms.ID}
