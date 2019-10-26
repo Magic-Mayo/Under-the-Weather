@@ -89,12 +89,6 @@ class App extends Component {
 		});
 	};
 
-	getNewUserInfo = () => {
-        axios.get(`/user/${this.state.userId}`).then(user=>{
-            this.setState({user: user.data})
-        })
-    }
-
     handleChange = (event) => {
 		this.setState({
 			symptomsValue: event.target.value
