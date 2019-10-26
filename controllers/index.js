@@ -43,7 +43,7 @@ module.exports = {
             case 'deletecontact': route = {$pull: {'data.emergencyContacts': {_id: body.contactId}}}; break;
             case 'deleteprovider': route = {$pull: {'data.mediData.doctors': {_id: body.providerId}}}; break;
         }
-
+        console.log(body)
         
         if(body.route.substring(0,3) === 'add'){
             console.log(body)

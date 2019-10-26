@@ -9,12 +9,10 @@ import Axios from 'axios';
 
 export default class Dashboard extends Component {
 
-  deleteObject = props=>{
-    const del = {
-      route: props.route,
-      _id: props.id
-    }    
-    Axios.delete("deletecontact" + del._id)    
+  deleteObject = props=> {   
+    Axios.delete(`/account/${props.card}/${props.route}/${props._id}`).then(user=>{
+      props.setUser(user);
+    })    
   };
 
   render() {
@@ -22,7 +20,8 @@ export default class Dashboard extends Component {
     // console.log("DASHBOARD HAS THESE PROPS", this.props);    
     return (
       <div className="Dashboard">
-        <Symptoms name={this.props.name} symptoms={this.props.user.symptomHistory}/>
+        <Symptoms name={this.props.name} symptoms={this.props.user.symptomHistory}
+        card='symptom'/>
         <section className="container-right">
             <MedicalHistory
             name={this.props.name}
@@ -31,15 +30,18 @@ export default class Dashboard extends Component {
             <Providers
             name={this.props.name}
             user={this.props.user}
+            card='provider'
             />
             <Contacts
             name={this.props.name}
-            user={this.props.user}
-            deleteObject={this.deleteObject}                       
+            user={this.props.user}            
+            deleteObject={this.deleteObject}
+            card ='contact'
             />
             <Insurance
             name={this.props.name}
             user={this.props.user}
+            card='insurance'
             />
         </section>
         <Nav

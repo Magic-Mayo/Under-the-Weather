@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 export default function ContactsCard(props) { 
+    console.log(props)
     return (
         <div className="Contacts card">
         <h2>Emergency Contacts</h2>
@@ -11,7 +12,7 @@ export default function ContactsCard(props) {
                 {contact.address && <h4>Address: {contact.address.streetAddress}</h4>}
                 {contact.address && <h4>&ensp;{contact.address.city}, {contact.address.state, contact.address.zip}</h4>}
                 {contact.relationship && <h4>Relatonship: {contact.relationship}</h4>}
-                <button onClick={props.deleteObject}>delete</button>
+                <button onClick={() => props.deleteObject({key:contact._id, card:props.card})}>delete</button>
                 <br/>                
             </div>
         ))}
