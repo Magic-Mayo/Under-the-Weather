@@ -11,7 +11,7 @@ export default function ContactsCard(props) {
                 <h4>Phone Number: {contact.phone}</h4>
                 {contact.address && <h4>Address: {contact.address.streetAddress}</h4>}
                 {contact.address && <h4>&ensp;{contact.address.city}, {contact.address.state} {contact.address.zip}</h4>}
-                {contact.relationship && <h4>Relatonship: {contact.relationship}</h4>}
+                {contact.relationship && <h4>Relationship: {contact.relationship}</h4>}
                 <button onClick={() => props.deleteObject({_id:contact._id, card:props.card, route:props.route})}>delete</button>
                 <br/>                
             </div>

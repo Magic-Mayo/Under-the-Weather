@@ -14,35 +14,46 @@ export default class SymptomForm extends Component {
 		responses: []
 	};
 
+	setSymptom = (e) => {
+		console.log(e.target.value)
+
+		this.setState({
+			symptomsValue: e.target.value
+		})
+
+		this.handleSubmit()
+	}
+
 	setLowerCase = (Sy) =>
 		this.state.SymptomList.map(
 			(symptom, index) => (this.state.SymptomList[index].Name = symptom.Name.toLowerCase())
 		);
 
+	//SEANS STUFF WITH SEARCH BAR 
 	updateDropDown = (e) => {
-		e.persist();
+		e.persist()
 		this.setState({
 			symptomsValue: e.target.value
-		});
-	};
+		})
+	}
 
 	handleChange = (event) => {
 		console.log('THE INPUT THAT WAS SELECTED ' + event.target.value);
 
 		this.setState({
 			symptomsValue: event.target.value
-		});
+		})
 
-		this.checkMatch(event.target.value);
-	};
+		this.checkMatch(event.target.value)
+	}
 
 	checkMatch = (val) => {
 		const filteredResults = this.state.SymptomList.filter((symptom) => {
 			// console.log(symptom.Name);
 
 			if (symptom.Name.includes(val, 0)) {
-				console.log(symptom.Name);
-				return symptom.Name;
+				console.log(symptom.Name)
+				return symptom.Name
 			}
 			// symptom.Name.startsWith(val)})
 
@@ -55,7 +66,7 @@ export default class SymptomForm extends Component {
 	};
 
 	handleSubmit = (event) => {
-		event.preventDefault();
+		if (event) event.preventDefault()
 		console.log('+++++++++++++++++++++++++++++');
 		console.log(this.state.symptomsValue);
 		console.log(this.props.userId);
@@ -112,7 +123,7 @@ export default class SymptomForm extends Component {
 						{this.state.responses.map((response) => (
 							<div className="symptom-form-results-item">
 								<h5 className="item-name">{response.Name}</h5>
-								<button type="submit" className="add-symptom">
+								<button value={response.Name} onClick={this.setSymptom} className="add-symptom">
 									<FontAwesomeIcon icon="plus" className="add-symptom-icon" />
 								</button>
 							</div>
@@ -137,11 +148,28 @@ export default class SymptomForm extends Component {
 	}
 }
 
-// function Input(props) {
-// 	console.log(props)
-// 	return (
-// 		<div>
 
-// 		</div>
-// 	);
-// }
+
+//SEANS SEARCH BAR + BUTTON 
+function Input(props) {
+	console.log(props)
+	return (
+		<div>
+			<form className="symptom-form">
+				<input
+					value={props.searchVal}
+					name="Symptom Search"
+					type="text"
+					placeholder="migraine"
+					className="symptom-form-search-input"
+					onChange={props.updateDropDown}
+				/>
+				<button type="button" className="symptom-form-search-submit">
+					Enter
+				</button>
+			</form>
+		</div>
+	);
+}
+
+//END OF SEANS SHIT
