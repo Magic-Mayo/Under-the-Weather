@@ -8,7 +8,7 @@ function ContactInput(props) {
         <div className="contact-entry">
                 <form className="contact-entry-grid">
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-name">
-                        <label htmlFor="cName">Emergency Contact Name:</label>
+                        <label htmlFor="cName">Name:</label>
                         <input
                             type="text"
                             name="cName"
@@ -17,7 +17,7 @@ function ContactInput(props) {
                         </input>
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-phone">
-                        <label htmlFor="phone">Emergency Contact Phone Number:</label>
+                        <label htmlFor="phone">Phone Number:</label>
                         <input
                             type="number"
                             name="phone"
@@ -26,7 +26,7 @@ function ContactInput(props) {
                         </input>
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-address">
-                        <label htmlFor="address">Emergency Contact Address:</label>
+                        <label htmlFor="address">Contact Address:</label>
                         <input
                             type="text"
                             name="address"
