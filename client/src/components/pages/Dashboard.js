@@ -12,23 +12,28 @@ export default class Dashboard extends Component {
 		// console.log("DASHBOARD HAS THESE PROPS", this.props);    
     return (
       <div className="Dashboard">
-        <Symptoms name={this.props.name} symptoms={this.props.symptomHistory}/>
+        <Symptoms
+        name={this.props.name}
+        symptoms={this.props.user.symptomHistory}/>
         <section className="container-right">
+            {/* Future use
+
             <MedicalHistory
             name={this.props.name}
             user={this.props.user}
-            />
+            /> */}
+
             <Providers
             name={this.props.name}
-            user={this.props.user}
+            providers={this.props.user.mediData.doctors}
             />
             <Contacts
             name={this.props.name}
-            user={this.props.user}
+            contacts={this.props.user.emergencyContacts}
             />
             <Insurance
             name={this.props.name}
-            user={this.props.user}
+            insurance={this.props.user.mediData.insurance}
             />
         </section>
         <Nav
