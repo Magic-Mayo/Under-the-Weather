@@ -8,7 +8,11 @@ export default class InsuranceLink extends Component {
         console.log(this.props);
         return (
             <div className="InsuranceLink">
-                <FormContainer message="ADD INSURANCE" isLoggedIn={this.props.isLoggedIn} name={this.props.name} formType="Insurance"/>
+                <FormContainer message="ADD INSURANCE" isLoggedIn={this.props.isLoggedIn}
+                    getNewUserInfo={this.props.getNewUserInfo}
+                    userId={this.props.userId}
+                    name={this.props.name}
+                    formType="Insurance" />
 
             </div>
         )
