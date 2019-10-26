@@ -40,6 +40,8 @@ export default class Dashboard extends Component {
             contact={this.props.user.emergencyContacts}            
             deleteObject={this.deleteObject}
             card ='contact'
+            route='deletecontact'
+            _id={this.props._id}                    
             />
             <Insurance
             name={this.props.name}
