@@ -16,6 +16,7 @@ export default {
   },
   // Saves a User to the database
   updateUser: function(userData) {
-    return axios.put("/api/users/" + userData.id, userData);
+    console.log(userData);
+    return axios.put("/account/symptom", userData);
   }
 };

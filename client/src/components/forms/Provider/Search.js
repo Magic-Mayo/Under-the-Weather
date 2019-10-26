@@ -33,15 +33,20 @@ class Search extends Component {
 			};
 
 		navigator.geolocation.getCurrentPosition(success, error, options);
-	};
+	}
 
 	drSearch = (event) => {
 		event.preventDefault();
 		API.SearchSpecialty(this.props.search, this.state.latitude, this.state.longitude).then((res) => {
-			console.log(res.data.data);
-			this.setState({ results: res.data.data });
-		});
-	};
+			console.log(res.data.data)
+			this.setState({ results: res.data.data })
+		})
+	}
+
+	updatePhoneDisplay = (event) => {
+		event.persist();
+		console.log(event)
+	}
 
 	render() {
 		return (
@@ -63,6 +68,7 @@ class Search extends Component {
 							lastName={res.profile.last_name}
 							bio={res.profile.bio}
 							practices={res.practices}
+							updatePhoneDisplay={this.updatePhoneDisplay}
 						/>
 					))}
 				</section>
@@ -106,21 +112,26 @@ function Results(props) {
 			<p>Bio: {props.bio}</p>
 			<p>
 				Practices:{' '}
-				<select>
+				<select onClick={props.updatePhoneDisplay}>
 					<option value="">Office Locations</option>
-					{props.practices.map((res) => (
-						<option value="">
-							{res.name}
-							{' Address: ' +
-								res.visit_address.street +
-								' ' +
-								res.visit_address.city +
-								' ' +
-								res.visit_address.state +
-								' ' +
-								res.visit_address.zip}
-						</option>
-					))}
+					{props.practices.map((practice) => {
+						// console.log(practice).phones[{type: "landline"}];
+						const phone = practice.phones.filter(phone => phone.type === 'landline')[0].number
+						console.log(practice.name + "phone number is" + phone);
+						return (
+							<option value="" phone={phone}>
+								{practice.name}
+								{' Address: ' +
+									practice.visit_address.street +
+									' ' +
+									practice.visit_address.city +
+									' ' +
+									practice.visit_address.state +
+									' ' +
+									practice.visit_address.zip}
+							</option>
+						)
+					})}
 				</select>
 			</p>
 		</div>

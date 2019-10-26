@@ -17,6 +17,8 @@ export default class SymptomForm extends Component {
 		})
 	}
 	render() {
+		console.log("THIS IS THE SYMPTOM FORM PROPS",this.props)
+
 		return (
 			<div>
 				<h1>{this.props.formType}</h1>
