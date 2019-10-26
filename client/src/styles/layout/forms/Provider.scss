@@ -97,11 +97,15 @@
 
         &-item {
             display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 
     &-submit {
-
+        position: fixed;
+        bottom: 15rem;
+        width: 30%;
         &-container {
             position: absolute;
             z-index: 100;

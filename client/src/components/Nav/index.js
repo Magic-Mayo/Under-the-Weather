@@ -105,10 +105,9 @@ class Nav extends React.Component {
 						return (
 							<SymptomLink 
                                 isLoggedIn={this.props.isLoggedIn}
-                                toggleMenu={this.toggleMenu}
+								toggleMenu={this.toggleMenu}
+								userId={this.props.userId}
 								dropDownVisible={this.state.dropDownVisible}
-								handleChange={this.props.handleChange}
-								handleSubmit={this.props.handleSubmit}
 							/>
 						)
 					}}
