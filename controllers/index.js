@@ -69,7 +69,7 @@ module.exports = {
             return db.User.findOneAndUpdate({_id: param.userId}, route, {new:true})
                 .then(data=>{
                     console.log('delete',data)
-                    return res.json({user: data})
+                    return res.json({user: data.data})
                 })
                 .catch(err=>res.json('Error removing data.  Please try again later.'));
         }
