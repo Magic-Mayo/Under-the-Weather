@@ -9,6 +9,7 @@ export default class SymptomForm extends Component {
 		searchVal: ''
 	}
 
+	//SEANS STUFF WITH SEARCH BAR 
 	updateDropDown = (e) => {
 		e.persist();
 		this.setState({
@@ -38,6 +39,8 @@ export default class SymptomForm extends Component {
 	}
 }
 
+
+//SEANS SEARCH BAR + BUTTON 
 function Input(props) {
 	console.log(props)
 	return (
@@ -58,3 +61,5 @@ function Input(props) {
 		</div>
 	);
 }
+
+//END OF SEANS SHIT
