@@ -10,6 +10,7 @@ export default function Providers(props) {
                 {doc.doctorType && <p className="provider-title">{doc.doctorType}</p>}
                 {doc.phone && <p className="provider-phone">Phone: {doc.phone}</p>}
                 {doc.email && <p className="provider-email">Email: {doc.email}</p>}
+                <button onClick={() => props.deleteObject({_id:doc._id, card:props.card, route:props.route})}>delete</button>
             </div>)
             })}
         </div>

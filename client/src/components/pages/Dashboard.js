@@ -10,8 +10,9 @@ import Axios from 'axios';
 export default class Dashboard extends Component {
 
   deleteObject = props=> {   
-    Axios.delete(`/account/${props.card}/${props.route}/${props._id}`).then(user=>{
-      props.setUser(user);
+    Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then(user=>{
+      this.props.setUser(user.data.user.data);
+      // console.log(user.data.user.data.mediData)
     })    
   };
 
@@ -21,7 +22,12 @@ export default class Dashboard extends Component {
     return (
       <div className="Dashboard">
         <Symptoms name={this.props.name} symptoms={this.props.user.symptomHistory}
-        card='symptom'/>
+        card='symptom'
+        deleteObject={this.deleteObject}        
+        route='deletesymptom'
+        _id={this.props._id}  
+        />
+        
         <section className="container-right">
             {/* Future use
 
@@ -33,18 +39,26 @@ export default class Dashboard extends Component {
             <Providers
             name={this.props.name}
             providers={this.props.user.mediData.doctors}
-            card='provider'
+            deleteObject={this.deleteObject}
+            card='provider'            
+            route='deleteprovider'
+            _id={this.props._id}  
             />
             <Contacts
             name={this.props.name}
             contact={this.props.user.emergencyContacts}            
             deleteObject={this.deleteObject}
             card ='contact'
+            route='deletecontact'
+            _id={this.props._id}                    
             />
             <Insurance
             name={this.props.name}
             insurance={this.props.user.mediData.insurance}
+            deleteObject={this.deleteObject}           
             card='insurance'
+            route='deleteinsurance'
+            _id={this.props._id}  
             />
         </section>
         <Nav

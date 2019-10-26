@@ -29,6 +29,7 @@ module.exports = {
     updateAccount: (req,res,next)=>{
         const body = req.body;
         const param = req.params;
+        const bodyOrNot = body.route || 'not';
         let route;
         switch(body.route){
             case 'addprovider': route = {$push: {'data.mediData.doctors': body.provider}}; break;
@@ -46,8 +47,9 @@ module.exports = {
             case 'deletecontact': route = {$pull: {'data.emergencyContacts': {_id: param.id}}}; break;
             case 'deleteprovider': route = {$pull: {'data.mediData.doctors': {_id: param.id}}}; break;
         }
+        console.log("look here", param.id)
         
-        if(body.route.substring(0,3) === 'add'){
+        if(bodyOrNot.substring(0,3) === 'add'){
             console.log(body)
             return db.User.findOneAndUpdate({_id: body.userId}, route, {new: true})
                 .then(data=>{
@@ -55,7 +57,7 @@ module.exports = {
                     res.json({user: data.data})
                 })
                 .catch(err=>res.json('Error adding data.  Please try again later.'));
-        } else if(body.route.substring(0,3) === 'upd'){
+        } else if(bodyOrNot.substring(0,3) === 'upd'){
             return db.User.findOneAndUpdate({[body.key]: body.userId}, route, {new:true})
                 .then(data=>{
                     console.log(data)
@@ -63,8 +65,8 @@ module.exports = {
                     res.json({user: data.data})
                 })
                 .catch(err=>res.json(err));
-        } else {
-            return db.User.findOneAndUpdate({_id: param.id}, route, {new:true})
+        } else if(param.route.substring(0,3)==='del' ){
+            return db.User.findOneAndUpdate({_id: param.userId}, route, {new:true})
                 .then(data=>{
                     console.log('delete',data)
                     return res.json({user: data})
