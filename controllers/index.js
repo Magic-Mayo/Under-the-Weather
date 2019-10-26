@@ -28,6 +28,7 @@ module.exports = {
     },
     updateAccount: (req,res,next)=>{
         const body = req.body;
+        const param = req.params;
         let route;
         switch(body.route){
             case 'addprovider': route = {$push: {'data.mediData.doctors': body.provider}}; break;
@@ -38,12 +39,13 @@ module.exports = {
             case 'updatecontact': route = {$set: body.contact}; break;
             case 'updateprovider': route = {$set: body.provider}; break;
             case 'updatesymptom': route = {$set: body.symptom}; break;
-            case 'deletesymptom': route = {$pull: {'data.symptomHistory': {_id: body.symptomId}}}; break;
-            case 'deleteinsurance': route = {$pull: {'data.mediData.insurance': {_id: body.insuranceId}}}; break;
-            case 'deletecontact': route = {$pull: {'data.emergencyContacts': {_id: body.contactId}}}; break;
-            case 'deleteprovider': route = {$pull: {'data.mediData.doctors': {_id: body.providerId}}}; break;
         }
-        console.log(body)
+        switch(param.route){        
+            case 'deletesymptom': route = {$pull: {'data.symptomHistory': {_id: param.id}}}; break;
+            case 'deleteinsurance': route = {$pull: {'data.mediData.insurance': {_id: param.id}}}; break;
+            case 'deletecontact': route = {$pull: {'data.emergencyContacts': {_id: param.id}}}; break;
+            case 'deleteprovider': route = {$pull: {'data.mediData.doctors': {_id: param.id}}}; break;
+        }
         
         if(body.route.substring(0,3) === 'add'){
             console.log(body)
@@ -61,8 +63,8 @@ module.exports = {
                     res.json({user: data.data})
                 })
                 .catch(err=>res.json(err));
-        } else if(body.route.substring(0,3) === 'del'){
-            return db.User.findOneAndUpdate({_id: body.userId}, route, {new:true})
+        } else {
+            return db.User.findOneAndUpdate({_id: param.id}, route, {new:true})
                 .then(data=>{
                     console.log('delete',data)
                     return res.json({user: data})
@@ -97,11 +99,11 @@ module.exports = {
             }).catch(err=>console.log(err))
         }).catch(err=>console.log(err))
     },
-    logSymptom: (req,res)=>{
-        db.User.findOneAndUpdate({userName: req.params.user},req.body)
-            .then(user=>{console.log(user)})
-            .catch(err=>console.log(err))
-    },
+    // logSymptom: (req,res)=>{
+    //     db.User.findOneAndUpdate({userName: req.params.user},req.body)
+    //         .then(user=>{console.log(user)})
+    //         .catch(err=>console.log(err))
+    // },
     checkToken: (req,res)=>{
         const token = req.body.token;
         db.User.findOne({loginToken: token}).then(user=>{
@@ -122,6 +124,7 @@ module.exports = {
 			.catch((err) => res.status(422).json(err));
 	},
 	findById: function(req, res) {
+        console.log("THIS IS INSIDE THE FINDBYID FUNCTION", req.params);
 		db.User.findById(req.params.id || req.params.user).then((dbModel) => res.json(dbModel)).catch((err) => res.status(422).json(err));
 	},
 	create: function(req, res) {

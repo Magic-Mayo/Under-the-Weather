@@ -23,10 +23,13 @@ export default class Dashboard extends Component {
         <Symptoms name={this.props.name} symptoms={this.props.user.symptomHistory}
         card='symptom'/>
         <section className="container-right">
+            {/* Future use
+
             <MedicalHistory
             name={this.props.name}
             user={this.props.user}
-            />
+            /> */}
+
             <Providers
             name={this.props.name}
             user={this.props.user}
@@ -53,6 +56,8 @@ export default class Dashboard extends Component {
         userId={this.props.userId}
         user={this.props.user}
         setUser={this.props.setUser}
+        handleSubmit={this.props.handleSubmit}
+        handleChange={this.props.handleChange}
         />
         {/* <Forms /> */}
       </div>

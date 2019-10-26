@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 3001;
 const session = require("express-session");
 const bodyParser = require("body-parser");
 const path = require('path');
+const routes = require('./routes');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -24,6 +25,9 @@ require('./routes/email')(app);
 require('./routes/account')(app);
 require('./routes/localLogin')(app);
 
+
+app.use(routes);
+
 app.get('/googleb7dbc79786b470be.html',(req,res)=>{
     res.sendFile(path.join(__dirname, "./client/public/googleb7dbc79786b470be.html"));
 })
@@ -37,4 +41,5 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 
 app.listen(PORT, function() {
     console.log(`App listening on PORT: ${PORT}`);
+    // console.log('ENVIRONMENT', process.env)
 });

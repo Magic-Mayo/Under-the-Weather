@@ -4,7 +4,7 @@ export default function Providers(props) {
     return (
         <div className="Providers card">
             <h2>Medical Providers</h2>
-            {props.user.mediData.doctors.map(doc=>{
+            {props.providers.map(doc=>{
             return (<div key={doc._id} className="provider-wrapper">
                 <h4 className="provider-name">{doc.name}</h4>
                 {doc.doctorType && <p className="provider-title">{doc.doctorType}</p>}
