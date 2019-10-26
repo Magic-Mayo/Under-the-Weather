@@ -12,6 +12,7 @@ export default function InsuranceCard(props) {
                 {ins.groupNumber && <h4>Group Number: {ins.groupNumber}</h4>}
                 {ins.idNumber && <h4>Id Number: {ins.idNumber}</h4>}
                 {ins.deductible && <h4>Deductible: {ins.deductible}</h4>}
+                <button onClick={() => props.deleteObject({_id:ins._id, card:props.card, route:props.route})}>delete</button>
             </div>
         ))}
             </div>
