@@ -7,25 +7,27 @@ import Insurance from "../cards/Insurance";
 import Nav from "../Nav";
 import Axios from 'axios';
 
-export default class Dashboard extends Component {
+export default class Dashboard extends Component{
 
   deleteObject = props=> {   
     Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then(user=>{
-      // this.props.setUser({user:user});
-      console.log({user:user})
+      this.props.setUser(user.data);
+      // console.log(user.data.user.data.mediData)
     })    
   };
-
   render() {
+
     // console.log("HERE ARE THE USER DETAILS", this.props.user)
-    // console.log("DASHBOARD HAS THESE PROPS", this.props);    
+    // console.log("DASHBOARD HAS THESE PROPS", this.props.user.mediData.doctors);   
     return (
       <div className="Dashboard">
-        <Symptoms name={this.props.name} symptoms={this.props.user.symptomHistory}
+        <Symptoms
+        name={this.props.name}
+        symptoms={this.props.user.symptomHistory}
         card='symptom'
-        deleteObject={this.deleteObject}        
+        deleteObject={this.deleteObject}
         route='deletesymptom'
-        _id={this.props._id}  
+        _id={this.props._id}
         />
         
         <section className="container-right">
