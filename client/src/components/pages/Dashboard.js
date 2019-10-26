@@ -22,7 +22,7 @@ export default class Dashboard extends Component{
     return (
       <div className="Dashboard">
         <Symptoms
-        name={this.props.name}
+        name={this.props.user.name}
         symptoms={this.props.user.symptomHistory}
         card='symptom'
         deleteObject={this.deleteObject}
@@ -39,15 +39,15 @@ export default class Dashboard extends Component{
             /> */}
 
             <Providers
-            name={this.props.name}
+            name={this.props.user.name}
             providers={this.props.user.mediData.doctors}
             deleteObject={this.deleteObject}
-            card='provider'            
+            card='provider'
             route='deleteprovider'
             _id={this.props._id}  
             />
             <Contacts
-            name={this.props.name}
+            name={this.props.user.name}
             contact={this.props.user.emergencyContacts}            
             deleteObject={this.deleteObject}
             card ='contact'
@@ -55,7 +55,7 @@ export default class Dashboard extends Component{
             _id={this.props._id}                    
             />
             <Insurance
-            name={this.props.name}
+            name={this.props.user.name}
             insurance={this.props.user.mediData.insurance}
             deleteObject={this.deleteObject}           
             card='insurance'
