@@ -4,16 +4,16 @@ import Axios from 'axios';
 
 function InsuranceInput(props) {
 	return (
-		<div>
-			<h1>Hello, {props.name}</h1>
-			<h2>Add insurance information</h2>
-			<form>
+		<div className="insurance-entry">
+			<form className="insurance-entry-grid">
+				<div className="input-container insurance-entry-grid-item insurance-entry-grid-item-name"> 
 				Insurace Name:<input
 					type="text"
 					name="provider"
 					value={props.provider}
 					onChange={props.handleInsuranceChange}
 				/>
+				</div>
 				Policy/Identification Number:<input
 					type="text"
 					name="policy_number"
