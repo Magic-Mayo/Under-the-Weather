@@ -81,7 +81,10 @@ export default class SymptomForm extends Component {
 			},
 			route: 'addsymptom'
 		})
-			.then((res) => this.setUser(res.data))
+			.then((res) => {
+				console.log(res.data)
+				this.setUser(res.data)
+			})
 			.catch((err) => console.log(err));
 	};
 
