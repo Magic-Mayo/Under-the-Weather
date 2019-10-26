@@ -32,18 +32,18 @@ export default class Dashboard extends Component {
 
             <Providers
             name={this.props.name}
-            user={this.props.user}
+            providers={this.props.user.mediData.doctors}
             card='provider'
             />
             <Contacts
             name={this.props.name}
-            user={this.props.user}            
+            contact={this.props.user.emergencyContacts}            
             deleteObject={this.deleteObject}
             card ='contact'
             />
             <Insurance
             name={this.props.name}
-            user={this.props.user}
+            insurance={this.props.user.mediData.insurance}
             card='insurance'
             />
         </section>
