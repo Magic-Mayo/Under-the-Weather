@@ -7,7 +7,7 @@ function ContactInput(props) {
     return (
         <div className="contact-entry">
                 <form className="contact-entry-grid">
-                    <div>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-name">
                         <label htmlFor="cName">Emergency Contact Name:</label>
                         <input
                             type="text"
@@ -16,7 +16,7 @@ function ContactInput(props) {
                             onChange={props.handleInput}>
                         </input>
                     </div>
-                    <div>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-phone">
                         <label htmlFor="phone">Emergency Contact Phone Number:</label>
                         <input
                             type="number"
@@ -25,7 +25,7 @@ function ContactInput(props) {
                             onChange={props.handleInput}>
                         </input>
                     </div>
-                    <div>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-address">
                         <label htmlFor="address">Emergency Contact Address:</label>
                         <input
                             type="text"
@@ -34,7 +34,7 @@ function ContactInput(props) {
                             onChange={props.handleInput}>
                         </input>
                     </div>
-                    <div>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-city">
                     <label htmlFor="city">&nbsp;&nbsp;&nbsp;City:</label>
                         <input
                         name="city"
@@ -44,7 +44,7 @@ function ContactInput(props) {
                         onChange={props.handleInput}
                         />
                     </div>
-                    <div>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-state">
                     <label htmlFor="state">&nbsp;&nbsp;&nbsp;State:</label>
                         <input
                         name="state"
@@ -56,7 +56,7 @@ function ContactInput(props) {
                         onChange={props.handleInput}
                         />
                     </div>
-                    <div>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-zip">
                     <label htmlFor="zip">&nbsp;&nbsp;&nbsp;ZIP:</label>
                         <input
                         name="zip"
@@ -68,7 +68,7 @@ function ContactInput(props) {
                         onChange={props.handleInput}
                         />
                     </div>
-                    <div>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-relationship">
                         <label htmlFor="relationship">Emergency Contact Relationship to User:</label>
                         <input
                             type="text"
@@ -129,9 +129,7 @@ export default class Form extends Component {
 
     render() {
 		return (
-			<div>
-                <h1>Hello, {this.props.name}</h1>
-                <h2>Add Emergency Contact information</h2>
+			<div className="contact-form-container">
                 <ContactInput 
                     cName={this.state.cName}
                     phone={this.state.phone}
