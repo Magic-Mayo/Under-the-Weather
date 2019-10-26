@@ -5,38 +5,13 @@ import { Button } from 'react-bootstrap';
 import { Container } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import symptoms from "./symptoms.json";
+import API from '../../../utils/SymptomAPI'
 
 class Symptoms extends Component {
     // Setting component's initial state
     state = {
         symptoms
     };
-
-    // Handles updating component state when the user types into the input field
-    // handleChange = event => {
-    //     this.setState({ 
-    //         symptomsValue: event.target.value
-    //  });
-    //     console.log(event.target.value)
-    // };
-
-
-    // When the form is submitted, use the API.saveUser method to save the user data
-    // Then reload books from the database
-    // handleSubmit = event => {
-    //     event.preventDefault();
-    //     console.log(this.state.symptomsValue);
-    //     console.log(this.state.users[0]._id);
-
-    //     // set state to reflect the new symptoms in the user - push new symptom 
-    //     // once we pushed new symptom, submit the whole edited user to the db. 
-            // API.updateUser({
-            //     id: this.state.users[0]._id,
-            //     symptomHistory: [{
-            //         symptomsValue: this.state.symptomsValue
-            //     }]
-            // }).then(res => this.loadUsers()).catch(err => console.log(err))
-
     render() {
         return (
             <Container>

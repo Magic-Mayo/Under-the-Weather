@@ -45,6 +45,8 @@ export default class Dashboard extends Component {
         userId={this.props.userId}
         user={this.props.user}
         setUser={this.props.setUser}
+        handleSubmit={this.props.handleSubmit}
+        handleChange={this.props.handleChange}
         />
         {/* <Forms /> */}
       </div>

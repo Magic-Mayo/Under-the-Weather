@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Dashboard from './components/pages/Dashboard'
-import FormContainer from './components/pages/FormContainer'
-import Loading from './components/icons/loading'
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import API from './utils/SymptomAPI'
+import Dashboard from './components/pages/Dashboard';
+import FormContainer from './components/pages/FormContainer';
+import Loading from './components/icons/loading';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+import API from './utils/SymptomAPI';
 
 import {
 	faAngleDown,
@@ -17,13 +17,14 @@ import {
 	faSortDown,
 	//   faChild,
 	faEye,
-	faEyeSlash
+	faEyeSlash,
+	faPen
 } from '@fortawesome/free-solid-svg-icons';
 import bodyParts from './data/bodyParts.json';
 import './App.scss';
 import axios from 'axios';
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, fab);
+library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, faPen, fab);
 
 class App extends Component {
 	state = {
@@ -104,14 +105,13 @@ class App extends Component {
 		// set state to reflect the new symptoms in the user - push new symptom
 		// once we pushed new symptom, submit the whole edited user to the db.
 		API.updateUser({
-			id: this.state.userId,
-			symptomHistory: {
-				'data.symptomHistory': {
-					symptoms: this.state.symptomsValue
-				}
-			}
+			userId: this.state.userId,
+			symptom: {
+				symptoms: this.state.symptomsValue
+			},
+			route: "addsymptom"
 		})
-			.then((res) => console.log(res.data))
+			.then((res) => this.setUser(res.data))
 			.catch((err) => console.log(err));
 	};
 
@@ -140,17 +140,17 @@ class App extends Component {
 							render={() => {
 								return (
 									<Dashboard
-									setUser={this.setUser}
-									user={this.state.user}
-									userId={this.state.userId}
-									menu={this.state.menu}
-									toggleForm={this.toggleForm}
-									formOpen={this.state.formOpen}
-									isLoggedIn={this.state.isLoggedIn}
-									handleSubmit={this.handleSubmit}
-									handleChange={this.handleChange}
-								/>
-								)
+										setUser={this.setUser}
+										user={this.state.user}
+										userId={this.state.userId}
+										menu={this.state.menu}
+										toggleForm={this.toggleForm}
+										formOpen={this.state.formOpen}
+										isLoggedIn={this.state.isLoggedIn}
+										handleSubmit={this.handleSubmit}
+										handleChange={this.handleChange}
+									/>
+								);
 							}}
 						/>
 					</Router>

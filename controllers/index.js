@@ -99,11 +99,11 @@ module.exports = {
             }).catch(err=>console.log(err))
         }).catch(err=>console.log(err))
     },
-    logSymptom: (req,res)=>{
-        db.User.findOneAndUpdate({userName: req.params.user},req.body)
-            .then(user=>{console.log(user)})
-            .catch(err=>console.log(err))
-    },
+    // logSymptom: (req,res)=>{
+    //     db.User.findOneAndUpdate({userName: req.params.user},req.body)
+    //         .then(user=>{console.log(user)})
+    //         .catch(err=>console.log(err))
+    // },
     checkToken: (req,res)=>{
         const token = req.body.token;
         db.User.findOne({loginToken: token}).then(user=>{
@@ -124,6 +124,7 @@ module.exports = {
 			.catch((err) => res.status(422).json(err));
 	},
 	findById: function(req, res) {
+        console.log("THIS IS INSIDE THE FINDBYID FUNCTION", req.params);
 		db.User.findById(req.params.id || req.params.user).then((dbModel) => res.json(dbModel)).catch((err) => res.status(422).json(err));
 	},
 	create: function(req, res) {
