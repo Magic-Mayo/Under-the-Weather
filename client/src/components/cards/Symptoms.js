@@ -70,10 +70,22 @@ export default function Symptoms(props) {
                         <p className="symptoms-result-item-type" >{symptoms.painType} {symptoms.symptoms}</p>
                         <p className="symptoms-result-item-severity">{symptoms.severity}</p>
                         <p className="symptoms-result-item-time">{
-                            // console.log(moment().diff(symptoms.time, 'hours'))
-                            // moment().diff(symptoms.time, 'hours') > 0 && moment().diff(symptoms.time, 'hours') < 24 ? 
-                            //     (moment().to(symptoms.time) > 24 && moment().to(symptoms.time) > 48 ? 'Yesterday' : 
-                            //     moment(symptoms.time).format('h:MM A - DD MMM')
+                            // moment().diff(symptoms.time, 'hours')
+                            moment().diff(symptoms.time, 'hours') > 0 && moment().diff(symptoms.time, 'hours') < 24 ?
+                                moment().to(symptoms.time) :
+                                    (moment().diff(symptoms.time, 'hours') > 24 && moment().diff(symptoms.time, 'hours') < 48 ? 
+                                        `Yesterday ${moment(symptoms.time).format("h:MMA")}` :
+                                            (moment().diff(symptoms.time, 'days') === 2 ?
+                                            `${moment().to(symptoms.time)} ${moment(symptoms.time).format('h:MMA')}` :
+                                                moment().diff(symptoms.time, 'days') === 3 ?
+                                                `${moment().to(symptoms.time)} ${moment(symptoms.time).format('h:MMA')}` :
+                                                    moment().diff(symptoms.time, 'days') === 4 ?
+                                                        `${moment().to(symptoms.time)} ${moment(symptoms.time).format('h:MMA')}` :
+                                                            moment().diff(symptoms.time, 'days') === 5 ?
+                                                                `${moment().to(symptoms.time)} ${moment(symptoms.time).format('h:MMA')}` :
+                                                                (moment().diff(symptoms.time, 'days') === 6 ?
+                                                                `${moment().to(symptoms.time)} ${moment(symptoms.time).format('h:MMA')}` :
+                                                moment(symptoms.time).format('h:MMA - DD MMM'))))
                             }
                         </p>
                     </div>
