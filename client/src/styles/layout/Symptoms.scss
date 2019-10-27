@@ -68,7 +68,11 @@
         display: grid;
         grid-template-columns: 60% 40%;
         grid-template-rows: 1fr 1fr;
-        padding: 0 1.75rem
+        padding: 0 1.75rem;
+        background: $peach-contrast-light;
+        margin: .75rem 0;
+        border-radius: .75rem;
+        padding-top: 1rem
     }
 
     &-item {
