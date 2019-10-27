@@ -7,8 +7,8 @@ function ContactInput(props) {
     return (
         <div className="contact-entry">
                 <form className="contact-entry-grid">
-                    <div>
-                        <label htmlFor="cName">Emergency Contact Name:</label>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-name">
+                        <label htmlFor="cName">Name:</label>
                         <input
                             type="text"
                             name="cName"
@@ -16,17 +16,18 @@ function ContactInput(props) {
                             onChange={props.handleInput}>
                         </input>
                     </div>
-                    <div>
-                        <label htmlFor="phone">Emergency Contact Phone Number:</label>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-phone">
+                        <label htmlFor="phone">Phone Number:</label>
                         <input
                             type="number"
                             name="phone"
                             value={props.phone}
                             onChange={props.handleInput}>
+                            {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                         </input>
                     </div>
-                    <div>
-                        <label htmlFor="address">Emergency Contact Address:</label>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-address">
+                        <label htmlFor="address">Contact Address:</label>
                         <input
                             type="text"
                             name="address"
@@ -34,7 +35,7 @@ function ContactInput(props) {
                             onChange={props.handleInput}>
                         </input>
                     </div>
-                    <div>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-city">
                     <label htmlFor="city">&nbsp;&nbsp;&nbsp;City:</label>
                         <input
                         name="city"
@@ -44,7 +45,7 @@ function ContactInput(props) {
                         onChange={props.handleInput}
                         />
                     </div>
-                    <div>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-state">
                     <label htmlFor="state">&nbsp;&nbsp;&nbsp;State:</label>
                         <input
                         name="state"
@@ -56,7 +57,7 @@ function ContactInput(props) {
                         onChange={props.handleInput}
                         />
                     </div>
-                    <div>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-zip">
                     <label htmlFor="zip">&nbsp;&nbsp;&nbsp;ZIP:</label>
                         <input
                         name="zip"
@@ -68,17 +69,21 @@ function ContactInput(props) {
                         onChange={props.handleInput}
                         />
                     </div>
-                    <div>
-                        <label htmlFor="relationship">Emergency Contact Relationship to User:</label>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-relationship">
+                        <label htmlFor="relationship">Relationship:</label>
+                        {/* <label style={{color: "red", fontSize: "10px"}}>{props.errors}</label> */}
                         <input
                             type="text"
                             name="relationship"
                             value={props.relationship}
                             onChange={props.handleInput}>
                         </input>
+                        {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                     </div>
                 </form>
+            <div class="contact-form-submit-container button">
             <button onClick={props.contactToDatabase}>Submit</button>
+            </div>
         </div>
     )
 };
@@ -92,7 +97,8 @@ export default class Form extends Component {
         city: '',
         state: '',
         zip: '',
-        relationship: ''
+        relationship: '',
+        errors:''
     }
 
     state = {
@@ -119,19 +125,23 @@ export default class Form extends Component {
             },
             userId: this.state.userId
         };
+        if(this.state.cName !=='' && this.state.phone !== '' && this.state.relationship !== ''){
         Axios.post('/account/contact', contacts).then(
             data => {
                 this.setState(this.initialState);
                 this.props.setUser(data.data)
             }
-        )
+        )}
+        else{
+            this.setState({errors: '*Required*'})
+        }
     };
 
     render() {
 		return (
-			<div>
-                <h1>Hello, {this.props.name}</h1>
-                <h2>Add Emergency Contact information</h2>
+			<div className="contact-form-container">
+                {/* <h1>Hello, {this.props.name}</h1>
+                <h2>Add Emergency Contact information</h2> */}
                 <ContactInput 
                     cName={this.state.cName}
                     phone={this.state.phone}
@@ -139,6 +149,7 @@ export default class Form extends Component {
                     relationship={this.state.relationship}
                     handleInput={this.handleInput}
                     contactToDatabase={this.contactToDatabase}
+                    errors={this.state.errors}
                 />
                 <div className="contact-form-submit-container">
                     <Link to="/dashboard" className="closeForm">

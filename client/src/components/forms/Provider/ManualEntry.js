@@ -14,6 +14,7 @@ const ManualEntry = props => {
                         onChange={props.handleInput}
                         required
                         />
+                        <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span>
                     </div>
                     <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-specialty">
                         <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Specialty:</label>
