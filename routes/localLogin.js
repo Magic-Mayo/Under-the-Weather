@@ -3,10 +3,15 @@ const bcrypt = require('bcrypt');
 const uid = require('uid-safe');
 const token = uid.sync(24);
 const controller = require('../controllers')
-const mongoose = require('mongoose');
 const moment = require('moment')
+// const sess = require('../session')
 
-// const connection = 
+sessionCheck = (req, res, next) => {
+    if (req.session.user && req.cookies.under_weather){
+        return res.json(true)
+    }
+    next();
+}
 
 module.exports = (app) => {
 
