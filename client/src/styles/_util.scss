@@ -152,8 +152,9 @@
 }
 
 .closeForm {
-    min-width: 20rem;
-
+    position: absolute;
+    right: 1.5rem;
+    
      * {
         width: 100%;
     }
