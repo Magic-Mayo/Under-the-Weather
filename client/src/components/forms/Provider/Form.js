@@ -68,6 +68,11 @@ export default class ProviderForm extends Component {
         console.log("THIS IS THE PROVIDER FORM PROPS",this.props)
 		return (
 			<div className="provider-form-container">
+                <Link to="/dashboard" className="closeForm">
+                    <button type="button" className="provider-form-close">
+                        X
+                    </button>
+                </Link>
 				<div className="provider-form-options">
 					<button type="button" className="provider-form-options-search" onClick={this.toggleOption}>
 						Search By Specialty
@@ -97,17 +102,10 @@ export default class ProviderForm extends Component {
                         errors={this.state.errors}
 					/>
 				)}
-				<div className="provider-form-submit-container">
 					{/* <button type="button" className="provider-form-submit">
                         Add Provider
                     </button> */}
-					<Link to="/dashboard" className="closeForm">
-						<button type="button" className="provider-form-close">
-							Close Form X
-						</button>
-					</Link>
 				</div>
-            </div>
 		);
 	}
 }
