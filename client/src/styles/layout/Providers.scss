@@ -6,6 +6,19 @@
 
 .provider {
 
+    &-card {
+        &-link {
+            &-container {
+                width: 100%;
+            }
+            &-add {
+                font-size: 2rem;
+                font-style: oblique;
+                font-weight: 550;
+            }
+        }
+    }
+
     &-form-container {
         // display: flex;
         // flex-direction: column;
@@ -24,7 +37,9 @@
             grid-template-rows: repeat(5,1fr);
             grid-template-columns: repeat(4,1fr);
             gap: 2.5rem;
-            padding: 1.5rem;
+            margin-top: 1.5rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
 
             &-item {
                 // max-height: 12.5rem;

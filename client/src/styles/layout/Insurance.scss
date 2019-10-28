@@ -4,3 +4,16 @@
 
     min-height: 45vh;
 }
+
+.insurance-card {
+    &-link {
+        &-container {
+            width: 100%;
+        }
+        &-add {
+            font-size: 2rem;
+            font-style: oblique;
+            font-weight: 550;
+        }
+    }
+}
