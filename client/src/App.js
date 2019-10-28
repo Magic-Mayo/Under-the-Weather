@@ -112,20 +112,16 @@ class App extends Component {
 					<Router>
 						<Route
 							path="/dashboard"
-							render={() => {
-								return (
-									<Dashboard
-										setUser={this.setUser}
-										user={this.state.user}
-										userId={this.state.userId}
-										menu={this.state.menu}
-										toggleForm={this.toggleForm}
-										formOpen={this.state.formOpen}
-										isLoggedIn={this.state.isLoggedIn}
-									/>
-								);
-							}}
 						/>
+                            <Dashboard
+                                setUser={this.setUser}
+                                user={this.state.user}
+                                userId={this.state.userId}
+                                menu={this.state.menu}
+                                toggleForm={this.toggleForm}
+                                formOpen={this.state.formOpen}
+                                isLoggedIn={this.state.isLoggedIn}
+                            />
 					</Router>
 				)}
 			</div>
