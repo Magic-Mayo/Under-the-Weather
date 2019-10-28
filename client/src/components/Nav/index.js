@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -40,12 +40,12 @@ const NavExpand = ({ onClick }) => {
 	);
 };
 
-class Nav extends React.Component {
+class Nav extends Component {
 	state = {
 		dropDownVisible: false
     };
 
-	toggleMenu = () =>
+    toggleMenu = () =>
 		this.setState((state) => ({
 			dropDownVisible: !state.dropDownVisible
 		}));
@@ -53,7 +53,8 @@ class Nav extends React.Component {
 	render() {
 		// console.log('NAV HAS THESE PROPS', this.props);		
 		return (
-			<Router>
+            // <Router>
+            <div>
 				<div className="Nav">
 					<NavExpand onClick={this.toggleMenu} />
 					<NavItems
@@ -89,10 +90,7 @@ class Nav extends React.Component {
                                 userId={this.props.userId}
                                 isLoggedIn={this.props.isLoggedIn}
                                 toggleMenu={this.toggleMenu}
-								dropDownVisible={this.state.dropDownVisible}
-								name={this.props.name}
-								userId={this.props.userId}
-                                getNewUserInfo={this.props.getNewUserInfo}
+								menuState={this.state.dropDownVisible}
                                 user={this.props.user}
 							/>
 						);
@@ -107,7 +105,8 @@ class Nav extends React.Component {
                                 isLoggedIn={this.props.isLoggedIn}
 								toggleMenu={this.toggleMenu}
 								userId={this.props.userId}
-								dropDownVisible={this.state.dropDownVisible}
+                                dropDownVisible={this.state.dropDownVisible}
+                                setUser={this.props.setUser}
 							/>
 						)
 					}}
@@ -123,12 +122,13 @@ class Nav extends React.Component {
 								dropDownVisible={this.state.dropDownVisible}
 								name={this.props.name}
 								userId={this.props.userId}
-                                getNewUserInfo={this.props.getNewUserInfo}
                                 user={this.props.user}
+                                setUser={this.props.setUser}
 								/>)
 					}}
 				/>
-			</Router>
+			{/* </Router> */}
+            </div>
 		);
 	}
 }
