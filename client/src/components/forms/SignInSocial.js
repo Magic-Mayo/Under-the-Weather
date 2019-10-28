@@ -50,7 +50,7 @@ export default class SignInSocial extends Component {
                 <div className="social-btn-container">
                     <FacebookProvider appId={'548598765887410'}>
                         <LoginButton className="social-facebook" onCompleted={this.logIn} onFailure={err=>console.log(`Facebook login error: ${err}`)} scope={"public_profile,email"}>
-                        <a className="social-btn social-facebook-btn">Log In With Facebook</a>
+                        <span className="social-btn social-facebook-btn">Log In With Facebook</span>
                         <FontAwesomeIcon icon={['fab', 'facebook']} className="brand-icon"/>
                         </LoginButton>
                     </FacebookProvider>
@@ -62,7 +62,7 @@ export default class SignInSocial extends Component {
                         onFailure={err=>console.log(`Google login error: ${err}`)}
                         render={renderProps=>(
                             <div className="social-google" onClick={renderProps.onClick}>
-                                <a className="social-btn social-google-btn">Log In With Google</a>
+                                <span className="social-btn social-google-btn">Log In With Google</span>
                                 <FontAwesomeIcon icon={['fab', 'google']} className="brand-icon"/>
                             </div>
                         )}
