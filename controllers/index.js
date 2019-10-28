@@ -101,11 +101,6 @@ module.exports = {
             }).catch(err=>console.log(err))
         }).catch(err=>console.log(err))
     },
-    // logSymptom: (req,res)=>{
-    //     db.User.findOneAndUpdate({userName: req.params.user},req.body)
-    //         .then(user=>{console.log(user)})
-    //         .catch(err=>console.log(err))
-    // },
     checkToken: (req,res)=>{
         const token = req.body.token;
         db.User.findOne({loginToken: token}).then(user=>{
