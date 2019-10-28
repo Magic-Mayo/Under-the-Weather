@@ -11,14 +11,13 @@ export default class Dashboard extends Component{
 
   deleteObject = props=> {   
     Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then(user=>{
-      this.props.setUser(user.data);
-      // console.log(user.data.user.data.mediData)
+        this.props.setUser(user.data);
     })    
   };
   render() {
 
     // console.log("HERE ARE THE USER DETAILS", this.props.user)
-    // console.log("DASHBOARD HAS THESE PROPS", this.props.user.mediData.doctors);   
+    console.log("DASHBOARD HAS THESE PROPS", this.props);   
     return (
       <div className="Dashboard">
         <Symptoms
@@ -28,6 +27,9 @@ export default class Dashboard extends Component{
         deleteObject={this.deleteObject}
         route='deletesymptom'
         _id={this.props._id}
+        setUser={this.props.setUser}
+        userId={this.props.userId}
+        isLoggedIn={this.props.isLoggedIn}
         />
         
         <section className="container-right">
@@ -44,9 +46,15 @@ export default class Dashboard extends Component{
             deleteObject={this.deleteObject}
             card='provider'
             route='deleteprovider'
-            _id={this.props._id}  
+            _id={this.props._id}
+            setUser={this.props.setUser}
+            userId={this.props.userId}
+            isLoggedIn={this.props.isLoggedIn}
             />
             <Contacts
+            setUser={this.props.setUser}
+            userId={this.props.userId}
+            isLoggedIn={this.props.isLoggedIn}
             name={this.props.user.name}
             contact={this.props.user.emergencyContacts}            
             deleteObject={this.deleteObject}
@@ -55,6 +63,9 @@ export default class Dashboard extends Component{
             _id={this.props._id}                    
             />
             <Insurance
+            setUser={this.props.setUser}
+            userId={this.props.userId}
+            isLoggedIn={this.props.isLoggedIn}
             name={this.props.user.name}
             insurance={this.props.user.mediData.insurance}
             deleteObject={this.deleteObject}           
