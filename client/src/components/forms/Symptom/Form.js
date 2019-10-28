@@ -24,11 +24,6 @@ export default class SymptomForm extends Component {
 		this.handleSubmit()
 	}
 
-	setLowerCase = (Sy) =>
-		this.state.SymptomList.map(
-			(symptom, index) => (this.state.SymptomList[index].Name = symptom.Name.toLowerCase())
-		);
-
 	//SEANS STUFF WITH SEARCH BAR 
 	updateDropDown = (e) => {
 		e.persist()
@@ -49,15 +44,10 @@ export default class SymptomForm extends Component {
 
 	checkMatch = (val) => {
 		const filteredResults = this.state.SymptomList.filter((symptom) => {
-			// console.log(symptom.Name);
-
-			if (symptom.Name.includes(val, 0)) {
+			if (symptom.Name.includes(val) && symptom.Name.substring(0, val.length) === val) {
 				console.log(symptom.Name)
 				return symptom.Name
 			}
-			// symptom.Name.startsWith(val)})
-
-			// console.log('HERE ARE THE FILTERED RESULTS', filteredResults);
 		});
 
 		this.setState({
@@ -85,31 +75,18 @@ export default class SymptomForm extends Component {
 			.catch((err) => console.log(err));
 	};
 
-	checkMatch = (val) => {
-		const filteredResults = this.state.SymptomList.filter((symptom) => {
-			// console.log(symptom.Name);
-
-			if (symptom.Name.includes(val, 0)) {
-				console.log(symptom.Name);
-				return symptom.Name;
-			}
-			// symptom.Name.startsWith(val)})
-
-			// console.log('HERE ARE THE FILTERED RESULTS', filteredResults);
-		});
-
-		this.setState({
-			responses: filteredResults
-		});
-	};
-
 	render() {
-		this.setLowerCase();
 		// console.log('THIS IS THE SYMPTOM FORM PROPS', this.props);
 
 		return (
 			<div className="symptom-form-container">
-				<h1 className="symptom-form-title">What Symptom Are You Experiencing?</h1>
+                <Link to="/dashboard" className="closeForm">
+                    <button type="button" className="symptom-form-close">
+                        X
+                    </button>
+                </Link>
+				<h1 className="symptom-form-title">What Symptom(s) Are You Experiencing?</h1>
+                <hr></hr>
 				<form className="symptom-form" onSubmit={this.handleSubmit}>
 					<input
 						value={this.state.symptomsValue}
@@ -136,11 +113,6 @@ export default class SymptomForm extends Component {
 					{/* <button type="button" className="symptom-form-submit">
                         Add symptom
                     </button> */}
-					<Link to="/dashboard" className="closeForm">
-						<button type="button" className="symptom-form-close">
-							Close Form X
-						</button>
-					</Link>
 				</div>
 				{/* <Symptoms handleSubmit={this.handleSubmit} handleChange={this.handleChange} symptomsValue={this.state.symptomsValue}/> */}
 			</div>
