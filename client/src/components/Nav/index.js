@@ -70,7 +70,7 @@ class Nav extends Component {
 							<ProviderLink
 								isLoggedIn={this.props.isLoggedIn}
 								toggleMenu={this.toggleMenu}
-                                dropDownVisible={this.state.dropDownVisible}
+                                menuState={this.state.dropDownVisible}
                                 userId={this.props.userId}
                                 setUser={this.props.setUser}
                                 user={this.props.user}
@@ -104,7 +104,7 @@ class Nav extends Component {
                                 isLoggedIn={this.props.isLoggedIn}
 								toggleMenu={this.toggleMenu}
 								userId={this.props.userId}
-                                dropDownVisible={this.state.dropDownVisible}
+                                menuState={this.state.dropDownVisible}
                                 setUser={this.props.setUser}
 							/>
 						)
@@ -118,7 +118,7 @@ class Nav extends Component {
 							<InsuranceLink 
                                 isLoggedIn={this.props.isLoggedIn}
                                 toggleMenu={this.toggleMenu}
-								dropDownVisible={this.state.dropDownVisible}
+								menuState={this.state.dropDownVisible}
 								name={this.props.name}
 								userId={this.props.userId}
                                 user={this.props.user}
