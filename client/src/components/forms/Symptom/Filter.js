@@ -59,28 +59,26 @@ class Filter extends Component {
     render() {
         return (
             <div className="filter-form">
-                    {this.props.data.options.map((option, i) => {
-                        return (
-                            <ul key={`option-${i}`} className={`filter-form-input`} onClick={(e) => this.setDisplay(e,option.name)} value={option.name}>
-                                    <p >
-                                        {option.name}
-                                    </p>
-                                    {option.choices.map((type,j) => {
-                                        return (
-                                            <li key={`type-${j}`} value={type} className={
-                                                !this.state.inputs[i].active ? 'invisible' : ''
-                                            } onClick={this.handleListItem}>{type}</li>
-                                        )
-                                    })}
-                                <FontAwesomeIcon icon="sort-down" className="down-arrow"/>
-                            </ul>
-                        )
-                    })}
+                {this.props.data.options.map((option, i) => {
+                    return (
+                        <ul key={`option-${i}`} className={`filter-form-input`} onClick={(e) => this.setDisplay(e,option.name)} value={option.name}>
+                                <p >
+                                    {option.name}
+                                </p>
+                                {option.choices.map((type,j) => {
+                                    return (
+                                        <li key={`type-${j}`} value={type} className={
+                                            !this.state.inputs[i].active ? 'invisible' : ''
+                                        } onClick={this.handleListItem}>{type}</li>
+                                    )
+                                })}
+                            <FontAwesomeIcon icon="sort-down" className="down-arrow"/>
+                        </ul>
+                    )
+                })}
             </div>
         )
     }
 }
 
-export default Filter
-
-
+export default Filter;
