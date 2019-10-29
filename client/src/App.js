@@ -17,13 +17,14 @@ import {
 	//   faChild,
 	faEye,
 	faEyeSlash,
-	faPen
+    faPen,
+    faEdit
 } from '@fortawesome/free-solid-svg-icons';
 import bodyParts from './data/bodyParts.json';
 import './App.scss';
 import axios from 'axios';
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, faPen, fab);
+library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, faPen, fab, faEdit);
 
 class App extends Component {
 	state = {
@@ -90,7 +91,6 @@ class App extends Component {
 	};
 
 	render() {
-		console.log("USER DATA (APP JS)", this.state.userId)
 		return (
 			<div className="App">
 				<Header
