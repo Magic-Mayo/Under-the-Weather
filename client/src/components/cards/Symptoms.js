@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import Filter from '../forms/Symptom/Filter';
 import {Link} from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Symptoms(props) {
 
@@ -91,6 +92,9 @@ export default function Symptoms(props) {
                                         moment(symptoms.time).format('DD MMM | h:MM A'))))
                                 }
                             </p>
+                        <Link to="/symptom" className="symptoms-result-edit">
+                            <FontAwesomeIcon icon="edit" size="2x"/>
+                        </Link>
                         </div>
                     ))}
                 </section>
