@@ -80,10 +80,8 @@ function ContactInput(props) {
                         </input>
                         {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                     </div>
+                    <button className="contact-entry-grid-submit" onClick={props.contactToDatabase}>Submit</button>
                 </form>
-            <div class="contact-form-submit-container button">
-            <button onClick={props.contactToDatabase}>Submit</button>
-            </div>
         </div>
     )
 };
@@ -140,9 +138,14 @@ export default class Form extends Component {
     render() {
 		return (
 			<div className="contact-form-container">
-                {/* <h1>Hello, {this.props.name}</h1>
-                <h2>Add Emergency Contact information</h2> */}
-                <ContactInput 
+                <Link to="/dashboard" className="closeForm">
+                    <button type="button" className="contact-form-close">
+                        X
+                    </button>
+                </Link>
+                <h1 className="contact-form-title">Please Enter Emergency Contact Information</h1>
+                <hr></hr>
+                <ContactInput
                     cName={this.state.cName}
                     phone={this.state.phone}
                     address={this.state.address}
@@ -152,11 +155,6 @@ export default class Form extends Component {
                     errors={this.state.errors}
                 />
                 <div className="contact-form-submit-container">
-                    <Link to="/dashboard" className="closeForm">
-                        <button type="button" className="contact-form-close">
-                            Close Form X
-                        </button>
-                    </Link>
                 </div>
             </div>
         );

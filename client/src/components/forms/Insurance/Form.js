@@ -11,16 +11,18 @@ function InsuranceInput(props) {
 				<input
 					type="text"
 					name="provider"
-					value={props.provider}
+                    value={props.provider}
+                    placeholder="Cigna"
 					onChange={props.handleInsuranceChange}
 				/>
 				</div>
 				<div className="input-container insurance-entry-grid-item insurance-entry-grid-item-number"> 
-				<label htmlFor="idNumber">Policy/Identification Number</label>
+				<label htmlFor="idNumber">Policy/ID Number:</label>
 				<input
 					type="text"
 					name="idNumber"
-					value={props.idNumber}
+                    value={props.idNumber}
+                    placeholder="123ABC"
 					onChange={props.handleInsuranceChange}
 				/>
 				</div>
@@ -30,7 +32,8 @@ function InsuranceInput(props) {
 					type="text"
 					name="groupNumber"
 					value={props.groupNumber}
-					onChange={props.handleInsuranceChange}
+                    placeholder="123ABC"
+                    onChange={props.handleInsuranceChange}
 				/>
 				</div>
 				<div className="input-container insurance-entry-grid-item insurance-entry-grid-item-type"> 
@@ -39,7 +42,8 @@ function InsuranceInput(props) {
 					type="text"
 					name="insuranceType"
 					value={props.insuranceType}
-					onChange={props.handleInsuranceChange}
+                    placeholder="PPO"
+                    onChange={props.handleInsuranceChange}
 				/>
 				</div>
 				<div className="input-container insurance-entry-grid-item insurance-entry-grid-item-deduct"> 
@@ -48,13 +52,12 @@ function InsuranceInput(props) {
 					type="text"
 					name="deductible"
 					value={props.deductible}
-					onChange={props.handleInsuranceChange}
+                    placeholder="5000/7500"
+                    onChange={props.handleInsuranceChange}
 				/>
 				</div>
+			    <button className="insurance-entry-grid-submit" onClick={props.insuranceToDatabase}>Submit</button>
 			</form>
-			<div class="insurance-form-submit-container button">
-			<button onClick={props.insuranceToDatabase}>Submit</button>
-			</div>
 		</div>
 	)
 };
@@ -96,25 +99,23 @@ export default class InsuranceForm extends Component {
 	render() {
 		return (
 			<div className="insurance-form-container">
-				{/* <h1>{this.props.formType}</h1>
-				<p>Enter a {this.props.formType}</p> */}
-                    <InsuranceInput 
-                    name={this.props.name}
-                    provider={this.state.provider}
-                    idNumber={this.state.idNumber}
-                    groupNumber={this.state.groupNumber}
-                    insuranceType={this.state.insuranceType}
-                    deductible={this.state.deductible}
-                    handleInsuranceChange={this.handleInsuranceChange}
-                    insuranceToDatabase={this.insuranceToDatabase}
-                    />			
-                <div className="insurance-form-submit-container">
-                    <Link to="/dashboard" className="closeForm">
-                        <button type="button" className="insurance-form-close">
-                            Close Form X
-                        </button>
-                    </Link>
-                </div>
+                <Link to="/dashboard" className="closeForm">
+                    <button type="button" className="insurance-form-close">
+                        X
+                    </button>
+                </Link>
+				<h1 className="insurance-form-title">Please Enter Insurance Information</h1>
+                <hr></hr>
+                <InsuranceInput 
+                name={this.props.name}
+                provider={this.state.provider}
+                idNumber={this.state.idNumber}
+                groupNumber={this.state.groupNumber}
+                insuranceType={this.state.insuranceType}
+                deductible={this.state.deductible}
+                handleInsuranceChange={this.handleInsuranceChange}
+                insuranceToDatabase={this.insuranceToDatabase}
+                />			
             </div>
 		);
 	}

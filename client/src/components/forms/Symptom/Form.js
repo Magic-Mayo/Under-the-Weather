@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class SymptomForm extends Component {
 	state = {
-		SymptomList,
+        SymptomList,
 		symptomsValue: '',
 		responses: []
 	};
@@ -24,11 +24,6 @@ export default class SymptomForm extends Component {
 		this.handleSubmit()
 	}
 
-	setLowerCase = (Sy) =>
-		this.state.SymptomList.map(
-			(symptom, index) => (this.state.SymptomList[index].Name = symptom.Name.toLowerCase())
-		);
-
 	//SEANS STUFF WITH SEARCH BAR 
 	updateDropDown = (e) => {
 		e.persist()
@@ -38,7 +33,7 @@ export default class SymptomForm extends Component {
 	}
 
 	handleChange = (event) => {
-		console.log('THE INPUT THAT WAS SELECTED ' + event.target.value);
+		// console.log('THE INPUT THAT WAS SELECTED ' + event.target.value);
 
 		this.setState({
 			symptomsValue: event.target.value
@@ -48,16 +43,10 @@ export default class SymptomForm extends Component {
 	}
 
 	checkMatch = (val) => {
-		const filteredResults = this.state.SymptomList.filter((symptom) => {
-			// console.log(symptom.Name);
-
-			if (symptom.Name.includes(val, 0)) {
-				console.log(symptom.Name)
-				return symptom.Name
+        const filteredResults = this.state.SymptomList.filter((symptom) => {
+			if (symptom.name.includes(val) && symptom.name.substring(0, val.length) === val) {
+				return symptom;
 			}
-			// symptom.Name.startsWith(val)})
-
-			// console.log('HERE ARE THE FILTERED RESULTS', filteredResults);
 		});
 
 		this.setState({
@@ -85,31 +74,20 @@ export default class SymptomForm extends Component {
 			.catch((err) => console.log(err));
 	};
 
-	checkMatch = (val) => {
-		const filteredResults = this.state.SymptomList.filter((symptom) => {
-			// console.log(symptom.Name);
-
-			if (symptom.Name.includes(val, 0)) {
-				console.log(symptom.Name);
-				return symptom.Name;
-			}
-			// symptom.Name.startsWith(val)})
-
-			// console.log('HERE ARE THE FILTERED RESULTS', filteredResults);
-		});
-
-		this.setState({
-			responses: filteredResults
-		});
-	};
-
 	render() {
-		this.setLowerCase();
-		// console.log('THIS IS THE SYMPTOM FORM PROPS', this.props);
+        // console.log('THIS IS THE SYMPTOM FORM PROPS', this.props);
+        console.log(this.state.responses)
 
 		return (
 			<div className="symptom-form-container">
-				<h1 className="symptom-form-title">What Symptom Are You Experiencing?</h1>
+                <Link to="/dashboard" className="closeForm">
+                    <button type="button" className="symptom-form-close">
+                        X
+                    </button>
+                </Link>
+				<h1 className="symptom-form-title">What Symptom(s) Are You Experiencing?</h1>
+                <h3 className="symptom-form-subtitle">If it isn't listed, write your own in</h3>
+                <hr></hr>
 				<form className="symptom-form" onSubmit={this.handleSubmit}>
 					<input
 						value={this.state.symptomsValue}
@@ -120,10 +98,10 @@ export default class SymptomForm extends Component {
 						onChange={this.handleChange}
 					/>
 					<section className="symptom-form-results">
-						{this.state.responses.map((response) => (
-							<div className="symptom-form-results-item">
-								<h5 className="item-name">{response.Name}</h5>
-								<button value={response.Name} onClick={this.setSymptom} className="add-symptom">
+						{this.state.responses.map(symptom => (
+							<div key={symptom.ID} className="symptom-form-results-item">
+								<h5 className="item-name">{symptom.name}</h5>
+								<button value={symptom.name} onClick={this.setSymptom} className="add-symptom">
 									<FontAwesomeIcon icon="plus" className="add-symptom-icon" />
 								</button>
 							</div>
@@ -136,11 +114,6 @@ export default class SymptomForm extends Component {
 					{/* <button type="button" className="symptom-form-submit">
                         Add symptom
                     </button> */}
-					<Link to="/dashboard" className="closeForm">
-						<button type="button" className="symptom-form-close">
-							Close Form X
-						</button>
-					</Link>
 				</div>
 				{/* <Symptoms handleSubmit={this.handleSubmit} handleChange={this.handleChange} symptomsValue={this.state.symptomsValue}/> */}
 			</div>
