@@ -51,9 +51,8 @@ class Nav extends Component {
 		}));
 
 	render() {
-		// console.log('NAV HAS THESE PROPS', this.props);		
+		console.log('NAV HAS THESE PROPS', this.props);		
 		return (
-            // <Router>
             <div>
 				<div className="Nav">
 					<NavExpand onClick={this.toggleMenu} />
@@ -127,7 +126,6 @@ class Nav extends Component {
 								/>)
 					}}
 				/>
-			{/* </Router> */}
             </div>
 		);
 	}
