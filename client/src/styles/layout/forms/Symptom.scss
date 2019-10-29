@@ -22,6 +22,10 @@
         margin-top: 5rem;
     }
 
+    &-subtitle {
+        @include heading()
+    }
+
     &-search {
         &-input {
             flex-grow: 5;
