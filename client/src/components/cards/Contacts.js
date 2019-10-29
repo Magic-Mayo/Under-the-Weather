@@ -3,7 +3,6 @@ import {Route,Link} from 'react-router-dom';
 import ContactLink from '../forms/Contact/Link';
 
 export default function ContactsCard(props) {
-    console.log(props.contact)
     if(props.contact.length > 0){
         return (
             <div className="Contacts card">
@@ -15,7 +14,7 @@ export default function ContactsCard(props) {
                     {contact.address && <h4>Address: {contact.address.streetAddress}</h4>}
                     {contact.address && <h4>&ensp;{contact.address.city}, {contact.address.state} {contact.address.zip}</h4>}
                     {contact.relationship && <h4>Relationship: {contact.relationship}</h4>}
-                    <button onClick={() => props.deleteObject({_id:contact._id, card:props.card, route:props.route})}>delete</button>
+                    <button onClick={() => props.delete({_id:contact._id, card:props.card, route:props.route})}>delete</button>
                     <br/>                
                 </div>
             ))}
