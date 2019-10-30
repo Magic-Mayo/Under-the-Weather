@@ -4,6 +4,7 @@
     min-height: 45vh;
 }
 
+
 .provider {
 
     &-card {
@@ -96,4 +97,9 @@
             }
         }
     }
+}
+.provider-delete{
+    color:#FF5D44;
+    position: absolute;
+    right:1rem;
 }

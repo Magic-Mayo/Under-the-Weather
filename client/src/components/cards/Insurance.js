@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function InsuranceCard(props) {
 
@@ -13,8 +14,10 @@ export default function InsuranceCard(props) {
                         <h4>{ins.insuranceType}</h4>
                         {ins.groupNumber && <h4>Group Number: {ins.groupNumber}</h4>}
                         {ins.idNumber && <h4>Id Number: {ins.idNumber}</h4>}
-                        {ins.deductible && <h4>Deductible: {ins.deductible}</h4>}
-                        <button onClick={() => props.delete({_id:ins._id, card:props.card, route:props.route})}>delete</button>
+                        {ins.deductible && <h4>Deductible: {ins.deductible}</h4>}                          
+                        <FontAwesomeIcon icon="minus-circle" className = "insurance-delete" size="2x" 
+                        onClick={() => props.delete({_id:ins._id, card:props.card, route:props.route})}>
+                        </FontAwesomeIcon>                   
                     </div>
                 ))}
             </div>

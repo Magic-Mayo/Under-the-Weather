@@ -17,14 +17,15 @@ import {
 	//   faChild,
 	faEye,
 	faEyeSlash,
-    faPen,
+	faPen,
+	faMinusCircle,
     faEdit
 } from '@fortawesome/free-solid-svg-icons';
 import bodyParts from './data/bodyParts.json';
 import './App.scss';
 import axios from 'axios';
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, faPen, fab, faEdit);
+library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, faPen, fab, faEdit, faMinusCircle);
 
 class App extends Component {
 	state = {
@@ -35,7 +36,6 @@ class App extends Component {
 		},
 		isLoggedIn: false,
 		loading: true,
-		pathname: window.location.pathname,
 		formOpen: false,
 		user: false
 	};
@@ -74,14 +74,6 @@ class App extends Component {
 			this.setState({ isLoggedIn: false, user: '', userId: '', loading: false });
 			window.history.pushState(null, '', '/');
 		});
-	};
-
-	logTarget = (e) => {
-		console.log(e.target);
-
-		if (e.target.className !== 'form-container' && this.state.formOpen) {
-			window.location.pathname = this.state.pathname;
-		}
 	};
 
 	toggleForm = (e) => {

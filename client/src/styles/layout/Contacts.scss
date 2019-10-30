@@ -1,16 +1,51 @@
-.Contacts {
+.contact-card {
     grid-column: 5/8;
     grid-row: 2/3;
     min-height: 35vh;
-}
 
-.contact-card-link {
-    &-container {
-        width: 100%;
+    &-empty {
+        grid-column: 5/8;
+        grid-row: 2/3;
+        min-height: 35vh;    
     }
-    &-add {
-        font-size: 2rem;
-        font-style: oblique;
-        font-weight: 550;
+
+    &-link{
+        &-container {
+            width: 100%;
+        }
+        &-add {
+            font-size: 2rem;
+            font-style: oblique;
+            font-weight: 550;
+        }
     }
+
+    &-item {
+        background: $blue-accent;
+        margin: .5rem 0;
+        border-radius: .75rem;
+        padding: .75rem;
+        text-align: left;
+
+        &-name {
+            margin-bottom: 1rem;
+        }
+        &-city {
+            margin-bottom: 1rem;
+        }
+        &-phone {
+            margin-bottom: 1rem;
+        }
+        &-address {
+            // margin-bottom: 1rem;
+        }
+        &-relationship {
+            margin-bottom: 1rem;
+        }
+    }
+}
+.contacts-delete{
+    color:#FF5D44;
+    position: absolute;
+    right:1rem;
 }
