@@ -6,11 +6,16 @@
 
 .contact-card-link {
     &-container {
-        width: 100%;
+        width: 100%;       
     }
     &-add {
         font-size: 2rem;
         font-style: oblique;
-        font-weight: 550;
+        font-weight: 550;        
     }
+}
+.contacts-delete{
+    color:#FF5D44;
+    position: absolute;
+    right:1rem;
 }

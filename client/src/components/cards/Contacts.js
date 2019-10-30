@@ -1,6 +1,7 @@
 import React from 'react';
 import {Route,Link} from 'react-router-dom';
 import ContactLink from '../forms/Contact/Link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function ContactsCard(props) {
     if(props.contact.length > 0){
@@ -14,7 +15,9 @@ export default function ContactsCard(props) {
                     {contact.address && <h4>Address: {contact.address.streetAddress}</h4>}
                     {contact.address && <h4>&ensp;{contact.address.city}, {contact.address.state} {contact.address.zip}</h4>}
                     {contact.relationship && <h4>Relationship: {contact.relationship}</h4>}
-                    <button onClick={() => props.delete({_id:contact._id, card:props.card, route:props.route})}>delete</button>
+                    <FontAwesomeIcon icon="minus-circle" className = "contacts-delete" size="2x" 
+                        onClick={() => props.delete({_id:contact._id, card:props.card, route:props.route})}>
+                        </FontAwesomeIcon> 
                     <br/>                
                 </div>
             ))}
