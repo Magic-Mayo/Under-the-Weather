@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import Filter from '../forms/Symptom/Filter';
+import Filter from './Filter';
 import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

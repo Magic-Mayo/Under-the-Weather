@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import EntranceForm from '../forms/EntranceForm';
-import ProviderForm from '../forms/Provider/Form'
-import SymptomForm from '../forms/Symptom/Form'
-import ContactForm from '../forms/Contact/Form'
-import InsuranceForm from '../forms/Insurance/Form'
+import EntranceForm from '../Login/EntranceForm';
+import ProviderForm from '../Provider/Form'
+import SymptomForm from '../Symptom/Form'
+import ContactForm from '../Contact/Form'
+import InsuranceForm from '../Insurance/Form'
 
 export default class FormContainer extends Component {
 	state = {
 		loginActive: true,
 		signupActive: false,
 		currentPage: 0,
-		showPassword: false
-	};
+        showPassword: false
+    };
 	setLogIn = () => {
 		this.setState({
 			loginActive: true,
@@ -32,7 +32,11 @@ export default class FormContainer extends Component {
 		this.setState({
 			showPassword: !this.state.showPassword
 		});
-	};
+    };
+    
+    setUpdateData = data => {
+        this.setState({data: data})
+    }
 
 	render() {
         return (

@@ -2,23 +2,23 @@
 @import "./styles/variables";
 @import "./styles/mixins";
 
-@import "./styles/layout/pages/FormContainer";
-@import "./styles/layout/pages/Dashboard";
+@import "./components/pages/FormContainer";
+@import "./components/pages/Dashboard";
 
 
 @import "./styles/util";
-@import "./styles/layout/Header";
-@import "./styles/layout/Symptoms";
-@import "./styles/layout/Providers";
-@import "./styles/layout/Contacts";
-@import "./styles/layout/Insurance";
-@import "./styles/layout/MedicalHistory";
-@import "./styles/layout/Nav";
+@import "./components/Header/Header.scss";
+@import "./components/Symptom/SymptomCard.scss";
+@import "./components/Provider/ProviderCard.scss";
+@import "./components/Contact/ContactCard.scss";
+@import "./components/Insurance/InsuranceCard.scss";
+@import "./components/Medical_History/MedicalHistory.scss";
+@import "./components/Nav/Nav.scss";
 
-@import "./styles/layout/forms/Provider";
-@import "./styles/layout/forms/Symptom";
-@import "./styles/layout/forms/Insurance";
-@import "./styles/layout/forms/Contact";
+@import "./components/Provider/ProviderForm.scss";
+@import "./components/Symptom/SymptomForm.scss";
+@import "./components/Insurance/InsuranceForm.scss";
+@import "./components/Contact/ContactForm.scss";
 
 .App {
   text-align: center;

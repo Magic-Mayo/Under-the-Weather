@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ProviderLink from '../forms/Provider/Link';
-import ContactLink from '../forms/Contact/Link';
-import SymptomLink from '../forms/Symptom/Link';
-import InsuranceLink from '../forms/Insurance/Link';
-import ProviderManual from '../forms/Provider/ManualEntry';
+import ProviderLink from '../Provider/Link';
+import ContactLink from '../Contact/Link';
+import SymptomLink from '../Symptom/Link';
+import InsuranceLink from '../Insurance/Link';
+import ProviderManual from '../Provider/ManualEntry';
 
 const NavItems = (props) => {
 	return (

@@ -40,9 +40,15 @@
             margin-bottom: 1rem;
         }
     }
-}
-.contacts-delete{
-    color:#FF5D44;
-    position: absolute;
-    right:1rem;
+
+    &-expand {
+        cursor: pointer;
+    }
+    
+    &-delete {
+        cursor: pointer;
+        color:#FF5D44;
+        position: absolute;
+        right:1rem;
+    }
 }

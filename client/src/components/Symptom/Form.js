@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import SymptomList from './symptoms.json';
-import Symptoms from './Symptoms';
-import API from '../../../utils/SymptomAPI';
+import SymptomList from '../../data/symptoms.json';
+import Symptoms from './symptoms';
+import API from '../../utils/SymptomAPI';
 // import { load } from 'dotenv/types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

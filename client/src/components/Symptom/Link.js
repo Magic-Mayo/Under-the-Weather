@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import FormContainer from '../../pages/FormContainer'
+import FormContainer from '../pages/FormContainer'
 
 export default class SymptomLink extends Component {
 	componentDidMount = () => {

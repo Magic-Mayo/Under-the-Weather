@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import API from '../../../utils/API';
-import Specialist from '../../../data/specialist.json'
+import API from '../../utils/API';
+import Specialist from '../../data/specialist.json'
 import {Link} from 'react-router-dom';
 
 class Search extends Component {
