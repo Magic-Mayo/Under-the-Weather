@@ -70,7 +70,29 @@
 		grid-template-rows: 10% auto;
 		border: .25rem solid transparent;
 		box-shadow: 0 1rem 5rem rgba($black, .3);
-		border-radius: .2rem !important;
+        border-radius: .2rem !important;
+        background-color: $white;
+        
+        &-close {
+            background-color: transparent;
+            border: 3px solid $peach-contrast-heavy;
+            color: $peach-contrast-heavy;
+            border-radius: 50%;
+            width: 5rem;
+            height: 5rem;
+            z-index: 151;
+            position: absolute;
+            right: .6rem;
+            top: .6rem;
+            font-weight: 600;
+            font-size: 2.75rem;
+
+            &:hover {
+                background: $peach-contrast-heavy;
+                color: $blue-dark;
+                text-decoration: none;
+            }
+        }
 	}
 
 	&-btn {
