@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import ContactLink from '../forms/Contact/Link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class ContactsCard extends Component {
     state = {

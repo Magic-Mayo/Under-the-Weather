@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Providers(props) {
     if(props.providers.length > 0){
@@ -12,7 +13,9 @@ export default function Providers(props) {
                     {doc.doctorType && <p className="provider-title">{doc.doctorType}</p>}
                     {doc.phone && <p className="provider-phone">Phone: {doc.phone}</p>}
                     {doc.email && <p className="provider-email">Email: {doc.email}</p>}
-                    <button onClick={() => props.delete({_id:doc._id, card:props.card, route:props.route})}>delete</button>
+                    <FontAwesomeIcon icon="minus-circle" className = "provider-delete" size="2x" 
+                        onClick={() => props.delete({_id:doc._id, card:props.card, route:props.route})}>
+                    </FontAwesomeIcon> 
                 </div>)
                 })}
             </div>
