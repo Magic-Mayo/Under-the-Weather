@@ -17,13 +17,31 @@ import {
 	//   faChild,
 	faEye,
 	faEyeSlash,
-	faPen
+	faPen,
+	faMinusCircle,
+    faEdit,
+    faAngleDoubleDown,
+    faAngleDoubleUp
 } from '@fortawesome/free-solid-svg-icons';
 import bodyParts from './data/bodyParts.json';
 import './App.scss';
 import axios from 'axios';
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, faPen, fab);
+library.add(
+    faAngleDown,
+    faPlus,
+    faEnvelope,
+    faPhone,
+    faFilter,
+    faSortDown,
+    faEye,
+    faEyeSlash,
+    faPen,
+    fab,
+    faEdit,
+    faMinusCircle,
+    faAngleDoubleDown,
+    faAngleDoubleUp);
 
 class App extends Component {
 	state = {
@@ -34,7 +52,6 @@ class App extends Component {
 		},
 		isLoggedIn: false,
 		loading: true,
-		pathname: window.location.pathname,
 		formOpen: false,
 		user: false
 	};
@@ -75,14 +92,6 @@ class App extends Component {
 		});
 	};
 
-	logTarget = (e) => {
-		console.log(e.target);
-
-		if (e.target.className !== 'form-container' && this.state.formOpen) {
-			window.location.pathname = this.state.pathname;
-		}
-	};
-
 	toggleForm = (e) => {
 		this.setState({
 			formOpen: !this.state.formOpen
@@ -90,7 +99,6 @@ class App extends Component {
 	};
 
 	render() {
-		console.log("USER DATA (APP JS)", this.state.userId)
 		return (
 			<div className="App">
 				<Header
@@ -112,20 +120,16 @@ class App extends Component {
 					<Router>
 						<Route
 							path="/dashboard"
-							render={() => {
-								return (
-									<Dashboard
-										setUser={this.setUser}
-										user={this.state.user}
-										userId={this.state.userId}
-										menu={this.state.menu}
-										toggleForm={this.toggleForm}
-										formOpen={this.state.formOpen}
-										isLoggedIn={this.state.isLoggedIn}
-									/>
-								);
-							}}
 						/>
+                            <Dashboard
+                                setUser={this.setUser}
+                                user={this.state.user}
+                                userId={this.state.userId}
+                                menu={this.state.menu}
+                                toggleForm={this.toggleForm}
+                                formOpen={this.state.formOpen}
+                                isLoggedIn={this.state.isLoggedIn}
+                            />
 					</Router>
 				)}
 			</div>

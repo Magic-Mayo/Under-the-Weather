@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import EntranceForm from '../forms/EntranceForm';
-import ProviderForm from '../forms/Provider/Form'
-import SymptomForm from '../forms/Symptom/Form'
-import ContactForm from '../forms/Contact/Form'
-import InsuranceForm from '../forms/Insurance/Form'
+import EntranceForm from '../Login/EntranceForm';
+import ProviderForm from '../Provider/Form'
+import SymptomForm from '../Symptom/Form'
+import ContactForm from '../Contact/Form'
+import InsuranceForm from '../Insurance/Form'
+import ManualEntry from '../Provider/ManualEntry';
+import {Link} from 'react-router-dom';
 
 export default class FormContainer extends Component {
 	state = {
 		loginActive: true,
 		signupActive: false,
 		currentPage: 0,
-		showPassword: false
-	};
+        showPassword: false
+    };
 	setLogIn = () => {
 		this.setState({
 			loginActive: true,
@@ -32,12 +34,21 @@ export default class FormContainer extends Component {
 		this.setState({
 			showPassword: !this.state.showPassword
 		});
-	};
+    };
+    
+    setUpdateData = data => {
+        this.setState({data: data})
+    }
 
 	render() {
         return (
 			<div className="FormContainer">
-				<section className={`form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
+				<section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
+                    {this.props.isLoggedIn &&
+                        <Link to="/dashboard" className="form-container-close" title="Close Form">
+                                X
+                        </Link>
+                    }
 					{!this.props.isLoggedIn && (
 						<div className="form-btn-wrapper">
 							<button className="form-btn form-btn-signup" onClick={this.setSignUp}>
@@ -58,7 +69,9 @@ export default class FormContainer extends Component {
 								<SymptomForm {...this.props}/>
 							) : this.props.formType === 'Insurance' ? (
 								<InsuranceForm {...this.props}/>
-							) : null
+							) : this.props.formType === 'Manual' ? (
+                                <ManualEntry {...this.props}/>
+                            ) : null
 						) : (
 						<EntranceForm
 							handleLogIn={this.props.handleLogIn}

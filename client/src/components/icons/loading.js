@@ -15,7 +15,7 @@ class Loading extends Component {
 		if (!this.props.isLoggedIn && UTWtoken) {
 			return axios
 				.post('/token', { token: UTWtoken })
-				.then((user) => {console.log(user)
+				.then((user) => {
 					if (!user.data) {
 						return this.props.setUser();
                     }

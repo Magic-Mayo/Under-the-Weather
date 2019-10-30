@@ -1,0 +1,192 @@
+.provider-form {
+    display: flex;
+    width: 80%;
+    max-width: 750px;
+    justify-content: center;
+    margin: 4rem auto;
+    font-size: 2.35rem;
+
+    &-container {
+        margin-top: 1.5rem;
+        // background-color: bisque;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        // overflow-y: auto;
+
+    }
+
+    &-options {
+        // position: relative;
+        width: 100%;
+        display: flex;
+
+        &-search,
+        &-manual {
+            width: 50%;
+            color: $white;
+            font-size: 2rem;
+            padding: 2.5rem 0;
+            background: $peach-contrast-light;
+            border: none;
+        }
+
+        &-search {
+            background: $peach-contrast-heavy;
+            border: none;
+        }
+    }
+
+    &-title {
+        @include heading(2.75rem);
+        margin-top: 2.5rem;
+    }
+
+    &-subtitle {
+        @include heading(2.2rem);
+        margin-top: .5rem;
+    }
+
+    &-search {
+        &-input {
+            flex-grow: 5;
+            padding: 1.5rem 2.5rem;
+            border: 3px solid transparent;
+            box-shadow:inset 0 0 2.5rem rgba($black, .15);
+            border-top-left-radius: 10rem;
+            border-bottom-left-radius: 10rem;
+
+            box-shadow: 0 -.5rem 3.25rem rgba($black, .15);
+
+
+            transition: .25s all;
+
+            &:focus {
+                outline: none;
+                border: 3px solid $blue-main;
+            }
+
+
+        }
+
+        &-submit {
+            flex-grow: 1;
+            border: none;
+            background-color: $blue-main;
+            color: $white;
+            transition: .2s all;
+
+            border-top-right-radius: 10rem;
+            border-bottom-right-radius: 10rem;
+
+
+            &:hover {
+                background-color: $blue-dark;
+            }
+        }
+    }
+
+    &-results {
+        overflow-y: scroll;
+        position: absolute;
+        max-height: 60%;
+        box-shadow: inset 0 0 1.25rem rgba($blue-dark, .15);
+        padding: 1rem 5rem;
+
+        &-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &-submit {
+        width: 100%;
+        background: $peach-contrast-light;
+        padding: 1.75rem 1.5rem;
+        font-size: 2.325rem;
+        font-weight: 700;
+        margin: 2rem 0 3.5rem;
+        border-radius: 1.25rem;
+
+        &-container {
+            grid-row: 5/6;
+            grid-column: 2/4;
+            display: flex;
+            justify-content: center;
+            padding-top: 3rem;
+        }
+    }
+
+    &-manual-entry {
+        margin-top: 1rem;
+        position: relative;
+        max-height: 100%;
+        &-grid {
+            position: absolute;
+            top: 0;
+            max-height: 100%;
+            display: grid;
+            grid-template-rows: repeat(5,1fr);
+            grid-template-columns: repeat(4,1fr);
+            gap: 2.5rem;
+            margin-top: 10rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+
+            &-item {
+                // max-height: 12.5rem;
+                padding: 0;
+                width: 100%;
+
+                input {
+                    margin: 0;
+                    background-color: white;
+                }
+
+                &-name {
+                    grid-row: 1/2;
+                    grid-column: 1/3;
+                }
+
+                &-specialty {
+                    grid-row: 1/2;
+                    grid-column: 3/5;
+                }
+
+                &-insurance {
+                    grid-row: 2/3;
+                    grid-column: 1/3;
+                }
+
+                &-phone {
+                    grid-row: 2/3;
+                    grid-column: 3/5;
+                }
+
+                &-address {
+                    grid-row: 3/4;
+                    grid-column: 1/5;
+                }
+
+                &-city {
+                    grid-row: 4/5;
+                    grid-column: 1/3;
+                    padding-left: 0;
+                }
+
+                &-state {
+                    grid-row: 4/5;
+                    grid-column: 3/4;
+                    padding-left: 0;
+                }
+
+                &-zip {
+                    grid-row: 4/5;
+                    grid-column: 4/5;
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+}
