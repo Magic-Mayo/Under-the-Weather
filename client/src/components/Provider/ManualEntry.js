@@ -1,11 +1,19 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const ManualEntry = props => {
         return (
-            <div className="provider-manual-entry">
-                <form className="provider-manual-entry-grid">
-                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-name">
-                        <label htmlFor="doctorName">&nbsp;<span>*</span>Doctor's Name:</label>
+            <div className="provider-form-manual-entry">
+                <h2 className="provider-form-title">Enter your Doctor's information below</h2>
+                <h5 className="form-subtitle">To run a search for a doctor{' '}
+                    <Link to="/provider">
+                        click here
+                    </Link>
+                </h5>
+                <hr></hr>
+                <form className="provider-form-manual-entry-grid">
+                    <div className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-name">
+                        <label htmlFor="doctorName"><span>*</span>Doctor's Name:</label>
                         <input
                         name="name"
                         placeholder="Dr. John Smith"
@@ -16,8 +24,9 @@ const ManualEntry = props => {
                         />
                         <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span>
                     </div>
-                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-specialty">
-                        <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Specialty:</label>
+                    <div
+                    className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-specialty">
+                        <label htmlFor="doctorName">Specialty:</label>
                         <input
                         name="type"
                         placeholder="Pediatrician"
@@ -27,8 +36,9 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-insurance">
-                        <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Accepted Insurance:</label>
+                    <div
+                    className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-insurance">
+                        <label htmlFor="doctorName">Accepted Insurance:</label>
                         <input
                         name="insurance"
                         placeholder="Cigna"
@@ -38,8 +48,9 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-address">
-                        <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Address:</label>
+                    <div
+                    className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-address">
+                        <label htmlFor="doctorName">Address:</label>
                         <input
                         name="address"
                         placeholder="123 W Main St"
@@ -49,8 +60,9 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-city">
-                        <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;City:</label>
+                    <div
+                    className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-city">
+                        <label htmlFor="doctorName">City:</label>
                         <input
                         name="city"
                         placeholder="Phoenix"
@@ -60,8 +72,9 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-state">
-                        <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;State:</label>
+                    <div
+                    className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-state">
+                        <label htmlFor="doctorName">State:</label>
                         <input
                         name="state"
                         placeholder="AZ"
@@ -73,8 +86,9 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-zip">
-                        <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;ZIP:</label>
+                    <div
+                    className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-zip">
+                        <label htmlFor="doctorName">ZIP:</label>
                         <input
                         name="zip"
                         placeholder="85008"
@@ -86,8 +100,9 @@ const ManualEntry = props => {
                         required
                         />
                     </div>
-                    <div className="input-container provider-manual-entry-grid-item provider-manual-entry-grid-item-phone">
-                        <label htmlFor="doctorName">&nbsp;&nbsp;&nbsp;Phone Number:</label>
+                    <div
+                    className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-phone">
+                        <label htmlFor="doctorName">Phone Number:</label>
                         <input
                         name="phone"
                         placeholder="Dr. John Smith"
@@ -99,7 +114,7 @@ const ManualEntry = props => {
                     </div>
                     <div className="provider-form-submit-container">
                         <button type="button" className="provider-form-submit" onClick={props.submitProvider}>
-                            Add Provider
+                            Submit
                         </button>
                     </div>
                 </form>
