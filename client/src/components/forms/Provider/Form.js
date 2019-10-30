@@ -18,7 +18,7 @@ export default class ProviderForm extends Component {
         zip: '',
         phone:  '',
         errors:'',
-        searchActive: true
+        // searchActive: true
     };
 
     state = {
@@ -65,7 +65,7 @@ export default class ProviderForm extends Component {
     };
 
 	render() {
-        console.log("THIS IS THE PROVIDER FORM PROPS",this.props)
+        // console.log("THIS IS THE PROVIDER FORM PROPS",this.props)
 		return (
 			<div className="provider-form-container">
                 <Link to="/dashboard" className="closeForm">
@@ -73,7 +73,7 @@ export default class ProviderForm extends Component {
                         X
                     </button>
                 </Link>
-				<div className="provider-form-options">
+				{/* <div className="provider-form-options">
 					<button type="button" className="provider-form-options-search" onClick={this.toggleOption}>
 						Search By Specialty
 					</button>
@@ -81,13 +81,13 @@ export default class ProviderForm extends Component {
 						Enter Info Manually
 					</button>
 				</div>
-				{this.state.searchActive ? (
+				{this.state.searchActive ? ( */}
 					<Search
 						search={this.state.search}
 						submitProvider={this.submitProvider}
 						handleInput={this.handleInput}
 					/>
-				) : (
+				{/* ) : (
 					<ManualEntry
 						submitProvider={this.submitProvider}
 						handleInput={this.handleInput}
@@ -101,7 +101,7 @@ export default class ProviderForm extends Component {
                         zip={this.state.zip}
                         errors={this.state.errors}
 					/>
-				)}
+				)} */}
 					{/* <button type="button" className="provider-form-submit">
                         Add Provider
                     </button> */}
