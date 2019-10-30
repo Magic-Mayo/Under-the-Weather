@@ -25,6 +25,7 @@
         color: $peach-contrast-heavy;
         // text-transform: capitalize;
         border-bottom: $peach-contrast-heavy solid .15rem;
+        z-index: 15;
         &:focus {
             outline: none;
         }
@@ -117,7 +118,11 @@
             color: $black;
             position: absolute;
             right: 1rem;
-            bottom: 1.25rem
+            bottom: 1.25rem;
+            
+            &:hover {
+                color: $black;
+            }
         }
     }
 }

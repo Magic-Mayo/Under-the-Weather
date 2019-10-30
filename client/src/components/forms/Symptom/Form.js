@@ -44,7 +44,7 @@ export default class SymptomForm extends Component {
 
 	checkMatch = (val) => {
         const filteredResults = this.state.SymptomList.filter((symptom) => {
-			if (symptom.name.includes(val) && symptom.name.substring(0, val.length) === val) {
+			if (symptom.name.substring(0, val.length) === val) {
 				return symptom;
 			}
 		});
