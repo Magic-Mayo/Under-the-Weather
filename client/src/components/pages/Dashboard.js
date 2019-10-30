@@ -1,22 +1,22 @@
 import React, { Component } from "react";
-import Symptoms from "../cards/Symptoms";
-import MedicalHistory from "../cards/MedicalHistory";
-import Providers from "../cards/Providers";
-import Contacts from "../cards/Contacts";
-import Insurance from "../cards/Insurance";
+import Symptoms from "../Symptom/Card";
+import MedicalHistory from "../Medical_History/MedicalHistory";
+import Providers from "../Provider/Card";
+import Contacts from "../Contact/Card";
+import Insurance from "../Insurance/Card";
 import Nav from "../Nav";
 import Axios from 'axios';
 
 export default class Dashboard extends Component{
 
     deleteObject = props => {   
-    Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then(user=>{
-        this.props.setUser(user.data);
-    })    
-    };
+        Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then(user=>{
+            this.props.setUser(user.data);
+        })
+    }
 
-    editObject = () => {
-        
+    editObject = props => {
+        window.location.pathname = props
     }
 
     render() {
@@ -88,6 +88,7 @@ export default class Dashboard extends Component{
                 userId={this.props.userId}
                 user={this.props.user}
                 setUser={this.props.setUser}
+                
             />
             {/* <Forms /> */}
             </div>

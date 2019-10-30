@@ -19,13 +19,29 @@ import {
 	faEyeSlash,
 	faPen,
 	faMinusCircle,
-    faEdit
+    faEdit,
+    faAngleDoubleDown,
+    faAngleDoubleUp
 } from '@fortawesome/free-solid-svg-icons';
 import bodyParts from './data/bodyParts.json';
 import './App.scss';
 import axios from 'axios';
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, faPen, fab, faEdit, faMinusCircle);
+library.add(
+    faAngleDown,
+    faPlus,
+    faEnvelope,
+    faPhone,
+    faFilter,
+    faSortDown,
+    faEye,
+    faEyeSlash,
+    faPen,
+    fab,
+    faEdit,
+    faMinusCircle,
+    faAngleDoubleDown,
+    faAngleDoubleUp);
 
 class App extends Component {
 	state = {
