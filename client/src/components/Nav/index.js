@@ -49,7 +49,7 @@ class Nav extends Component {
 		}));
 
 	render() {
-		console.log('NAV HAS THESE PROPS', this.props);		
+		// console.log('NAV HAS THESE PROPS', this.props);		
 		return (
             <div>
 				<div className="Nav">
@@ -72,6 +72,7 @@ class Nav extends Component {
                                 userId={this.props.userId}
                                 setUser={this.props.setUser}
                                 user={this.props.user}
+                                searchOrManual={"search"}
 							/>
 						);
 					}}
@@ -81,13 +82,14 @@ class Nav extends Component {
 					path={'/provider/entry'}
 					render={() => {
 						return (
-							<ProviderManual
+							<ProviderLink
 								isLoggedIn={this.props.isLoggedIn}
 								toggleMenu={this.toggleMenu}
                                 menuState={this.state.dropDownVisible}
                                 userId={this.props.userId}
                                 setUser={this.props.setUser}
                                 user={this.props.user}
+                                searchOrManual={'entry'}
 							/>
 						);
 					}}
