@@ -26,7 +26,12 @@ export default class ContactsCard extends Component {
                             {this.state[contact._id] && <h4 className="contact-card-item-address">Address: {contact.address.streetAddress}</h4>}
                             {this.state[contact._id] && <h4 className="contact-card-item-city">&ensp;{contact.address.city}, {contact.address.state} {contact.address.zip}</h4>}
                             {this.state[contact._id] && <h4 className="contact-card-item-relationship">Relationship: {contact.relationship}</h4>}
-                            <button onClick={() => this.props.delete({_id:contact._id, card:this.props.card, route:this.props.route})}>delete</button>
+                            <FontAwesomeIcon
+                            icon="minus-circle"
+                            className = "contacts-delete"
+                            size="2x" 
+                            onClick={() => this.props.delete({_id:contact._id, card:this.props.card, route:this.props.route})}>
+                            </FontAwesomeIcon> 
                             <br/>                
                         </div>
                     ))}
