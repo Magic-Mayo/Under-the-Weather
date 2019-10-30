@@ -26,6 +26,17 @@ function ContactInput(props) {
                             {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                         </input>
                     </div>
+                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-relationship">
+                        <label htmlFor="relationship">Relationship:</label>
+                        {/* <label style={{color: "red", fontSize: "10px"}}>{props.errors}</label> */}
+                        <input
+                            type="text"
+                            name="relationship"
+                            value={props.relationship}
+                            onChange={props.handleInput}>
+                        </input>
+                        {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
+                    </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-address">
                         <label htmlFor="address">Contact Address:</label>
                         <input
@@ -68,17 +79,6 @@ function ContactInput(props) {
                         value={props.zip}
                         onChange={props.handleInput}
                         />
-                    </div>
-                    <div className="input-container contact-entry-grid-item contact-entry-grid-item-relationship">
-                        <label htmlFor="relationship">Relationship:</label>
-                        {/* <label style={{color: "red", fontSize: "10px"}}>{props.errors}</label> */}
-                        <input
-                            type="text"
-                            name="relationship"
-                            value={props.relationship}
-                            onChange={props.handleInput}>
-                        </input>
-                        {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                     </div>
                     <button className="contact-entry-grid-submit" onClick={props.contactToDatabase}>Submit</button>
                 </form>
