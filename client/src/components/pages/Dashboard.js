@@ -8,6 +8,12 @@ import Nav from "../Nav";
 import Axios from 'axios';
 
 export default class Dashboard extends Component{
+    state = {}
+
+    expand = e => {
+        const {id} = e.currentTarget;
+        this.setState({[id]: !this.state[id]})
+    }
 
     deleteObject = props => {   
         Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then(user=>{
@@ -29,10 +35,9 @@ export default class Dashboard extends Component{
             card='symptom'
             delete={this.deleteObject}
             route='deletesymptom'
-            setUser={this.props.setUser}
-            userId={this.props.userId}
-            isLoggedIn={this.props.isLoggedIn}
             edit={this.editObject}
+            expand={this.expand}
+            itemIsExpanded={this.state}
             />
             
             <section className="container-right">
@@ -49,46 +54,39 @@ export default class Dashboard extends Component{
                 delete={this.deleteObject}
                 card='provider'
                 route='deleteprovider'
-                setUser={this.props.setUser}
-                userId={this.props.userId}
-                isLoggedIn={this.props.isLoggedIn}
                 edit={this.editObject}
+                expand={this.expand}
+                itemIsExpanded={this.state}
                 />
                 <Contacts
-                setUser={this.props.setUser}
-                userId={this.props.userId}
-                isLoggedIn={this.props.isLoggedIn}
                 name={this.props.user.name}
                 contact={this.props.user.emergencyContacts}            
                 delete={this.deleteObject}
                 edit={this.editObject}
+                expand={this.expand}
+                itemIsExpanded={this.state}
                 card ='contact'
                 route='deletecontact'
-
                 />
                 <Insurance
-                setUser={this.props.setUser}
-                userId={this.props.userId}
-                isLoggedIn={this.props.isLoggedIn}
                 name={this.props.user.name}
                 insurance={this.props.user.mediData.insurance}
                 delete={this.deleteObject}
-                edit={this.editObject}       
+                edit={this.editObject}
+                expand={this.expand}
+                itemIsExpanded={this.state}
                 card='insurance'
                 route='deleteinsurance'
-
                 />
             </section>
             <Nav
                 name={this.props.user.name}
                 menu={this.props.menu}
-                isLoggedIn={this.props.isLoggedIn}
                 formOpen={this.props.formOpen}
                 toggleForm={this.props.toggleForm}
                 userId={this.props.userId}
                 user={this.props.user}
-                setUser={this.props.setUser}
-                
+                isLoggedIn={this.props.isLoggedIn}
             />
             {/* <Forms /> */}
             </div>
