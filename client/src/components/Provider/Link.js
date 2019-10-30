@@ -15,7 +15,8 @@ export default class ProviderLink extends Component {
                 message="ADD PROVIDER"
                 userId={this.props.userId}
                 isLoggedIn={this.props.isLoggedIn}
-                formType="Provider"
+                formType={this.props.searchOrManual === "search" ? 
+                    "Provider":"Manual"}
                 setUser={this.props.setUser}/>
 			</div>
 		);
