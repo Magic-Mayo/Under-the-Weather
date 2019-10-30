@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import ProviderLink from '../forms/Provider/Link';
 import ContactLink from '../forms/Contact/Link';
 import SymptomLink from '../forms/Symptom/Link';
 import InsuranceLink from '../forms/Insurance/Link';
-// import Dashboard from '../pages/Dashboard';
+import ProviderManual from '../forms/Provider/ManualEntry';
 
 const NavItems = (props) => {
 	return (
@@ -68,6 +66,22 @@ class Nav extends Component {
 					render={() => {
 						return (
 							<ProviderLink
+								isLoggedIn={this.props.isLoggedIn}
+								toggleMenu={this.toggleMenu}
+                                menuState={this.state.dropDownVisible}
+                                userId={this.props.userId}
+                                setUser={this.props.setUser}
+                                user={this.props.user}
+							/>
+						);
+					}}
+				/>
+				<Route
+					exact
+					path={'/provider/entry'}
+					render={() => {
+						return (
+							<ProviderManual
 								isLoggedIn={this.props.isLoggedIn}
 								toggleMenu={this.toggleMenu}
                                 menuState={this.state.dropDownVisible}
