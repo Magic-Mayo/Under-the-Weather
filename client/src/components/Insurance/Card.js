@@ -12,12 +12,33 @@ export default function InsuranceCard(props) {
                     <div className="Insurance card" key={ins._id}>
                         <h3>{ins.provider}</h3>
                         <h4>{ins.insuranceType}</h4>
-                        {ins.groupNumber && <h4>Group Number: {ins.groupNumber}</h4>}
-                        {ins.idNumber && <h4>Id Number: {ins.idNumber}</h4>}
-                        {ins.deductible && <h4>Deductible: {ins.deductible}</h4>}                          
+                        {ins.groupNumber && props.itemIsExpanded[ins._id] && <h4>Group Number: {ins.groupNumber}</h4>}
+                        {ins.idNumber && props.itemIsExpanded[ins._id] && <h4>Id Number: {ins.idNumber}</h4>}
+                        {ins.deductible && props.itemIsExpanded[ins._id] && <h4>Deductible: {ins.deductible}</h4>}
+
+                        {props.itemIsExpanded[ins._id] ? 
+                            <FontAwesomeIcon
+                            className="insurance-card-expand"
+                            icon="angle-double-up"
+                            size="2x"
+                            id={ins._id}
+                            onClick={(e)=>props.expand(e)}
+                            />
+                            
+                            :
+                            
+                            <FontAwesomeIcon
+                            className="insurance-card-expand"
+                            icon="angle-double-down"
+                            size="2x"
+                            id={ins._id}
+                            onClick={(e)=>props.expand(e)}
+                            />
+                        }
+
                         <FontAwesomeIcon icon="minus-circle" className = "insurance-delete" size="2x" 
                         onClick={() => props.delete({_id:ins._id, card:props.card, route:props.route})}>
-                        </FontAwesomeIcon>                   
+                        </FontAwesomeIcon>
                     </div>
                 ))}
             </div>
