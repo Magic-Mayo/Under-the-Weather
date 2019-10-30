@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
-import {Link} from 'react-router-dom';
 import moment from 'moment';
 
 function ContactInput(props) {
@@ -138,11 +137,6 @@ export default class Form extends Component {
     render() {
 		return (
 			<div className="contact-form-container">
-                <Link to="/dashboard" className="closeForm">
-                    <button type="button" className="contact-form-close">
-                        X
-                    </button>
-                </Link>
                 <h1 className="contact-form-title">Please Enter Emergency Contact Information</h1>
                 <hr></hr>
                 <ContactInput

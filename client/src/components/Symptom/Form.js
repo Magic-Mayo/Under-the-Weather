@@ -80,11 +80,6 @@ export default class SymptomForm extends Component {
 
 		return (
 			<div className="symptom-form-container">
-                <Link to="/dashboard" className="closeForm">
-                    <button type="button" className="symptom-form-close">
-                        X
-                    </button>
-                </Link>
 				<h1 className="symptom-form-title">What Symptom(s) Are You Experiencing?</h1>
                 <h3 className="symptom-form-subtitle">If it isn't listed, write your own in</h3>
                 <hr></hr>

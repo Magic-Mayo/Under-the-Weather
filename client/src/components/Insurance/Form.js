@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
 function InsuranceInput(props) {
@@ -99,11 +98,6 @@ export default class InsuranceForm extends Component {
 	render() {
 		return (
 			<div className="insurance-form-container">
-                <Link to="/dashboard" className="closeForm">
-                    <button type="button" className="insurance-form-close">
-                        X
-                    </button>
-                </Link>
 				<h1 className="insurance-form-title">Please Enter Insurance Information</h1>
                 <hr></hr>
                 <InsuranceInput 

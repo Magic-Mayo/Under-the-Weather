@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import ManualEntry from './ManualEntry';
-import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import moment from 'moment'
 
@@ -68,11 +67,6 @@ export default class ProviderForm extends Component {
         // console.log("THIS IS THE PROVIDER FORM PROPS",this.props)
 		return (
 			<div className="provider-form-container">
-                <Link to="/dashboard" className="closeForm">
-                    <button type="button" className="provider-form-close">
-                        X
-                    </button>
-                </Link>
 				{/* <div className="provider-form-options">
 					<button type="button" className="provider-form-options-search" onClick={this.toggleOption}>
 						Search By Specialty
