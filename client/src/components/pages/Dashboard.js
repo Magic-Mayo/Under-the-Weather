@@ -10,6 +10,7 @@ import Axios from 'axios';
 export default class Dashboard extends Component{
     state = {}
 
+    // change function to set state based on which component it comes from as well
     expand = e => {
         const {id} = e.currentTarget;
         this.setState({[id]: !this.state[id]})
