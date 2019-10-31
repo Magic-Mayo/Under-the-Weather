@@ -14,7 +14,7 @@ const UserSchema = new Schema({
                 groupNumber: {type: String, default: ''},
                 idNumber: {type: String, default: ''},
                 deductible: {type: String, default: ''},
-                copay: [{
+                copay: {
                     doctor: Number,
                     specialist: Number,
                     urgentCare: Number,
@@ -23,7 +23,7 @@ const UserSchema = new Schema({
                         brandName: Number,
                         generic: Number
                     }
-                }],
+                },
                 updatedAt: Date,
                 createdAt: Date
             }],
