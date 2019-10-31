@@ -68,7 +68,7 @@ export default function Symptoms(props) {
                     data={formData}
                 />
 
-                <section className="Symptoms-content-container">
+                <section className="symptoms-content-container">
                     {props.symptoms.map(symptoms=>(
                         <div key={symptoms._id} className="symptoms-result-container">
                             <p className="symptoms-result-item-type" >{symptoms.painType} {symptoms.symptoms}</p>
@@ -92,7 +92,7 @@ export default function Symptoms(props) {
                                         moment(symptoms.time).format('DD MMM | h:MM A'))))
                                 }
                             </p>
-                        <Link to="/symptom" className="symptoms-result-edit">
+                        <Link to={`/symptom/${symptoms._id}`} className="symptoms-result-edit">
                             <FontAwesomeIcon icon="edit" size="2x"/>
                         </Link>
                         </div>
