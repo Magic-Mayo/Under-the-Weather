@@ -7,8 +7,6 @@ import InsuranceForm from '../Insurance/Form'
 import ProviderManualEntry from '../Provider/ManualEntry';
 import {Link} from 'react-router-dom';
 import {withRouter} from 'react-router';
-// import PropTypes from 'prop-types';
-
 
 class FormContainer extends Component {
 	state = {
@@ -26,12 +24,6 @@ class FormContainer extends Component {
         console.log(id)
     }
 
-    // static propTypes = {
-    //     match: PropTypes.object.isRequired,
-    //     location: PropTypes.object.isRequired,
-    //     history: PropTypes.object.isRequired
-    // }
-    
 	setLogIn = () => {
 		this.setState({
 			loginActive: true,
@@ -59,8 +51,6 @@ class FormContainer extends Component {
     }
 
 	render() {
-        // const { match, location, history } = this.props;
-        console.log(this.props.match)
         return (
 			<div className="FormContainer">
 				<section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
