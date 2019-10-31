@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Search from './Search';
-import ManualEntry from './ManualEntry';
 import Axios from 'axios';
 import moment from 'moment'
 
