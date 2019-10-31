@@ -1,24 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FormContainer from '../pages/FormContainer';
 
-export default class ProviderLink extends Component {
-	componentDidMount = () => {
-        if(this.props.menuState){
-            this.props.toggleMenu()
-        }
-    }
-    
-	render() {
-		return (
-			<div className="ProviderLink">
-                <FormContainer 
-                message="ADD PROVIDER"
-                userId={this.props.userId}
-                isLoggedIn={this.props.isLoggedIn}
-                formType={this.props.searchOrManual === "search" ? 
-                    "Provider":"Manual"}
-                setUser={this.props.setUser}/>
-			</div>
-		);
-	}
+export default function ProviderLink(props) {
+    return (
+        <div className="ProviderLink">
+            <FormContainer 
+            userId={props.userId}
+            isLoggedIn={props.isLoggedIn}
+            formType={props.searchOrManual === "search" ? 
+                "Provider":"Manual"}
+            setUser={props.setUser}
+            menuState={props.menuState}
+            toggleMenu={props.toggleMenu}
+            />
+        </div>
+    );
 }
