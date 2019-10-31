@@ -4,16 +4,34 @@ import ProviderForm from '../Provider/Form'
 import SymptomForm from '../Symptom/Form'
 import ContactForm from '../Contact/Form'
 import InsuranceForm from '../Insurance/Form'
-import ManualEntry from '../Provider/ManualEntry';
+import ProviderManualEntry from '../Provider/ManualEntry';
 import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router';
+// import PropTypes from 'prop-types';
 
-export default class FormContainer extends Component {
+
+class FormContainer extends Component {
 	state = {
 		loginActive: true,
 		signupActive: false,
 		currentPage: 0,
         showPassword: false
     };
+
+	componentDidMount = () => {
+        if(this.props.menuState){
+            this.props.toggleMenu()
+        }
+        const id = this.props.match.params.id
+        console.log(id)
+    }
+
+    // static propTypes = {
+    //     match: PropTypes.object.isRequired,
+    //     location: PropTypes.object.isRequired,
+    //     history: PropTypes.object.isRequired
+    // }
+    
 	setLogIn = () => {
 		this.setState({
 			loginActive: true,
@@ -41,6 +59,8 @@ export default class FormContainer extends Component {
     }
 
 	render() {
+        // const { match, location, history } = this.props;
+        console.log(this.props.match)
         return (
 			<div className="FormContainer">
 				<section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
@@ -70,7 +90,7 @@ export default class FormContainer extends Component {
 							) : this.props.formType === 'Insurance' ? (
 								<InsuranceForm {...this.props}/>
 							) : this.props.formType === 'Manual' ? (
-                                <ManualEntry {...this.props}/>
+                                <ProviderManualEntry {...this.props}/>
                             ) : null
 						) : (
 						<EntranceForm
@@ -89,3 +109,5 @@ export default class FormContainer extends Component {
 		);
 	}
 }
+
+export default withRouter(FormContainer);
