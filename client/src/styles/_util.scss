@@ -159,3 +159,26 @@
         width: 100%;
     }
 }
+
+.item {
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &-expand {
+
+    }
+
+    &-delete {
+        color:rgb(238, 32, 0);
+    }
+}
+
+.expanded {
+    overflow-y: scroll;
+}
+
+.overflow-hidden {
+    overflow-y: hidden;
+}
