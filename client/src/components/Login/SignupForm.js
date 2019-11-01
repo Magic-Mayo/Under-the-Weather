@@ -1,9 +1,14 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import SignInSocial from './SignInSocial';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import ProviderForm from '../Provider/Form'
+import ContactForm from '../Contact/Form'
+import InsuranceForm from '../Insurance/Form'
+import ProviderManualEntry from '../Provider/ManualEntry';
+
 
 class SignupForm extends Component {
 	state = {
@@ -15,7 +20,7 @@ class SignupForm extends Component {
 		lastname: '',
 		sex: '',
 		age: '',
-        currentPage: 1
+        currentPage: 1,
 	};
 
 	handleInput = (e) => {
@@ -123,9 +128,30 @@ class SignupForm extends Component {
         return this.setState({redirect: true})
     }
 
+    openForm = props => {
+        if(props === 'contact'){
+            return this.setState({form: <ContactForm userId={this.props.userId}/>})
+        }
+        if(props === 'insurance'){
+            return this.setState({form: <InsuranceForm userId={this.props.userId}/>})
+        }
+
+        return this.setState({form: <ProviderForm userId={this.props.userId}/>})
+    }
+
 	render() {
         if(this.state.redirect){
             return <Redirect to={{pathname: "/dashboard", state: {isLoggedIn: true}}}/>
+        }
+        if(this.state.form){
+            return (
+                <div className="FormContainer">
+                    <section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
+                        {this.state.form}
+                    </section>
+                </div>
+
+            )
         }
 
 		return (
@@ -162,6 +188,8 @@ class SignupForm extends Component {
                     ) : <DetailsPage
                         redirect={this.state.redirect}
                         handleInput={this.handleInput}
+                        {...this.props.match}
+                        openForm={this.openForm}
                         />
                     }
 
@@ -328,7 +356,7 @@ function SecondPage(props) {
 	);
 }
 
-function ThirdPage() {
+function ThirdPage(props) {
     return (
         <div className="sign-up-third-page">
             <h1 className="form-title">Welcome to Under the Weather!</h1>
@@ -337,24 +365,25 @@ function ThirdPage() {
     )
 }
 
-function DetailsPage() {
+function DetailsPage(props) {
+    console.log(props.url)
     return (
         <div className="sign-up=details">
-            <Link to="/form/insurance">
-                <button type="button" className="details-insurance">
+            {/* <Link to={`${props.url}form/insurance`}> */}
+                <button type="button" className="details-insurance" onClick={()=>props.openForm('insurance')}>
                     Add Insurance Info
                 </button>
-            </Link>
-            <Link to="/form/provider">
-                <button type="button" className="details-provider">
+            {/* </Link> */}
+            {/* <Link to={`${props.url}form/provider`}> */}
+                <button type="button" className="details-provider" onClick={()=>props.openForm('provider')}>
                     Add Provider Info
                 </button>
-            </Link>
-            <Link to="/form/contact">
-                <button type="button" className="details-contact">
+            {/* </Link> */}
+            {/* <Link to={`${props.url}form/contact`}> */}
+                <button type="button" className="details-contact" onClick={()=>props.openForm('contact')}>
                     Add Emergency Contact Info
                 </button>
-            </Link>
+            {/* </Link> */}
         </div>
     )
 }
