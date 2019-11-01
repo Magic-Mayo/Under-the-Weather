@@ -12,6 +12,12 @@ export default class SymptomForm extends Component {
 		responses: []
     };
     
+    componentDidMount() {
+        if(this.props.navOpen){
+            this.props.toggleNav();
+        }
+    }
+    
 	setSymptom = (e) => {
 		console.log(e.target.value)
 

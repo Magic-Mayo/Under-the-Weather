@@ -1,7 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 
 const ManualEntry = props => {
+    if(props.navOpen){
+        props.toggleNav();
+    }
         return (
             <div className="provider-form-manual-entry">
                 <h2 className="provider-form-title">Enter your Doctor's information below</h2>
