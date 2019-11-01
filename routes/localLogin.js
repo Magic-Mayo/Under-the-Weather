@@ -15,20 +15,25 @@ sessionCheck = (req, res, next) => {
 
 module.exports = (app) => {
 
-    app.get('/check', controller.findByName)
+    app.get('/check/:email', controller.findByName)
 
     app.post('/newlocal', (req,res)=>{
         console.log(req.body)
-        if(!req.body.username || !req.body.password){ return }
+        const body = req.body
+        if(!req.body.email || !req.body.password){ return }
 
-        db.User.findOne({userName: req.body.username}).then(user=>{
-            if(user){ return }
-            bcrypt.hash(req.body.password, 12)
+        db.User.findOne({"data.email": body.email}).then(user=>{
+            if(user){ return res.json(false) }
+            bcrypt.hash(body.password, 12)
             .then(hash=>{
                 db.User.create({
-                    userName: req.body.username,
+                    'data.email': body.email,
                     password: hash,
                     loginToken: token,
+                    'data.firstName': body.firstName,
+                    'data.lastName': body.lastName,
+                    'data.gender': body.gender,
+                    'data.DOB': body.DOB,
                     createdAt: moment()
                 })
                 .then(user=>{
