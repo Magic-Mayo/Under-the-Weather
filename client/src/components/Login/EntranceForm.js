@@ -5,52 +5,38 @@ import { withRouter } from 'react-router';
 
 class EntranceForm extends Component {
 	state = {
-		loginActive: true,
-		signupActive: false,
 		currentPage: 0,
         showPassword: false
     };
-
 
     togglePassword = () => {
         this.setState({showPassword: !this.state.showPassword})
     }
 
-    toggleSignUporLogIn = () => {
-        return this.setState({
-            loginActive: !this.state.loginActive, 
-            signupActive: !this.state.signupActive
-        })
-	};
-
 	render() {                
 		return (
-            <section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
-			<div className={`form form-${this.state.loginActive ? 'existing' : 'new'}`}>
+			<div className={`form form-${this.props.state.loginActive ? 'existing' : 'new'}`}>
                 <div className="form-btn-wrapper">
                     <button
-                    disabled={this.state.signupActive}
-                    className={`form-btn form-btn-signup ${this.state.signupActive && 'disabled'}`}
-                    onClick={this.toggleSignUporLogIn}
+                    disabled={this.props.state.signupActive}
+                    className={`form-btn form-btn-signup ${this.props.state.signupActive && 'disabled'}`}
+                    onClick={this.props.toggleSignUporLogIn}
                     >
                         Sign Up
                     </button>
                     <button
                     disabled={this.state.loginActive}
                     className={`form-btn form-btn-login ${this.state.loginActive && 'disabled'}`}
-                    onClick={this.toggleSignUporLogIn}
+                    onClick={this.props.toggleSignUporLogIn}
                     >
                         Log In
                     </button>
                 </div>
 
-				{
-					this.props.message && <p>{this.props.message}</p>
-				}
-				{this.state.signupActive ? (
+				{this.props.state.signupActive ? (
 					<SignupForm
 						setUser={this.props.setUser} 
-						classNames={`form-input-box form-${!this.state.loginActive ? 'existing' : 'new'}-input-box`}
+						classNames={`form-input-box form-${!this.props.state.loginActive ? 'existing' : 'new'}-input-box`}
 						togglePassword={this.props.togglePassword}
                         showPassword={this.state.showPassword}
                         logInNewUser={this.props.logInNewUser}
@@ -71,7 +57,6 @@ class EntranceForm extends Component {
                     />
 				)}
 			</div>
-            </section>
 		);
 	}
 }
