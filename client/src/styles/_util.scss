@@ -115,6 +115,7 @@
 
         .social-facebook {
             background-color: #3C5A99;
+            cursor: default;
         }
 
         // div {
@@ -181,4 +182,8 @@
 
 .overflow-hidden {
     overflow-y: hidden;
+}
+
+.disabled {
+    cursor: default;
 }
