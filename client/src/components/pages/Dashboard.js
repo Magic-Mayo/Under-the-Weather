@@ -4,6 +4,7 @@ import Symptoms from "../Symptom/Card";
 import Providers from "../Provider/Card";
 import Contacts from "../Contact/Card";
 import Insurance from "../Insurance/Card";
+import FormContainer from './FormContainer'
 import Nav from "../Nav";
 import Axios from 'axios';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
@@ -102,6 +103,19 @@ class Dashboard extends Component{
                 isLoggedIn={this.props.isLoggedIn}
             />
             {/* <Forms /> */}
+            <Route
+            path={`${this.props.match.path}/form/:formtype/:id?`}
+            >
+                <FormContainer
+                userId={this.state.userId}
+                setUser={this.state.setUser}
+                user={this.state.user}
+                handleLogIn={this.handleLogIn}
+                logIn={this.logIn}
+                searchOrManual="entry"
+                />
+            </Route>
+
             </div>
         );
     }
