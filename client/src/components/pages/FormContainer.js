@@ -5,19 +5,13 @@ import ProviderForm from '../Provider/Form'
 import ContactForm from '../Contact/Form'
 import InsuranceForm from '../Insurance/Form'
 import ProviderManualEntry from '../Provider/ManualEntry';
-import { BrowserRouter as Router, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import {withRouter} from 'react-router';
 
 class FormContainer extends Component {
     state = {
         loginActive: true,
 		signupActive: false,
-    }
-
-	componentDidMount() {
-        if(this.props.menuState){
-            this.props.toggleMenu()
-        }
     }
 
     toggleSignUporLogIn = () => {
@@ -38,7 +32,6 @@ class FormContainer extends Component {
     }
 
 	render() {
-        console.log(this.props.match)
         return (
 			<div className="FormContainer">
                 <section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
