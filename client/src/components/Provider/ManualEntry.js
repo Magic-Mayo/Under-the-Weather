@@ -25,7 +25,7 @@ const ManualEntry = props => {
                     </div>
                     <div
                     className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-specialty">
-                        <label htmlFor="doctorName">Specialty:</label>
+                        <label htmlFor="type">Specialty:</label>
                         <input
                         name="type"
                         placeholder="Pediatrician"
@@ -37,7 +37,7 @@ const ManualEntry = props => {
                     </div>
                     <div
                     className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-insurance">
-                        <label htmlFor="doctorName">Accepted Insurance:</label>
+                        <label htmlFor="insurance">Accepted Insurance:</label>
                         <input
                         name="insurance"
                         placeholder="Cigna"
@@ -49,7 +49,7 @@ const ManualEntry = props => {
                     </div>
                     <div
                     className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-address">
-                        <label htmlFor="doctorName">Address:</label>
+                        <label htmlFor="address">Address:</label>
                         <input
                         name="address"
                         placeholder="123 W Main St"
@@ -61,7 +61,7 @@ const ManualEntry = props => {
                     </div>
                     <div
                     className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-city">
-                        <label htmlFor="doctorName">City:</label>
+                        <label htmlFor="city">City:</label>
                         <input
                         name="city"
                         placeholder="Phoenix"
@@ -73,7 +73,7 @@ const ManualEntry = props => {
                     </div>
                     <div
                     className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-state">
-                        <label htmlFor="doctorName">State:</label>
+                        <label htmlFor="state">State:</label>
                         <input
                         name="state"
                         placeholder="AZ"
@@ -87,7 +87,7 @@ const ManualEntry = props => {
                     </div>
                     <div
                     className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-zip">
-                        <label htmlFor="doctorName">ZIP:</label>
+                        <label htmlFor="zip">ZIP:</label>
                         <input
                         name="zip"
                         placeholder="85008"
@@ -104,7 +104,7 @@ const ManualEntry = props => {
                         <label htmlFor="doctorName">Phone Number:</label>
                         <input
                         name="phone"
-                        placeholder="Dr. John Smith"
+                        placeholder="480-963-8741"
                         type="number"
                         value={props.phone}
                         onChange={props.handleInput}
