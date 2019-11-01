@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import Axios from 'axios';
-import moment from 'moment'
+import moment from 'moment';
+import ManualEntry from './ManualEntry';
 
 export default class ProviderForm extends Component {
     initialState = {
@@ -62,25 +63,22 @@ export default class ProviderForm extends Component {
         };
     };
 
+    entry = () => {
+        this.setState({entry: !this.state.entry})
+    }
+
 	render() {
         // console.log("THIS IS THE PROVIDER FORM PROPS",this.props)
 		return (
 			<div className="provider-form-container">
-				{/* <div className="provider-form-options">
-					<button type="button" className="provider-form-options-search" onClick={this.toggleOption}>
-						Search By Specialty
-					</button>
-					<button type="button" className="provider-form-options-manual" onClick={this.toggleOption}>
-						Enter Info Manually
-					</button>
-				</div>
-				{this.state.searchActive ? ( */}
+                {!this.state.entry ?
 					<Search
 						search={this.state.search}
 						submitProvider={this.submitProvider}
-						handleInput={this.handleInput}
+                        handleInput={this.handleInput}
+                        entry={this.entry}
 					/>
-				{/* ) : (
+                    :
 					<ManualEntry
 						submitProvider={this.submitProvider}
 						handleInput={this.handleInput}
@@ -93,12 +91,10 @@ export default class ProviderForm extends Component {
 						state={this.state.state}
                         zip={this.state.zip}
                         errors={this.state.errors}
+                        entry={this.entry}
 					/>
-				)} */}
-					{/* <button type="button" className="provider-form-submit">
-                        Add Provider
-                    </button> */}
-				</div>
+                }
+            </div>
 		);
 	}
 }
