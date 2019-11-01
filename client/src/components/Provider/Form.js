@@ -24,6 +24,12 @@ export default class ProviderForm extends Component {
         ...this.initialState
     };
 
+    componentDidMount() {
+        if(this.props.navOpen){
+            this.props.toggleNav();
+        }
+    }
+    
     handleInput = (e) => {
         const {name, value} = e.target;
         this.setState({[name]: value})

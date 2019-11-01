@@ -69,7 +69,13 @@ export default class InsuranceForm extends Component {
 		groupNumber: '',
 		insuranceType: '',
 		deductible: ''
-	};
+    };
+    
+    componentDidMount() {
+        if(this.props.navOpen){
+            this.props.toggleNav();
+        }
+    }
 
 	handleInsuranceChange = (e) => {
 		const { name, value } = e.target;
