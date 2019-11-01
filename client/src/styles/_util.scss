@@ -187,3 +187,11 @@
 .disabled {
     cursor: default;
 }
+
+.link {
+    color: $blue-dark;
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
