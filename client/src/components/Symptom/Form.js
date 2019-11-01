@@ -16,6 +16,12 @@ export default class SymptomForm extends Component {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
+        // if(this.props.location.state){
+        //     const contact = this.props.location.state.contact
+        //     this.setState({
+
+        //     })
+        // }
     }
     
 	setSymptom = (e) => {
