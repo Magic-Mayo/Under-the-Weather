@@ -18,12 +18,14 @@ module.exports = {
             .catch(err=>console.log(err))
     },
     findByName: (req,res)=>{
-        db.User.findOne(req.body)
+        console.log(req.params)
+        db.User.findOne({'data.email': req.params.email})
             .then(user=>{
+                console.log(user)
                 if(user){
-                    return res.json(false)
+                    return res.json(user.data)
                 }
-                res.json(true)
+                res.json(false)
             })
     },
     updateAccount: (req,res,next)=>{
