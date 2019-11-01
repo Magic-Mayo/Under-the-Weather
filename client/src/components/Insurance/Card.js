@@ -62,9 +62,13 @@ export default function InsuranceCard(props) {
                             onClick={(e)=>props.expand(e)}
                             />
 
-                        {/* <FontAwesomeIcon icon="minus-circle" className = "insurance-item-delete item item-delete" size="2x" 
-                        onClick={() => props.delete({_id:ins._id, card:props.card, route:props.route})}>
-                        </FontAwesomeIcon> */}
+                        <Link to={`dashboard/form/insurance/${ins._id}`}>
+                            <FontAwesomeIcon
+                            icon="edit"
+                            className="insurance-card-edit item-edit item"
+                            size="2x" 
+                            />
+                        </Link>
                     </div>
                 ))}
             </div>

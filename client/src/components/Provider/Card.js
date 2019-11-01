@@ -28,9 +28,13 @@ export default function Providers(props) {
                         id={provider._id}
                         onClick={(e)=>props.expand(e)}
                         />
-                        {/* <FontAwesomeIcon icon="minus-circle" className = "item item-delete provider-item-delete" size="2x" 
-                            onClick={() => props.delete({_id:provider._id, card:props.card, route:props.route})}>
-                        </FontAwesomeIcon>  */}
+                        <Link to={`dashboard/form/provider/${provider._id}`}>
+                            <FontAwesomeIcon
+                            icon="edit"
+                            className="provider-card-edit item-edit item"
+                            size="2x" 
+                            />
+                        </Link>
                     </div>)
                 })}
             </div>
