@@ -44,7 +44,7 @@ export default function ContactsCard(props) {
     }
 
     return (
-        <div className="contact-card-empty">
+        <div className="contact-card-empty card">
             <h2>Emergency Contacts</h2>
             <Link to={'/contact'} className="contact-card-link" style={{textDecoration: "none"}}>
                 <div className="contact-card-link-container">
