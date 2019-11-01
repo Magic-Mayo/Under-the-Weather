@@ -1,15 +1,9 @@
 import React, {Component} from 'react';
 import {
     BrowserRouter as Router,
-    Route,
     Link,
 } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ProviderLink from '../Provider/Link';
-import ContactLink from '../Contact/Link';
-import SymptomLink from '../Symptom/Link';
-import InsuranceLink from '../Insurance/Link';
-import ProviderManual from '../Provider/ManualEntry';
 
 const NavItems = (props) => {
 	return (
