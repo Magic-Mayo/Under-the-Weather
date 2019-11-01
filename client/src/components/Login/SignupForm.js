@@ -1,80 +1,152 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import SignInSocial from './SignInSocial';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import { Link, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-export default class SignupForm extends Component {
+class SignupForm extends Component {
 	state = {
-		username: '',
+		email: '',
 		password: '',
-		passwordCheck: '',
+        passwordCheck: '',
+        passwordValid: false,
 		firstname: '',
 		lastname: '',
-		sex: {
-			male: false,
-			female: false
-		},
-		age: 0,
-		currentPage: 0
+		sex: '',
+		age: '',
+        currentPage: 1
 	};
 
 	handleInput = (e) => {
+        this.setState({error: false, emailInUse: false})
 		const { name, value } = e.target;
-		this.setState({ [name]: value });
+        this.setState({ [name]: value });
     };
     
     signUpUser = () => {
-        if (this.state.password !== this.state.passwordCheck || !this.validatePassword()){
-            return console.log('pass no match')
-        }
-        if (this.state.username && this.state.password){
-            axios.post('/newlocal', this.state).then(user=>{
 
-                this.setState({user: user.data.data, userId: user.data._id, page: this.state.page + 1})
+        if (this.state.email && this.state.password && this.state.firstname && this.state.lastname){
+            return axios.post('/newlocal', {
+                email: this.state.email,
+                firstName: this.state.firstname,
+                lastName: this.state.lastname,
+                DOB: this.state.age,
+                gender: this.state.sex,
+                password: this.state.password
+            }).then(user=>{
                 console.log(user)
+                if(user.data){
+                    this.props.setUser({user: user.data.user, userId: user.data.userId})
+                    this.setState({currentPage: this.state.currentPage + 1})
+                    // this.props.logInNewUser()
+                } else {
+                    this.setState({error: "Error creating new account.  Please try again."})
+                }
             })
         }
+
     }
 
     validatePassword = () => {
+        console.log("password")
         // Validates password as having one upper and lower case, one number, and at least 8 characters
-        if (this.state.password.match(/^(?=.*[0-9].*)(?=.*[a-z].*)(?=.*[A-Z].*)([a-zA-Z0-9]+)$/) && this.state.password.length>=8){
-            return true
+        if (this.state.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/) ){
+            console.log("password valid")
+                return this.setState({passwordValid: true})
         }
+        return this.setState({passwordValid: false})
     }
 
     checkUser = () => {
-        axios.get('/check', this.state.username).then(user=>{
+        // Validates email is properly formatted
+        const filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!filter.test(this.state.email)) {
+            return this.setState({error: "Please enter a valid email address"});
+        }
+        console.log(this.state.email)
+        axios.get(`/check/${this.state.email}`).then(user=>{
             // Let client know user already exists
             if(user.data){
-                return console.log('user taken')
+                console.log(user.data)
+                return this.setState({emailInUse: true})
             }
+            // Let's client know name is available
+            return this.setState({emailInUse: false})
         })
     }
 
-	nextPage = (e) => {
-		console.log(this.state.currentPage);
-		this.setState({
-			currentPage: this.state.currentPage + 1
-		});
-	};
+	nextPage = () => {
+        if(this.state.currentPage === 1){
+            if(!this.state.password && !this.state.passwordCheck && !this.state.email){
+                return this.setState({error: "Please fill out required fields"})
+            } else if (this.state.password !== this.state.passwordCheck){
+                return this.setState({error: "Passwords do not match"})
+            } else if(!this.state.passwordValid) {
+                return this.setState({error: "Password does not meet the requirements.  Please use at least one upper and lower case letter, one number and have a minimum of 8 characters."})
+            } else if(!this.state.email){
+                return this.setState({error: "Please enter a valid email address"})
+            } else {
+                this.setState({ currentPage: this.state.currentPage + 1 });
+            }
+        }
+
+        if(this.state.currentPage === 2){
+            if(!this.state.firstname){
+                return this.setState({error: "Please enter your first name"})
+            } else if(!this.state.lastname){
+                return this.setState({error: "Please enter your last name"})
+            } else if(!this.state.firstname){
+                return this.setState({error: "Please enter your first name"})
+            // } else if(!this.state.sex){
+            //     return this.setState({error: "Please specify your sex"})
+            } else if(!this.state.age){
+                return this.setState({error: "Please enter your age"})
+            } else if(!this.state.firstname && !this.state.lastname && !this.state.firstname && !this.state.sex && !this.state.age){
+                this.setState({error: "Please enter in the required information"})
+            }
+
+            this.signUpUser()
+        }
+
+        if(this.state.currentPage === 3){
+            this.setState({currentPage: this.state.currentPage + 1})
+        }
+
+    };
+    
+    prevPage = () => {
+        this.setState({currentPage: this.state.currentPage - 1, error: false})
+    }
+
+    dashboard = () => {
+        return this.setState({redirect: true})
+    }
 
 	render() {
+        if(this.state.redirect){
+            return <Redirect to={{pathname: "/dashboard", state: {isLoggedIn: true}}}/>
+        }
+
 		return (
 			<div className="grid">
-				<form className={`form-${this.props.data.loginType}-input-box form-input-area`}>
-					<h1 className="form-title">{this.props.data.headingText}</h1>
-					{this.state.currentPage === 0 ? (
+				<form className={`form-${this.props.loginType}-input-box form-input-area`}>
+					<h1 className="form-title">{this.props.headingText}</h1>
+					{this.state.currentPage === 1 ? (
 						<FirstPage
 							handleInput={this.handleInput}
-							username={this.state.username}
+							email={this.state.email}
 							password={this.state.password}
 							showPassword={this.props.showPassword}
 							togglePassword={this.props.togglePassword}
                             passwordCheck={this.state.passwordCheck}
+                            validatePassword={this.validatePassword}
                             checkUser={this.checkUser}
+                            error={this.state.error}
+                            emailInUse={this.state.emailInUse}
+                            passwordValid={this.state.passwordValid}
                         />
-					) : this.state.currentPage === 1 ? (
+					) : this.state.currentPage === 2 ? (
 						<SecondPage
 							handleInput={this.handleInput}
 							firstname={this.state.firstname}
@@ -82,11 +154,34 @@ export default class SignupForm extends Component {
 							sex={this.state.sex}
 							age={this.state.age}
 						/>
-					) : null}
-					<div className="btn-container">
-						<button type="button" className="btn" onClick={this.nextPage}>
-							Continue
-						</button>
+					) : this.state.currentPage === 3 ? (
+                        <ThirdPage
+                            handleInput={this.handleInput}
+                            redirect={this.state.redirect}
+                            />
+                    ) : <DetailsPage
+                        redirect={this.state.redirect}
+                        handleInput={this.handleInput}
+                        />
+                    }
+
+                    <div className="btn-container">
+                        {this.state.currentPage > 2 ?
+                            <button type="button" onClick={this.dashboard} className="continue-btn btn">
+                                Finish & Go To Dashboard
+                            </button>
+                        :
+
+                            <button type="button" className="continue-btn btn" onClick={this.nextPage}>
+                                    Continue
+                            </button>
+                        }
+                        {this.state.currentPage > 1 && 
+                            <button
+                            className="previous-btn btn"
+                            onClick={this.state.currentPage === 3 ? this.nextPage : this.prevPage} type="button">
+                                {this.state.currentPage === 3 ? "Add more details" : "Previous"}
+                            </button>}
 					</div>
 				</form>
                 <SignInSocial setUser={this.props.setUser} />
@@ -96,23 +191,23 @@ export default class SignupForm extends Component {
 }
 
 const FirstPage = (props) => {
-	console.log(props);
 	return (
-		<span style={{ width: '100%' }}>
+		<div style={{width: "100%"}} className="sign-up">
 			<div className="input-container">
-				<label htmlFor="username">
-					<span>*</span> Username:{' '}
+				<label htmlFor="email">
+					<span>*</span> Email:{' '}
 				</label>
 				<input
-					type="username"
-					name="username"
-					id="username"
-					value={props.username}
+					type="email"
+					name="email"
+					id="email"
+					value={props.email}
 					onChange={props.handleInput}
 					placeholder="johndoe24"
                     required
                     onBlur={props.checkUser}
 				/>
+                {props.emailInUse && <span className="sign-up-warning-email">Email already in use</span>}
 			</div>
 			<div className="input-container">
 				<label htmlFor="password">
@@ -122,7 +217,8 @@ const FirstPage = (props) => {
 					type={props.showPassword ? 'text' : 'password'}
 					name="password"
 					value={props.password}
-					onChange={props.handleInput}
+                    onChange={props.handleInput}
+                    onBlur={props.validatePassword}
 					id="password"
 					required
 				/>
@@ -131,6 +227,9 @@ const FirstPage = (props) => {
 					className="eye-icon"
 					onClick={props.togglePassword}
 				/>
+                <span className="password-invalid">{props.password ? (!props.passwordValid ? 
+                    "Password does not meet the requirements.  Please use at least one upper and lower case letter, one number and have a minimum of 8 characters." : "Password meets requirements!") : ""
+                }</span>
 			</div>
 			<div className="input-container">
 				<label htmlFor="password-check">
@@ -145,7 +244,8 @@ const FirstPage = (props) => {
 					required
 				/>
 			</div>
-		</span>
+            {props.error && <span className="sign-up-error">{props.error}</span>}
+		</div>
 	);
 };
 
@@ -184,15 +284,29 @@ function SecondPage(props) {
 					<label htmlFor="sex">
 						<span>*</span> Sex:{' '}
 					</label>
-					<input
-						type="text"
-						name="sex"
-						id="sex"
-						value={props.lastname}
-						onChange={props.handleInput}
-						// required
+                    <label>
+                        <span>Male</span>
+                        <input
+                            type="radio"
+                            name="sex"
+                            id="sex"
+                            value="Male"
+                            onSelect={props.handleInput}
+                            // required
+                        />
+                    </label>
+                    <label>
+                        <span>Female</span>
+					    <input
+                            type="radio"
+                            name="sex"
+                            id="sex"
+                            value="Female"
+                            onSelect={props.handleInput}
+                            // required
 
-					/>
+                        />
+                    </label>
 				</div>
 				<div className="input-container">
 					<label htmlFor="age">
@@ -214,4 +328,35 @@ function SecondPage(props) {
 	);
 }
 
-// function ThirdPage() {}
+function ThirdPage() {
+    return (
+        <div className="sign-up-third-page">
+            <h1 className="form-title">Welcome to Under the Weather!</h1>
+            <h3 className="form-subtitle">We recommend adding in some more details before heading over to the dashboard</h3>
+        </div>
+    )
+}
+
+function DetailsPage() {
+    return (
+        <div className="sign-up=details">
+            <Link to="/form/insurance">
+                <button type="button" className="details-insurance">
+                    Add Insurance Info
+                </button>
+            </Link>
+            <Link to="/form/provider">
+                <button type="button" className="details-provider">
+                    Add Provider Info
+                </button>
+            </Link>
+            <Link to="/form/contact">
+                <button type="button" className="details-contact">
+                    Add Emergency Contact Info
+                </button>
+            </Link>
+        </div>
+    )
+}
+
+export default withRouter(SignupForm)
