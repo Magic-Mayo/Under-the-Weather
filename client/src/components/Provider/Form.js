@@ -28,6 +28,20 @@ export default class ProviderForm extends Component {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
+        if(this.props.location.state){
+            const provider = this.props.location.state.provider
+            this.setState({
+                name: provider.name || '',
+                type:  provider.doctorType || '',
+                insurance: provider.insurance || '',
+                address:  provider.address || '',
+                city:  provider.city || '',
+                state:  provider.state || '',
+                zip: provider.zip || '',
+                phone:  provider.phone || '',
+                entry: this.props.location.state.entry
+            })
+        }
     }
     
     handleInput = (e) => {
@@ -59,6 +73,7 @@ export default class ProviderForm extends Component {
                 createdAt: moment()
             }
         };
+
         if(this.state.name !== ''){
         Axios.post('/account/provider', provider).then(user=>{
             this.props.setUser(user.data);

@@ -7,10 +7,10 @@ function ContactInput(props) {
         <div className="contact-entry">
                 <form className="contact-entry-grid">
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-name">
-                        <label htmlFor="cName">Name:</label>
+                        <label htmlFor="name">Name:</label>
                         <input
                             type="text"
-                            name="cName"
+                            name="name"
                             value={props.name}
                             onChange={props.handleInput}>
                         </input>
@@ -88,7 +88,7 @@ function ContactInput(props) {
 export default class Form extends Component {
     initialState = {
         userId: this.props.userId,
-        cName: '',
+        name: '',
         phone: '',
         streetAddress: '',
         city: '',
@@ -106,6 +106,18 @@ export default class Form extends Component {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
+        if(this.props.location.state){
+            const contact = this.props.location.state.contact
+            this.setState({
+                name: contact.name || '',
+                phone: contact.phone || '',
+                streetAddress: contact.address.streetAddress || '',
+                city: contact.address.city || '',
+                state: contact.address.state || '',
+                zip: contact.address.zip || '',
+                relationship: contact.relationship || ''
+            })
+        }
     }
     
     handleInput = (e) => {
@@ -116,7 +128,7 @@ export default class Form extends Component {
         const contacts = {
             route: 'addcontact',
             contact:{
-                name: this.state.cName,
+                name: this.state.name,
                 phone: this.state.phone,
                 address: {
                     streetAddress: this.state.address,
@@ -147,7 +159,7 @@ export default class Form extends Component {
                 <h1 className="contact-form-title">Please Enter Emergency Contact Information</h1>
                 <hr></hr>
                 <ContactInput
-                    cName={this.state.cName}
+                    name={this.state.name}
                     phone={this.state.phone}
                     address={this.state.address}
                     relationship={this.state.relationship}

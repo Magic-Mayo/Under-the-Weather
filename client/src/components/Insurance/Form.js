@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import {useParams} from 'react-router-dom';
 
 function InsuranceInput(props) {
 	return (
@@ -74,6 +75,16 @@ export default class InsuranceForm extends Component {
     componentDidMount() {
         if(this.props.navOpen){
             this.props.toggleNav();
+        }
+        if(this.props.location.state){
+            const ins = this.props.location.state.ins
+            this.setState({
+                provider: ins.provider || '',
+                idNumber: ins.idNumber || '',
+                groupNumber: ins.groupNumber || '',
+                insuranceType: ins.insuranceType || '',
+                deductible: ins.deductible || ''
+            })
         }
     }
 
