@@ -114,8 +114,7 @@ class App extends Component {
 					handleLogOut={this.handleLogOut}
 				/>
                 <Route
-                    exact
-                    path={'/'}
+                path={'/(form)?/:formtype?'}
                 >{this.state.isLoggedIn ? <Redirect to="/dashboard"/> :
                     <FormContainer
                         isLoggedIn={this.state.isLoggedIn}
@@ -125,33 +124,6 @@ class App extends Component {
                         handleLogIn={this.handleLogIn}
                     />
                 }
-                </Route>
-                <Route
-                exact
-                path={`${this.props.match.path}form/:formtype`}
-                >
-                    <FormContainer
-                    isLoggedIn={this.state.isLoggedIn}
-                    userId={this.state.userId}
-                    setUser={this.state.setUser}
-                    user={this.state.user}
-                    handleLogIn={this.handleLogIn}
-                    searchOrManual="search"
-                    />
-                </Route>
-                <Route
-                exact
-                path={`${this.props.match.path}form/:formtype/:id`}
-                >
-                    <FormContainer
-                    isLoggedIn={this.state.isLoggedIn}
-                    userId={this.state.userId}
-                    setUser={this.state.setUser}
-                    user={this.state.user}
-                    handleLogIn={this.handleLogIn}
-                    logIn={this.logIn}
-                    searchOrManual="entry"
-                    />
                 </Route>
                 <Route path="/dashboard">
                     <Dashboard
