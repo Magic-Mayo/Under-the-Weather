@@ -3,9 +3,10 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     data:{
-        name: {type: String, default: ''},
+        firstName: {type: String, default: ''},
+        lastName: {type: String, default: ''},
         email: {type: String, default: ''},
-        DOB: {type: Date, default: ''},
+        age: {type: Number, default: ''},
         gender: {type: String, default: ''},
         mediData: {
             insurance: [{
@@ -69,7 +70,7 @@ const UserSchema = new Schema({
         }],
         isLoggedIn: Boolean,
     },
-    userName: {type: String, unique: true},
+    // userName: {type: String, unique: true},
     loginToken: String,
     lastLogin: Date,
     socialMedia: {type: Boolean, default: false},
