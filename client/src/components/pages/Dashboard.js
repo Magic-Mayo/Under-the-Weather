@@ -1,14 +1,24 @@
 import React, { Component } from "react";
 import Symptoms from "../Symptom/Card";
-import MedicalHistory from "../Medical_History/MedicalHistory";
+// import MedicalHistory from "../Medical_History/MedicalHistory";
 import Providers from "../Provider/Card";
 import Contacts from "../Contact/Card";
 import Insurance from "../Insurance/Card";
 import Nav from "../Nav";
 import Axios from 'axios';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-export default class Dashboard extends Component{
+class Dashboard extends Component{
     state = {}
+
+    componentDidMount(){
+        console.log('mounted')
+        if(this.props.location.state !== undefined && this.props.location.state.isLoggedIn){
+            console.log('not log')
+            this.props.logIn();
+        }
+    }
 
     // change function to set state based on which component it comes from as well
     expand = e => {
@@ -27,7 +37,9 @@ export default class Dashboard extends Component{
     }
 
     render() {
-        // console.log("DASHBOARD HAS THESE PROPS", this.props);   
+        if(!this.props.isLoggedIn){
+            return <Redirect to="/"/>
+        }
         return (
             <div className="Dashboard">
             <Symptoms
@@ -95,5 +107,4 @@ export default class Dashboard extends Component{
     }
 }
 
-
-
+export default withRouter(Dashboard)
