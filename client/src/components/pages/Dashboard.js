@@ -11,7 +11,9 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 class Dashboard extends Component{
-    state = {}
+    state = {
+        navOpen: false
+    }
 
     componentDidMount(){
         console.log('mounted')
@@ -36,6 +38,9 @@ class Dashboard extends Component{
     editObject = props => {
         window.location.pathname = props
     }
+
+    toggleNav = () =>
+		this.setState({navOpen: !this.state.navOpen});
 
     render() {
         if(!this.props.isLoggedIn){
@@ -94,13 +99,10 @@ class Dashboard extends Component{
                 />
             </section>
             <Nav
-                name={this.props.user.name}
-                menu={this.props.menu}
-                formOpen={this.props.formOpen}
-                toggleForm={this.props.toggleForm}
+                navOpen={this.state.navOpen}
+                toggleNav={this.toggleNav}
                 userId={this.props.userId}
                 user={this.props.user}
-                isLoggedIn={this.props.isLoggedIn}
             />
             {/* <Forms /> */}
             <Route
@@ -112,6 +114,8 @@ class Dashboard extends Component{
                 user={this.state.user}
                 handleLogIn={this.handleLogIn}
                 logIn={this.logIn}
+                navOpen={this.state.navOpen}
+                toggleNav={this.toggleNav}
                 searchOrManual="entry"
                 isLoggedIn={this.props.isLoggedIn}
                 />
