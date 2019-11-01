@@ -113,6 +113,7 @@ class Dashboard extends Component{
                 handleLogIn={this.handleLogIn}
                 logIn={this.logIn}
                 searchOrManual="entry"
+                isLoggedIn={this.props.isLoggedIn}
                 />
             </Route>
 
