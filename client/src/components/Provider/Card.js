@@ -28,7 +28,7 @@ export default function Providers(props) {
                         id={provider._id}
                         onClick={(e)=>props.expand(e)}
                         />
-                        <Link to={`dashboard/form/provider/${provider._id}`}>
+                        <Link to={{pathname: `dashboard/form/provider/${provider._id}`, state:{provider, entry: true}}}>
                             <FontAwesomeIcon
                             icon="edit"
                             className="provider-card-edit item-edit item"

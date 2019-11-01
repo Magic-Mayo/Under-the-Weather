@@ -62,7 +62,7 @@ export default function InsuranceCard(props) {
                             onClick={(e)=>props.expand(e)}
                             />
 
-                        <Link to={`dashboard/form/insurance/${ins._id}`}>
+                        <Link to={{pathname: `dashboard/form/insurance/${ins._id}`, state: {ins}}}>
                             <FontAwesomeIcon
                             icon="edit"
                             className="insurance-card-edit item-edit item"
