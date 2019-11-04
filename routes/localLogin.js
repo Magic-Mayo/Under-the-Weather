@@ -15,7 +15,7 @@ sessionCheck = (req, res, next) => {
 
 module.exports = (app) => {
 
-    app.get('/check/:email', controller.findByName)
+    app.get('/check/:email', controller.findByEmail)
 
     app.post('/newlocal', (req,res)=>{
         console.log(req.body)
