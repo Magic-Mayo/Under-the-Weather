@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import {useParams} from 'react-router-dom';
 
 function InsuranceInput(props) {
 	return (
@@ -56,7 +55,7 @@ function InsuranceInput(props) {
                     onChange={props.handleInsuranceChange}
 				/>
 				</div>
-			    <button className="insurance-entry-grid-submit" onClick={props.insuranceToDatabase}>Submit</button>
+			    <button className="insurance-entry-grid-submit" onClick={props.edit ? props.update : props.insuranceToDatabase}>Submit</button>
 			</form>
 		</div>
 	)
@@ -83,7 +82,8 @@ export default class InsuranceForm extends Component {
                 idNumber: ins.idNumber || '',
                 groupNumber: ins.groupNumber || '',
                 insuranceType: ins.insuranceType || '',
-                deductible: ins.deductible || ''
+                deductible: ins.deductible || '',
+                edit: true
             })
         }
     }
@@ -110,7 +110,7 @@ export default class InsuranceForm extends Component {
 			console.log(data);
 			this.setState({ provider: '', idNumber: '', groupNumber: '', insuranceType: '', deductible: '' });
 		});
-	};
+    };
 
 	render() {
 		return (
@@ -126,6 +126,7 @@ export default class InsuranceForm extends Component {
                 deductible={this.state.deductible}
                 handleInsuranceChange={this.handleInsuranceChange}
                 insuranceToDatabase={this.insuranceToDatabase}
+                edit={this.state.edit}
                 />			
             </div>
 		);
