@@ -17,7 +17,7 @@ module.exports = {
             })
             .catch(err=>console.log(err))
     },
-    findByName: (req,res)=>{
+    findByEmail: (req,res)=>{
         console.log(req.params)
         db.User.findOne({'data.email': req.params.email})
             .then(user=>{
@@ -49,7 +49,6 @@ module.exports = {
             case 'deletecontact': route = {$pull: {'data.emergencyContacts': {_id: param.id}}}; break;
             case 'deleteprovider': route = {$pull: {'data.mediData.doctors': {_id: param.id}}}; break;
         }
-        console.log("look here", param.id)
         
         if(bodyOrNot.substring(0,3) === 'add'){
             console.log(body)
@@ -123,7 +122,6 @@ module.exports = {
 			.catch((err) => res.status(422).json(err));
 	},
 	findById: function(req, res) {
-        console.log("THIS IS INSIDE THE FINDBYID FUNCTION", req.params);
 		db.User.findById(req.params.id || req.params.user).then((dbModel) => res.json(dbModel)).catch((err) => res.status(422).json(err));
 	},
 	create: function(req, res) {
