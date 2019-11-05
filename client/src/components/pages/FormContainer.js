@@ -62,6 +62,7 @@ class FormContainer extends Component {
                         userId={this.props.userId}
                         loginActive={this.state}
                         toggleSignUporLogIn={this.toggleSignUporLogIn}
+                        error={this.props.error}
                     />
                 }
                 </section>
