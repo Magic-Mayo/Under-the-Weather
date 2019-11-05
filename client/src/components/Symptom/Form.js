@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SymptomList from '../../data/symptoms.json';
-import Symptoms from './symptoms';
+// import Symptoms from './symptoms';
 import API from '../../utils/SymptomAPI';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Link} from 'react-router-dom';
@@ -53,7 +53,7 @@ export default class SymptomForm extends Component {
 	}
 
 	checkMatch = (val) => {
-        const filteredResults = this.state.SymptomList.filter((symptom) => {
+        const filteredResults = this.state.SymptomList.filter(symptom => {
 			if (symptom.name.substring(0, val.length) === val) {
 				return symptom;
 			}
@@ -125,28 +125,3 @@ export default class SymptomForm extends Component {
 		);
 	}
 }
-
-
-
-//SEANS SEARCH BAR + BUTTON 
-function Input(props) {
-	return (
-		<div>
-			<form className="symptom-form">
-				<input
-					value={props.searchVal}
-					name="Symptom Search"
-					type="text"
-					placeholder="migraine"
-					className="symptom-form-search-input"
-					onChange={props.updateDropDown}
-				/>
-				<button type="button" className="symptom-form-search-submit">
-					Enter
-				</button>
-			</form>
-		</div>
-	);
-}
-
-//END OF SEANS SHIT
