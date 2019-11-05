@@ -34,17 +34,7 @@ class Dashboard extends Component{
         })
     }
 
-    toggleNav = (e) => {
-        // e.persist()
-        // const {className} = e.target;
-        // console.log(e)
-        // if(!className.includes('nav-expand')){
-        //     console.log(className)
-        //     return this.setState({navOpen: false})
-        // }
-
-        this.setState({navOpen: !this.state.navOpen});
-    }
+    toggleNav = (e) => this.setState({navOpen: !this.state.navOpen});
 
     render() {
         if(!this.props.isLoggedIn){
