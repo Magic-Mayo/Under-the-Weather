@@ -46,7 +46,7 @@ function ContactInput(props) {
                         </input>
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-city">
-                    <label htmlFor="city">&nbsp;&nbsp;&nbsp;City:</label>
+                    <label htmlFor="city">City:</label>
                         <input
                         name="city"
                         placeholder="Phoenix"
@@ -56,7 +56,7 @@ function ContactInput(props) {
                         />
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-state">
-                    <label htmlFor="state">&nbsp;&nbsp;&nbsp;State:</label>
+                    <label htmlFor="state">State:</label>
                         <input
                         name="state"
                         maxLength="2"
@@ -68,7 +68,7 @@ function ContactInput(props) {
                         />
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-zip">
-                    <label htmlFor="zip">&nbsp;&nbsp;&nbsp;ZIP:</label>
+                    <label htmlFor="zip">ZIP:</label>
                         <input
                         name="zip"
                         placeholder="85008"
