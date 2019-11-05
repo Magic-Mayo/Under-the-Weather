@@ -4,7 +4,7 @@ import moment from 'moment';
 
 function ContactInput(props) {
     return (
-        <div className="contact-entry">
+        <div className="contact-entry-container">
                 <form className="contact-entry-grid">
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-name">
                         <label htmlFor="name">Name:</label>
@@ -79,7 +79,6 @@ function ContactInput(props) {
                         onChange={props.handleInput}
                         />
                     </div>
-                    <button className="contact-entry-grid-submit" onClick={props.contactToDatabase}>Submit</button>
                 </form>
         </div>
     )
@@ -168,6 +167,7 @@ export default class Form extends Component {
                     errors={this.state.errors}
                 />
                 <div className="contact-form-submit-container">
+                <button className="contact-form-submit" onClick={this.contactToDatabase}>Submit</button>
                 </div>
             </div>
         );
