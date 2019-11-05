@@ -51,7 +51,6 @@ module.exports = {
         }
         
         if(bodyOrNot.substring(0,3) === 'add'){
-            console.log(body)
             return db.User.findOneAndUpdate({_id: body.userId}, route, {new: true})
                 .then(data=>{
                     if (!data){return}
@@ -59,9 +58,8 @@ module.exports = {
                 })
                 .catch(err=>res.json('Error adding data.  Please try again later.'));
         } else if(bodyOrNot.substring(0,3) === 'upd'){
-            return db.User.findOneAndUpdate({[body.key]: body.userId}, route, {new:true})
+            return db.User.findOneAndUpdate({[body.key]: body.id}, route, {new:true})
                 .then(data=>{
-                    console.log(data)
                     if (!data){return}
                     res.json({user: data.data})
                 })
