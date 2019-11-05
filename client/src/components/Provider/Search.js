@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
 // import Specialist from '../../data/specialist.json'
-import {Link, withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class Search extends Component {
 	state = {
@@ -63,7 +63,7 @@ class Search extends Component {
                     drSearch={this.drSearch}
 					handleInputChange={this.props.handleInput}
 				/>
-				<section className="provider-form-results">
+				<section className={this.props.entry ? "provider-form-results hide" : "provider-form-results"}>
 					{this.state.results.map((res) => (
 						<Results
 							src={res.profile.image_url}
