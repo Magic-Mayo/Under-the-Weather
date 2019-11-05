@@ -21,15 +21,17 @@ export default class ProviderForm extends Component {
     };
 
     state = {
-        ...this.initialState
+        ...this.initialState,
+        entry: false
     };
 
     componentDidMount() {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
-        if(this.props.location.state){
-            const provider = this.props.location.state.provider
+        const {state} = this.props.location;
+        if(state && state.provider){
+            const provider = state.provider
             this.setState({
                 name: provider.name || '',
                 type:  provider.doctorType || '',
@@ -41,6 +43,8 @@ export default class ProviderForm extends Component {
                 phone:  provider.phone || '',
                 entry: this.props.location.state.entry
             })
+        } else if (state && !state.provider){
+            this.setState({entry: state.entry})
         }
     }
     
