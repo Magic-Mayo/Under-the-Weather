@@ -139,7 +139,14 @@ export default class InsuranceForm extends Component {
 		insuranceType: '',
         deductible: '',
         edit: false,
-        page: 1
+        page: 1,
+        doctor: '',
+        specialist: '',
+        emergency: '',
+        urgentCare: '',
+        brandName: '',
+        generic: '',
+
     };
     
     componentDidMount() {
@@ -156,6 +163,12 @@ export default class InsuranceForm extends Component {
                 groupNumber: ins.groupNumber || '',
                 insuranceType: ins.insuranceType || '',
                 deductible: ins.deductible || '',
+                doctor: ins.copay.doctor || '',
+                specialist: ins.copay.specialist || '',
+                emergency: ins.copay.emergency || '',
+                urgentCare: ins.copay.urgentCare || '',
+                brandName: ins.copay.prescription.brandName || '',
+                generic: ins.copay.prescription.generic || '',
                 edit: true
             })
         } else if (state && state.edit){
@@ -185,6 +198,16 @@ export default class InsuranceForm extends Component {
                 groupNumber: this.state.groupNumber,
                 insuranceType: this.state.insuranceType,
                 deductible: this.state.deductible,
+                copay: {
+                    doctor: this.state.doctor,
+                    specialist: this.state.specialist,
+                    emergency: this.state.emergency,
+                    urgentCare: this.state.urgentCare,
+                    prescription: {
+                        brandName: this.state.brandName,
+                        generic: this.state.generic
+                    }
+                },
                 updatedAt: moment(),
                 createdAt: moment()
 			},
@@ -201,12 +224,27 @@ export default class InsuranceForm extends Component {
     update = id => {
         const updatedData = {
             route: "updateinsurance",
-            insurance: {"data.mediData.insurance.$": this.state},
+            insurance: {"data.mediData.insurance.$": {
+                provider: this.state.provider,
+                idNumber: this.state.idNumber,
+                groupNumber: this.state.groupNumber,
+                insuranceType: this.state.insuranceType,
+                deductible: this.state.deductible,
+                copay: {
+                    doctor: this.state.doctor,
+                    specialist: this.state.specialist,
+                    emergency: this.state.emergency,
+                    urgentCare: this.state.urgentCare,
+                    brandName: this.state.brandName,
+                    generic: this.state.generic
+                },
+                updatedAt: moment()
+            }},
             key: "data.mediData.insurance._id",
             id: id
         }
         console.log(updatedData)
-        Axios.put('/account/insurance', updatedData).then(user=>{
+        return Axios.put('/account/insurance', updatedData).then(user=>{
             console.log(user)
             this.props.setUser(user.data)
         })
