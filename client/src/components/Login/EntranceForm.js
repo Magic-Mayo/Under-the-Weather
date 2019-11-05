@@ -35,8 +35,6 @@ class EntranceForm extends Component {
 
 				{this.props.state.signupActive ? (
 					<SignupForm
-						setUser={this.props.setUser} 
-						classNames={`form-input-box form-${!this.props.state.loginActive ? 'existing' : 'new'}-input-box`}
 						togglePassword={this.props.togglePassword}
                         showPassword={this.state.showPassword}
                         logInNewUser={this.props.logInNewUser}
@@ -49,11 +47,11 @@ class EntranceForm extends Component {
 					<LoginForm
 						setUser={this.props.setUser} 
 						handleLogIn={this.props.handleLogIn}
-						classNames={`form-input-box form-${this.state.loginActive ? 'existing' : 'new'}-input-box`}
 						togglePassword={this.togglePassword}
 						showPassword={this.state.showPassword}
                         loginType = 'existing'
                         headingText = 'Please Enter Your Log In Info'
+                        error={this.props.error}
                     />
 				)}
 			</div>
