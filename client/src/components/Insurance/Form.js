@@ -284,10 +284,11 @@ export default class InsuranceForm extends Component {
                     />}
             
             <div className="insurance-form-submit-container">
-            {this.state.edit &&
-                <button className="insurance-form-next" type="button"
-                onClick={this.state.page === 1 ? this.nextPage : this.prevpage}
-                >{this.state.page === 1 ? "Next Page" : "Previous Page"}</button>}
+                {this.state.edit &&
+                    <button className="insurance-form-next" type="button"
+                    onClick={this.state.page === 1 ? this.nextPage : this.prevpage}
+                    >{this.state.page === 1 ? "Next" : "Previous"}</button>
+                }
 
                 <button className="insurance-form-submit" type="button"
                 onClick={this.state.edit ? () => this.update(this.props.match.params.id) : this.addInsurance}
