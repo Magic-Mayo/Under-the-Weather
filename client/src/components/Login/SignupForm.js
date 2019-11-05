@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import SignInSocial from './SignInSocial';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import ProviderForm from '../Provider/Form'
 import ContactForm from '../Contact/Form'
 import InsuranceForm from '../Insurance/Form'
-import ProviderManualEntry from '../Provider/ManualEntry';
 
 
 class SignupForm extends Component {
@@ -220,7 +219,7 @@ class SignupForm extends Component {
 
 const FirstPage = (props) => {
 	return (
-		<div style={{width: "100%"}} className="sign-up">
+		<>
 			<div className="input-container">
 				<label htmlFor="email">
 					<span>*</span> Email:{' '}
@@ -255,9 +254,6 @@ const FirstPage = (props) => {
 					className="eye-icon"
 					onClick={props.togglePassword}
 				/>
-                <span className="password-invalid">{props.password ? (!props.passwordValid ? 
-                    "Password does not meet the requirements.  Please use at least one upper and lower case letter, one number and have a minimum of 8 characters." : "Password meets requirements!") : ""
-                }</span>
 			</div>
 			<div className="input-container">
 				<label htmlFor="password-check">
@@ -272,8 +268,8 @@ const FirstPage = (props) => {
 					required
 				/>
 			</div>
-            {props.error && <span className="sign-up-error">{props.error}</span>}
-		</div>
+            <span className="sign-up-error">{props.error || "Use at least one upper and lower case letter, one number and have a minimum of 8 characters in your password."}</span>
+		</>
 	);
 };
 
@@ -368,7 +364,7 @@ function ThirdPage(props) {
 function DetailsPage(props) {
     console.log(props.url)
     return (
-        <div className="sign-up=details">
+        <div className="sign-up-details">
             {/* <Link to={`${props.url}form/insurance`}> */}
                 <button type="button" className="details-insurance" onClick={()=>props.openForm('insurance')}>
                     Add Insurance Info
