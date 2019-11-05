@@ -8,7 +8,7 @@ const Header = props => {
             {props.isLoggedIn && <button onClick={props.handleLogOut} className="header-sign-out">Sign Out</button>}
             <Umbrella width={"100%"} height={"100%"} />
             <Logo width={"100%"} height={"100%"} />
-            {props.isLoggedIn && <h1 className="header-welcome">Welcome Back, {props.name}</h1>}
+            {props.isLoggedIn && <h1 className="header-welcome">Welcome Back, {props.name.firstName}</h1>}
         </div>
     );
 }

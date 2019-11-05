@@ -1,82 +1,73 @@
 import React, { Component } from 'react';
-import EntranceForm from '../forms/EntranceForm';
-import Loading from '../icons/loading';
-import ProviderForm from '../forms/Provider/Form'
-import SymptomForm from '../forms/Symptom/Form'
-import ContactForm from '../forms/Contact/Form'
-import InsuranceForm from '../forms/Insurance/Form'
+import EntranceForm from '../Login/EntranceForm';
+import SymptomForm from '../Symptom/Form'
+import ProviderForm from '../Provider/Form'
+import ContactForm from '../Contact/Form'
+import InsuranceForm from '../Insurance/Form'
+import ProviderManualEntry from '../Provider/ManualEntry';
+import { Link} from 'react-router-dom';
+import {withRouter} from 'react-router';
 
-export default class FormContainer extends Component {
-	state = {
-		loginActive: true,
+class FormContainer extends Component {
+    state = {
+        loginActive: true,
 		signupActive: false,
-		currentPage: 0,
-		showPassword: false
-	};
-	setLogIn = () => {
-		this.setState({
-			loginActive: true,
-			signupActive: false,
-			showPassword: false
-		});
-	};
+    }
 
-	setSignUp = () => {
-		this.setState({
-			signupActive: true,
-			loginActive: false,
-			showPassword: false
-		});
+    toggleSignUporLogIn = () => {
+        return this.setState({
+            loginActive: !this.state.loginActive, 
+            signupActive: !this.state.signupActive
+        })
 	};
 
 	togglePassword = () => {
 		this.setState({
 			showPassword: !this.state.showPassword
 		});
-	};
+    };
+    
+    setUpdateData = data => {
+        this.setState({data: data})
+    }
 
 	render() {
         return (
-        // !this.props.loading ? (
 			<div className="FormContainer">
-				<section className={`form-container card ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
-					{!this.props.isLoggedIn && (
-						<div className="form-btn-wrapper">
-							<button className="form-btn form-btn-signup" onClick={this.setSignUp}>
-								Sign Up
-							</button>
-							<button className="form-btn form-btn-login" onClick={this.setLogIn}>
-								Log In
-							</button>
-						</div>
-					)}
-					{
-						this.props.isLoggedIn ? (
-							this.props.formType === 'Contact' ? (
-								<ContactForm {...this.props}/>
-							) : this.props.formType === 'Provider' ? (
-								<ProviderForm {...this.props}/>
-							) : this.props.formType === 'Symptom' ? (
-								<SymptomForm {...this.props}/>
-							) : this.props.formType === 'Insurance' ? (
-								<InsuranceForm {...this.props}/>
-							) : null
-						) : (
-						<EntranceForm
-							handleLogIn={this.props.handleLogIn}
-							state={this.state}
-							message={this.props.message}
-							togglePassword={this.togglePassword}
-							setSignUp={this.setSignUp}
-							setLogIn={this.setLogIn}
-                            setUser={this.props.setUser}
-                            isLoggedIn={this.props.isLoggedIn}
-						/>
-					)}
-				</section>
+                <section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
+                {this.props.isLoggedIn &&
+                    <Link to="/dashboard" className="form-container-close" title="Close Form">
+                            X
+                    </Link>}
+                {
+                    this.props.match.params.formtype === 'contact' ? (
+                        <ContactForm {...this.props}/>
+                    ) : this.props.match.params.formtype === 'provider' ? (
+                        <ProviderForm {...this.props}/>
+                    ) : this.props.match.params.formtype === 'symptom' ? (
+                        <SymptomForm {...this.props}/>
+                    ) : this.props.match.params.formtype === 'insurance' ? (
+                        <InsuranceForm {...this.props}/>
+                    ) : this.props.match.params.formtype === 'manual' ? (
+                        <ProviderManualEntry {...this.props}/>
+                    ) 
+                : 
+                    <EntranceForm
+                        handleLogIn={this.props.handleLogIn}
+                        state={this.state}
+                        setSignUp={this.setSignUp}
+                        setLogIn={this.setLogIn}
+                        setUser={this.props.setUser}
+                        logInNewUser={this.props.logIn}
+                        userId={this.props.userId}
+                        loginActive={this.state}
+                        toggleSignUporLogIn={this.toggleSignUporLogIn}
+                    />
+                }
+                </section>
 			</div>
-        // )
-        //  : (			<Loading loading={this.props.isLoading} />
 		);
 	}
 }
+
+export default withRouter(FormContainer);

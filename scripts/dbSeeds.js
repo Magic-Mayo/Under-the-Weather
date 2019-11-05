@@ -3,9 +3,10 @@ const bcrypt = require('bcrypt')
 
 const dummy = {
     data: {
-        name: 'Dummy McDumberson',
+        firstName: 'Dummy',
+        lastName: 'McDumberson',
         email: 'dummy@dum.dum',
-        DOB: Date.now(),
+        age: 45,
         gender: 'Male',
         mediData: {
             insurance: [{
@@ -13,7 +14,7 @@ const dummy = {
                 type: 'Medical',
                 idNumber: '123456',
                 deductible: '5000/7500',
-                copay: [{
+                copay: {
                     doctor: 15,
                     specialist: 30,
                     urgentCare: 75,
@@ -22,7 +23,7 @@ const dummy = {
                         brandName: 15,
                         generic: 2
                     }
-                }],
+                },
                 createdAt: Date.now()
             }],
             doctors: [{
@@ -40,17 +41,32 @@ const dummy = {
         emergencyContacts: [{
             name: 'Smart McDumberson',
             phone: 3365555000,
-            address: '123 Oxymoron St Whynot, NC 27340',
+            address: {
+                streetAddress: '123 Oxymoron St',
+                city: 'Whynot',
+                state: 'NC',
+                zip: 27340
+            },
             relationship: 'Mother'
         },{
             name: 'Slightly Dumber McDumberson',
             phone: 3365555000,
-            address: '123 Oxymoron St Whynot, NC 27340',
+            address: {
+                streetAddress: '123 Oxymoron St',
+                city: 'Whynot',
+                state: 'NC',
+                zip: 27340
+            },
             relationship: 'Father'
         },{
             name: 'Normal McNormal',
             phone: 5205552365,
-            address: '456 Normal Rd Why, AZ 85789',
+            address: {
+                streetAddress: '456 Normal Rd',
+                city: 'Why',
+                state: 'AZ',
+                zip: 85789
+            },
             relationship: 'Sister'
         }],
         symptomHistory: [{

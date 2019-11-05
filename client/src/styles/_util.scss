@@ -115,6 +115,7 @@
 
         .social-facebook {
             background-color: #3C5A99;
+            cursor: default;
         }
 
         // div {
@@ -144,4 +145,57 @@
 .flex-between {
     display: flex;
     justify-content: space-between;
+}
+
+.preface {
+    display: inline-block;
+    padding: 0 2rem;
+}
+
+.closeForm {
+    position: absolute;
+    right: 1.5rem;
+    
+     * {
+        width: 100%;
+    }
+}
+
+.item {
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &-edit {
+        color: $black;
+    }
+
+    &-expand {
+
+    }
+
+    &-delete {
+        color:rgb(238, 32, 0);
+    }
+}
+
+.expanded {
+    overflow-y: scroll;
+}
+
+.overflow-hidden {
+    overflow-y: hidden;
+}
+
+.disabled {
+    cursor: default;
+}
+
+.link {
+    color: $blue-dark;
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
 }

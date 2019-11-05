@@ -3,26 +3,38 @@ const bcrypt = require('bcrypt');
 const uid = require('uid-safe');
 const token = uid.sync(24);
 const controller = require('../controllers')
-const mongoose = require('mongoose');
+const moment = require('moment')
+// const sess = require('../session')
 
-// const connection = 
+sessionCheck = (req, res, next) => {
+    if (req.session.user && req.cookies.under_weather){
+        return res.json(true)
+    }
+    next();
+}
 
 module.exports = (app) => {
 
-    app.get('/check', controller.findByName)
+    app.get('/check/:email', controller.findByName)
 
     app.post('/newlocal', (req,res)=>{
         console.log(req.body)
-        if(!req.body.username || !req.body.password){ return }
+        const body = req.body
+        if(!req.body.email || !req.body.password){ return }
 
-        db.User.findOne({userName: req.body.username}).then(user=>{
-            if(user){ return }
-            bcrypt.hash(req.body.password, 12)
+        db.User.findOne({"data.email": body.email}).then(user=>{
+            if(user){ return res.json(false) }
+            bcrypt.hash(body.password, 12)
             .then(hash=>{
                 db.User.create({
-                    userName: req.body.username,
+                    'data.email': body.email,
                     password: hash,
-                    loginToken: token
+                    loginToken: token,
+                    'data.firstName': body.firstName,
+                    'data.lastName': body.lastName,
+                    'data.gender': body.gender,
+                    'data.DOB': body.DOB,
+                    createdAt: moment()
                 })
                 .then(user=>{
                     res.json({userId: user._id, user: user.data, userName: user.userName})
@@ -34,7 +46,11 @@ module.exports = (app) => {
 
     app.post('/login', (req,res)=>{
         const credentials = req.body.credentials;
-        db.User.findOneAndUpdate({userName: credentials.username}, {loginToken: token, 'data.isLoggedIn': true}, {new: true}).then(user=>{
+        db.User.findOneAndUpdate(
+        {userName: credentials.username},
+        {lastLogin: moment(), loginToken: token, 'data.isLoggedIn': true},
+        {new: true})
+            .then(user=>{
             bcrypt.compare(credentials.password, user.password).then(verified=>{
                 if(verified){
                     return res.json({userId: user._id, user: user.data, userName: user.userName, token: user.loginToken})

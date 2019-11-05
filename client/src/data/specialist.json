@@ -1,0 +1,2360 @@
+
+  {
+    "meta": {
+      "data_type": "array",
+      "total": 393,
+      "count": 393,
+      "skip": 0,
+      "limit": 393
+    },
+    "data": [
+      {
+        "uid": "sport-physical-therapist",
+        "name": "Sports Physical Therapy"
+
+
+      },
+      {
+        "uid": "sports-vision-optometrist",
+        "name": "Sports Vision"
+
+
+      },
+      {
+        "uid": "surgery-hospice-and-palliative-medicine",
+        "name": "Surgery Hospice and Palliative Medicine"
+
+
+      },
+      {
+        "uid": "sleep-medicine-doctor",
+        "name": "Sleep Medicine"
+
+
+      },
+      {
+        "uid": "therapeutic-radiologist",
+        "name": "Therapeutic Radiology"
+
+
+      },
+      {
+        "uid": "speech-therapist",
+        "name": "Speech Therapy"
+
+
+      },
+      {
+        "uid": "spinal-cord-injury-physiatrist",
+        "name": "Spinal Cord Injury Medicine"
+
+      },
+      {
+        "uid": "legal-medicine",
+        "name": "Legal Medicine"
+
+
+      },
+      {
+
+        "name": "Chiropractic Medical Examiner"
+
+
+      },
+      {
+        "uid": "mental-health-nurse-practitioner",
+        "name": "Psych/Mental Health Nurse Practitioner"
+
+
+      },
+      {
+        "uid": "micrographic-surgeon",
+        "name": "MOHS-Micrographic Surgery"
+
+
+      },
+      {
+        "uid": "neuropathologist",
+        "name": "Neuropathology"
+
+
+      },
+      {
+        "uid": "nuclear-cardiologist",
+        "name": "Nuclear Cardiology"
+
+
+      },
+      {
+        "uid": "nuclear-imaging-doctor",
+        "name": "Nuclear Imaging & Therapy"
+
+
+      },
+      {
+        "uid": "occupational-medicine-doctor",
+        "name": "Occupational Medicine"
+
+
+      },
+      {
+        "uid": "body-imaging-radiologist",
+        "name": "Body Imaging"
+
+
+      },
+      {
+        "uid": "critical-care-obgyn",
+        "name": "Critical Care Medicine OBGYN"
+
+      },
+      {
+        "uid": "dental-laboratory-technician",
+        "name": "Dental Laboratory Technician"
+
+
+      },
+      {
+        "uid": "dental-therapist",
+        "name": "Dental Therapist"
+
+
+      },
+      {
+        "uid": "dentist",
+        "name": "Dentistry"
+
+
+      },
+      {
+        "uid": "clinical-pathologist",
+        "name": "Clinical Pathology"
+
+
+      },
+      {
+        "uid": "allergy-immunology-allergy",
+        "name": "Allergy & Immunology Allergy"
+
+
+      },
+      {
+        "uid": "group-psychotherapy-psychologist",
+        "name": "Group Psychotherapy"
+
+
+      },
+      {
+        "uid": "internal-medicine-clinical-laboratory-immunology",
+        "name": "Internal Medicine Clinical & Laboratory Immunology"
+
+
+      },
+      {
+        "uid": "immunodermatologist",
+        "name": "Clinical & Laboratory Dermatological Immunology"
+
+
+      },
+      {
+        "uid": "dermatologist",
+        "name": "Dermatology"
+
+
+      },
+      {
+        "uid": "dermatopathology-doctor",
+        "name": "Dermatopathology"
+
+
+      },
+      {
+        "uid": "occupational-therapy-assistant",
+        "name": "Occupational Therapy Assistant"
+
+
+      },
+      {
+        "uid": "occupational-therapy-assistant-feeding-eating-swallowing",
+        "name": "Occupational Therapy Assistant Feeding, Eating & Swallowing"
+
+
+      },
+      {
+        "uid": "occupational-therapy-assistant-low-vision",
+        "name": "Occupational Therapy Assistant Low Vision"
+
+
+      },
+      {
+        "uid": "occupational-therapy-assistant-driving-and-community-mobility",
+        "name": "Occupational Therapy Assistant Driving and Community Mobility"
+
+
+      },
+      {
+        "uid": "urologist",
+        "name": "Urology"
+
+
+      },
+      {
+        "uid": "vision-therapy-optometrist",
+        "name": "Vision Therapy"
+
+      },
+      {
+        "uid": "oral-pathologist",
+        "name": "Oral and Maxillofacial Pathology"
+
+
+      },
+      {
+        "uid": "oral-surgeon",
+        "name": "Oral & Maxillofacial Surgery"
+
+
+      },
+      {
+        "uid": "pain-management-doctor",
+        "name": "Pain Medicine"
+
+
+      },
+      {
+        "uid": "pediatric-chiropractor",
+        "name": "Chiropractic Pediatrics"
+
+
+      },
+      {
+        "uid": "pediatric-physical-therapist",
+        "name": "Pediatric Physical Therapy"
+
+
+      },
+      {
+        "uid": "pediatric-rheumatologist",
+        "name": "Pediatric Rheumatology"
+
+
+      },
+      {
+        "uid": "pediatric-pulmonologist",
+        "name": "Pediatric Pulmonology"
+
+
+      },
+      {
+        "uid": "pediatric-dermatologist",
+        "name": "Pediatric Dermatology"
+
+
+      },
+      {
+        "uid": "blood-banking-transfusion-doctor",
+        "name": "Blood Banking & Transfusion Medicine"
+
+
+      },
+      {
+        "uid": "ear-nose-throat-doctor",
+        "name": "Otolaryngology"
+
+
+      },
+      {
+        "uid": "facial-plastic-surgeon",
+        "name": "Facial Plastic Surgery"
+
+
+      },
+      {
+        "uid": "medical-microbiologist",
+        "name": "Medical Microbiology"
+
+      },
+      {
+        "uid": "family-medicine-hospice-and-palliative-medicine",
+        "name": "Family Medicine Hospice and Palliative Medicine"
+
+      },
+      {
+        "uid": "low-vision-rehabilitation-optometrist",
+        "name": "Low Vision Rehabilitation"
+
+
+      },
+      {
+        "uid": "family-medicine-sleep-medicine",
+        "name": "Family Medicine Sleep Medicine"
+
+
+      },
+      {
+        "uid": "pediatric-radiologist",
+        "name": "Pediatric Radiology"
+
+
+      },
+      {
+        "uid": "rehabilitation-chiropractor",
+        "name": "Chiropractic Rehabilitation"
+
+
+      },
+      {
+        "uid": "radiology-podiatrist",
+        "name": "Radiology Podiatry"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-forensic-psychiatry",
+        "name": "Psychiatry & Neurology Forensic Psychiatry"
+
+      },
+      {
+        "uid": "pulmonary-function-technologist",
+        "name": "Pulmonary Function Technologist"
+
+
+      },
+      {
+        "uid": "primary-care-nurse-practitioner",
+        "name": "Primary Care Nurse Practitioner"
+
+
+      },
+      {
+        "uid": "professional-counselor",
+        "name": "Professional Counseling"
+
+
+      },
+      {
+        "uid": "psychiatrist",
+        "name": "Psychiatry"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-addiction-medicine",
+        "name": "Psychiatry & Neurology Addiction Medicine"
+
+
+      },
+      {
+        "uid": "phlebology",
+        "name": "Phlebology"
+
+
+      },
+      {
+        "uid": "physiatrist",
+        "name": "Physical Medicine & Rehabilitation"
+
+
+      },
+      {
+        "uid": "pedorthist",
+        "name": "Pedorthist"
+
+
+      },
+      {
+        "uid": "plastic-surgery-plastic-surgery-within-the-head-and-neck",
+        "name": "Plastic Surgery Plastic Surgery Within the Head and Neck"
+
+
+      },
+      {
+        "uid": "plastic-surgery-specialist",
+        "name": "Plastic Surgery"
+
+
+      },
+      {
+        "uid": "physical-therapist",
+        "name": "Physical Therapy"
+
+
+      },
+      {
+        "uid": "podiatry-foot-surgeon",
+        "name": "Foot Surgery"
+
+
+      },
+      {
+        "uid": "rehabilitation-counselor",
+        "name": "Rehabilitation Counselor"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-pulmonary-diagnostics",
+        "name": "Respiratory Therapist, Certified Pulmonary Diagnostics"
+
+
+      },
+      {
+        "uid": "rehabilitation-psychologist",
+        "name": "Rehabilitation Psychology"
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-pulmonary-diagnostics",
+        "name": "Respiratory Therapist, Registered Pulmonary Diagnostics"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-snfsubacute-care",
+        "name": "Respiratory Therapist, Registered SNF/Subacute Care"
+
+
+      },
+      {
+        "uid": "rheumatologist",
+        "name": "Rheumatology"
+
+
+      },
+      {
+        "uid": "radiology-chiropractor",
+        "name": "Chiropractic Radiology"
+
+
+      },
+      {
+        "uid": "reconstructive-orthopedist",
+        "name": "Adult Reconstructive orthopedic Surgery"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-general-care",
+        "name": "Respiratory Therapist, Certified General Care"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-educational",
+        "name": "Respiratory Therapist, Certified Educational"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-geriatric-care",
+        "name": "Respiratory Therapist, Certified Geriatric Care"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified",
+        "name": "Respiratory Therapist, Certified"
+
+
+      },
+      {
+        "uid": "preventive-medical-toxicologist",
+        "name": "Preventive Medical Toxicology"
+
+
+      },
+      {
+        "uid": "primary-podiatry-doctor",
+        "name": "Primary Podiatric Medicine"
+
+
+      },
+      {
+        "uid": "procedural-dermatologist",
+        "name": "Procedural Dermatology"
+
+      },
+      {
+        "uid": "psychiatry-neurology-behavioral-neurology-neuropsychiatry",
+        "name": "Psychiatry & Neurology Behavioral Neurology & Neuropsychiatry"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-diagnostic-neuroimaging",
+        "name": "Psychiatry & Neurology Diagnostic Neuroimaging"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-psychosomatic-medicine",
+        "name": "Psychiatry & Neurology Psychosomatic Medicine"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-critical-care",
+        "name": "Respiratory Therapist, Certified Critical Care"
+
+
+      },
+      {
+        "uid": "sports-medicine-orthopedist",
+        "name": "Orthopedic Sports Medicine"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-snfsubacute-care",
+        "name": "Respiratory Therapist, Certified SNF/Subacute Care"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-critical-care",
+        "name": "Respiratory Therapist, Registered Critical Care"
+
+
+      },
+      {
+        "uid": "school-counselor",
+        "name": "School Counseling"
+
+
+      },
+      {
+        "uid": "techniciantechnologist-ocularist",
+        "name": "Technician/Technologist Ocularist"
+
+
+      },
+      {
+        "uid": "acupuncturist",
+        "name": "Acupuncture"
+
+
+      },
+      {
+        "uid": "acute-nurse-practitioner",
+        "name": "Acute Care Nurse Practitioner"
+
+
+      },
+      {
+        "uid": "addiction-psychiatrist",
+        "name": "Addiction Psychiatry"
+
+
+      },
+      {
+        "uid": "clinical-psychologist",
+        "name": "Clinical Psychology"
+
+
+      },
+      {
+        "uid": "anaplastologist",
+        "name": "Anaplastologist"
+
+
+      },
+      {
+        "uid": "aerospace-medicine-doctor",
+        "name": "Aerospace Medicine"
+
+
+      },
+      {
+        "uid": "anesthesiologist",
+        "name": "Anesthesiology"
+
+
+      },
+      {
+        "uid": "cardiopulmonary-physical-therapist",
+        "name": "Cardiopulmonary Physical Therapy"
+
+
+      },
+      {
+        "uid": "health-service-psychologist",
+        "name": "Health Service Psychology"
+
+
+      },
+      {
+        "uid": "developmental-therapist",
+        "name": "Developmental Therapist"
+
+
+      },
+      {
+        "uid": "developmental-behavioral-pediatrician",
+        "name": "Developmental Behavioral Pediatrics"
+
+
+      },
+      {
+        "uid": "forensic-psychologist",
+        "name": "Forensic Psychology"
+
+
+      },
+      {
+        "uid": "geriatric-psychiatrist",
+        "name": "Geriatric Psychiatry"
+
+
+      },
+      {
+        "uid": "clinical-pharmacology",
+        "name": "Clinical Pharmacology"
+
+
+      },
+      {
+        "uid": "critical-care-doctor",
+        "name": "Critical Care Medicine"
+
+
+      },
+      {
+        "uid": "hearing-aid-audiologist",
+        "name": "Audiology & Hearing Aid Fitter"
+
+
+      },
+      {
+        "uid": "hospice-care-palliative-doctor",
+        "name": "Hospice and Palliative Medicine"
+
+
+      },
+      {
+        "uid": "independent-medical-examiner",
+        "name": "Independent Medical Examiner"
+
+
+      },
+      {
+        "uid": "internal-medicine-adolescent-medicine",
+        "name": "Internal Medicine Adolescent Medicine"
+
+
+      },
+      {
+        "uid": "internal-medicine-bariatric-medicine",
+        "name": "Internal Medicine Bariatric Medicine"
+
+
+      },
+      {
+        "uid": "internal-medicine-sports-medicine",
+        "name": "Internal Medicine Sports Medicine"
+
+
+      },
+      {
+        "uid": "internist",
+        "name": "Internal Medicine"
+
+
+      },
+      {
+        "uid": "laboratory-medicine-doctor",
+        "name": "Clinical Pathology/Laboratory Medicine"
+
+
+      },
+      {
+        "uid": "interventional-cardiologist",
+        "name": "Interventional Cardiology"
+
+
+      },
+      {
+        "uid": "medical-genetics-molecular-genetic-pathology",
+        "name": "Medical Genetics Molecular Genetic Pathology"
+
+
+      },
+      {
+        "uid": "nutritionist",
+        "name": "Nutrition Medicine"
+
+
+      },
+      {
+        "uid": "obstetrics-gynecology-female-pelvic-medicine-and-reconstructive-surgery",
+        "name": "Obstetrics & Gynecology Female Pelvic Medicine and Reconstructive Surgery"
+
+
+      },
+      {
+        "uid": "obstetrics-gynecologist",
+        "name": "Obstetrics & Gynecology"
+
+
+      },
+      {
+        "uid": "occupational-therapist",
+        "name": "Occupational Therapist"
+
+
+      },
+      {
+        "uid": "music-therapist",
+        "name": "Music Therapist"
+
+
+      },
+      {
+        "uid": "neuromusculoskeletal-medicine-doctor",
+        "name": "Neuromusculoskeletal Medicine & OMM"
+
+
+      },
+      {
+        "uid": "neonatal-critical-care-nurse-practitioner",
+        "name": "Neonatal, Critical Care Nurse Practitioner"
+
+
+      },
+      {
+        "uid": "neurosurgeon",
+        "name": "Neurological Surgery"
+
+
+      },
+      {
+        "uid": "nuclear-medicine-doctor",
+        "name": "Nuclear Medicine"
+
+
+      },
+      {
+        "uid": "occupational-therapist-ergonomics",
+        "name": "Occupational Therapist Ergonomics"
+
+
+      },
+      {
+        "uid": "occupational-therapist-environmental-modification",
+        "name": "Occupational Therapist Environmental Modification"
+
+
+      },
+      {
+        "uid": "orthopedic-chiropractor",
+        "name": "Chiropractic Orthopedics"
+
+
+      },
+      {
+        "uid": "otology-neurotologist",
+        "name": "Otology & Neurotology"
+
+
+      },
+      {
+        "uid": "ophthalmologist",
+        "name": "Ophthalmology"
+
+
+      },
+      {
+        "uid": "oncologist",
+        "name": "Hematology & Oncology"
+
+
+      },
+      {
+        "uid": "diagnostic-ultrasound-radiologist",
+        "name": "Diagnostic Ultrasound"
+
+
+      },
+      {
+        "uid": "cardiothoracic-surgeon",
+        "name": "Cardiothoracic Surgery"
+
+
+      },
+      {
+        "uid": "emergency-medicine-hospice-and-palliative-medicine",
+        "name": "Emergency Medicine Hospice and Palliative Medicine"
+
+
+      },
+      {
+        "uid": "pediatric-cardiologist",
+        "name": "Pediatric Cardiology"
+
+
+      },
+      {
+        "uid": "environmental-preventive-medicine-doctor",
+        "name": "Environmental Preventive Medicine"
+
+
+      },
+      {
+        "uid": "dietitian",
+        "name": "Dietitian, Registered"
+
+
+      },
+      {
+        "uid": "mental-health-counselor",
+        "name": "Mental Health Counseling"
+
+
+      },
+      {
+        "uid": "nephrologist",
+        "name": "Nephrology"
+
+
+      },
+      {
+        "uid": "emergency-medicine-pediatrician",
+        "name": "Pediatric Emergency Medicine"
+
+
+      },
+      {
+        "uid": "preventive-medicine-doctor",
+        "name": "Preventive Medicine"
+
+
+      },
+      {
+        "uid": "podiatrist",
+        "name": "Podiatry"
+
+      },
+      {
+        "uid": "pediatric-gastroenterologist",
+        "name": "Pediatric Gastroenterology"
+
+
+      },
+      {
+        "uid": "pediatric-nurse-practitioner",
+        "name": "Pediatric Nurse Practitioner"
+
+
+      },
+      {
+        "uid": "otolaryngology-facial-plastic-surgeon",
+        "name": "Otolaryngology/Facial Plastic Surgery"
+
+
+      },
+      {
+        "uid": "orthotist",
+        "name": "Orthotist"
+
+
+      },
+      {
+        "uid": "pastoral-counselor",
+        "name": "Pastoral Counseling"
+
+
+      },
+      {
+        "uid": "pediatrician",
+        "name": "Pediatrics"
+
+
+      },
+      {
+        "uid": "pediatric-optometrist",
+        "name": "Pediatric Optometry"
+
+
+      },
+      {
+        "uid": "pediatric-medical-toxicologist",
+        "name": "Medical Toxicology"
+
+
+      },
+      {
+        "uid": "addiction-medicine-anesthesiologist",
+        "name": "Addiction Medicine"
+
+
+      },
+      {
+        "uid": "allergy-immunology-clinical-laboratory-immunology",
+        "name": "Allergy & Immunology Clinical & Laboratory Immunology"
+
+
+      },
+      {
+        "uid": "adolescent-medicine-pediatrician",
+        "name": "Adolescent Medicine"
+
+
+      },
+      {
+        "uid": "critical-care-pediatrician",
+        "name": "Pediatric Critical Care Medicine"
+
+
+      },
+      {
+        "uid": "cytopathologist",
+        "name": "Cytopathology"
+
+
+      },
+      {
+        "uid": "dental-assistant",
+        "name": "Dental Assistant"
+
+
+      },
+      {
+        "uid": "dentist-dental-public-health",
+        "name": "Dentist Dental Public Health"
+
+
+      },
+      {
+        "uid": "anatomic-pathologist",
+        "name": "Anatomic Pathology"
+
+
+      },
+      {
+        "uid": "art-therapist",
+        "name": "Art Therapist"
+
+
+      },
+      {
+        "uid": "counceling-pshychologist",
+        "name": "Counseling Psychology"
+
+
+      },
+      {
+        "uid": "denturist",
+        "name": "Denturist"
+
+
+      },
+      {
+        "uid": "cognitive-behavioral-psychologist",
+        "name": "Cognitive & Behavioral Psychology"
+
+
+      },
+      {
+        "uid": "child-psychiatrist",
+        "name": "Child & Adolescent Psychiatry"
+
+
+      },
+      {
+        "uid": "dentist-dentist-anesthesiologist",
+        "name": "Dentist Dentist Anesthesiologist"
+
+
+      },
+      {
+        "uid": "dermatopathologist",
+        "name": "Dermatopathology"
+
+
+      },
+      {
+        "uid": "diagnostic-neuroimaging-radiologist",
+        "name": "Diagnostic Neuroimaging"
+
+
+      },
+      {
+        "uid": "family-nurse-practitioner",
+        "name": "Family Nurse Practitioner"
+
+      },
+      {
+        "uid": "hospice-palliative-medicine-anesthesiologist",
+        "name": "Hospice and Palliative Medicine"
+
+
+      },
+      {
+        "uid": "hospice-palliative-physiatrist",
+        "name": "Hospice and Palliative Medicine"
+
+
+      },
+      {
+        "uid": "hospitalist",
+        "name": "Hospitalist"
+
+      },
+      {
+        "uid": "head-neck-plastic-surgeon",
+        "name": "Plastic Surgery within the Head & Neck"
+
+
+      },
+      {
+        "uid": "general-practitioner",
+        "name": "General Practice"
+
+
+      },
+      {
+        "uid": "general-surgeon",
+        "name": "Surgery"
+
+
+      },
+      {
+        "uid": "gynecologist",
+        "name": "Gynecology"
+
+
+      },
+      {
+        "uid": "internist-chiropractor",
+        "name": "Chiropractic Internal Medicine"
+
+
+      },
+      {
+        "uid": "massage-therapist",
+        "name": "Massage Therapy"
+
+
+      },
+      {
+        "uid": "neuroradiologist",
+        "name": "Neuroradiology"
+
+
+      },
+      {
+        "uid": "nuclear-radiologist",
+        "name": "Nuclear Radiology"
+
+
+      },
+      {
+
+
+
+
+      },
+      {
+        "uid": "internal-medicine-allergy-immunology",
+        "name": "Internal Medicine Allergy & Immunology"
+
+
+      },
+      {
+        "uid": "internal-medicine-magnetic-resonance-imaging-mri",
+        "name": "Internal Medicine Magnetic Resonance Imaging (MRI)"
+
+
+      },
+      {
+        "uid": "podiatrist-general-practice",
+        "name": "Podiatrist General Practice"
+
+
+      },
+      {
+        "uid": "occupational-therapist-physical-rehabilitation",
+        "name": "Occupational Therapist Physical Rehabilitation"
+
+
+      },
+      {
+        "uid": "occupational-therapy-assistant-environmental-modification",
+        "name": "Occupational Therapy Assistant Environmental Modification"
+
+
+      },
+      {
+        "uid": "medical-oncologist",
+        "name": "Medical Oncology"
+
+
+      },
+      {
+        "uid": "nurse-practitioner",
+        "name": "Nurse Practitioner"
+
+
+      },
+      {
+        "uid": "optometrist",
+        "name": "Optometry"
+
+
+      },
+      {
+        "uid": "urology-female-pelvic-medicine-and-reconstructive-surgery",
+        "name": "Urology Female Pelvic Medicine and Reconstructive Surgery"
+
+
+      },
+      {
+        "uid": "oral-radiologist",
+        "name": "Oral and Maxillofacial Radiology"
+
+
+      },
+      {
+        "uid": "orthodontist",
+        "name": "Orthodontics"
+
+
+      },
+      {
+        "uid": "diagnostic-radiologist",
+        "name": "Diagnostic Radiology"
+
+
+      },
+      {
+        "uid": "endocrinologist",
+        "name": "Endocrinology, Diabetes & Metabolism"
+
+
+      },
+      {
+        "uid": "endotontist",
+        "name": "Endodontics"
+
+
+      },
+      {
+        "uid": "family-medicine-geriatric-medicine",
+        "name": "Family Medicine Geriatric Medicine"
+
+
+      },
+      {
+        "uid": "family-medicine-bariatric-medicine",
+        "name": "Family Medicine Bariatric Medicine"
+
+
+      },
+      {
+        "uid": "vivo-vitro-nuclear-medicine-doctor",
+        "name": "In Vivo & In Vitro Nuclear Medicine"
+
+
+      },
+      {
+        "uid": "interventional-pain-management-doctor",
+        "name": "Interventional Pain Medicine"
+
+
+      },
+      {
+        "uid": "mastectomy-fitter",
+        "name": "Mastectomy Fitter"
+
+
+      },
+      {
+        "uid": "maternal-fetal-medicine-obgyn",
+        "name": "Maternal & Fetal Medicine"
+
+
+      },
+      {
+        "uid": "pediatric-oncologist",
+        "name": "Pediatric Hematology & Oncology"
+
+
+      },
+      {
+        "uid": "pediatric-pathologist",
+        "name": "Pediatric Pathology"
+
+
+      },
+      {
+        "uid": "pediatric-transplant-hepatologist",
+        "name": "Pediatric Transplant Hepatology"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-bariatric-medicine",
+        "name": "Psychiatry & Neurology Bariatric Medicine"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-hospice-and-palliative-medicine",
+        "name": "Psychiatry & Neurology Hospice and Palliative Medicine"
+
+
+      },
+      {
+        "uid": "podiatrist-public-medicine",
+        "name": "Podiatrist Public Medicine"
+
+
+      },
+      {
+        "uid": "preventive-sports-medicine-doctor",
+        "name": "Preventive Sports Medicine"
+
+
+      },
+      {
+        "uid": "neurologist",
+        "name": "Neurology"
+
+
+      },
+      {
+        "uid": "neurodevelopmental-disability-pediatrician",
+        "name": "Neurodevelopmental Disability"
+
+
+      },
+      {
+        "uid": "otolaryngic-allergist",
+        "name": "Otolaryngic Allergy"
+
+
+      },
+      {
+        "uid": "neurology-physical-therapist",
+        "name": "Neurology Physical Therapy"
+
+
+      },
+      {
+        "uid": "pediatric-nephrologist",
+        "name": "Pediatric Nephrology"
+
+
+      },
+      {
+        "uid": "pediatric-neurologist",
+        "name": "Pediatric Neurology"
+
+
+      },
+      {
+        "uid": "periodontist",
+        "name": "Periodontics"
+
+
+      },
+      {
+        "uid": "plastic-surgery-surgery-of-the-hand",
+        "name": "Plastic Surgery Surgery of the Hand"
+
+
+      },
+      {
+        "uid": "psychoanalyst",
+        "name": "Psychoanalysis"
+
+
+      },
+      {
+        "uid": "psychologist",
+        "name": "Psychology"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-patient-transport",
+        "name": "Respiratory Therapist, Certified Patient Transport"
+
+
+      },
+      {
+        "uid": "rehabilitation-practitioner",
+        "name": "Rehabilitation Practitioner"
+
+
+      },
+      {
+        "uid": "recreation-therapist",
+        "name": "Recreation Therapist"
+
+
+      },
+      {
+        "uid": "radiation-oncologist",
+        "name": "Radiation Oncology"
+
+
+      },
+      {
+        "uid": "rehabilitation-counselor-orientation-and-mobility-training-provider",
+        "name": "Rehabilitation Counselor Orientation and Mobility Training Provider"
+
+
+      },
+      {
+        "uid": "techniciantechnologist-contact-lens-fitter",
+        "name": "Technician/Technologist Contact Lens Fitter"
+
+
+      },
+      {
+        "uid": "techniciantechnologist-ophthalmic-assistant",
+        "name": "Technician/Technologist Ophthalmic Assistant"
+
+
+      },
+      {
+        "uid": "techniciantechnologist-optometric-assistant",
+        "name": "Technician/Technologist Optometric Assistant"
+
+
+      },
+      {
+        "uid": "school-psychologist",
+        "name": "School Psychology"
+
+
+      },
+      {
+        "uid": "specialisttechnologist-athletic-trainer",
+        "name": "Specialist/Technologist Athletic Trainer"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-pulmonary-rehabilitation",
+        "name": "Respiratory Therapist, Registered Pulmonary Rehabilitation"
+
+
+      },
+      {
+        "uid": "surgery-surgical-critical-care",
+        "name": "Surgery Surgical Critical Care"
+
+
+      },
+      {
+        "uid": "surgery-trauma-surgery",
+        "name": "Surgery Trauma Surgery"
+
+
+      },
+      {
+        "uid": "surgical-oncologist",
+        "name": "Surgical Oncology"
+
+
+      },
+      {
+        "uid": "techniciantechnologist-ophthalmic",
+        "name": "Technician/Technologist Ophthalmic"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-general-care",
+        "name": "Respiratory Therapist, Registered General Care"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-patient-transport",
+        "name": "Respiratory Therapist, Registered Patient Transport"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-palliativehospice",
+        "name": "Respiratory Therapist, Registered Palliative/Hospice"
+
+
+      },
+      {
+        "uid": "sports-chiropractor",
+        "name": "Chiropractic Sports Medicine"
+
+
+      },
+      {
+        "uid": "specialisttechnologist",
+        "name": "Specialist/Technologist"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-educational",
+        "name": "Respiratory Therapist, Registered Educational"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-emergency-care",
+        "name": "Respiratory Therapist, Registered Emergency Care"
+
+
+      },
+      {
+        "uid": "spine-orthopedist",
+        "name": "Orthopedic Surgery of the Spine"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-home-health",
+        "name": "Respiratory Therapist, Registered Home Health"
+
+
+      },
+      {
+        "uid": "techniciantechnologist-contact-lens",
+        "name": "Technician/Technologist Contact Lens"
+
+
+      },
+      {
+        "uid": "trauma-orthopedist",
+        "name": "Orthopedic Trauma"
+
+
+      },
+      {
+        "uid": "undersea-hyperbaric-medicine-doctor",
+        "name": "Undersea and Hyperbaric Medicine"
+
+
+      },
+      {
+        "uid": "techniciantechnologist-optician",
+        "name": "Technician/Technologist Optician"
+
+
+      },
+      {
+        "uid": "techniciantechnologist-optometric-technician",
+        "name": "Technician/Technologist Optometric Technician"
+
+
+      },
+      {
+        "uid": "transplant-surgery",
+        "name": "Transplant Surgery"
+
+
+      },
+      {
+        "uid": "addiction-psychologist",
+        "name": "Addiction Psychology"
+
+
+      },
+      {
+        "uid": "allergist",
+        "name": "Allergy & Immunology"
+
+
+      },
+      {
+        "uid": "corneal-contact-management-optometrist",
+        "name": "Corneal and Contact Management"
+
+
+      },
+      {
+        "uid": "colorectal-surgeon",
+        "name": "Colon & Rectal Surgery"
+
+
+      },
+      {
+        "uid": "critical-care-anesthesiologist",
+        "name": "Critical Care Medicine"
+
+
+      },
+      {
+        "uid": "counselor-specialist",
+        "name": "Counseling"
+
+
+      },
+      {
+        "uid": "dental-hygienist",
+        "name": "Dental Hygienist"
+
+
+      },
+      {
+        "uid": "health-psychologist",
+        "name": "Health Psychology"
+
+
+      },
+      {
+
+
+
+
+      },
+      {
+        "uid": "geneticist",
+        "name": "Medical Genetics, Ph.D. Medical Genetics"
+
+
+      },
+      {
+        "uid": "geriatric-physical-therapist",
+        "name": "Geriatrics Physical Therapy"
+
+
+      },
+      {
+        "uid": "hand-physical-therapist",
+        "name": "Hand Physical Therapy"
+
+
+      },
+      {
+        "uid": "foot-ankle-orthopedist",
+        "name": "Foot and Ankle Surgery"
+
+
+      },
+      {
+        "uid": "family-psychologist",
+        "name": "Family Psychology"
+
+
+      },
+      {
+        "uid": "gastroenterologist",
+        "name": "Gastroenterology"
+
+
+      },
+      {
+        "uid": "family-practitioner",
+        "name": "Family Medicine"
+
+
+      },
+      {
+        "uid": "occupational-therapist-feeding-eating-swallowing",
+        "name": "Occupational Therapist Feeding, Eating & Swallowing"
+
+
+      },
+      {
+        "uid": "occupational-therapist-gerontology",
+        "name": "Occupational Therapist Gerontology"
+
+
+      },
+      {
+        "uid": "neuromuscular-physiatrist",
+        "name": "Neuromuscular Medicine"
+
+
+      },
+      {
+        "uid": "occupational-therapist-hand",
+        "name": "Occupational Therapist Hand"
+
+
+      },
+      {
+        "uid": "hospice-palliative-medicine-radiologist",
+        "name": "Hospice and Palliative Medicine"
+
+
+      },
+      {
+        "uid": "immunopathologist",
+        "name": "Immunopathology"
+
+
+      },
+      {
+        "uid": "occupational-therapist-neurorehabilitation",
+        "name": "Occupational Therapist Neurorehabilitation"
+
+
+      },
+      {
+        "uid": "oral-medicinist",
+        "name": "Oral Medicinist"
+
+
+      },
+      {
+        "uid": "oral-maxillofacial-surgeon",
+        "name": "Oral & Maxillofacial Surgery"
+
+
+      },
+      {
+        "uid": "pathologist",
+        "name": "Pathology"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-sleep-medicine",
+        "name": "Psychiatry & Neurology Sleep Medicine"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-vascular-neurology",
+        "name": "Psychiatry & Neurology Vascular Neurology"
+
+
+      },
+      {
+        "uid": "family-medicine-adolescent-medicine",
+        "name": "Family Medicine Adolescent Medicine"
+
+
+      },
+      {
+        "uid": "cardiologist",
+        "name": "Cardiovascular Disease"
+
+
+      },
+      {
+        "uid": "clinical-cytogeneticist",
+        "name": "Clinical Cytogenetic"
+
+
+      },
+      {
+        "uid": "electrophysiology-physical-therapist",
+        "name": "Clinical Electrophysiology"
+
+
+      },
+      {
+        "uid": "clinical-molecular-geneticist",
+        "name": "Clinical Molecular Genetics"
+
+
+      },
+      {
+        "uid": "clinical-exercise-physiologist",
+        "name": "Clinical Exercise Physiologist"
+
+
+      },
+      {
+        "uid": "emergency-medicine-pediatric-emergency-medicine",
+        "name": "Emergency Medicine Pediatric Emergency Medicine"
+
+
+      },
+      {
+        "uid": "emergency-medicine-doctor",
+        "name": "Emergency Medicine"
+
+
+      },
+      {
+        "uid": "ergonomic-physical-therapist",
+        "name": "Ergonomic Physical Therapy"
+
+
+      },
+      {
+        "uid": "pain-medicine-physiatrist",
+        "name": "Pain Medicine"
+
+
+      },
+      {
+        "uid": "pediatric-allergist",
+        "name": "Pediatric Allergy"
+
+
+      },
+      {
+        "uid": "pediatric-orhopedic-surgeon",
+        "name": "Pediatric Orthopedic Surgery"
+
+
+      },
+      {
+        "uid": "neurology-chiropractor",
+        "name": "Chiropractic Neurology"
+
+
+      },
+      {
+        "uid": "pain-medicine-anesthesiologist",
+        "name": "Pain Medicine"
+
+
+      },
+      {
+        "uid": "pediatric-ear-nose-throat-doctor",
+        "name": "Pediatric Otolaryngology"
+
+
+      },
+      {
+        "uid": "pediatric-anesthesiologist",
+        "name": "Pediatric Anesthesiology"
+
+
+      },
+      {
+        "uid": "pathology-clinical-informatics",
+        "name": "Pathology Clinical Informatics"
+
+
+      },
+      {
+        "uid": "pediatric-endocrinologist",
+        "name": "Pediatric Endocrinology"
+
+
+      },
+      {
+        "uid": "pediatric-rehabilitation-physiatrist",
+        "name": "Pediatric Rehabilitation Medicine"
+
+
+      },
+      {
+        "uid": "pediatrics-clinical-laboratory-immunology",
+        "name": "Pediatrics Clinical & Laboratory Immunology"
+
+
+      },
+      {
+        "uid": "podiatry-surgeon",
+        "name": "Foot & Ankle Surgery"
+
+
+      },
+      {
+        "uid": "prosthodontist",
+        "name": "Prosthodontics"
+
+
+      },
+      {
+        "uid": "radiological-physicist",
+        "name": "Radiological Physics"
+
+
+      },
+      {
+        "uid": "rehabilitation-counselor-assistive-technology-supplier",
+        "name": "Rehabilitation Counselor Assistive Technology Supplier"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-neurodevelopmental-disabilities",
+        "name": "Psychiatry & Neurology Neurodevelopmental Disabilities"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-home-health",
+        "name": "Respiratory Therapist, Certified Home Health"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-neonatalpediatrics",
+        "name": "Respiratory Therapist, Certified Neonatal/Pediatrics"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-pulmonary-function-technologist",
+        "name": "Respiratory Therapist, Certified Pulmonary Function Technologist"
+
+
+      },
+      {
+        "uid": "preventive-medicine-clinical-informatics",
+        "name": "Preventive Medicine Clinical Informatics"
+
+
+      },
+      {
+        "uid": "prosthetist",
+        "name": "Prosthetist"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-neuromuscular-medicine",
+        "name": "Psychiatry & Neurology Neuromuscular Medicine"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-pain-medicine",
+        "name": "Psychiatry & Neurology Pain Medicine"
+
+
+      },
+      {
+        "uid": "orthopedic-surgeon",
+        "name": "Orthopedic Surgery"
+
+
+      },
+      {
+        "uid": "orthotic-fitter",
+        "name": "Orthotic Fitter"
+
+
+      },
+      {
+        "uid": "orthopedic-physical-therapist",
+        "name": "Orthopedic Physical Therapy"
+
+
+      },
+      {
+        "uid": "pediatric-dentist",
+        "name": "Pediatric Dentistry"
+
+
+      },
+      {
+        "uid": "pediatric-urologist",
+        "name": "Pediatric Urology"
+
+
+      },
+      {
+        "uid": "pediatric-surgeon",
+        "name": "Pediatric Surgery"
+
+
+      },
+      {
+        "uid": "pediatrics-hospice-and-palliative-medicine",
+        "name": "Pediatrics Hospice and Palliative Medicine"
+
+
+      },
+      {
+        "uid": "pediatrics-medical-toxicology",
+        "name": "Pediatrics Medical Toxicology"
+
+
+      },
+      {
+        "uid": "physical-therapy-assistant",
+        "name": "Physical Therapy Assistant"
+
+
+      },
+      {
+        "uid": "plastic-surgeon",
+        "name": "Plastic and Reconstructive Surgery"
+
+
+      },
+      {
+        "uid": "pulmonologist",
+        "name": "Pulmonary Disease"
+
+
+      },
+      {
+        "uid": "rehabilitation-counselor-assistive-technology-practitioner",
+        "name": "Rehabilitation Counselor Assistive Technology Practitioner"
+
+
+      },
+      {
+        "uid": "reproductive-erndocrinologist",
+        "name": "Reproductive Endocrinology"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-geriatric-care",
+        "name": "Respiratory Therapist, Registered Geriatric Care"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-neonatalpediatrics",
+        "name": "Respiratory Therapist, Registered Neonatal/Pediatrics"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered-pulmonary-function-technologist",
+        "name": "Respiratory Therapist, Registered Pulmonary Function Technologist"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-palliativehospice",
+        "name": "Respiratory Therapist, Certified Palliative/Hospice"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-pulmonary-rehabilitation",
+        "name": "Respiratory Therapist, Certified Pulmonary Rehabilitation"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-registered",
+        "name": "Respiratory Therapist, Registered"
+
+
+      },
+      {
+        "uid": "respiratory-therapist-certified-emergency-care",
+        "name": "Respiratory Therapist, Certified Emergency Care"
+
+
+      },
+      {
+        "uid": "sleep-medicine-otolaryngologist",
+        "name": "Otolaryngologic Sleep Medicine"
+
+
+      },
+      {
+        "uid": "techniciantechnologist-orthoptist",
+        "name": "Technician/Technologist Orthoptist"
+
+
+      },
+      {
+        "uid": "thermography-chiropractor",
+        "name": "Chiropractic Thermography"
+
+
+      },
+      {
+        "uid": "surgery-surgery-of-the-hand",
+        "name": "Surgery of the Hand"
+
+
+      },
+      {
+        "uid": "techniciantechnologist",
+        "name": "Technician/Technologist"
+
+
+      },
+      {
+        "uid": "specialisttechnologist-rehabilitation-blind",
+        "name": "Specialist/Technologist Rehabilitation, Blind"
+
+
+      },
+      {
+        "uid": "sport-medicine-pediatrician",
+        "name": "Pediatric Sport Medicine"
+
+
+      },
+      {
+        "uid": "sports-medicine-physiatrist",
+        "name": "Physiastric Sports Medicine"
+
+
+      },
+      {
+        "uid": "sports-podiatrist",
+        "name": "Sports Medicine Podiatry"
+
+
+      },
+      {
+        "uid": "sports-medicine-doctor",
+        "name": "Sports Medicine"
+
+
+      },
+      {
+        "uid": "sleep-medicine-pediatrician",
+        "name": "Pediatric Sleep Medicine"
+
+
+      },
+      {
+        "uid": "transplant-hepatologist",
+        "name": "Transplant Hepatology"
+
+
+      },
+      {
+        "uid": "addiction-counselor",
+        "name": "Addiction Counseling"
+
+
+      },
+      {
+        "uid": "addiction-specialist",
+        "name": "Addiction Medicine"
+
+
+      },
+      {
+        "uid": "adult-nurse-practitioner",
+        "name": "Adult Health Nurse Practitioner"
+
+
+      },
+      {
+        "uid": "advanced-practice-dental-therapist",
+        "name": "Advanced Practice Dental Therapist"
+
+
+      },
+      {
+        "uid": "adult-psychologist",
+        "name": "Adult Development & Aging Psychology"
+
+
+      },
+      {
+        "uid": "chemical-pathologist",
+        "name": "Chemical Pathology"
+
+
+      },
+      {
+        "uid": "clinical-child-psychologist",
+        "name": "Clinical Child & Adolescent Psychology"
+
+
+      },
+      {
+        "uid": "chiropractor",
+        "name": "Chiropractics"
+
+
+      },
+      {
+        "uid": "dance-therapist",
+        "name": "Dance Therapist"
+
+
+      },
+      {
+        "uid": "bariatric-medicine-obgyn",
+        "name": "Bariatric Medicine OBGYN"
+
+
+      },
+      {
+        "uid": "assistant-podiatric",
+        "name": "Assistant, Podiatric"
+
+
+      },
+      {
+        "uid": "audiologist",
+        "name": "Audiology"
+
+
+      },
+      {
+        "uid": "hospice-palliative-obgyn",
+        "name": "Hospice & Palliative Medicine"
+
+
+      },
+      {
+        "uid": "infectious-disease-doctor",
+        "name": "Infectious Disease"
+
+
+      },
+      {
+        "uid": "infectious-diseases-pediatrician",
+        "name": "Pediatric Infectious Disease"
+
+
+      },
+      {
+        "uid": "general-dentist",
+        "name": "General Dentistry"
+
+
+      },
+      {
+        "uid": "gerontology-nurse-practitioner",
+        "name": "Gerontology Nurse Practitioner"
+
+
+      },
+      {
+        "uid": "geriatric-medicine-doctor",
+        "name": "Geriatric Medicine"
+
+
+      },
+      {
+        "uid": "gynecologic-oncologist",
+        "name": "Gynecologic Oncology"
+
+
+      },
+      {
+        "uid": "electrodiagnostic-medicine",
+        "name": "Electrodiagnostic Medicine"
+
+
+      },
+      {
+        "uid": "forensic-pathologist",
+        "name": "Forensic Pathology"
+
+
+      },
+      {
+        "uid": "hematopathologist",
+        "name": "Hematology"
+
+      },
+      {
+        "uid": "hand-orthopedist",
+        "name": "Hand Surgery"
+
+
+      },
+      {
+        "uid": "hepatologist",
+        "name": "Hepatology"
+
+
+      },
+      {
+        "uid": "occupational-therapist-low-vision",
+        "name": "Occupational Therapist Low Vision"
+
+
+      },
+      {
+        "uid": "occupational-therapist-mental-health",
+        "name": "Occupational Therapist Mental Health"
+
+
+      },
+      {
+        "uid": "occupational-therapist-pediatrics",
+        "name": "Occupational Therapist Pediatrics"
+
+
+      },
+      {
+        "uid": "internal-medicine-clinical-cardiac-electrophysiology",
+        "name": "Internal Medicine Clinical Cardiac Electrophysiology"
+
+
+      },
+      {
+        "uid": "internal-medicine-hematology",
+        "name": "Internal Medicine Hematology"
+
+
+      },
+      {
+        "uid": "internal-medicine-hypertension-specialist",
+        "name": "Internal Medicine Hypertension Specialist"
+
+
+      },
+      {
+        "uid": "kinesiotherapist",
+        "name": "Kinesiotherapist"
+
+
+      },
+      {
+        "uid": "obgyn-nurse-practitioner",
+        "name": "OBGYN Nurse Practitioner"
+
+
+      },
+      {
+        "uid": "occupational-chiropractor",
+        "name": "Chiropractic Occupational Health"
+
+
+      },
+      {
+        "uid": "occupational-therapist-driving-and-community-mobility",
+        "name": "Occupational Therapist Driving and Community Mobility"
+
+
+      },
+      {
+        "uid": "molecular-genetic-pathologist",
+        "name": "Molecular Genetic Pathology"
+
+
+      },
+      {
+        "uid": "neonatal-perinatal-pediatrician",
+        "name": "Neonatal & Perinatal Medicine"
+
+
+      },
+      {
+        "uid": "neonatal-nurse-practitioner",
+        "name": "Neonatology Nurse Practitioner"
+
+
+      },
+      {
+        "uid": "neuromusculoskeletal-medicine-sports-medicine",
+        "name": "Neuromusculoskeletal Medicine, Sports Medicine"
+
+
+      },
+      {
+        "uid": "naturopathic-doctor",
+        "name": "Naturopath"
+
+
+      },
+      {
+        "uid": "mental-retardation-psychologists",
+        "name": "Mental Retardation & Developmental Disabilities"
+
+
+      },
+      {
+        "uid": "obstetrician",
+        "name": "Obstetrics"
+
+
+      },
+      {
+        "uid": "nutrition-chiropractor",
+        "name": "Chiropractic Nutrition Medicine"
+
+
+      },
+      {
+        "uid": "occupational-vision-optometrist",
+        "name": "Occupational Vision"
+
+
+      },
+      {
+        "uid": "psychiatry-neurology-sports-medicine",
+        "name": "Psychiatry & Neurology Sports Medicine"
+
+
+      },
+      {
+        "uid": "medical-geneticist",
+        "name": "Ph.D. Medical Genetics"
+
+
+      },
+      {
+        "uid": "medical-psychologist",
+        "name": "Prescribing (Medical) Psychology"
+
+
+      },
+      {
+        "uid": "vascular-interventional-radiologist",
+        "name": "Vascular & Interventional Radiology"
+
+
+      },
+      {
+        "uid": "vascular-surgeon",
+        "name": "Vascular Surgery"
+
+
+      },
+      {
+        "uid": "clinical-neurophysiologist",
+        "name": "Clinical Neurophysiology"
+
+
+      },
+      {
+        "uid": "women-health-nurse-practitioner",
+        "name": "Women's Health Nurse Practitioner"
+
+
+      },
+      {
+        "uid": "emergency-medicine-emergency-medical-services",
+        "name": "Emergency Medicine Emergency Medical Services"
+
+
+      },
+      {
+        "uid": "child-abuse-pediatrician",
+        "name": "Child Abuse Pediatrics"
+
+
+      },
+      {
+        "uid": "clinical-biochemical-geneticist",
+        "name": "Clinical Biochemical Genetics"
+
+
+      },
+      {
+        "uid": "emergency-medicine-sports-medicine",
+        "name": "Emergency Medicine Sports Medicine"
+
+
+      },
+      {
+        "uid": "clinical-geneticist",
+        "name": "Clinical Genetics (M.D.)"
+
+
+      },
+      {
+        "uid": "emergency-medicine-undersea-and-hyperbaric-medicine",
+        "name": "Emergency Medicine Undersea and Hyperbaric Medicine"
+
+
+      },
+      {
+        "uid": "family-medicine-addiction-medicine",
+        "name": "Family Medicine Addiction Medicine"
+
+
+      },
+      {
+        "uid": "family-medicine-adult-medicine",
+        "name": "Family Medicine Adult Medicine"
+
+
+      }
+    ]
+  }
+
+  

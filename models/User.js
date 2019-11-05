@@ -3,17 +3,19 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
     data:{
-        name: {type: String, default: ''},
+        firstName: {type: String, default: ''},
+        lastName: {type: String, default: ''},
         email: {type: String, default: ''},
-        DOB: {type: Date, default: ''},
+        age: {type: Number, default: ''},
         gender: {type: String, default: ''},
         mediData: {
             insurance: [{
                 provider: {type: String, default: ''},
                 insuranceType: {type: String, default: ''},
+                groupNumber: {type: String, default: ''},
                 idNumber: {type: String, default: ''},
                 deductible: {type: String, default: ''},
-                copay: [{
+                copay: {
                     doctor: Number,
                     specialist: Number,
                     urgentCare: Number,
@@ -22,21 +24,38 @@ const UserSchema = new Schema({
                         brandName: Number,
                         generic: Number
                     }
-                }],
+                },
+                updatedAt: Date,
                 createdAt: Date
             }],
             doctors: [{
                 name: {type: String, default: ''},
-                type: {type: String, default: ''},
-                insuranceKey: {type: String, default: ''},
+                doctorType: {type: String, default: ''},
+                insurance: {type: String, default: ''},
+                address: {
+                    streetAddress: String,
+                    city: String,
+                    state: String,
+                    zip: Number
+                },
+                phone: {type: String, default: ''},
+                email: String,
+                website: String,
+                updatedAt: Date,
                 createdAt: Date
             }]
         },
         emergencyContacts: [{
             name: String,
             phone: Number,
-            address: String,
+            address: {
+                streetAddress: String,
+                city: String,
+                state: String,
+                zip: Number
+            },
             relationship: String,
+            updatedAt: Date,
             createdAt: String
         }],
         symptomHistory: [{
@@ -46,18 +65,19 @@ const UserSchema = new Schema({
             symptoms: String,
             time: Date,
             diagnosis: String,
+            updatedAt: Date,
             createdAt: Date
         }],
         isLoggedIn: Boolean,
     },
-    userName: {type: String, unique: true},
+    // userName: {type: String, unique: true},
     loginToken: String,
     lastLogin: Date,
-    createdAt: Date,
-    updatedAt: Date,
     socialMedia: {type: Boolean, default: false},
     emailVerified: Boolean,
-    password: {type: String, default: ''}
+    password: {type: String, default: ''},
+    createdAt: Date,
+    updatedAt: Date
 });
 
 const User = mongoose.model('UserSchema', UserSchema);

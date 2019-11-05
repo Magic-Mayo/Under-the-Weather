@@ -1,0 +1,61 @@
+.Insurance {
+    grid-column: 1/8;
+    grid-row: 1/2;
+
+    min-height: 45vh;
+    max-height: 45vh;
+}
+
+.insurance {
+
+    &-item {
+        display: flex;
+        background: $blue-accent;
+        justify-content: center;
+        align-items: center;
+        margin: .75rem 0;
+
+        // &-provider {
+        // }
+
+        // &-type {
+        // }
+
+        // &-group {
+        // }
+
+        // &-id {
+        // }
+        
+        // &-deductible {
+        // }
+
+        // &-copay {
+        //     &-title {
+        //     }
+        //     &-doctor {
+        //     }
+        // }
+
+        // &-expand {
+        // }
+
+        &-delete {
+
+        }
+    }
+
+    &-card {
+        &-link {
+            &-container {
+                width: 100%;
+            }
+            &-add {
+                font-size: 2rem;
+                font-style: oblique;
+                font-weight: 550;
+            }
+        } 
+    }
+    
+}

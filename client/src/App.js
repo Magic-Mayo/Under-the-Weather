@@ -1,99 +1,145 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import Header from './components/Header';
-import Dashboard from './components/pages/Dashboard'
-import FormContainer from './components/pages/FormContainer'
-import Loading from './components/icons/loading'
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from '@fortawesome/free-brands-svg-icons'
+import Dashboard from './components/pages/Dashboard';
+import FormContainer from './components/pages/FormContainer';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+// import Loading from './components/icons/loading';
+// import ProviderLink from './components/Provider/Link';
+// import ContactLink from './components/Contact/Link';
+// import SymptomLink from './components/Symptom/Link';
+// import InsuranceLink from './components/Insurance/Link';
+// import ProviderManual from './components/Provider/ManualEntry';
+
 
 import {
-  faAngleDown,
-  faPlus,
-  faEnvelope,
-  faPhone,
-  faFilter,
-  faSortDown,
-//   faChild,
-  faEye,
-  faEyeSlash
-} from "@fortawesome/free-solid-svg-icons";
-import bodyParts from "./data/bodyParts.json";
-import "./App.scss";
+	faAngleDown,
+	faPlus,
+	faEnvelope,
+	faPhone,
+	faFilter,
+	faSortDown,
+	//   faChild,
+	faEye,
+	faEyeSlash,
+	faPen,
+	faMinusCircle,
+    faEdit,
+    faAngleDoubleDown,
+    faAngleDoubleUp
+} from '@fortawesome/free-solid-svg-icons';
+import bodyParts from './data/bodyParts.json';
+import './App.scss';
 import axios from 'axios';
 
-library.add(faAngleDown, faPlus, faEnvelope, faPhone, faFilter, faSortDown, faEye, faEyeSlash, fab);
+library.add(
+    faAngleDown,
+    faPlus,
+    faEnvelope,
+    faPhone,
+    faFilter,
+    faSortDown,
+    faEye,
+    faEyeSlash,
+    faPen,
+    fab,
+    faEdit,
+    faMinusCircle,
+    faAngleDoubleDown,
+    faAngleDoubleUp);
 
 class App extends Component {
-    state = {
-        bodyParts,
-        
-        menu: {
-            isExpanded: false
-        },
-        isLoggedIn: false,
-        loading: true,
-        pathname: window.location.pathname,
-        formOpen: false,
-        user: false
+	state = {
+		bodyParts,
+
+		menu: {
+			isExpanded: false
+		},
+		isLoggedIn: false,
+		loading: true,
+		formOpen: false,
+        newUser: false,
+        userAuthenticated: false,
     };
-
-    handleLogIn = props => {
-        this.setState({loading: true})
-        return axios.post(`/login`, props)
-            .then(user=>{
-                console.log(user)
-                this.setState({loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true})
-                localStorage.setItem('_underweather', user.data.token);
-                window.history.pushState(null, '', '/dashboard')
-            })
-    }
-
-    logIn = () => {
-        this.setState({isLoggedIn: true})
-    }
-
-    setUser = props => {
-        if(props){
-            this.setState(props);
-            return this.setState({isLoggedIn: true, loading: false});
-        }
-        this.setState({loading: false})
-    }
-
-    handleLogOut = () => {
-        this.setState({loading: true})
-        axios.put(`/logout/${this.state.userId}`, {loggedIn: 'logout'}).then(loggedOut=>{
-            localStorage.removeItem('_underweather')
-            this.setState({isLoggedIn: false, user: '', userId: '', loading: false});
-            window.history.pushState(null, '', '/')
-        })
-    }
-
-    logTarget = (e) => {
-        console.log(e.target);
-
-        if ((e.target.className !== 'form-container') && (this.state.formOpen)) {
-            window.location.pathname = this.state.pathname
-        }
-    }
-
-    toggleForm = (e) => {
-        this.setState({
-            formOpen: !this.state.formOpen
-        })
-    }
     
-    render() {
-        return (
-            <div className="App">
-                <Header name={this.state.user.name} isLoggedIn={this.state.isLoggedIn} handleLogOut={this.handleLogOut}/>
-                {this.state.loading ? <Loading loading={this.state.loading} setUser={this.setUser}/>:
-                (!this.state.isLoggedIn && !this.state.user ? 
-                    <FormContainer setUser={this.setUser} loading={this.state.loading} handleLogIn={this.handleLogIn} isLoading={this.isLoading} isLoggedIn={this.state.isLoggedIn}/>:
-                    <Dashboard user={this.state.user} menu={this.state.menu} toggleForm={this.toggleForm} formOpen={this.state.formOpen} isLoggedIn={this.state.isLoggedIn}/>)}
-            </div>
-        )
-    }
+	handleLogIn = (props) => {
+		this.setState({ loading: true });
+		return axios.post(`/login`, props).then((user) => {
+			if (props.credentials.loginpersist) {
+				localStorage.setItem('_underweather', user.data.token);
+			} else {
+				sessionStorage.setItem('_underweather', user.data.token);
+			}
+			this.setState({ loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true, userAuthenticated: true });
+		});
+	};
+
+	logIn = () => {
+		this.setState({ isLoggedIn: true });
+	};
+
+	setUser = (props) => {
+        console.log(props)
+		if (props) {
+			this.setState(props);
+			return this.setState({loading: false });
+		}
+		this.setState({ loading: false });
+	};
+
+	handleLogOut = () => {
+        localStorage.removeItem('_underweather');
+		sessionStorage.removeItem('_underweather');
+		this.setState({ loading: true, isLoggedIn: false });
+		axios.put(`/logout/${this.state.userId}`, { loggedIn: 'logout' }).then((loggedOut) => {
+            this.setState({ isLoggedIn: false, user: '', userId: '', loading: false, userAuthenticated: false });
+		});
+	};
+
+	toggleForm = (e) => {
+		this.setState({
+			formOpen: !this.state.formOpen
+		});
+	};
+
+	render() {
+		return (
+
+			<div className="App">
+                <Header
+					name={this.state.user}
+					isLoggedIn={this.state.isLoggedIn}
+					handleLogOut={this.handleLogOut}
+				/>
+                <Route
+                path={'/(form)?/:formtype?'}
+                >{this.state.isLoggedIn ? <Redirect to="/dashboard"/> :
+                    <FormContainer
+                        isLoggedIn={this.state.isLoggedIn}
+                        userId={this.state.userId}
+                        setUser={this.setUser}
+                        user={this.state.user}
+                        handleLogIn={this.handleLogIn}
+                    />
+                }
+                </Route>
+                <Route path="/dashboard">
+                    <Dashboard
+                    setUser={this.setUser}
+                    user={this.state.user}
+                    userId={this.state.userId}
+                    menu={this.state.menu}
+                    toggleForm={this.toggleForm}
+                    formOpen={this.state.formOpen}
+                    isLoggedIn={this.state.isLoggedIn}
+                    logIn={this.logIn}
+                    />
+                </Route>
+			</div>
+		);
+	}
 }
 
-export default App;
+export default withRouter(App);
