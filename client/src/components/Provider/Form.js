@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Search from './Search';
 import Axios from 'axios';
 import moment from 'moment';
-import ManualEntry from './ManualEntry';
 
 export default class ProviderForm extends Component {
     initialState = {
@@ -16,8 +15,10 @@ export default class ProviderForm extends Component {
         state:  '',
         zip: '',
         phone:  '',
+        email: '',
+        website: '',
         errors:'',
-        // searchActive: true
+        page: 1
     };
 
     state = {
@@ -36,10 +37,10 @@ export default class ProviderForm extends Component {
                 name: provider.name || '',
                 type:  provider.doctorType || '',
                 insurance: provider.insurance || '',
-                address:  provider.address || '',
-                city:  provider.city || '',
-                state:  provider.state || '',
-                zip: provider.zip || '',
+                address:  provider.address.streetAddress || '',
+                city:  provider.address.city || '',
+                state:  provider.address.state || '',
+                zip: provider.address.zip || '',
                 phone:  provider.phone || '',
                 entry: this.props.location.state.entry
             })
@@ -79,10 +80,11 @@ export default class ProviderForm extends Component {
         };
 
         if(this.state.name !== ''){
-        Axios.post('/account/provider', provider).then(user=>{
-            this.props.setUser(user.data);
-            this.setState(this.initialState)
-        });}
+            Axios.post('/account/provider', provider).then(user=>{
+                this.props.setUser(user.data);
+                this.setState(this.initialState)
+            });
+        }
         else{           
             this.setState({errors: "This field required"});
         };
@@ -91,6 +93,10 @@ export default class ProviderForm extends Component {
     entry = () => {
         this.setState({entry: !this.state.entry})
     }
+
+    nextPage = () => this.setState({page: this.state.page + 1})
+    
+    prevPage = () => this.setState({page: this.state.page - 1})
 
 	render() {
         // console.log("THIS IS THE PROVIDER FORM PROPS",this.props)
@@ -104,22 +110,200 @@ export default class ProviderForm extends Component {
                         entry={this.entry}
 					/>
                     :
-					<ManualEntry
-						submitProvider={this.submitProvider}
-						handleInput={this.handleInput}
-						name={this.state.name}
-						insurance={this.state.insurance}
-						type={this.state.type}
-						address={this.state.address}
-						phone={this.state.phone}
-						city={this.state.city}
-						state={this.state.state}
-                        zip={this.state.zip}
+                    (this.state.page === 1 ?
+                        <FirstPage
+                            submitProvider={this.submitProvider}
+                            handleInput={this.handleInput}
+                            name={this.state.name}
+                            insurance={this.state.insurance}
+                            type={this.state.type}
+                            address={this.state.address}
+                            phone={this.state.phone}
+                            city={this.state.city}
+                            state={this.state.state}
+                            zip={this.state.zip}
+                            errors={this.state.errors}
+                            entry={this.entry}
+                            page={this.state.page}
+                            nextPage={this.nextPage}
+                        />
+                    :
+                        <SecondPage
+                        submitProvider={this.submitProvider}
+                        handleInput={this.handleInput}
                         errors={this.state.errors}
                         entry={this.entry}
-					/>
+                        page={this.state.page}
+                        prevPage={this.prevPage}
+                        />
+                    )
                 }
+                <div className="provider-form-submit-container">
+                    {this.state.entry &&
+                        <button
+                        type="button"
+                        className="provider-form-next"
+                        onClick={this.state.page === 1 ? this.nextPage : this.prevPage}>
+                            {this.state.page === 1 ? "Next Page" : "Previous Page"}
+                        </button>}
+
+                    <button type="button" className="provider-form-submit" onClick={this.submitProvider}>
+                        Submit
+                    </button>
+                </div>
             </div>
 		);
 	}
+}
+
+const FirstPage = props => {
+    if(props.navOpen){
+        props.toggleNav();
+    }
+    return (
+        <div className="provider-form-manual-entry">
+            <h2 className="provider-form-title">Enter your Doctor's information below</h2>
+            <h5 className="form-subtitle">To run a search for a doctor,{' '}</h5>
+            <h5 className="link" onClick={props.entry}>Click here</h5>
+            <hr></hr>
+            <form className="provider-form-manual-entry-grid">
+                <div className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-name">
+                    <label htmlFor="doctorName"><span>*</span>Doctor's Name:</label>
+                    <input
+                    name="name"
+                    placeholder="Dr. John Smith"
+                    type="text"
+                    value={props.name}
+                    onChange={props.handleInput}
+                    required
+                    />
+                    <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span>
+                </div>
+                <div
+                className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-specialty">
+                    <label htmlFor="type">Specialty:</label>
+                    <input
+                    name="type"
+                    placeholder="Pediatrician"
+                    type="text"
+                    value={props.type}
+                    onChange={props.handleInput}
+                    required
+                    />
+                </div>
+                <div
+                className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-address">
+                    <label htmlFor="address">Address:</label>
+                    <input
+                    name="address"
+                    placeholder="123 W Main St"
+                    type="text"
+                    value={props.address}
+                    onChange={props.handleInput}
+                    required
+                    />
+                </div>
+                <div
+                className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-city">
+                    <label htmlFor="city">City:</label>
+                    <input
+                    name="city"
+                    placeholder="Phoenix"
+                    type="text"
+                    value={props.city}
+                    onChange={props.handleInput}
+                    required
+                    />
+                </div>
+                <div
+                className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-state">
+                    <label htmlFor="state">State:</label>
+                    <input
+                    name="state"
+                    placeholder="AZ"
+                    minLength="2"
+                    maxLength="2"
+                    type="text"
+                    value={props.state}
+                    onChange={props.handleInput}
+                    required
+                    />
+                </div>
+                <div
+                className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-zip">
+                    <label htmlFor="zip">ZIP:</label>
+                    <input
+                    name="zip"
+                    placeholder="85008"
+                    type="number"
+                    min="00000"
+                    max="99999"
+                    value={props.zip}
+                    onChange={props.handleInput}
+                    required
+                    />
+                </div>
+            </form>
+        </div>
+    )
+}
+
+function SecondPage(props){
+    return (
+        <div className="provider-form-manual-entry">
+            <h2 className="provider-form-title">Enter your Doctor's information below</h2>
+            <h5 className="form-subtitle">To run a search for a doctor,{' '}</h5>
+            <h5 className="link" onClick={props.entry}>Click here</h5>
+            <hr></hr>
+            <form className="provider-form-manual-entry-grid">
+                <div className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-email">
+                    <label htmlFor="email">Doctor's Email:</label>
+                    <input
+                    name="email"
+                    placeholder="Dr.JohnSmith@bcbs.com"
+                    type="text"
+                    value={props.email}
+                    onChange={props.handleInput}
+                    required
+                    />
+                </div>
+                <div className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-website">
+                    <label htmlFor="email">Doctor's Website:</label>
+                    <input
+                    name="website"
+                    placeholder="DrJohnSmith.com"
+                    type="text"
+                    value={props.website}
+                    onChange={props.handleInput}
+                    required
+                    />
+                </div>
+                <div
+                className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-insurance">
+                    <label htmlFor="insurance">Accepted Insurance:</label>
+                    <input
+                    name="insurance"
+                    placeholder="Cigna"
+                    type="text"
+                    value={props.insurance}
+                    onChange={props.handleInput}
+                    required
+                    />
+                </div>
+                <div
+                className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-phone">
+                    <label htmlFor="doctorName">Phone Number:</label>
+                    <input
+                    name="phone"
+                    placeholder="480-963-8741"
+                    type="number"
+                    value={props.phone}
+                    onChange={props.handleInput}
+                    required
+                    />
+                </div>
+            </form>
+        </div>
+
+    )
 }
