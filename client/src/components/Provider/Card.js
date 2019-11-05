@@ -44,7 +44,7 @@ export default function Providers(props) {
     return (
         <div className="Providers card">
             <h2>Medical Providers</h2>
-            <Link to={'/provider'} className="provider-card-link" style={{textDecoration: "none"}}>
+            <Link to={{pathname: '/dashboard/form/provider', state: {entry: true}}} className="provider-card-link" style={{textDecoration: "none"}}>
                 <div className="provider-card-link-container">
                     <p className="provider-card-link-add">Click here to add Medical Providers!</p>
                 </div>

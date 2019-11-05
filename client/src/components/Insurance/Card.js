@@ -36,22 +36,22 @@ export default function InsuranceCard(props) {
                         {ins.copay && props.itemIsExpanded[ins._id] && 
                             <h4 className="insurance-item-copay-title">Copay</h4>}
                         
-                        {ins.copay.doctor && props.itemIsExpanded[ins._id] &&
+                        {ins.copay && ins.copay.doctor && props.itemIsExpanded[ins._id] &&
                             <h5 className="insurance-item-copay-doctor">Doctor: {ins.copay.doctor}</h5>}
 
-                        {ins.copay.specialist && props.itemIsExpanded[ins._id] &&
+                        {ins.copay && ins.copay.specialist && props.itemIsExpanded[ins._id] &&
                             <h5 className="insurance-item-copay-specialist">Specialist: {ins.copay.specialist}</h5>}
 
-                        {ins.copay.urgentCare && props.itemIsExpanded[ins._id] &&
+                        {ins.copay && ins.copay.urgentCare && props.itemIsExpanded[ins._id] &&
                             <h5 className="insurance-item-copay-urgent">Urgent Care: {ins.copay.urgentCare}</h5>}
 
-                        {ins.copay.emergency && props.itemIsExpanded[ins._id] &&
+                        {ins.copay && ins.copay.emergency && props.itemIsExpanded[ins._id] &&
                             <h5 className="insurance-item-copay-emergency">Emergency Room: {ins.copay.emergency}</h5>}
 
-                        {ins.copay.prescription.brandName && props.itemIsExpanded[ins._id] &&
+                        {ins.copay && ins.copay.prescription.brandName && props.itemIsExpanded[ins._id] &&
                             <h5 className="insurance-item-copay-brand">Brand name prescription: {ins.copay.prescription.brandName}</h5>}
 
-                        {ins.copay.prescription.generic && props.itemIsExpanded[ins._id] &&
+                        {ins.copay && ins.copay.prescription.generic && props.itemIsExpanded[ins._id] &&
                             <h5 className="insurance-item-copay-generic">Generic prescription: {ins.copay.prescription.generic}</h5>}
 
                         <FontAwesomeIcon
@@ -78,7 +78,7 @@ export default function InsuranceCard(props) {
     return (
         <div className="Insurance card">
             <h2>Insurance Information</h2>
-            <Link to={'/insurance'} className="insurance-card-link" style={{textDecoration: "none"}}>
+            <Link to={{pathname: '/dashboard/form/insurance', state: {edit: true}}} className="insurance-card-link" style={{textDecoration: "none"}}>
                 <div className="insurance-card-link-container">
                     <p className="insurance-card-link-add">Click here to add Insurance!</p>
                 </div>
