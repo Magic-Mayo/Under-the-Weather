@@ -20,10 +20,12 @@ class SignupForm extends Component {
 		sex: '',
 		age: '',
         currentPage: 1,
+        error: `Use at least one upper and lower case letter, 
+        one number and have a minimum of 8 characters in your password.`
 	};
 
 	handleInput = (e) => {
-        this.setState({error: false, emailInUse: false})
+        this.setState({emailInUse: false})
 		const { name, value } = e.target;
         this.setState({ [name]: value });
     };
@@ -57,26 +59,25 @@ class SignupForm extends Component {
         // Validates password as having one upper and lower case, one number, and at least 8 characters
         if (this.state.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/) ){
             console.log("password valid")
-                return this.setState({passwordValid: true})
+                return this.setState({error: false, passwordValid: true})
         }
         return this.setState({passwordValid: false})
     }
 
-    checkUser = () => {
+    checkEmail = () => {
         // Validates email is properly formatted
         const filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!filter.test(this.state.email)) {
             return this.setState({error: "Please enter a valid email address"});
         }
-        console.log(this.state.email)
         axios.get(`/check/${this.state.email}`).then(user=>{
             // Let client know user already exists
             if(user.data){
                 console.log(user.data)
-                return this.setState({emailInUse: true})
+                return this.setState({error: 'Email address already in use', emailInUse: true})
             }
             // Let's client know name is available
-            return this.setState({emailInUse: false})
+            return this.setState({error: false, emailInUse: false})
         })
     }
 
@@ -166,7 +167,7 @@ class SignupForm extends Component {
 							togglePassword={this.props.togglePassword}
                             passwordCheck={this.state.passwordCheck}
                             validatePassword={this.validatePassword}
-                            checkUser={this.checkUser}
+                            checkEmail={this.checkEmail}
                             error={this.state.error}
                             emailInUse={this.state.emailInUse}
                             passwordValid={this.state.passwordValid}
@@ -194,14 +195,18 @@ class SignupForm extends Component {
 
                     <div className="btn-container">
                         {this.state.currentPage > 2 ?
-                            <button type="button" onClick={this.dashboard} className="continue-btn btn">
+                            (<button type="button" onClick={this.dashboard} className="continue-btn btn">
                                 Finish & Go To Dashboard
-                            </button>
+                            </button>)
                         :
-
+                        !this.state.error ?
                             <button type="button" className="continue-btn btn" onClick={this.nextPage}>
                                     Continue
                             </button>
+                        :
+                        this.state.error &&
+                            <span className="sign-up-error">{this.state.error}
+                            </span>
                         }
                         {this.state.currentPage > 1 && 
                             <button
@@ -232,7 +237,7 @@ const FirstPage = (props) => {
 					onChange={props.handleInput}
 					placeholder="johndoe24"
                     required
-                    onBlur={props.checkUser}
+                    onBlur={props.checkEmail}
 				/>
                 {props.emailInUse && <span className="sign-up-warning-email">Email already in use</span>}
 			</div>
@@ -268,7 +273,6 @@ const FirstPage = (props) => {
 					required
 				/>
 			</div>
-            <span className="sign-up-error">{props.error || "Use at least one upper and lower case letter, one number and have a minimum of 8 characters in your password."}</span>
 		</>
 	);
 };
