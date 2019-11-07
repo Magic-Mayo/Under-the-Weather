@@ -101,7 +101,7 @@ export default class ProviderForm extends Component {
 	render() {
         // console.log("THIS IS THE PROVIDER FORM PROPS",this.props)
 		return (
-			<div className="provider-form-container">
+			<div className="provider-form-container form">
                 {!this.state.entry ?
 					<Search
 						search={this.state.search}

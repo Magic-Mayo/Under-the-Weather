@@ -154,7 +154,7 @@ export default class Form extends Component {
 
     render() {
 		return (
-			<div className="contact-form-container">
+			<div className="contact-form-container form">
                 <h1 className="contact-form-title">Please Enter Emergency Contact Information</h1>
                 <hr></hr>
                 <ContactInput

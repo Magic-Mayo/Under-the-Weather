@@ -252,7 +252,7 @@ export default class InsuranceForm extends Component {
 
 	render() {
 		return (
-			<div className="insurance-form-container">
+			<div className="insurance-form-container form">
 				{this.state.page === 1 ? 
                     <h1 className="insurance-form-title">Please Enter Insurance Information</h1> :
                     <h1 className="insurance-form-title">Enter Co-pay Information</h1>}
