@@ -4,7 +4,7 @@ import moment from 'moment';
 
 function ContactInput(props) {
     return (
-        <div className="contact-entry">
+        <div className="contact-entry-container">
                 <form className="contact-entry-grid">
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-name">
                         <label htmlFor="name">Name:</label>
@@ -46,7 +46,7 @@ function ContactInput(props) {
                         </input>
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-city">
-                    <label htmlFor="city">&nbsp;&nbsp;&nbsp;City:</label>
+                    <label htmlFor="city">City:</label>
                         <input
                         name="city"
                         placeholder="Phoenix"
@@ -56,7 +56,7 @@ function ContactInput(props) {
                         />
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-state">
-                    <label htmlFor="state">&nbsp;&nbsp;&nbsp;State:</label>
+                    <label htmlFor="state">State:</label>
                         <input
                         name="state"
                         maxLength="2"
@@ -68,7 +68,7 @@ function ContactInput(props) {
                         />
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-zip">
-                    <label htmlFor="zip">&nbsp;&nbsp;&nbsp;ZIP:</label>
+                    <label htmlFor="zip">ZIP:</label>
                         <input
                         name="zip"
                         placeholder="85008"
@@ -79,7 +79,6 @@ function ContactInput(props) {
                         onChange={props.handleInput}
                         />
                     </div>
-                    <button className="contact-entry-grid-submit" onClick={props.contactToDatabase}>Submit</button>
                 </form>
         </div>
     )
@@ -155,7 +154,7 @@ export default class Form extends Component {
 
     render() {
 		return (
-			<div className="contact-form-container">
+			<div className="contact-form-container form">
                 <h1 className="contact-form-title">Please Enter Emergency Contact Information</h1>
                 <hr></hr>
                 <ContactInput
@@ -168,6 +167,7 @@ export default class Form extends Component {
                     errors={this.state.errors}
                 />
                 <div className="contact-form-submit-container">
+                <button className="contact-form-submit" onClick={this.contactToDatabase}>Submit</button>
                 </div>
             </div>
         );

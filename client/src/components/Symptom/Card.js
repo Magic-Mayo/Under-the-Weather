@@ -108,7 +108,7 @@ export default function Symptoms(props) {
                 <Filter 
                     data={formData}
                 />
-            <Link to={'/symptom'} className="symptoms-card-link" style={{textDecoration: "none"}}>
+            <Link to={'/dashboard/form/symptom'} className="symptoms-card-link" style={{textDecoration: "none"}}>
                 <div className="symptoms-card-link-container">
                     <p className="symptoms-card-link-add">Click here to add new Symptoms!</p>
                 </div>

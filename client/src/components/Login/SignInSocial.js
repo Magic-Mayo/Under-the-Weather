@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import GoogleLogin from 'react-google-login';
-import {FacebookProvider, LoginButton} from 'react-facebook';
+// import {FacebookProvider, LoginButton} from 'react-facebook';
 import Axios from 'axios'
 
 

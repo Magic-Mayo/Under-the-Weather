@@ -4,7 +4,6 @@ import SymptomForm from '../Symptom/Form'
 import ProviderForm from '../Provider/Form'
 import ContactForm from '../Contact/Form'
 import InsuranceForm from '../Insurance/Form'
-import ProviderManualEntry from '../Provider/ManualEntry';
 import { Link} from 'react-router-dom';
 import {withRouter} from 'react-router';
 
@@ -48,9 +47,7 @@ class FormContainer extends Component {
                         <SymptomForm {...this.props}/>
                     ) : this.props.match.params.formtype === 'insurance' ? (
                         <InsuranceForm {...this.props}/>
-                    ) : this.props.match.params.formtype === 'manual' ? (
-                        <ProviderManualEntry {...this.props}/>
-                    ) 
+                    )
                 : 
                     <EntranceForm
                         handleLogIn={this.props.handleLogIn}
@@ -62,6 +59,7 @@ class FormContainer extends Component {
                         userId={this.props.userId}
                         loginActive={this.state}
                         toggleSignUporLogIn={this.toggleSignUporLogIn}
+                        error={this.props.error}
                     />
                 }
                 </section>

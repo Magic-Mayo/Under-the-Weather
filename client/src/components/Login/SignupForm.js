@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import SignInSocial from './SignInSocial';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import ProviderForm from '../Provider/Form'
 import ContactForm from '../Contact/Form'
 import InsuranceForm from '../Insurance/Form'
-import ProviderManualEntry from '../Provider/ManualEntry';
 
 
 class SignupForm extends Component {
@@ -21,10 +20,12 @@ class SignupForm extends Component {
 		sex: '',
 		age: '',
         currentPage: 1,
+        error: `Use at least one upper and lower case letter, 
+        one number and have a minimum of 8 characters in your password.`
 	};
 
 	handleInput = (e) => {
-        this.setState({error: false, emailInUse: false})
+        this.setState({emailInUse: false})
 		const { name, value } = e.target;
         this.setState({ [name]: value });
     };
@@ -58,26 +59,25 @@ class SignupForm extends Component {
         // Validates password as having one upper and lower case, one number, and at least 8 characters
         if (this.state.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/) ){
             console.log("password valid")
-                return this.setState({passwordValid: true})
+                return this.setState({error: false, passwordValid: true})
         }
         return this.setState({passwordValid: false})
     }
 
-    checkUser = () => {
+    checkEmail = () => {
         // Validates email is properly formatted
         const filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!filter.test(this.state.email)) {
             return this.setState({error: "Please enter a valid email address"});
         }
-        console.log(this.state.email)
         axios.get(`/check/${this.state.email}`).then(user=>{
             // Let client know user already exists
             if(user.data){
                 console.log(user.data)
-                return this.setState({emailInUse: true})
+                return this.setState({error: 'Email address already in use', emailInUse: true})
             }
             // Let's client know name is available
-            return this.setState({emailInUse: false})
+            return this.setState({error: false, emailInUse: false})
         })
     }
 
@@ -167,7 +167,7 @@ class SignupForm extends Component {
 							togglePassword={this.props.togglePassword}
                             passwordCheck={this.state.passwordCheck}
                             validatePassword={this.validatePassword}
-                            checkUser={this.checkUser}
+                            checkEmail={this.checkEmail}
                             error={this.state.error}
                             emailInUse={this.state.emailInUse}
                             passwordValid={this.state.passwordValid}
@@ -195,14 +195,18 @@ class SignupForm extends Component {
 
                     <div className="btn-container">
                         {this.state.currentPage > 2 ?
-                            <button type="button" onClick={this.dashboard} className="continue-btn btn">
+                            (<button type="button" onClick={this.dashboard} className="continue-btn btn">
                                 Finish & Go To Dashboard
-                            </button>
+                            </button>)
                         :
-
+                        !this.state.error ?
                             <button type="button" className="continue-btn btn" onClick={this.nextPage}>
                                     Continue
                             </button>
+                        :
+                        this.state.error &&
+                            <span className="sign-up-error">{this.state.error}
+                            </span>
                         }
                         {this.state.currentPage > 1 && 
                             <button
@@ -220,7 +224,7 @@ class SignupForm extends Component {
 
 const FirstPage = (props) => {
 	return (
-		<div style={{width: "100%"}} className="sign-up">
+		<>
 			<div className="input-container">
 				<label htmlFor="email">
 					<span>*</span> Email:{' '}
@@ -233,7 +237,7 @@ const FirstPage = (props) => {
 					onChange={props.handleInput}
 					placeholder="johndoe24"
                     required
-                    onBlur={props.checkUser}
+                    onBlur={props.checkEmail}
 				/>
                 {props.emailInUse && <span className="sign-up-warning-email">Email already in use</span>}
 			</div>
@@ -255,9 +259,6 @@ const FirstPage = (props) => {
 					className="eye-icon"
 					onClick={props.togglePassword}
 				/>
-                <span className="password-invalid">{props.password ? (!props.passwordValid ? 
-                    "Password does not meet the requirements.  Please use at least one upper and lower case letter, one number and have a minimum of 8 characters." : "Password meets requirements!") : ""
-                }</span>
 			</div>
 			<div className="input-container">
 				<label htmlFor="password-check">
@@ -272,8 +273,7 @@ const FirstPage = (props) => {
 					required
 				/>
 			</div>
-            {props.error && <span className="sign-up-error">{props.error}</span>}
-		</div>
+		</>
 	);
 };
 
@@ -368,7 +368,7 @@ function ThirdPage(props) {
 function DetailsPage(props) {
     console.log(props.url)
     return (
-        <div className="sign-up=details">
+        <div className="sign-up-details">
             {/* <Link to={`${props.url}form/insurance`}> */}
                 <button type="button" className="details-insurance" onClick={()=>props.openForm('insurance')}>
                     Add Insurance Info

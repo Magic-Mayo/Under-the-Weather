@@ -16,10 +16,10 @@
 	width: 100%;
 }
 .form {
-	grid-row: 2/3;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	// grid-row: 2/3;
+	// display: flex;
+	// flex-direction: column;
+    // align-items: center;
 	overflow-y: auto;
 
 	&-input {
@@ -32,7 +32,7 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: space-between;
-			margin-bottom: 1rem;
+			margin-top: 10vh;
 
 			button {
 				font-family: "Nunito", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -54,8 +54,31 @@
 					align-items: center;
 					width: 100%;
 				}
-			}
-		}
+            }
+            
+            .sign-up-error, .login-error {
+                color: red;
+                margin-top: 2rem;
+                font-size: 1.5rem;
+                width: 40rem;
+                position: absolute;
+            }
+
+            .login-error {
+                bottom: 35rem;
+            }
+
+            .sign-up-error {
+                bottom: 7.5vh;
+            }
+        }
+        
+        &-password-invalid {
+            position: absolute;
+            width: 375px;
+            left: 2.5rem;
+            margin-top: .5rem
+        }
 	}
 
 	&-container {
@@ -66,12 +89,14 @@
 		// max-width: 90vw;
 		min-height: 90vh;
 		overflow: hidden;
-		display: grid;
+		display: flex;
 		grid-template-rows: 10% auto;
 		border: .25rem solid transparent;
 		box-shadow: 0 1rem 5rem rgba($black, .3);
         border-radius: .2rem !important;
         background-color: $white;
+        padding: 3rem auto;
+        justify-content: center;
         
         &-close {
             background-color: transparent;
@@ -82,10 +107,13 @@
             height: 5rem;
             z-index: 151;
             position: absolute;
-            right: .6rem;
+            right: 2rem;
             top: .6rem;
             font-weight: 600;
             font-size: 2.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             &:hover {
                 background: $peach-contrast-heavy;

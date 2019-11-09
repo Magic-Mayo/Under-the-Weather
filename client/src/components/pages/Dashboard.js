@@ -7,7 +7,7 @@ import Insurance from "../Insurance/Card";
 import FormContainer from './FormContainer'
 import Nav from "../Nav";
 import Axios from 'axios';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 class Dashboard extends Component{
@@ -16,7 +16,6 @@ class Dashboard extends Component{
     }
 
     componentDidMount(){
-        console.log('mounted')
         if(this.props.location.state !== undefined && this.props.location.state.isLoggedIn){
             console.log('not log')
             this.props.logIn();
@@ -35,12 +34,7 @@ class Dashboard extends Component{
         })
     }
 
-    editObject = props => {
-        window.location.pathname = props
-    }
-
-    toggleNav = () =>
-		this.setState({navOpen: !this.state.navOpen});
+    toggleNav = (e) => this.setState({navOpen: !this.state.navOpen});
 
     render() {
         if(!this.props.isLoggedIn){
@@ -109,15 +103,16 @@ class Dashboard extends Component{
             path={`${this.props.match.path}/form/:formtype/:id?`}
             >
                 <FormContainer
-                userId={this.state.userId}
-                setUser={this.state.setUser}
-                user={this.state.user}
+                userId={this.props.userId}
+                setUser={this.props.setUser}
+                user={this.props.user}
                 handleLogIn={this.handleLogIn}
                 logIn={this.logIn}
                 navOpen={this.state.navOpen}
                 toggleNav={this.toggleNav}
                 searchOrManual="entry"
                 isLoggedIn={this.props.isLoggedIn}
+                updateItem={this.editObject}
                 />
             </Route>
 
