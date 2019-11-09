@@ -12,7 +12,8 @@ import { withRouter } from 'react-router';
 
 class Dashboard extends Component{
     state = {
-        navOpen: false
+        navOpen: false,
+        show:false
     }
 
     componentDidMount(){
@@ -22,16 +23,27 @@ class Dashboard extends Component{
         }
     }
 
+    //function to show modal
+    showModal = () =>{       
+       if(window.confirm("Are you sure you want to delete all information?")){
+          
+       }            
+    } 
+
     // change function to set state based on which component it comes from as well
     expand = e => {
         const {id} = e.currentTarget;
         this.setState({[id]: !this.state[id]})
     }
 
-    deleteObject = props => {   
+    deleteObject = props => {  
+        if(window.confirm("Are you sure you want to delete all information?")){ 
         Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then(user=>{
             this.props.setUser(user.data);
-        })
+        
+    })
+}
+
     }
 
     toggleNav = (e) => this.setState({navOpen: !this.state.navOpen});
@@ -50,7 +62,7 @@ class Dashboard extends Component{
             route='deletesymptom'
             edit={this.editObject}
             expand={this.expand}
-            itemIsExpanded={this.state}
+            itemIsExpanded={this.state}                      
             />
             
             <section className="container-right">
@@ -88,6 +100,7 @@ class Dashboard extends Component{
                 edit={this.editObject}
                 expand={this.expand}
                 itemIsExpanded={this.state}
+                modal={this.showModal} 
                 card='insurance'
                 route='deleteinsurance'
                 />

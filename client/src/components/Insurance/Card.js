@@ -9,6 +9,7 @@ export default function InsuranceCard(props) {
             anyExpand = "expand"
         }
     }
+    // onClick={() => props.delete({ _id: ins._id, card: props.card, route: props.route })}>
 
     if (props.insurance.length > 0) {
         return (
@@ -86,11 +87,7 @@ export default function InsuranceCard(props) {
     return (
         <div className="Insurance card">
             <h2>Insurance Information</h2>
-<<<<<<< HEAD
-            <Link to={'/insurance'} className="insurance-card-link" style={{ textDecoration: "none" }}>
-=======
             <Link to={{pathname: '/dashboard/form/insurance', state: {edit: true}}} className="insurance-card-link" style={{textDecoration: "none"}}>
->>>>>>> c33f5128d1e6a89a886e77d15ead0fcf086c9ab8
                 <div className="insurance-card-link-container">
                     <p className="insurance-card-link-add">Click here to add Insurance!</p>
                 </div>
