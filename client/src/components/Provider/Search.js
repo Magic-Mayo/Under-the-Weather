@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import API from '../../utils/API';
-import Specialist from '../../data/specialist.json'
-import {Link} from 'react-router-dom';
+// import Specialist from '../../data/specialist.json'
+import { withRouter } from 'react-router-dom';
 
 class Search extends Component {
 	state = {
@@ -47,18 +47,15 @@ class Search extends Component {
 	updatePhoneDisplay = (event) => {
 		event.persist();
 		console.log(event)
-	}
-
+    }
+    
 	render() {
 		return (
 			<div>
 				<h1 className="provider-form-title form-title">What type of doctor are you looking for?</h1>
 				<h3 className="provider-form-subtitle">We'll Search Around The Area For You</h3>
-                <h5 className="provider-form-link">Already have this information?{' '}
-                    <Link to='/provider/entry'>
-                        Click here to input manually
-                    </Link>
-                </h5>
+                <h5 className="provider-form-link">Already have this information?{' '}</h5>
+                <h5 className="link" onClick={this.props.entry}>Click here to input manually</h5>
 
 				<Input
 					latitude={this.state.latitude}
@@ -66,7 +63,7 @@ class Search extends Component {
                     drSearch={this.drSearch}
 					handleInputChange={this.props.handleInput}
 				/>
-				<section className="provider-form-results">
+				<section className={this.props.entry ? "provider-form-results hide" : "provider-form-results"}>
 					{this.state.results.map((res) => (
 						<Results
 							src={res.profile.image_url}
@@ -144,4 +141,4 @@ function Results(props) {
 	);
 }
 
-export default Search;
+export default withRouter(Search);

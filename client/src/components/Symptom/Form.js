@@ -1,19 +1,50 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import SymptomList from '../../data/symptoms.json';
-import Symptoms from './symptoms';
+// import Symptoms from './symptoms';
 import API from '../../utils/SymptomAPI';
-// import { load } from 'dotenv/types';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {Link} from 'react-router-dom';
 
 export default class SymptomForm extends Component {
 	state = {
         SymptomList,
 		symptomsValue: '',
-		responses: []
-	};
+        responses: [],
+        entry: false,
+        name: '',
+        type: '',
+        insurance: '',
+        address:  '',
+        city:  '',
+        state:  '',
+        zip: '',
+        phone: ''
 
+    };
+    
+    componentDidMount() {
+        if(this.props.navOpen){
+            this.props.toggleNav();
+        }
+        const {state} = this.props.location;
+        if(state && state.provider){
+            const provider = state.provider
+            this.setState({
+                name: provider.name || '',
+                type:  provider.doctorType || '',
+                insurance: provider.insurance || '',
+                address:  provider.address.streetAddress || '',
+                city:  provider.address.city || '',
+                state:  provider.address.state || '',
+                zip: provider.address.zip || '',
+                phone:  provider.phone || '',
+                entry: this.props.location.state.entry
+            })
+        } else if (state && !state.provider){
+            this.setState({entry: state.entry})
+        }
+    }
+    
 	setSymptom = (e) => {
 		console.log(e.target.value)
 
@@ -43,7 +74,7 @@ export default class SymptomForm extends Component {
 	}
 
 	checkMatch = (val) => {
-        const filteredResults = this.state.SymptomList.filter((symptom) => {
+        const filteredResults = this.state.SymptomList.filter(symptom => {
 			if (symptom.name.substring(0, val.length) === val) {
 				return symptom;
 			}
@@ -52,7 +83,7 @@ export default class SymptomForm extends Component {
 		this.setState({
 			responses: filteredResults
 		});
-	};
+    };
 
 	handleSubmit = (event) => {
 		if (event) event.preventDefault()
@@ -78,13 +109,11 @@ export default class SymptomForm extends Component {
 	};
 
 	render() {
-        // console.log('THIS IS THE SYMPTOM FORM PROPS', this.props);
-        console.log(this.state.responses)
-
+        // console.log(this.props.params)
 		return (
 			<div className="symptom-form-container">
 				<h1 className="symptom-form-title">What Symptom(s) Are You Experiencing?</h1>
-                <h3 className="symptom-form-subtitle">If it isn't listed, write your own in</h3>
+                    <h3 className="symptom-form-subtitle">If it isn't listed, write your own in</h3>
                 <hr></hr>
 				<form className="symptom-form" onSubmit={this.handleSubmit}>
 					<input
@@ -118,29 +147,3 @@ export default class SymptomForm extends Component {
 		);
 	}
 }
-
-
-
-//SEANS SEARCH BAR + BUTTON 
-function Input(props) {
-	console.log(props)
-	return (
-		<div>
-			<form className="symptom-form">
-				<input
-					value={props.searchVal}
-					name="Symptom Search"
-					type="text"
-					placeholder="migraine"
-					className="symptom-form-search-input"
-					onChange={props.updateDropDown}
-				/>
-				<button type="button" className="symptom-form-search-submit">
-					Enter
-				</button>
-			</form>
-		</div>
-	);
-}
-
-//END OF SEANS SHIT

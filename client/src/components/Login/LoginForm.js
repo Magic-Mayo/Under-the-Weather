@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import SignInSocial from './SignInSocial';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class LoginForm extends Component {
 	state = {
-		username: '',
+		email: '',
         password: '',
         loginpersist: false
 	};
@@ -18,20 +17,20 @@ export default class LoginForm extends Component {
 
 	render() {
 		return (
-			<div className="grid">
-				<form className={`form-${this.props.data.loginType}-input-box form-input-area`}>
-					<h1 className="form-title">{this.props.data.headingText}</h1>
+			<div className="grid entrance">
+				<form className={`form-${this.props.loginType}-input-box form-input-area`}>
+					<h1 className="form-title">{this.props.headingText}</h1>
 					<div className="input-container">
-						<label htmlFor="username">
-							<span>*</span> Username:{' '}
+						<label htmlFor="email">
+							<span>*</span> Email:{' '}
 						</label>
 						<input
-							type="username"
-							name="username"
-							id="username"
-							value={this.state.username}
+							type="email"
+							name="email"
+							id="email"
+							value={this.state.email}
 							onChange={this.handleInput}
-                            placeholder="janedoe24"
+                            placeholder="janedoe24@gmail.com"
                             required
 						/>
 					</div>
@@ -47,8 +46,9 @@ export default class LoginForm extends Component {
                             id="password"
                             required
 						/>
-						<FontAwesomeIcon icon="eye" className="eye-icon" onClick={this.props.togglePassword} />
+						<FontAwesomeIcon icon={this.props.showPassword ? "eye-slash":"eye"} className="eye-icon" onClick={this.props.togglePassword} />
 					</div>
+                    <span className="login-error">{this.props.error}</span>
 					<div className="btn-container">
 						<button
 							type="button"

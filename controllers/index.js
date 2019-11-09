@@ -17,13 +17,15 @@ module.exports = {
             })
             .catch(err=>console.log(err))
     },
-    findByName: (req,res)=>{
-        db.User.findOne(req.body)
+    findByEmail: (req,res)=>{
+        console.log(req.params)
+        db.User.findOne({'data.email': req.params.email})
             .then(user=>{
+                console.log(user)
                 if(user){
-                    return res.json(false)
+                    return res.json(user.data)
                 }
-                res.json(true)
+                res.json(false)
             })
     },
     updateAccount: (req,res,next)=>{
@@ -47,10 +49,8 @@ module.exports = {
             case 'deletecontact': route = {$pull: {'data.emergencyContacts': {_id: param.id}}}; break;
             case 'deleteprovider': route = {$pull: {'data.mediData.doctors': {_id: param.id}}}; break;
         }
-        console.log("look here", param.id)
         
         if(bodyOrNot.substring(0,3) === 'add'){
-            console.log(body)
             return db.User.findOneAndUpdate({_id: body.userId}, route, {new: true})
                 .then(data=>{
                     if (!data){return}
@@ -58,9 +58,8 @@ module.exports = {
                 })
                 .catch(err=>res.json('Error adding data.  Please try again later.'));
         } else if(bodyOrNot.substring(0,3) === 'upd'){
-            return db.User.findOneAndUpdate({[body.key]: body.userId}, route, {new:true})
+            return db.User.findOneAndUpdate({[body.key]: body.id}, route, {new:true})
                 .then(data=>{
-                    console.log(data)
                     if (!data){return}
                     res.json({user: data.data})
                 })
@@ -121,7 +120,6 @@ module.exports = {
 			.catch((err) => res.status(422).json(err));
 	},
 	findById: function(req, res) {
-        console.log("THIS IS INSIDE THE FINDBYID FUNCTION", req.params);
 		db.User.findById(req.params.id || req.params.user).then((dbModel) => res.json(dbModel)).catch((err) => res.status(422).json(err));
 	},
 	create: function(req, res) {

@@ -1,15 +1,28 @@
 import React, { Component } from "react";
 import Symptoms from "../Symptom/Card";
-import MedicalHistory from "../Medical_History/MedicalHistory";
+// import MedicalHistory from "../Medical_History/MedicalHistory";
 import Providers from "../Provider/Card";
 import Contacts from "../Contact/Card";
 import Insurance from "../Insurance/Card";
+import FormContainer from './FormContainer'
 import Nav from "../Nav";
 import Axios from 'axios';
+import { Route, Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-export default class Dashboard extends Component{
-    state = {}
+class Dashboard extends Component{
+    state = {
+        navOpen: false
+    }
 
+    componentDidMount(){
+        if(this.props.location.state !== undefined && this.props.location.state.isLoggedIn){
+            console.log('not log')
+            this.props.logIn();
+        }
+    }
+
+    // change function to set state based on which component it comes from as well
     expand = e => {
         const {id} = e.currentTarget;
         this.setState({[id]: !this.state[id]})
@@ -21,12 +34,12 @@ export default class Dashboard extends Component{
         })
     }
 
-    editObject = props => {
-        window.location.pathname = props
-    }
+    toggleNav = (e) => this.setState({navOpen: !this.state.navOpen});
 
     render() {
-        // console.log("DASHBOARD HAS THESE PROPS", this.props);   
+        if(!this.props.isLoggedIn){
+            return <Redirect to="/"/>
+        }
         return (
             <div className="Dashboard">
             <Symptoms
@@ -80,19 +93,32 @@ export default class Dashboard extends Component{
                 />
             </section>
             <Nav
-                name={this.props.user.name}
-                menu={this.props.menu}
-                formOpen={this.props.formOpen}
-                toggleForm={this.props.toggleForm}
+                navOpen={this.state.navOpen}
+                toggleNav={this.toggleNav}
                 userId={this.props.userId}
                 user={this.props.user}
-                isLoggedIn={this.props.isLoggedIn}
             />
             {/* <Forms /> */}
+            <Route
+            path={`${this.props.match.path}/form/:formtype/:id?`}
+            >
+                <FormContainer
+                userId={this.props.userId}
+                setUser={this.props.setUser}
+                user={this.props.user}
+                handleLogIn={this.handleLogIn}
+                logIn={this.logIn}
+                navOpen={this.state.navOpen}
+                toggleNav={this.toggleNav}
+                searchOrManual="entry"
+                isLoggedIn={this.props.isLoggedIn}
+                updateItem={this.editObject}
+                />
+            </Route>
+
             </div>
         );
     }
 }
 
-
-
+export default withRouter(Dashboard)

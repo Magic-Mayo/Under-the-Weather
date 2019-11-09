@@ -4,13 +4,13 @@ import moment from 'moment';
 
 function ContactInput(props) {
     return (
-        <div className="contact-entry">
+        <div className="contact-entry-container">
                 <form className="contact-entry-grid">
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-name">
-                        <label htmlFor="cName">Name:</label>
+                        <label htmlFor="name">Name:</label>
                         <input
                             type="text"
-                            name="cName"
+                            name="name"
                             value={props.name}
                             onChange={props.handleInput}>
                         </input>
@@ -46,7 +46,7 @@ function ContactInput(props) {
                         </input>
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-city">
-                    <label htmlFor="city">&nbsp;&nbsp;&nbsp;City:</label>
+                    <label htmlFor="city">City:</label>
                         <input
                         name="city"
                         placeholder="Phoenix"
@@ -56,7 +56,7 @@ function ContactInput(props) {
                         />
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-state">
-                    <label htmlFor="state">&nbsp;&nbsp;&nbsp;State:</label>
+                    <label htmlFor="state">State:</label>
                         <input
                         name="state"
                         maxLength="2"
@@ -68,7 +68,7 @@ function ContactInput(props) {
                         />
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-zip">
-                    <label htmlFor="zip">&nbsp;&nbsp;&nbsp;ZIP:</label>
+                    <label htmlFor="zip">ZIP:</label>
                         <input
                         name="zip"
                         placeholder="85008"
@@ -79,7 +79,6 @@ function ContactInput(props) {
                         onChange={props.handleInput}
                         />
                     </div>
-                    <button className="contact-entry-grid-submit" onClick={props.contactToDatabase}>Submit</button>
                 </form>
         </div>
     )
@@ -88,7 +87,7 @@ function ContactInput(props) {
 export default class Form extends Component {
     initialState = {
         userId: this.props.userId,
-        cName: '',
+        name: '',
         phone: '',
         streetAddress: '',
         city: '',
@@ -101,6 +100,25 @@ export default class Form extends Component {
     state = {
         ...this.initialState
     }
+
+    componentDidMount() {
+        if(this.props.navOpen){
+            this.props.toggleNav();
+        }
+        if(this.props.location.state){
+            const contact = this.props.location.state.contact
+            this.setState({
+                name: contact.name || '',
+                phone: contact.phone || '',
+                streetAddress: contact.address.streetAddress || '',
+                city: contact.address.city || '',
+                state: contact.address.state || '',
+                zip: contact.address.zip || '',
+                relationship: contact.relationship || ''
+            })
+        }
+    }
+    
     handleInput = (e) => {
         const { name, value } = e.target;
         this.setState({ [name]: value });
@@ -109,7 +127,7 @@ export default class Form extends Component {
         const contacts = {
             route: 'addcontact',
             contact:{
-                name: this.state.cName,
+                name: this.state.name,
                 phone: this.state.phone,
                 address: {
                     streetAddress: this.state.address,
@@ -136,11 +154,11 @@ export default class Form extends Component {
 
     render() {
 		return (
-			<div className="contact-form-container">
+			<div className="contact-form-container form">
                 <h1 className="contact-form-title">Please Enter Emergency Contact Information</h1>
                 <hr></hr>
                 <ContactInput
-                    cName={this.state.cName}
+                    name={this.state.name}
                     phone={this.state.phone}
                     address={this.state.address}
                     relationship={this.state.relationship}
@@ -149,6 +167,7 @@ export default class Form extends Component {
                     errors={this.state.errors}
                 />
                 <div className="contact-form-submit-container">
+                <button className="contact-form-submit" onClick={this.contactToDatabase}>Submit</button>
                 </div>
             </div>
         );

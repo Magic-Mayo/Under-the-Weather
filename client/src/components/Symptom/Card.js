@@ -68,7 +68,7 @@ export default function Symptoms(props) {
                     data={formData}
                 />
 
-                <section className="Symptoms-content-container">
+                <section className="symptoms-content-container">
                     {props.symptoms.map(symptoms=>(
                         <div key={symptoms._id} className="symptoms-result-container">
                             <p className="symptoms-result-item-type" >{symptoms.painType} {symptoms.symptoms}</p>
@@ -92,7 +92,7 @@ export default function Symptoms(props) {
                                         moment(symptoms.time).format('DD MMM | h:MM A'))))
                                 }
                             </p>
-                        <Link to="/symptom" className="symptoms-result-edit">
+                        <Link to={`dashboard/form/symptom/${symptoms._id}`} className="symptoms-result-edit">
                             <FontAwesomeIcon icon="edit" size="2x"/>
                         </Link>
                         </div>
@@ -108,7 +108,7 @@ export default function Symptoms(props) {
                 <Filter 
                     data={formData}
                 />
-            <Link to={'/symptom'} className="symptoms-card-link" style={{textDecoration: "none"}}>
+            <Link to={'/dashboard/form/symptom'} className="symptoms-card-link" style={{textDecoration: "none"}}>
                 <div className="symptoms-card-link-container">
                     <p className="symptoms-card-link-add">Click here to add new Symptoms!</p>
                 </div>

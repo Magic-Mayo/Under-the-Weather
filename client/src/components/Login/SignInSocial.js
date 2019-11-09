@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import GoogleLogin from 'react-google-login';
-import {FacebookProvider, LoginButton} from 'react-facebook';
+// import {FacebookProvider, LoginButton} from 'react-facebook';
 import Axios from 'axios'
 
 
@@ -48,12 +48,16 @@ export default class SignInSocial extends Component {
             <aside className="social-container">
                 <h1 className="form-title">Or you can...</h1>
                 <div className="social-btn-container">
-                    <FacebookProvider appId={'548598765887410'}>
-                        <LoginButton className="social-facebook" onCompleted={this.logIn} onFailure={err=>console.log(`Facebook login error: ${err}`)} scope={"public_profile,email"}>
+                    {/* <FacebookProvider appId={'548598765887410'}>
+                        <LoginButton className="social-facebook" disabled={true} onCompleted={this.logIn} onFailure={err=>console.log(`Facebook login error: ${err}`)} scope={"public_profile,email"}>
                         <span className="social-btn social-facebook-btn">Log In With Facebook</span>
                         <FontAwesomeIcon icon={['fab', 'facebook']} className="brand-icon"/>
                         </LoginButton>
-                    </FacebookProvider>
+                    </FacebookProvider> */}
+                    <button type="button" disabled={true} className="social-facebook">
+                        Coming soon....Log In with Facebook
+                        <FontAwesomeIcon icon={['fab', 'facebook']} className="brand-icon"/>
+                    </button>
                     <GoogleLogin
                         className="social-google"
                         clientId={"714177159375-e1h4kf4c3cjgehmscn6mpeoblhqaqlaf.apps.googleusercontent.com"}

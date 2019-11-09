@@ -70,7 +70,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin: 4rem 0;
+    margin: 11vh 0;
     background-color: rgba(244, 249, 255, 0.568);
     box-shadow: inset 0 0 3rem rgba($black, .2);
     max-height: 75%;
@@ -115,6 +115,7 @@
 
         .social-facebook {
             background-color: #3C5A99;
+            cursor: default;
         }
 
         // div {
@@ -151,11 +152,45 @@
     padding: 0 2rem;
 }
 
-.closeForm {
-    position: absolute;
-    right: 1.5rem;
-    
-     * {
-        width: 100%;
+.item {
+
+    &:hover {
+        cursor: pointer;
     }
+
+    &-edit {
+        color: $black;
+    }
+
+    &-expand {
+
+    }
+
+    &-delete {
+        color:rgb(238, 32, 0);
+    }
+}
+
+.expanded {
+    overflow-y: scroll;
+}
+
+.overflow-hidden {
+    overflow-y: hidden;
+}
+
+.disabled {
+    cursor: default;
+}
+
+.link {
+    color: $blue-dark;
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.hide {
+    display: none;
 }

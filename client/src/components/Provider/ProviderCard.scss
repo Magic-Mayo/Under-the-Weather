@@ -7,27 +7,42 @@
 
 .provider {
 
-    &-card {
-        &-link {
-            &-container {
-                width: 100%;
-            }
-            &-add {
-                font-size: 2rem;
-                font-style: oblique;
-                font-weight: 550;
-            }
+    &-item{
+        display: flex;
+        background: $blue-accent;
+        border-radius: .75rem;
+        padding: .5rem;
+        justify-content: center;
+        // flex-wrap: wrap;
+        align-items: center;
+
+        // &-name {
+        //     grid-column: 1/3;
+        // }
+
+        // &-title {
+        //     grid-column: 1/3;
+        // }
+
+        // &-delete {
+        //     grid-column: 2/3;
+        //     grid-row: 3/3;
+        // }
+
+        // &-expand {
+        //     grid-column: 2/3;
+        //     grid-row: 3/3;
+        // }
+    }
+
+    &-card-link {
+        &-container {
+            width: 100%;
         }
-    }
-
-    &-form-container {
-        // display: flex;
-        // flex-direction: column;
-    }
-
-    &-delete{
-        color:#FF5D44;
-        position: absolute;
-        right:1rem;
+        &-add {
+            font-size: 2rem;
+            font-style: oblique;
+            font-weight: 550;
+        }
     }
 }

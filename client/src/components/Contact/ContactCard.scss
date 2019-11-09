@@ -26,28 +26,28 @@
         border-radius: .75rem;
         padding: .75rem;
         text-align: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        &-name {
-            margin-bottom: 1rem;
-        }
-        &-city {
-            margin-bottom: 1rem;
-        }
-        &-phone {
-            margin-bottom: 1rem;
-        }
-        &-relationship {
-            margin-bottom: 1rem;
-        }
+        // &-name {
+        //     margin-bottom: 1rem;
+        // }
+        // &-city {
+        //     margin-bottom: 1rem;
+        // }
+        // &-phone {
+        //     margin-bottom: 1rem;
+        // }
+        // &-relationship {
+        //     margin-bottom: 1rem;
+        // }
     }
 
     &-expand {
-        cursor: pointer;
     }
     
     &-delete {
-        cursor: pointer;
-        color:#FF5D44;
         position: absolute;
         right:1rem;
     }
