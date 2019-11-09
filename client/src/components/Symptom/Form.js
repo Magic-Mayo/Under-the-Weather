@@ -9,19 +9,40 @@ export default class SymptomForm extends Component {
 	state = {
         SymptomList,
 		symptomsValue: '',
-		responses: []
+        responses: [],
+        entry: false,
+        name: '',
+        type: '',
+        insurance: '',
+        address:  '',
+        city:  '',
+        state:  '',
+        zip: '',
+        phone: ''
+
     };
     
     componentDidMount() {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
-        // if(this.props.location.state){
-        //     const contact = this.props.location.state.contact
-        //     this.setState({
-
-        //     })
-        // }
+        const {state} = this.props.location;
+        if(state && state.provider){
+            const provider = state.provider
+            this.setState({
+                name: provider.name || '',
+                type:  provider.doctorType || '',
+                insurance: provider.insurance || '',
+                address:  provider.address.streetAddress || '',
+                city:  provider.address.city || '',
+                state:  provider.address.state || '',
+                zip: provider.address.zip || '',
+                phone:  provider.phone || '',
+                entry: this.props.location.state.entry
+            })
+        } else if (state && !state.provider){
+            this.setState({entry: state.entry})
+        }
     }
     
 	setSymptom = (e) => {
@@ -89,9 +110,7 @@ export default class SymptomForm extends Component {
 		return (
 			<div className="symptom-form-container">
 				<h1 className="symptom-form-title">What Symptom(s) Are You Experiencing?</h1>
-                <Link to="/symptom/entry">
                     <h3 className="symptom-form-subtitle">If it isn't listed, write your own in</h3>
-                </Link>
                 <hr></hr>
 				<form className="symptom-form" onSubmit={this.handleSubmit}>
 					<input
