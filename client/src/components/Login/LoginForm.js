@@ -17,7 +17,7 @@ export default class LoginForm extends Component {
 
 	render() {
 		return (
-			<div className="grid">
+			<div className="grid entrance">
 				<form className={`form-${this.props.loginType}-input-box form-input-area`}>
 					<h1 className="form-title">{this.props.headingText}</h1>
 					<div className="input-container">

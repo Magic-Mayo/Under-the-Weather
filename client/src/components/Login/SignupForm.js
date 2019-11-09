@@ -77,7 +77,7 @@ class SignupForm extends Component {
                 return this.setState({error: 'Email address already in use', emailInUse: true})
             }
             // Let's client know name is available
-            return this.setState({error: false, emailInUse: false})
+            return this.setState({emailInUse: false})
         })
     }
 
@@ -125,7 +125,7 @@ class SignupForm extends Component {
     }
 
     dashboard = () => {
-        return this.setState({redirect: true})
+        return this.setState({dashboard: true})
     }
 
     openForm = props => {
@@ -140,7 +140,7 @@ class SignupForm extends Component {
     }
 
 	render() {
-        if(this.state.redirect){
+        if(this.state.dashboard){
             return <Redirect to={{pathname: "/dashboard", state: {isLoggedIn: true}}}/>
         }
         if(this.state.form){
@@ -155,7 +155,7 @@ class SignupForm extends Component {
         }
 
 		return (
-			<div className="grid">
+			<div className="grid entrance">
 				<form className={`form-${this.props.loginType}-input-box form-input-area`}>
 					<h1 className="form-title">{this.props.headingText}</h1>
 					{this.state.currentPage === 1 ? (
