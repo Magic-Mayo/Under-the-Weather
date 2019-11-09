@@ -40,8 +40,8 @@
         // &-expand {
         // }
 
-        &-delete {
-
+        &-delete {            
+            
         }
     }
 
@@ -58,4 +58,9 @@
         } 
     }
     
+}
+.insurance-delete{   
+    color:$peach-contrast-heavy;
+    margin-left:1.5rem;  
+
 }
