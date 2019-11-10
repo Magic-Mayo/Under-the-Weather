@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Modal from '../Modal/modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function InsuranceCard(props) {
@@ -14,21 +15,25 @@ export default function InsuranceCard(props) {
     if (props.insurance.length > 0) {
         return (
             <div className={anyExpand === "expand" ? "expanded Insurance card" : "Insurance card overflow-hidden"}>
-                <h2>Insurance Information{props.modal}</h2>                
+                <h2>Insurance Information</h2>                                   
                 {props.insurance.map(ins => (
                     <div
                         className="insurance-item card"
                         key={ins._id}>
-                        <div>
-                            <h3 className="insurance-item-provider">{ins.provider}
+                             {props.show && <div>
+                    Do you Want to delete this shit???
+                    <button onClick={() => props.delete({ _id: ins._id, card: props.card, route: props.route })}>✓</button>
+                </div>} 
+                     <h3 className="insurance-item-provider">{ins.provider}
                             <FontAwesomeIcon
                             icon="minus-circle"
                             className="insurance-delete"
                             size="1x"
-                            onClick={() => props.delete({ _id: ins._id, card: props.card, route: props.route })}>
+                            onClick={() => props.modal()}>
                         </FontAwesomeIcon>
                             </h3>
                             <h4 className="insurance-item-type">{ins.insuranceType}</h4>
+                            <div>                 
                         </div>
 
 
