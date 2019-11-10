@@ -14,7 +14,7 @@ export default function InsuranceCard(props) {
     if (props.insurance.length > 0) {
         return (
             <div className={anyExpand === "expand" ? "expanded Insurance card" : "Insurance card overflow-hidden"}>
-                <h2>Insurance Information</h2>
+                <h2>Insurance Information{props.modal}</h2>                
                 {props.insurance.map(ins => (
                     <div
                         className="insurance-item card"

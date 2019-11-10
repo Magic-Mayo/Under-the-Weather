@@ -4,7 +4,8 @@ import Symptoms from "../Symptom/Card";
 import Providers from "../Provider/Card";
 import Contacts from "../Contact/Card";
 import Insurance from "../Insurance/Card";
-import FormContainer from './FormContainer'
+import FormContainer from './FormContainer';
+import Modal from '../Modal/modal'
 import Nav from "../Nav";
 import Axios from 'axios';
 import { Route, Redirect } from 'react-router-dom';
@@ -25,9 +26,7 @@ class Dashboard extends Component{
 
     //function to show modal
     showModal = () =>{       
-       if(window.confirm("Are you sure you want to delete all information?")){
-          
-       }            
+              
     } 
 
     // change function to set state based on which component it comes from as well
@@ -48,13 +47,14 @@ class Dashboard extends Component{
 
     toggleNav = (e) => this.setState({navOpen: !this.state.navOpen});
 
-    render() {
+    render() {        
         if(!this.props.isLoggedIn){
             return <Redirect to="/"/>
         }
         return (
             <div className="Dashboard">
-            <Symptoms
+            <Modal />
+            <Symptoms                       
             name={this.props.user.name}
             symptoms={this.props.user.symptomHistory}
             card='symptom'
@@ -73,7 +73,7 @@ class Dashboard extends Component{
                 user={this.props.user}
                 /> */}
 
-                <Providers
+                <Providers                
                 name={this.props.user.name}
                 providers={this.props.user.mediData.doctors}
                 delete={this.deleteObject}
@@ -93,7 +93,7 @@ class Dashboard extends Component{
                 card ='contact'
                 route='deletecontact'
                 />
-                <Insurance
+                <Insurance                
                 name={this.props.user.name}
                 insurance={this.props.user.mediData.insurance}
                 delete={this.deleteObject}
@@ -103,7 +103,7 @@ class Dashboard extends Component{
                 modal={this.showModal} 
                 card='insurance'
                 route='deleteinsurance'
-                />
+                />               
             </section>
             <Nav
                 navOpen={this.state.navOpen}

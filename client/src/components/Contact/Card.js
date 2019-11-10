@@ -9,7 +9,14 @@ export default function ContactsCard(props) {
                 <h2>Emergency Contacts</h2>
                 {props.contact.map(contact => (
                     <div key={contact._id} className="contact-card-item card">                
-                        <h4 className="contact-card-item-name">{contact.name}</h4>
+                        <h4 className="contact-card-item-name">{contact.name}
+                        <FontAwesomeIcon
+                            icon="minus-circle"
+                            className="insurance-delete"
+                            size="1x"
+                            onClick={() => props.delete({ _id: contact._id, card: props.card, route: props.route })}>
+                        </FontAwesomeIcon>
+                        </h4>
                         <h4 className="contact-card-item-phone">Phone: {contact.phone}</h4>
 
                         {props.itemIsExpanded[contact._id] && contact.address.streetAddress &&
