@@ -155,22 +155,27 @@ export default class InsuranceForm extends Component {
             this.props.toggleNav();
         }
         const {state} = this.props.location
-        if(state && state.ins){
-            const ins = this.props.location.state.ins
-            this.setState({
-                provider: ins.provider || '',
-                idNumber: ins.idNumber || '',
-                groupNumber: ins.groupNumber || '',
-                insuranceType: ins.insuranceType || '',
-                deductible: ins.deductible || '',
-                doctor: ins.copay.doctor || '',
-                specialist: ins.copay.specialist || '',
-                emergency: ins.copay.emergency || '',
-                urgentCare: ins.copay.urgentCare || '',
-                brandName: ins.copay.prescription.brandName || '',
-                generic: ins.copay.prescription.generic || '',
-                edit: true
-            })
+        if(state){
+            if(state.add){
+                this.setState({add: true})
+            }
+            const {ins} = this.props.location.state
+            if(ins){
+                this.setState({
+                    provider: ins.provider || '',
+                    idNumber: ins.idNumber || '',
+                    groupNumber: ins.groupNumber || '',
+                    insuranceType: ins.insuranceType || '',
+                    deductible: ins.deductible || '',
+                    doctor: ins.copay.doctor || '',
+                    specialist: ins.copay.specialist || '',
+                    emergency: ins.copay.emergency || '',
+                    urgentCare: ins.copay.urgentCare || '',
+                    brandName: ins.copay.prescription.brandName || '',
+                    generic: ins.copay.prescription.generic || '',
+                    edit: true
+                })
+            }
         } else if (state && state.edit){
             this.setState({edit: true})
         }
@@ -291,8 +296,8 @@ export default class InsuranceForm extends Component {
                 }
 
                 <button className="insurance-form-submit" type="button"
-                onClick={this.state.edit ? () => this.update(this.props.match.params.id) : this.addInsurance}
-                >{this.state.edit ? "Update" : "Submit"}</button>
+                onClick={this.state.edit || !this.state.add ? () => this.update(this.props.match.params.id) : this.addInsurance}
+                >{!this.state.add ? "Update" : "Submit"}</button>
             </div>
             </div>
 		);
