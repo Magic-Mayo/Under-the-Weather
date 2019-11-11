@@ -39,8 +39,11 @@ class Search extends Component {
 	drSearch = (event) => {
 		event.preventDefault();
 		API.SearchSpecialty(this.props.search, this.state.latitude, this.state.longitude).then((res) => {
-			console.log(res.data.data)
-			this.setState({ results: res.data.data })
+			if(res){
+                console.log(res.data.data)
+                this.setState({ results: res.data.data });
+                this.props.setSearchResults();
+            }
 		})
 	}
 
