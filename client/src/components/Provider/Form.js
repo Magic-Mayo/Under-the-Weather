@@ -45,7 +45,7 @@ export default class ProviderForm extends Component {
                 entry: this.props.location.state.entry
             })
         } else if (state && !state.provider){
-            this.setState({entry: state.entry})
+            this.setState({edit: state.edit})
         }
     }
     
@@ -98,6 +98,10 @@ export default class ProviderForm extends Component {
     
     prevPage = () => this.setState({page: this.state.page - 1})
 
+    setSearchResults = () => {
+        this.setState({searchResults: true})
+    }
+
 	render() {
         // console.log("THIS IS THE PROVIDER FORM PROPS",this.props)
 		return (
@@ -108,6 +112,7 @@ export default class ProviderForm extends Component {
 						submitProvider={this.submitProvider}
                         handleInput={this.handleInput}
                         entry={this.entry}
+                        setSearchResults={this.setSearchResults}
 					/>
                     :
                     (this.state.page === 1 ?
@@ -147,9 +152,10 @@ export default class ProviderForm extends Component {
                             {this.state.page === 1 ? "Next Page" : "Previous Page"}
                         </button>}
 
-                    <button type="button" className="provider-form-submit" onClick={this.submitProvider}>
-                        Submit
-                    </button>
+                    {this.state.searchResults || this.state.entry &&
+                        <button type="button" className="provider-form-submit" onClick={this.submitProvider}>
+                            Submit
+                        </button>}
                 </div>
             </div>
 		);
