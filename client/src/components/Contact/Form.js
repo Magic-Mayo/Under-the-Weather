@@ -105,17 +105,22 @@ export default class Form extends Component {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
-        if(this.props.location.state){
-            const contact = this.props.location.state.contact
-            this.setState({
-                name: contact.name || '',
-                phone: contact.phone || '',
-                streetAddress: contact.address.streetAddress || '',
-                city: contact.address.city || '',
-                state: contact.address.state || '',
-                zip: contact.address.zip || '',
-                relationship: contact.relationship || ''
-            })
+        const {state} = this.props.location;
+        if(state){
+            if(state.contact){
+                this.setState({
+                    name: state.contact.name || '',
+                    phone: state.contact.phone || '',
+                    streetAddress: state.contact.address.streetAddress || '',
+                    city: state.contact.address.city || '',
+                    state: state.contact.address.state || '',
+                    zip: state.contact.address.zip || '',
+                    relationship: state.contact.relationship || ''
+                })
+            }
+            if(state.add){
+                this.setState({add:true})
+            }
         }
     }
     
@@ -152,6 +157,10 @@ export default class Form extends Component {
         }
     };
 
+    update = id => {
+        console.log(id)
+    }
+
     render() {
 		return (
 			<div className="contact-form-container form">
@@ -167,7 +176,10 @@ export default class Form extends Component {
                     errors={this.state.errors}
                 />
                 <div className="contact-form-submit-container">
-                <button className="contact-form-submit" onClick={this.contactToDatabase}>Submit</button>
+                <button
+                className="contact-form-submit"
+                onClick={!this.state.add ? () => this.update(this.props.match.params.id) : this.contactToDatabase}>
+                    {!this.state.add ? "Update" : "Submit"}</button>
                 </div>
             </div>
         );
