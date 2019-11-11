@@ -319,7 +319,8 @@ function SecondPage(props) {
                             name="sex"
                             id="sex"
                             value="Male"
-                            onSelect={props.handleInput}
+                            onChange={props.handleInput}
+                            checked={props.sex}
                             // required
                         />
                     </label>
@@ -330,7 +331,8 @@ function SecondPage(props) {
                             name="sex"
                             id="sex"
                             value="Female"
-                            onSelect={props.handleInput}
+                            checked={props.sex}
+                            onChange={props.handleInput}
                             // required
 
                         />
@@ -345,7 +347,7 @@ function SecondPage(props) {
 						name="age"
 						id="age"
 						value={props.age}
-						onChange={props.handleInput}
+                        onChange={props.handleInput}
 						placeholder="36"
 						// required
 
