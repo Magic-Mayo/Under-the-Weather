@@ -58,6 +58,13 @@ export default function Symptoms(props) {
         ],
     };
 
+    const sortSymptoms = e => {
+        const {innerText} = e.target;
+        const text = innerText;
+        console.log(text);
+
+    }
+
     // DUMMY DATA ENDS HERE
 
     if(props.symptoms.length > 0){
@@ -66,6 +73,7 @@ export default function Symptoms(props) {
                 <h2>Symptom History</h2>
                 <Filter 
                     data={formData}
+                    sort={sortSymptoms}
                 />
 
                 <section className="symptoms-content-container">
@@ -74,7 +82,6 @@ export default function Symptoms(props) {
                             <p className="symptoms-result-item-type" >{symptoms.painType} {symptoms.symptoms}</p>
                             <p className="symptoms-result-item-severity">{symptoms.severity}</p>
                             <p className="symptoms-result-item-time">{
-                                // moment().diff(symptoms.time, 'hours')
                                 moment().diff(symptoms.time, 'hours') > 0 && moment().diff(symptoms.time, 'hours') <= 23 ?
                                     `${moment().diff(symptoms.time, 'hours')} hours ago`:
                                         (moment().diff(symptoms.time, 'hours') >= 24 && moment().diff(symptoms.time, 'hours') < 48 ? 
@@ -108,7 +115,7 @@ export default function Symptoms(props) {
                 <Filter 
                     data={formData}
                 />
-            <Link to={'/dashboard/form/symptom'} className="symptoms-card-link" style={{textDecoration: "none"}}>
+            <Link to={{pathname: '/dashboard/form/symptom', state: {add: true}}} className="symptoms-card-link" style={{textDecoration: "none"}}>
                 <div className="symptoms-card-link-container">
                     <p className="symptoms-card-link-add">Click here to add new Symptoms!</p>
                 </div>

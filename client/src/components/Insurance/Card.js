@@ -87,7 +87,7 @@ export default function InsuranceCard(props) {
     return (
         <div className="Insurance card">
             <h2>Insurance Information</h2>
-            <Link to={{pathname: '/dashboard/form/insurance', state: {edit: true}}} className="insurance-card-link" style={{textDecoration: "none"}}>
+            <Link to={{pathname: '/dashboard/form/insurance', state: {edit: true, add: true}}} className="insurance-card-link" style={{textDecoration: "none"}}>
                 <div className="insurance-card-link-container">
                     <p className="insurance-card-link-add">Click here to add Insurance!</p>
                 </div>

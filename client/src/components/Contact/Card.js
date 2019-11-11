@@ -53,7 +53,7 @@ export default function ContactsCard(props) {
     return (
         <div className="contact-card-empty card">
             <h2>Emergency Contacts</h2>
-            <Link to={'/dashboard/form/contact'} className="contact-card-link" style={{textDecoration: "none"}}>
+            <Link to={{pathname:'/dashboard/form/contact', state: {add: true}}} className="contact-card-link" style={{textDecoration: "none"}}>
                 <div className="contact-card-link-container">
                     <p className="contact-card-link-add">Click here to add Emergency Contacts!</p>
                 </div>
