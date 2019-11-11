@@ -103,7 +103,7 @@ class Dashboard extends Component{
                 modal={this.showModal} 
                 card='insurance'
                 route='deleteinsurance'
-                />               
+                />
             </section>
             <Nav
                 navOpen={this.state.navOpen}
