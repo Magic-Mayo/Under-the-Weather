@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
 import moment from 'moment';
+import { Link } from  'react-router-dom';
 
 function ContactInput(props) {
     return (
@@ -105,8 +106,8 @@ export default class Form extends Component {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
-        const {state} = this.props.location;
-        if(state){
+        if(this.props.location.state){
+            const {state} = this.props.location;
             if(state.contact){
                 this.setState({
                     name: state.contact.name || '',
@@ -121,6 +122,11 @@ export default class Form extends Component {
             if(state.add){
                 this.setState({add:true})
             }
+
+            if (state.signup){
+                this.setState({signup: true})
+            }
+
         }
     }
     
@@ -176,6 +182,14 @@ export default class Form extends Component {
                     errors={this.state.errors}
                 />
                 <div className="contact-form-submit-container">
+                    {this.state.signup &&
+                        <Link to={{pathname: "/", state: {details: true, currentPage: 4}}}>
+                            <button type="button">
+                                Back to Details Page
+                            </button>
+                        </Link>
+                    }
+
                 <button
                 className="contact-form-submit"
                 onClick={!this.state.add ? () => this.update(this.props.match.params.id) : this.contactToDatabase}>

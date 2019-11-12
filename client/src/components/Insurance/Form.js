@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import moment from 'moment';
-// import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function FirstPage(props) {
 	return (
@@ -154,12 +154,13 @@ export default class InsuranceForm extends Component {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
-        const {state} = this.props.location
-        if(state){
+        if(this.props.location.state){
+            const {state} = this.props.location
+            const {ins} = state
             if(state.add){
                 this.setState({add: true})
             }
-            const {ins} = this.props.location.state
+
             if(ins){
                 this.setState({
                     provider: ins.provider || '',
@@ -175,9 +176,15 @@ export default class InsuranceForm extends Component {
                     generic: ins.copay.prescription.generic || '',
                     edit: true
                 })
+            } 
+            
+            if (state.edit){
+                this.setState({edit: true})
             }
-        } else if (state && state.edit){
-            this.setState({edit: true})
+
+            if (state.signup){
+                this.setState({signup: true})
+            }
         }
     }
 
@@ -289,6 +296,14 @@ export default class InsuranceForm extends Component {
                     />}
             
             <div className="insurance-form-submit-container">
+                {this.state.signup &&
+                    <Link to={{pathname: "/", state: {details: true, currentPage: 4}}}>
+                        <button type="button">
+                            Back to Details Page
+                        </button>
+                    </Link>
+                }
+
                 {this.state.edit &&
                     <button className="insurance-form-next" type="button"
                     onClick={this.state.page === 1 ? this.nextPage : this.prevpage}

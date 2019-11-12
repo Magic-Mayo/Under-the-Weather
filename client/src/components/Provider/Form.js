@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Search from './Search';
 import Axios from 'axios';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 export default class ProviderForm extends Component {
     initialState = {
@@ -30,22 +31,31 @@ export default class ProviderForm extends Component {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
-        const {state} = this.props.location;
-        if(state && state.provider){
-            const provider = state.provider
-            this.setState({
-                name: provider.name || '',
-                type:  provider.doctorType || '',
-                insurance: provider.insurance || '',
-                address:  provider.address.streetAddress || '',
-                city:  provider.address.city || '',
-                state:  provider.address.state || '',
-                zip: provider.address.zip || '',
-                phone:  provider.phone || '',
-                entry: this.props.location.state.entry
-            })
-        } else if (state && !state.provider){
-            this.setState({edit: state.edit})
+        if(this.props.location.state){
+            const {state} = this.props.location;
+            const {provider} = state
+            if(state.provider){
+                this.setState({
+                    name: provider.name || '',
+                    type:  provider.doctorType || '',
+                    insurance: provider.insurance || '',
+                    address:  provider.address.streetAddress || '',
+                    city:  provider.address.city || '',
+                    state:  provider.address.state || '',
+                    zip: provider.address.zip || '',
+                    phone:  provider.phone || '',
+                    entry: this.props.location.state.entry
+                })
+            }
+
+            if (state && !state.provider){
+                this.setState({edit: state.edit})
+            }
+
+            if (state.signup){
+                this.setState({signup: true})
+            }
+
         }
     }
     
@@ -144,6 +154,12 @@ export default class ProviderForm extends Component {
                     )
                 }
                 <div className="provider-form-submit-container">
+                    {this.state.signup &&
+                        <Link to={{pathname: "/", state: {details: true, currentPage: 4}}}>
+                            <button type="button">
+                                Back to Details Page
+                            </button>
+                        </Link>}
                     {this.state.entry &&
                         <button
                         type="button"
