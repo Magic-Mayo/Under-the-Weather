@@ -10,13 +10,21 @@ import {withRouter} from 'react-router';
 class FormContainer extends Component {
     state = {
         loginActive: true,
-		signupActive: false,
+    }
+
+    componentDidMount(){
+        if(this.props.location.state){
+            const {state} = this.props.location;
+
+            if(state.details){
+                this.setState({loginActive: false})
+            }
+        }
     }
 
     toggleSignUporLogIn = () => {
         return this.setState({
             loginActive: !this.state.loginActive, 
-            signupActive: !this.state.signupActive
         })
 	};
 
@@ -51,13 +59,12 @@ class FormContainer extends Component {
                 : 
                     <EntranceForm
                         handleLogIn={this.props.handleLogIn}
-                        state={this.state}
                         setSignUp={this.setSignUp}
                         setLogIn={this.setLogIn}
                         setUser={this.props.setUser}
                         logInNewUser={this.props.logIn}
                         userId={this.props.userId}
-                        loginActive={this.state}
+                        loginActive={this.state.loginActive}
                         toggleSignUporLogIn={this.toggleSignUporLogIn}
                         error={this.props.error}
                     />
