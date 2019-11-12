@@ -195,3 +195,7 @@
 .hide {
     display: none;
 }
+
+:active, :focus {
+    outline: none
+}
