@@ -21,21 +21,22 @@ export default class SymptomForm extends Component {
         zip: '',
         phone: '',
         date: '',
-        time: '11:00',
+        time: '',
         severity: '',
         type: '',
         symptom: '',
-        body: ''
+        body: '',
+        setDate: false
     };
     
     componentDidMount() {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
-        const {state} = this.props.location;
-        if(state){
+        if(this.props.location.state){
+            const {state} = this.props.location;
             if(state.provider){
-                const provider = state.provider
+                const {provider} = state
                 this.setState({
                     name: provider.name || '',
                     type:  provider.doctorType || '',
@@ -166,6 +167,7 @@ export default class SymptomForm extends Component {
                         handleInput={this.handleInput}
                         symptom={this.state.symptom}
                         selectDate={this.selectDate}
+                        setDate={this.state.setDate}
                         />
 
                         {/* <div className="symptom-form-submit-container">
@@ -258,17 +260,17 @@ function FirstPage(props){
                 className="input-container symptom-form-manual-entry-grid-item symptom-form-manual-entry-grid-item-time">
                     <label htmlFor="time">Time:</label>
                     <select onSelect={props.chooseDate}
-                    name="time"
+                    name="setDate"
                     type="text"
-                    value={props.time}
+                    value={props.setDate}
                     onChange={props.handleInput}
                     required
                     >
-                        <option value={true}>Now</option>
-                        <option value={false}>Choose Date and Time</option>
+                        <option value={false}>Now</option>
+                        <option value={true}>Choose Date and Time</option>
                     </select>
                 </div>
-                {props.date &&
+                {props.setDate &&
                     <div
                     className="">
                         <DatePicker
