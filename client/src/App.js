@@ -81,7 +81,7 @@ class App extends Component {
         console.log(props)
 		if (props) {
 			this.setState(props);
-			return this.setState({loading: false, isLoggedIn: true });
+			return this.setState({loading: false});
 		}
         this.setState({ loading: false });
         // return <Redirect to="/"/>
