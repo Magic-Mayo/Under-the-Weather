@@ -12,21 +12,15 @@ export default class SymptomForm extends Component {
 		symptomsValue: '',
         responses: [],
         entry: false,
-        name: '',
         type: '',
-        insurance: '',
-        address:  '',
-        city:  '',
-        state:  '',
-        zip: '',
-        phone: '',
         date: '',
         time: '',
         severity: '',
         type: '',
         symptom: '',
         body: '',
-        setDate: false
+        setDate: false,
+        edit: false
     };
     
     componentDidMount() {
@@ -35,17 +29,15 @@ export default class SymptomForm extends Component {
         }
         if(this.props.location.state){
             const {state} = this.props.location;
-            if(state.provider){
-                const {provider} = state
+            if(state.symptoms){
+                const {symptoms} = state
                 this.setState({
-                    name: provider.name || '',
-                    type:  provider.doctorType || '',
-                    insurance: provider.insurance || '',
-                    address:  provider.address.streetAddress || '',
-                    city:  provider.address.city || '',
-                    state:  provider.address.state || '',
-                    zip: provider.address.zip || '',
-                    phone:  provider.phone || '',
+                    date: symptoms.time || '',
+                    type:  symptoms.painType || '',
+                    severity: symptoms.severity || '',
+                    body:  symptoms.body || '',
+                    time:  symptoms.time || '',
+                    symptom: symptoms.symptom || '',
                     entry: this.props.location.state.entry
                 })
             }
@@ -53,7 +45,7 @@ export default class SymptomForm extends Component {
                 this.setState({add: true});
             }
             if(state.edit){
-                this.setState({entry: true});
+                this.setState({edit: true});
             }
         }
     }
@@ -65,7 +57,6 @@ export default class SymptomForm extends Component {
 			symptomsValue: e.target.value
 		})
 
-		this.handleSubmit()
 	}
 
 	//SEANS STUFF WITH SEARCH BAR 
@@ -127,14 +118,20 @@ export default class SymptomForm extends Component {
         this.setState({date: date});
     }
 
+    setEdit = () => {
+        this.setState({edit: !this.state.edit})
+    }
+
 	render() {
 		return (
 			<div className="symptom-form-container">
 				<h1 className="symptom-form-title">What Symptom(s) Are You Experiencing?</h1>
-                <h3 className="symptom-form-subtitle">If it isn't listed, write your own in</h3>
+                <h3 className="symptom-form-subtitle link" onClick={this.setEdit}>
+                    {this.state.edit ? "Back to Search" : "If it isn't listed, write your own in here"}
+                </h3>
                 <hr></hr>
 
-                {this.state.edit ?
+                {!this.state.edit ?
                     <form className="symptom-form" onSubmit={this.handleSubmit}>
                         <input
                             value={this.state.symptomsValue}
@@ -274,7 +271,6 @@ function FirstPage(props){
                     <div
                     className="">
                         <DatePicker
-                        // placeholderText="Click to select a date"
                         selected={props.date}
                         onChange={date => props.selectDate(date)}
                         maxDate={new Date()}
@@ -283,11 +279,11 @@ function FirstPage(props){
                         showYearDropdown
                         inline
                         openToDate={new Date()}/>
-                        {/* <DatePicker
-                        placeholderText="Click to select a time"
+                        <DatePicker
                         selected={props.time}
                         onChange={time => props.selectTime(time)}
-                        maxDate={new Date()}/> */}
+                        maxDate={new Date()}
+                        inline/>
                     </div>}
             </form>
         </>
