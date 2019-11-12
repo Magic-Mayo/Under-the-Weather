@@ -1,6 +1,6 @@
 import React from "react";
 import Umbrella from "../icons/Umbrella";
-import Modal from '../Modal/modal'
+// import Modal from '../Modal/modal'
 import Logo from "../icons/Logo";
 
 const Header = props => {
@@ -10,7 +10,7 @@ const Header = props => {
             <Umbrella width={"100%"} height={"100%"} />
             <Logo width={"100%"} height={"100%"} />
             {props.isLoggedIn && <h1 className="header-welcome">Welcome Back, {props.name.firstName}</h1>}
-            <Modal />
+            {/* <Modal /> */}
         </div>
     );
 }
