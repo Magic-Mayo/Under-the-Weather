@@ -57,14 +57,13 @@ class Search extends Component {
 			<div>
 				<h1 className="provider-form-title form-title">What type of doctor are you looking for?</h1>
 				<h3 className="provider-form-subtitle">We'll Search Around The Area For You</h3>
-                <h5 className="provider-form-link">Already have this information?{' '}</h5>
-                <h5 className="link" onClick={this.props.entry}>Click here to input manually</h5>
 
 				<Input
 					latitude={this.state.latitude}
 					longitude={this.state.longitude}
                     drSearch={this.drSearch}
-					handleInputChange={this.props.handleInput}
+                    handleInputChange={this.props.handleInput}
+                    entry={this.props.entry}
 				/>
 				<section className={this.props.entry ? "provider-form-results hide" : "provider-form-results"}>
 					{this.state.results.map((res) => (
@@ -94,14 +93,19 @@ function Input(props) {
 					placeholder="cardiologist"
 					className="provider-form-search-input"
 				/>
-				<h1>{props.results}</h1>
+                {props.results &&
+				    <h1>{props.results}</h1>
+                }
                 <button
                     type="submit"
                     onClick={props.drSearch}
                     className="provider-form-search-submit"
                 >
 					Submit
-				</button>
+				</button>{' '}
+                <span className="provider-form-link">Already have this information?{' '}
+                    <span className="link" onClick={props.entry}>Click here to input manually</span>
+                </span>
 			</form>
 		</div>
 	);
