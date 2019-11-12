@@ -28,13 +28,13 @@ export default function ContactsCard(props) {
                         {props.itemIsExpanded[contact._id] && contact.relationship &&
                             <h5 className="contact-card-item-relationship">Relationship: {contact.relationship}</h5>}
  
-                            <FontAwesomeIcon
-                            className="contact-card-expand item-expand item"
-                            icon={props.itemIsExpanded[contact._id] ? "angle-double-up" : "angle-double-down"}
-                            size="2x"
-                            id={contact._id}
-                            onClick={(e)=>props.expand(e)}
-                            />
+                        <FontAwesomeIcon
+                        className="contact-card-expand item-expand item"
+                        icon={props.itemIsExpanded[contact._id] ? "angle-double-up" : "angle-double-down"}
+                        size="2x"
+                        id={contact._id}
+                        onClick={(e)=>props.expand(e)}
+                        />
 
                         <Link to={{pathname: `dashboard/form/contact/${contact._id}`, state: {contact}}}>
                             <FontAwesomeIcon
