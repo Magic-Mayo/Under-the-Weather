@@ -5,6 +5,7 @@ import API from '../../utils/SymptomAPI';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
 
 export default class SymptomForm extends Component {
 	state = {
@@ -13,8 +14,8 @@ export default class SymptomForm extends Component {
         responses: [],
         entry: false,
         type: '',
-        date: '',
-        time: '',
+        date: new Date(),
+        time: new Date(),
         severity: '',
         type: '',
         symptom: '',
@@ -32,11 +33,11 @@ export default class SymptomForm extends Component {
             if(state.symptoms){
                 const {symptoms} = state
                 this.setState({
-                    date: symptoms.time || '',
+                    date: new Date(symptoms.time) || '',
                     type:  symptoms.painType || '',
                     severity: symptoms.severity || '',
                     body:  symptoms.body || '',
-                    time:  symptoms.time || '',
+                    time:  new Date(symptoms.time) || '',
                     symptom: symptoms.symptom || '',
                     entry: this.props.location.state.entry
                 })
@@ -70,11 +71,16 @@ export default class SymptomForm extends Component {
 	handleChange = (event) => {
 		// console.log('THE INPUT THAT WAS SELECTED ' + event.target.value);
 
+        const {value} = event.target;
 		this.setState({
-			symptomsValue: event.target.value
+			symptomsValue: value
 		})
 
-		this.checkMatch(event.target.value)
+        if(value.length > 0){
+            this.checkMatch(value.toLowerCase())
+        } else {
+            this.setState({responses: []})
+        }
 	}
 
 	checkMatch = (val) => {
@@ -116,6 +122,10 @@ export default class SymptomForm extends Component {
 
     selectDate = date => {
         this.setState({date: date});
+    }
+
+    selectTime = time => {
+        this.setState({time: time})
     }
 
     setEdit = () => {
@@ -164,6 +174,7 @@ export default class SymptomForm extends Component {
                         handleInput={this.handleInput}
                         symptom={this.state.symptom}
                         selectDate={this.selectDate}
+                        selectTime={this.selectTime}
                         setDate={this.state.setDate}
                         />
 
@@ -200,6 +211,7 @@ function FirstPage(props){
                 <div
                 className="input-container symptom-form-manual-entry-grid-item symptom-form-manual-entry-grid-item-severity">
                     <label htmlFor="severity">Severity:</label>
+                    <span>Mild</span>
                     <input
                     name="severity"
                     type="radio"
@@ -207,6 +219,7 @@ function FirstPage(props){
                     onChange={props.handleInput}
                     required
                     />
+                    <span>Moderate</span>
                     <input
                     name="severity"
                     type="radio"
@@ -214,6 +227,7 @@ function FirstPage(props){
                     onChange={props.handleInput}
                     required
                     />
+                    <span>Severe</span>
                     <input
                     name="severity"
                     type="radio"
@@ -221,10 +235,11 @@ function FirstPage(props){
                     onChange={props.handleInput}
                     required
                     />
+                    <span>Very Severe</span>
                     <input
                     name="severity"
                     type="radio"
-                    value="Worst Pain I've Ever Felt"
+                    value="Very Severe"
                     onChange={props.handleInput}
                     required
                     />
@@ -253,7 +268,7 @@ function FirstPage(props){
                     required
                     />
                 </div>
-                <div
+                {/* <div
                 className="input-container symptom-form-manual-entry-grid-item symptom-form-manual-entry-grid-item-time">
                     <label htmlFor="time">Time:</label>
                     <select onSelect={props.chooseDate}
@@ -266,25 +281,30 @@ function FirstPage(props){
                         <option value={false}>Now</option>
                         <option value={true}>Choose Date and Time</option>
                     </select>
-                </div>
-                {props.setDate &&
+                </div> */}
+                {/* {props.setDate && */}
                     <div
-                    className="">
+                    className="symptom-form-manual-entry-grid-item-date">
                         <DatePicker
                         selected={props.date}
                         onChange={date => props.selectDate(date)}
-                        maxDate={new Date()}
                         peekNextMonth
-                        showMonthDropdown
                         showYearDropdown
+                        maxDate={new Date()}
                         inline
-                        openToDate={new Date()}/>
+                        />
+                        <span>Time:</span>
                         <DatePicker
                         selected={props.time}
                         onChange={time => props.selectTime(time)}
                         maxDate={new Date()}
-                        inline/>
-                    </div>}
+                        showTimeSelect
+                        timeIntervals={15}
+                        showTimeSelectOnly
+                        dateFormat="h:mm a"
+                        />
+                    </div>
+                    {/* } */}
             </form>
         </>
     )
