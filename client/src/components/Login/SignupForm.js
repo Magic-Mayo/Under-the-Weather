@@ -86,6 +86,11 @@ class SignupForm extends Component {
                 console.log(user.data)
                 return this.setState({error: 'Email address already in use', emailInUse: true})
             }
+
+            if(!this.state.passwordValid){
+                this.setState({error: `Use at least one upper and lower case letter, 
+                one number and have a minimum of 8 characters in your password.`})
+            }
             // Let's client know name is available
             return this.setState({emailInUse: false})
         })
@@ -249,7 +254,6 @@ const FirstPage = (props) => {
                     required
                     onBlur={props.checkEmail}
 				/>
-                {props.emailInUse && <span className="sign-up-warning-email">Email already in use</span>}
 			</div>
 			<div className="input-container">
 				<label htmlFor="password">
