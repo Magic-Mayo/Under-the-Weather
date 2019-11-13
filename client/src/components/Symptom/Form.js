@@ -20,7 +20,6 @@ export default class SymptomForm extends Component {
         type: '',
         symptom: '',
         body: '',
-        setDate: false,
         edit: false
     };
     
@@ -175,7 +174,6 @@ export default class SymptomForm extends Component {
                         symptom={this.state.symptom}
                         selectDate={this.selectDate}
                         selectTime={this.selectTime}
-                        setDate={this.state.setDate}
                         />
 
                         {/* <div className="symptom-form-submit-container">
@@ -268,21 +266,6 @@ function FirstPage(props){
                     required
                     />
                 </div>
-                {/* <div
-                className="input-container symptom-form-manual-entry-grid-item symptom-form-manual-entry-grid-item-time">
-                    <label htmlFor="time">Time:</label>
-                    <select onSelect={props.chooseDate}
-                    name="setDate"
-                    type="text"
-                    value={props.setDate}
-                    onChange={props.handleInput}
-                    required
-                    >
-                        <option value={false}>Now</option>
-                        <option value={true}>Choose Date and Time</option>
-                    </select>
-                </div> */}
-                {/* {props.setDate && */}
                     <div
                     className="symptom-form-manual-entry-grid-item-date">
                         <DatePicker
@@ -304,7 +287,6 @@ function FirstPage(props){
                         dateFormat="h:mm a"
                         />
                     </div>
-                    {/* } */}
             </form>
         </>
     )
