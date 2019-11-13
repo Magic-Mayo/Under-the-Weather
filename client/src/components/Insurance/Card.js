@@ -10,7 +10,6 @@ export default function InsuranceCard(props) {
             anyExpand = "expand"
         }
     }
-    // onClick={() => props.delete({ _id: ins._id, card: props.card, route: props.route })}>
 
     if (props.insurance.length > 0) {
         return (
@@ -21,15 +20,13 @@ export default function InsuranceCard(props) {
                         className="insurance-item card"
                         key={ins._id}>
                              {props.show && <div>
-                    Do you Want to delete this shit???
-                    <button onClick={() => props.delete({ _id: ins._id, card: props.card, route: props.route })}>✓</button>
                 </div>} 
                      <h3 className="insurance-item-provider">{ins.provider}
                             <FontAwesomeIcon
                             icon="minus-circle"
                             className="insurance-delete"
                             size="1x"
-                            onClick={() => props.modal()}>
+                            onClick={() => props.delete({ _id: ins._id, card: props.card, route: props.route })}>
                         </FontAwesomeIcon>
                             </h3>
                             <h4 className="insurance-item-type">{ins.insuranceType}</h4>

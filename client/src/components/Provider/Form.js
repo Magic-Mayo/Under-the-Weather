@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 export default class ProviderForm extends Component {
     initialState = {
         userId: this.props.userId,
+        Drsearch:'',
         search: '',
         name:  '',
         type:  '',
@@ -121,8 +122,11 @@ export default class ProviderForm extends Component {
 						search={this.state.search}
 						submitProvider={this.submitProvider}
                         handleInput={this.handleInput}
-                        entry={this.entry}
+                        entry={this.state.entry}
+                        handleEntry={this.entry}
+                        searchResults={this.state.searchResults}
                         setSearchResults={this.setSearchResults}
+                        Drsearch={this.state.Drsearch}
 					/>
                     :
                     (this.state.page === 1 ?

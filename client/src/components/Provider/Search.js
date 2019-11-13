@@ -4,8 +4,7 @@ import API from '../../utils/API';
 import { withRouter } from 'react-router-dom';
 
 class Search extends Component {
-	state = {
-		doctors: [],
+	state = {		
 		latitude: '',
 		longitude: '',
 		results: []
@@ -38,10 +37,9 @@ class Search extends Component {
 
 	drSearch = (event) => {
 		event.preventDefault();
-		API.SearchSpecialty(this.props.search, this.state.latitude, this.state.longitude).then((res) => {
+		return API.SearchSpecialty(this.props.Drsearch, this.state.latitude, this.state.longitude).then((res) => {
 			if(res){
-                console.log(res.data.data)
-                this.setState({ results: res.data.data });
+				this.setState({ results: res.data.data });
                 this.props.setSearchResults();
             }
 		})
@@ -49,7 +47,6 @@ class Search extends Component {
 
 	updatePhoneDisplay = (event) => {
 		event.persist();
-		console.log(event)
     }
     
 	render() {
@@ -61,13 +58,15 @@ class Search extends Component {
 				<Input
 					latitude={this.state.latitude}
 					longitude={this.state.longitude}
-                    drSearch={this.drSearch}
+					drSearch={this.drSearch}
+					doctor={this.props.Drsearch}
                     handleInputChange={this.props.handleInput}
-                    entry={this.props.entry}
+                    handleEntry={this.props.handleEntry}
 				/>
+				{this.props.searchResults &&
 				<section className={this.props.entry ? "provider-form-results hide" : "provider-form-results"}>
 					{this.state.results.map((res) => (
-						<Results
+						<Results						
 							src={res.profile.image_url}
 							firstName={res.profile.first_name}
 							lastName={res.profile.last_name}
@@ -75,8 +74,9 @@ class Search extends Component {
 							practices={res.practices}
 							updatePhoneDisplay={this.updatePhoneDisplay}
 						/>
+					
 					))}
-				</section>
+				</section>}
 			</div>
 		);
 	}
@@ -86,8 +86,8 @@ function Input(props) {
 		<div>
 			<form className="provider-form">
 				<input
-					value={props.search}
-					name="Dr search"
+					value={props.doctor}
+					name="Drsearch"
 					onChange={props.handleInputChange}
 					type="text"
 					placeholder="cardiologist"
@@ -104,7 +104,7 @@ function Input(props) {
 					Submit
 				</button>{' '}
                 <span className="provider-form-link">Already have this information?{' '}
-                    <span className="link" onClick={props.entry}>Click here to input manually</span>
+                    <span className="link" onClick={props.handleEntry}>Click here to input manually</span>
                 </span>
 			</form>
 		</div>
@@ -112,24 +112,30 @@ function Input(props) {
 }
 
 function Results(props) {
-	console.log(props)
 	return (
 		<div className="provider-form-results-item">
-			<img src={props.src} alt="Smiley face" height="42" width="42" />
-			<p>
-				Name: {props.firstName}, {props.lastName}
+						{props.src === "https://asset1.betterdoctor.com/assets/general_doctor_male.png" ? null: 
+						 props.src === "https://asset1.betterdoctor.com/assets/general_doctor_female.png" ? null:
+						 props.src === "https://asset2.betterdoctor.com/assets/general_doctor_female.png" ? null:
+						 props.src === "https://asset3.betterdoctor.com/assets/general_doctor_female.png" ? null:	
+						 props.src === "https://asset4.betterdoctor.com/assets/general_doctor_female.png" ? null:
+						 props.src === "https://asset2.betterdoctor.com/assets/general_doctor_male.png" ? null:
+						 props.src === "https://asset3.betterdoctor.com/assets/general_doctor_male.png" ? null:
+						 props.src === "https://asset4.betterdoctor.com/assets/general_doctor_male.png" ? null:
+			<img className = "provider-form-results-image" src={props.src} alt="Smiley face" height="42" width="42" />}			
+			<p className="provider-form-results-name">
+				{props.firstName} {props.lastName}
 			</p>
-			<p>Bio: {props.bio}</p>
+			<p className="provider-form-results-bio">{props.bio}</p>
 			<p>
-				Practices:{' '}
-				<select onClick={props.updatePhoneDisplay}>
-					<option value="">Office Locations</option>
+				{' '}
+				<select className="provider-form-results-practices" onClick={props.updatePhoneDisplay}>
+					<option  className="provider-form-results-practices" value="">Office Locations</option>
 					{props.practices.map((practice) => {
 						// console.log(practice).phones[{type: "landline"}];
 						const phone = practice.phones.filter(phone => phone.type === 'landline')[0].number
-						console.log(practice.name + "phone number is" + phone);
 						return (
-							<option value="" phone={phone}>
+							<option className="provider-form-results-practices" value="" phone={phone}>
 								{practice.name}
 								{' Address: ' +
 									practice.visit_address.street +
