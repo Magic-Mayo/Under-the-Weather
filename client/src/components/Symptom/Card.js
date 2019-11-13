@@ -99,6 +99,7 @@ export default function Symptoms(props) {
                                         moment(symptoms.time).format('DD MMM | h:MM A'))))
                                 }
                             </p>
+                            <p className="symptoms-result-item-body">{symptoms.bodyPart}</p>
                         <Link to={{pathname: `dashboard/form/symptom/${symptoms._id}`, state: {edit: true, symptoms}}}
                         className="symptoms-result-edit">
                             <FontAwesomeIcon icon="edit" size="2x"/>
