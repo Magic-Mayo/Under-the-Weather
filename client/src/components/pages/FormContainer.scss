@@ -20,7 +20,7 @@
 	// display: flex;
 	// flex-direction: column;
     // align-items: center;
-	overflow-y: auto;
+	// overflow-y: auto;
 
 	&-input {
 		&-area {
@@ -84,9 +84,7 @@
 	&-container {
 		position: relative;
 		z-index: 150;
-		width: 65vw;
-		min-width: 82.5rem;
-		// max-width: 90vw;
+		width: 82.5rem;
 		min-height: 90vh;
 		overflow: hidden;
 		display: flex;
@@ -95,7 +93,6 @@
 		box-shadow: 0 1rem 5rem rgba($black, .3);
         border-radius: .2rem !important;
         background-color: $white;
-        padding: 3rem auto;
         justify-content: center;
         
         &-close {
