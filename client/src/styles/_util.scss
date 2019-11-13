@@ -186,12 +186,16 @@
 
 .link {
     color: $blue-dark;
+    text-decoration: underline;
     &:hover {
-        text-decoration: underline;
         cursor: pointer;
     }
 }
 
 .hide {
     display: none;
+}
+
+:active, :focus {
+    outline: none
 }

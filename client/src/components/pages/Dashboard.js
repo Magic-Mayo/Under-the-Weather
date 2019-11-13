@@ -5,6 +5,7 @@ import Providers from "../Provider/Card";
 import Contacts from "../Contact/Card";
 import Insurance from "../Insurance/Card";
 import FormContainer from './FormContainer';
+// import Modal from '../Modal/modal'
 import Nav from "../Nav";
 import Axios from 'axios';
 import { Route, Redirect } from 'react-router-dom';
@@ -54,7 +55,8 @@ class Dashboard extends Component{
             return <Redirect to="/"/>
         }
         return (
-            <div className="Dashboard">           
+            <div className="Dashboard">
+            {/* <Modal /> */}
             <Symptoms                       
             name={this.props.user.name}
             symptoms={this.props.user.symptomHistory}
@@ -104,8 +106,8 @@ class Dashboard extends Component{
                 modal={this.showModal}                
                 show={this.state.show} 
                 card='insurance'
-                route='deleteinsurance'                
-                />               
+                route='deleteinsurance'
+                />
             </section>
             <Nav
                 navOpen={this.state.navOpen}

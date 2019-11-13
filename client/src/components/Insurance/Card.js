@@ -15,7 +15,7 @@ export default function InsuranceCard(props) {
     if (props.insurance.length > 0) {
         return (
             <div className={anyExpand === "expand" ? "expanded Insurance card" : "Insurance card overflow-hidden"}>
-                <h2>Insurance Information</h2>                                   
+                <h2>Insurance Information</h2>                
                 {props.insurance.map(ins => (
                     <div
                         className="insurance-item card"
@@ -92,7 +92,7 @@ export default function InsuranceCard(props) {
     return (
         <div className="Insurance card">
             <h2>Insurance Information</h2>
-            <Link to={{pathname: '/dashboard/form/insurance', state: {edit: true}}} className="insurance-card-link" style={{textDecoration: "none"}}>
+            <Link to={{pathname: '/dashboard/form/insurance', state: {edit: true, add: true}}} className="insurance-card-link" style={{textDecoration: "none"}}>
                 <div className="insurance-card-link-container">
                     <p className="insurance-card-link-add">Click here to add Insurance!</p>
                 </div>

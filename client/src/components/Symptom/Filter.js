@@ -69,7 +69,7 @@ class Filter extends Component {
                                     return (
                                         <li key={`type-${j}`} value={type} className={
                                             !this.state.inputs[i].active ? 'invisible' : ''
-                                        } onClick={this.handleListItem}>{type}</li>
+                                        } onClick={this.props.sort}>{type}</li>
                                     )
                                 })}
                             <FontAwesomeIcon icon="sort-down" className="down-arrow"/>

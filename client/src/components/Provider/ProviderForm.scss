@@ -1,5 +1,6 @@
 .provider-form {
     display: flex;
+    flex-wrap: wrap;
     width: 80%;
     max-width: 750px;
     justify-content: center;
@@ -14,6 +15,11 @@
         width: 100%;
         overflow-y: auto;
 
+    }
+
+    &-link {
+        font-size: 1.25rem;
+        margin-top: .5rem;
     }
 
     &-options {

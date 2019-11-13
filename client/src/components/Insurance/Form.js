@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import moment from 'moment';
-// import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function FirstPage(props) {
 	return (
@@ -154,25 +154,37 @@ export default class InsuranceForm extends Component {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
-        const {state} = this.props.location
-        if(state && state.ins){
-            const ins = this.props.location.state.ins
-            this.setState({
-                provider: ins.provider || '',
-                idNumber: ins.idNumber || '',
-                groupNumber: ins.groupNumber || '',
-                insuranceType: ins.insuranceType || '',
-                deductible: ins.deductible || '',
-                doctor: ins.copay.doctor || '',
-                specialist: ins.copay.specialist || '',
-                emergency: ins.copay.emergency || '',
-                urgentCare: ins.copay.urgentCare || '',
-                brandName: ins.copay.prescription.brandName || '',
-                generic: ins.copay.prescription.generic || '',
-                edit: true
-            })
-        } else if (state && state.edit){
-            this.setState({edit: true})
+        if(this.props.location.state){
+            const {state} = this.props.location
+            const {ins} = state
+            if(state.add){
+                this.setState({add: true})
+            }
+
+            if(ins){
+                this.setState({
+                    provider: ins.provider || '',
+                    idNumber: ins.idNumber || '',
+                    groupNumber: ins.groupNumber || '',
+                    insuranceType: ins.insuranceType || '',
+                    deductible: ins.deductible || '',
+                    doctor: ins.copay.doctor || '',
+                    specialist: ins.copay.specialist || '',
+                    emergency: ins.copay.emergency || '',
+                    urgentCare: ins.copay.urgentCare || '',
+                    brandName: ins.copay.prescription.brandName || '',
+                    generic: ins.copay.prescription.generic || '',
+                    edit: true
+                })
+            } 
+            
+            if (state.edit){
+                this.setState({edit: true})
+            }
+
+            if (state.signup){
+                this.setState({signup: true})
+            }
         }
     }
 
@@ -284,6 +296,14 @@ export default class InsuranceForm extends Component {
                     />}
             
             <div className="insurance-form-submit-container">
+                {this.state.signup &&
+                    <Link to={{pathname: "/", state: {details: true, currentPage: 4}}}>
+                        <button type="button">
+                            Back to Details Page
+                        </button>
+                    </Link>
+                }
+
                 {this.state.edit &&
                     <button className="insurance-form-next" type="button"
                     onClick={this.state.page === 1 ? this.nextPage : this.prevpage}
@@ -291,8 +311,8 @@ export default class InsuranceForm extends Component {
                 }
 
                 <button className="insurance-form-submit" type="button"
-                onClick={this.state.edit ? () => this.update(this.props.match.params.id) : this.addInsurance}
-                >{this.state.edit ? "Update" : "Submit"}</button>
+                onClick={this.state.edit || !this.state.add ? () => this.update(this.props.match.params.id) : this.addInsurance}
+                >{!this.state.add ? "Update" : "Submit"}</button>
             </div>
             </div>
 		);

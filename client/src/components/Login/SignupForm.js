@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SignInSocial from './SignInSocial';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import ProviderForm from '../Provider/Form'
 import ContactForm from '../Contact/Form'
@@ -22,7 +22,17 @@ class SignupForm extends Component {
         currentPage: 1,
         error: `Use at least one upper and lower case letter, 
         one number and have a minimum of 8 characters in your password.`
-	};
+    };
+    
+    componentDidMount(){
+        if(this.props.location.state){
+            const {state} = this.props.location;
+
+            if(state.details){
+                this.setState({currentPage: state.currentPage})
+            }
+        }
+    }
 
 	handleInput = (e) => {
         this.setState({emailInUse: false})
@@ -75,6 +85,11 @@ class SignupForm extends Component {
             if(user.data){
                 console.log(user.data)
                 return this.setState({error: 'Email address already in use', emailInUse: true})
+            }
+
+            if(!this.state.passwordValid){
+                this.setState({error: `Use at least one upper and lower case letter, 
+                one number and have a minimum of 8 characters in your password.`})
             }
             // Let's client know name is available
             return this.setState({emailInUse: false})
@@ -157,7 +172,7 @@ class SignupForm extends Component {
 		return (
 			<div className="grid entrance">
 				<form className={`form-${this.props.loginType}-input-box form-input-area`}>
-					<h1 className="form-title">{this.props.headingText}</h1>
+					<h1 className="form-title">{this.state.currentPage < 3 ? this.props.headingText : "Welcome to Under the Weather!"}</h1>
 					{this.state.currentPage === 1 ? (
 						<FirstPage
 							handleInput={this.handleInput}
@@ -239,7 +254,6 @@ const FirstPage = (props) => {
                     required
                     onBlur={props.checkEmail}
 				/>
-                {props.emailInUse && <span className="sign-up-warning-email">Email already in use</span>}
 			</div>
 			<div className="input-container">
 				<label htmlFor="password">
@@ -319,7 +333,8 @@ function SecondPage(props) {
                             name="sex"
                             id="sex"
                             value="Male"
-                            onSelect={props.handleInput}
+                            onChange={props.handleInput}
+                            checked={props.sex}
                             // required
                         />
                     </label>
@@ -330,7 +345,8 @@ function SecondPage(props) {
                             name="sex"
                             id="sex"
                             value="Female"
-                            onSelect={props.handleInput}
+                            checked={props.sex}
+                            onChange={props.handleInput}
                             // required
 
                         />
@@ -345,7 +361,7 @@ function SecondPage(props) {
 						name="age"
 						id="age"
 						value={props.age}
-						onChange={props.handleInput}
+                        onChange={props.handleInput}
 						placeholder="36"
 						// required
 
@@ -358,10 +374,9 @@ function SecondPage(props) {
 
 function ThirdPage(props) {
     return (
-        <div className="sign-up-third-page">
-            <h1 className="form-title">Welcome to Under the Weather!</h1>
+        <>
             <h3 className="form-subtitle">We recommend adding in some more details before heading over to the dashboard</h3>
-        </div>
+        </>
     )
 }
 
@@ -369,21 +384,21 @@ function DetailsPage(props) {
     console.log(props.url)
     return (
         <div className="sign-up-details">
-            {/* <Link to={`${props.url}form/insurance`}> */}
+            <Link to={{pathname: "/form/insurance", state: {signup: true}}}>
                 <button type="button" className="details-insurance" onClick={()=>props.openForm('insurance')}>
                     Add Insurance Info
                 </button>
-            {/* </Link> */}
-            {/* <Link to={`${props.url}form/provider`}> */}
+            </Link>
+            <Link to={{pathname: "/form/provider", state: {signup: true}}}>
                 <button type="button" className="details-provider" onClick={()=>props.openForm('provider')}>
                     Add Provider Info
                 </button>
-            {/* </Link> */}
-            {/* <Link to={`${props.url}form/contact`}> */}
+            </Link>
+            <Link to={{pathname: "/form/contact", state: {signup: true}}}>
                 <button type="button" className="details-contact" onClick={()=>props.openForm('contact')}>
                     Add Emergency Contact Info
                 </button>
-            {/* </Link> */}
+            </Link>
         </div>
     )
 }
