@@ -130,12 +130,12 @@ function Results(props) {
 			<p>
 				{' '}
 				<select className="provider-form-results-practices" onClick={props.updatePhoneDisplay}>
-					<option  className="provider-form-results-practices" value="">Office Locations</option>
+					<option  className="provider-form-results-options" value="">Office Locations</option>
 					{props.practices.map((practice) => {
 						// console.log(practice).phones[{type: "landline"}];
 						const phone = practice.phones.filter(phone => phone.type === 'landline')[0].number
 						return (
-							<option className="provider-form-results-practices" value="" phone={phone}>
+							<option className="provider-form-results-options" value="" phone={phone}>
 								{practice.name}
 								{' Address: ' +
 									practice.visit_address.street +

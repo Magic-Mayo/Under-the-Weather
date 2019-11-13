@@ -104,6 +104,12 @@ export default function Symptoms(props) {
                         className="symptoms-result-edit">
                             <FontAwesomeIcon icon="edit" size="2x"/>
                         </Link>
+                        <FontAwesomeIcon
+                                        icon="minus-circle"
+                                        className="symptom-delete"
+                                        size="2x"
+                                        onClick={() => props.delete({ _id: symptoms._id, card: props.card, route: props.route })}>
+                        </FontAwesomeIcon>
                         </div>
                     ))}
                 </section>
