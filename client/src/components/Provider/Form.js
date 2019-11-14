@@ -101,6 +101,34 @@ export default class ProviderForm extends Component {
         };
     };
 
+    update = id => {
+        const updatedData = {
+            route: "updateprovider",
+            provider: {"data.mediData.doctors.$": {
+                name: this.state.name,
+                doctorType: this.state.type,
+                insurance: this.state.insurance,
+                phone: this.state.phone,
+                email: this.state.email,
+                website: this.state.website,
+                address: {
+                    streetAddress: this.state.address,
+                    city: this.state.city,
+                    state: this.state.state,
+                    zip: this.state.zip
+                },
+                updatedAt: moment()
+            }},
+            key: "data.mediData.doctors._id",
+            id: id
+        }
+        console.log(updatedData)
+        return Axios.put('/account/provider', updatedData).then(user=>{
+            console.log(user)
+            this.props.setUser(user.data)
+        })
+    }
+
     entry = () => {
         this.setState({entry: !this.state.entry})
     }
@@ -117,6 +145,18 @@ export default class ProviderForm extends Component {
         // console.log("THIS IS THE PROVIDER FORM PROPS",this.props)
 		return (
 			<div className="provider-form-container form">
+                {this.state.entry ?
+                    <>
+                        <h2 className="provider-form-title">{this.state.update ? "Update ": "Enter "}your Doctor's information below</h2>
+                    </>
+                :
+                    <>
+                        <h1 className="provider-form-title form-title">What type of doctor are you looking for?</h1>
+                        <h3 className="provider-form-subtitle">We'll Search Around The Area For You</h3>
+                    </>
+                }
+                {!this.state.entry && <hr></hr>}
+
                 {!this.state.entry ?
 					<Search
 						search={this.state.search}
@@ -174,9 +214,12 @@ export default class ProviderForm extends Component {
                             {this.state.page === 1 ? "Next Page" : "Previous Page"}
                         </button>}
 
-                    {this.state.searchResults || this.state.entry &&
-                        <button type="button" className="provider-form-submit" onClick={this.submitProvider}>
-                            Submit
+                    {this.state.entry &&
+                        <button
+                        type="button"
+                        className="provider-form-submit"
+                        onClick={this.state.update? () => this.update(this.props.match.params.id) : this.submitProvider}>
+                            {this.state.update ? "Update" : "Submit"}
                         </button>}
                 </div>
             </div>
@@ -190,7 +233,6 @@ const FirstPage = props => {
     }
     return (
         <div className="provider-form-manual-entry">
-            <h2 className="provider-form-title">{props.update ? "Update ": "Enter "}your Doctor's information below</h2>
             {!props.update &&
                 <>
                     <h5 className="form-subtitle">To run a search for a doctor,{' '}</h5>

@@ -43,7 +43,7 @@ function ContactInput(props) {
                         <label htmlFor="address">Address:</label>
                         <input
                             type="text"
-                            name="address"
+                            name="streetAddress"
                             value={props.address}
                             onChange={props.handleInput}
                             placeholder="123 W Main St">
@@ -138,6 +138,7 @@ export default class Form extends Component {
         const { name, value } = e.target;
         this.setState({ [name]: value });
     };
+
     contactToDatabase = () => {
         const contacts = {
             route: 'addcontact',
@@ -155,6 +156,7 @@ export default class Form extends Component {
             },
             userId: this.state.userId
         };
+        
         if(this.state.cName !=='' && this.state.phone !== '' && this.state.relationship !== ''){
         Axios.post('/account/contact', contacts).then(
             data => {
@@ -169,6 +171,28 @@ export default class Form extends Component {
 
     update = id => {
         console.log(id)
+        const updatedData = {
+            route: "updatecontact",
+            contact: {"data.emergencyContacts.$": {
+                name: this.state.name,
+                phone: this.state.phone,
+                relationship: this.state.relationship,
+                address: {
+                    streetAddress: this.state.streetAddress,
+                    city: this.state.city,
+                    state: this.state.state,
+                    zip: this.state.zip
+                },
+                updatedAt: moment()
+            }},
+            key: "data.emergencyContacts._id",
+            id: id
+        }
+
+        return Axios.put('/account/contact', updatedData).then(user=>{
+            console.log(user)
+            this.props.setUser(user.data)
+        })
     }
 
     render() {
