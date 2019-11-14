@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
+import axios from 'axios';
 
 export default class SymptomForm extends Component {
 	state = {
@@ -54,7 +55,6 @@ export default class SymptomForm extends Component {
     }
     
 	setSymptom = (e) => {
-		console.log(e.target.value)
 
 		this.setState({
 			symptomsValue: e.target.value
@@ -99,27 +99,45 @@ export default class SymptomForm extends Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		console.log('+++++++++++++++++++++++++++++');
-		console.log(this.state.symptomsValue);
-		console.log(this.props.userId);
-		console.log('+++++++++++++++++++++++++++++');
-
-		// set state to reflect the new symptoms in the user - push new symptom
-		// once we pushed new symptom, submit the whole edited user to the db.
-		API.updateUser({
-			userId: this.props.userId,
-			symptom: {
-				symptoms: this.state.symptom,
+        const symptom = {
+            userId: this.props.userId,
+            route: 'addsymptom',
+            symptom: {
+                symptoms: this.state.symptom,
                 bodyPart: this.state.body,
                 painType: this.state.type,
                 severity: this.state.severity,
-                time: `${this.state.date}, ${this.state.time}`,
-			},
-			route: 'addsymptom'
-		})
+                time: this.state.date
+            },
+            createdAt: this.state.date
+        }
+		// set state to reflect the new symptoms in the user - push new symptom
+		// once we pushed new symptom, submit the whole edited user to the db.
+		axios.post("/account/symptom", symptom)
 			.then((res) => this.props.setUser(res.data))
 			.catch((err) => console.log(err));
     };
+
+    handleUpdate = id => {
+        const symptom = {
+            key: "data.symptomHistory._id",
+            id: id,
+            route: "updatesymptom",
+            symptom: {"data.symptomHistory.$": {
+                symptoms: this.state.symptom,
+                bodyPart: this.state.body,
+                painType: this.state.type,
+                severity: this.state.severity,
+                time: this.state.date
+            }},
+            updateAt: moment()
+        }
+
+        axios.put("/account/symptom", symptom).then(user=>{
+            console.log(user.data)
+            this.props.setUser(user.data)
+        }).catch(err=>console.log(`Symptom update error: ${err}`))
+    }
     
     handleInput = e => {
         const {name,value} = e.target;
@@ -142,11 +160,11 @@ export default class SymptomForm extends Component {
 		return (
 			<div className="symptom-form-container">
 				<h1 className="symptom-form-title">{this.state.update ? "Update a Symptom" : "What Symptom(s) Are You Experiencing?"}</h1>
-                {!this.state.update &&
+                {/* {!this.state.update &&
                     <h3 className="symptom-form-subtitle link" onClick={this.setEdit}>
                      {this.state.edit ? "Back to Search" : "If it isn't listed, write your own in here"}
                     </h3>
-                }
+                } */}
                 <hr></hr>
 
                 {/* {!this.state.edit ?
@@ -187,7 +205,10 @@ export default class SymptomForm extends Component {
 
                         {/* {this.state.update && */}
                             <div className="symptom-form-submit-container">
-                                <button type="button" className="symptom-form-submit" onClick={this.update ? this.update : this.handleSubmit}>
+                                <button
+                                type="button"
+                                className="symptom-form-submit"
+                                onClick={this.state.update ? () => this.handleUpdate(this.props.match.params.id) : this.handleSubmit}>
                                     {this.state.update ? "Update" : "Add symptom"}
                                 </button>
                             </div>
@@ -201,7 +222,6 @@ export default class SymptomForm extends Component {
 }
 
 function FirstPage(props){
-    console.log(props)
     return(
         <>
             <form className="symptom-form-manual-entry-grid">
