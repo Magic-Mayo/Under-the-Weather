@@ -22,7 +22,8 @@ function ContactInput(props) {
                             type="number"
                             name="phone"
                             value={props.phone}
-                            onChange={props.handleInput}>
+                            onChange={props.handleInput}
+                            placeholder="XXX-XXX-XXXX">
                             {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                         </input>
                     </div>
@@ -33,17 +34,19 @@ function ContactInput(props) {
                             type="text"
                             name="relationship"
                             value={props.relationship}
-                            onChange={props.handleInput}>
+                            onChange={props.handleInput}
+                            placeholder="Mother, Father, Friend, etc.">
                         </input>
                         {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-address">
-                        <label htmlFor="address">Contact Address:</label>
+                        <label htmlFor="address">Address:</label>
                         <input
                             type="text"
                             name="address"
                             value={props.address}
-                            onChange={props.handleInput}>
+                            onChange={props.handleInput}
+                            placeholder="123 W Main St">
                         </input>
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-city">
@@ -119,12 +122,13 @@ export default class Form extends Component {
                     relationship: state.contact.relationship || ''
                 })
             }
-            if(state.add){
-                this.setState({add:true})
-            }
 
             if (state.signup){
                 this.setState({signup: true})
+            }
+
+            if(state.update){
+                this.setState({update:true})
             }
 
         }
@@ -170,7 +174,7 @@ export default class Form extends Component {
     render() {
 		return (
 			<div className="contact-form-container form">
-                <h1 className="contact-form-title">Please Enter Emergency Contact Information</h1>
+                <h1 className="contact-form-title">{this.state.update ? "Update" : "Please Enter"} Emergency Contact Information</h1>
                 <hr></hr>
                 <ContactInput
                     name={this.state.name}
@@ -192,8 +196,8 @@ export default class Form extends Component {
 
                 <button
                 className="contact-form-submit"
-                onClick={!this.state.add ? () => this.update(this.props.match.params.id) : this.contactToDatabase}>
-                    {!this.state.add ? "Update" : "Submit"}</button>
+                onClick={this.state.update ? () => this.update(this.props.match.params.id) : this.contactToDatabase}>
+                    {this.state.update ? "Update" : "Submit"}</button>
                 </div>
             </div>
         );
