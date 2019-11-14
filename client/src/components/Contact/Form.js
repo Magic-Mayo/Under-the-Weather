@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
 import moment from 'moment';
+import { Link } from  'react-router-dom';
 
 function ContactInput(props) {
     return (
@@ -21,7 +22,8 @@ function ContactInput(props) {
                             type="number"
                             name="phone"
                             value={props.phone}
-                            onChange={props.handleInput}>
+                            onChange={props.handleInput}
+                            placeholder="XXX-XXX-XXXX">
                             {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                         </input>
                     </div>
@@ -32,17 +34,19 @@ function ContactInput(props) {
                             type="text"
                             name="relationship"
                             value={props.relationship}
-                            onChange={props.handleInput}>
+                            onChange={props.handleInput}
+                            placeholder="Mother, Father, Friend, etc.">
                         </input>
                         {/* <span style={{color: "red", fontSize: "18px"}}>{props.errors}</span> */}
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-address">
-                        <label htmlFor="address">Contact Address:</label>
+                        <label htmlFor="address">Address:</label>
                         <input
                             type="text"
                             name="address"
                             value={props.address}
-                            onChange={props.handleInput}>
+                            onChange={props.handleInput}
+                            placeholder="123 W Main St">
                         </input>
                     </div>
                     <div className="input-container contact-entry-grid-item contact-entry-grid-item-city">
@@ -106,16 +110,27 @@ export default class Form extends Component {
             this.props.toggleNav();
         }
         if(this.props.location.state){
-            const contact = this.props.location.state.contact
-            this.setState({
-                name: contact.name || '',
-                phone: contact.phone || '',
-                streetAddress: contact.address.streetAddress || '',
-                city: contact.address.city || '',
-                state: contact.address.state || '',
-                zip: contact.address.zip || '',
-                relationship: contact.relationship || ''
-            })
+            const {state} = this.props.location;
+            if(state.contact){
+                this.setState({
+                    name: state.contact.name || '',
+                    phone: state.contact.phone || '',
+                    streetAddress: state.contact.address.streetAddress || '',
+                    city: state.contact.address.city || '',
+                    state: state.contact.address.state || '',
+                    zip: state.contact.address.zip || '',
+                    relationship: state.contact.relationship || ''
+                })
+            }
+
+            if (state.signup){
+                this.setState({signup: true})
+            }
+
+            if(state.update){
+                this.setState({update:true})
+            }
+
         }
     }
     
@@ -152,10 +167,14 @@ export default class Form extends Component {
         }
     };
 
+    update = id => {
+        console.log(id)
+    }
+
     render() {
 		return (
 			<div className="contact-form-container form">
-                <h1 className="contact-form-title">Please Enter Emergency Contact Information</h1>
+                <h1 className="contact-form-title">{this.state.update ? "Update" : "Please Enter"} Emergency Contact Information</h1>
                 <hr></hr>
                 <ContactInput
                     name={this.state.name}
@@ -167,7 +186,18 @@ export default class Form extends Component {
                     errors={this.state.errors}
                 />
                 <div className="contact-form-submit-container">
-                <button className="contact-form-submit" onClick={this.contactToDatabase}>Submit</button>
+                    {this.state.signup &&
+                        <Link to={{pathname: "/", state: {details: true, currentPage: 4}}}>
+                            <button type="button">
+                                Back to Details Page
+                            </button>
+                        </Link>
+                    }
+
+                <button
+                className="contact-form-submit"
+                onClick={this.state.update ? () => this.update(this.props.match.params.id) : this.contactToDatabase}>
+                    {this.state.update ? "Update" : "Submit"}</button>
                 </div>
             </div>
         );

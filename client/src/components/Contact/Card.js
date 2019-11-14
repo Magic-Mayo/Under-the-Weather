@@ -13,7 +13,14 @@ export default function ContactsCard(props) {
                 <h2>Emergency Contacts</h2>
                 {props.contact.map(contact => (
                     <div key={contact._id} className="contact-card-item card">                
-                        <h4 className="contact-card-item-name">{contact.name}</h4>
+                        <h4 className="contact-card-item-name">{contact.name}
+                        <FontAwesomeIcon
+                            icon="minus-circle"
+                            className="insurance-delete"
+                            size="1x"
+                            onClick={() => props.delete({ _id: contact._id, card: props.card, route: props.route })}>
+                        </FontAwesomeIcon>
+                        </h4>
                         <h4 className="contact-card-item-phone">Phone: {contact.phone}</h4>
 
                         {props.itemIsExpanded[contact._id] && contact.address.streetAddress &&
@@ -25,15 +32,15 @@ export default function ContactsCard(props) {
                         {props.itemIsExpanded[contact._id] && contact.relationship &&
                             <h5 className="contact-card-item-relationship">Relationship: {contact.relationship}</h5>}
  
-                            <FontAwesomeIcon
-                            className="contact-card-expand item-expand item"
-                            icon={props.itemIsExpanded[contact._id] ? "angle-double-up" : "angle-double-down"}
-                            size="2x"
-                            id={contact._id}
-                            onClick={(e)=>props.expand(e)}
-                            />
+                        <FontAwesomeIcon
+                        className="contact-card-expand item-expand item"
+                        icon={props.itemIsExpanded[contact._id] ? "angle-double-up" : "angle-double-down"}
+                        size="2x"
+                        id={contact._id}
+                        onClick={(e)=>props.expand(e)}
+                        />
 
-                        <Link to={{pathname: `dashboard/form/contact/${contact._id}`, state: {contact}}}>
+                        <Link to={{pathname: `dashboard/form/contact/${contact._id}`, state: {update: true, contact}}}>
                             <FontAwesomeIcon
                             icon="edit"
                             className="contact-card-edit item-edit item"
@@ -50,7 +57,7 @@ export default function ContactsCard(props) {
     return (
         <div className="contact-card contact-card-empty card">
             <h2>Emergency Contacts</h2>
-            <Link to={'/dashboard/form/contact'} className="contact-card-link" style={{textDecoration: "none"}}>
+            <Link to={{pathname:'/dashboard/form/contact', state: {add: true}}} className="contact-card-link" style={{textDecoration: "none"}}>
                 <div className="contact-card-link-container">
                     <p className="contact-card-link-add">Click here to add Emergency Contacts!</p>
                 </div>

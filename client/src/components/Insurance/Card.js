@@ -1,17 +1,18 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Modal from '../Modal/modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function InsuranceCard(props) {
 
 
 
-    // let anyExpand;
-    // for (let key in props.itemIsExpanded){
-    //     if(props.itemIsExpanded[key]){
-    //         anyExpand = "expand"
-    //     }
-    // }
+    let anyExpand;
+    for (let key in props.itemIsExpanded){
+        if(props.itemIsExpanded[key]){
+            anyExpand = "expand"
+        }
+    }
 
     if(props.insurance.length > 0){
         return(
@@ -27,7 +28,7 @@ export default function InsuranceCard(props) {
                         </div>
 
 
-                        {ins.groupNumber && props.itemIsExpanded[ins._id] && 
+                        {ins.groupNumber && props.itemIsExpanded[ins._id] &&
                             <h4 className="insurance-item-group">Group Number: {ins.groupNumber}</h4>}
 
                         {ins.idNumber && props.itemIsExpanded[ins._id] &&
@@ -36,7 +37,7 @@ export default function InsuranceCard(props) {
                         {ins.deductible && props.itemIsExpanded[ins._id] &&
                             <h4 className="insurance-item-deductible">Deductible: {ins.deductible}</h4>}
 
-                        {ins.copay && props.itemIsExpanded[ins._id] && 
+                        {ins.copay && props.itemIsExpanded[ins._id] &&
                             <h4 className="insurance-item-copay-title">Copay</h4>}
                         
                         {ins.copay && ins.copay.doctor && props.itemIsExpanded[ins._id] &&
@@ -62,16 +63,17 @@ export default function InsuranceCard(props) {
                             icon={props.itemIsExpanded[ins._id] ? "angle-double-up" : "angle-double-down"}
                             size="2x"
                             id={ins._id}
-                            onClick={(e)=>props.expand(e)}
-                            />
+                            onClick={(e) => props.expand(e)}
+                        />
 
-                        <Link to={{pathname: `dashboard/form/insurance/${ins._id}`, state: {ins}}}>
+                        <Link to={{ pathname: `dashboard/form/insurance/${ins._id}`, state: { update: true, ins } }}>
                             <FontAwesomeIcon
-                            icon="edit"
-                            className="insurance-card-edit item-edit item"
-                            size="2x" 
+                                icon="edit"
+                                className="insurance-card-edit item-edit item"
+                                size="2x"
                             />
                         </Link>
+                       
                     </div>
                 ))}
             </div>
@@ -81,7 +83,7 @@ export default function InsuranceCard(props) {
     return (
         <div className="Insurance card">
             <h2>Insurance Information</h2>
-            <Link to={{pathname: '/dashboard/form/insurance', state: {edit: true}}} className="insurance-card-link" style={{textDecoration: "none"}}>
+            <Link to={{pathname: '/dashboard/form/insurance', state: {edit: true, add: true}}} className="insurance-card-link" style={{textDecoration: "none"}}>
                 <div className="insurance-card-link-container">
                     <p className="insurance-card-link-add">Click here to add Insurance!</p>
                 </div>

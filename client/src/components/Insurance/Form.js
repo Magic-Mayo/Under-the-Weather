@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import moment from 'moment';
-// import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function FirstPage(props) {
 	return (
@@ -154,25 +154,34 @@ export default class InsuranceForm extends Component {
         if(this.props.navOpen){
             this.props.toggleNav();
         }
-        const {state} = this.props.location
-        if(state && state.ins){
-            const ins = this.props.location.state.ins
-            this.setState({
-                provider: ins.provider || '',
-                idNumber: ins.idNumber || '',
-                groupNumber: ins.groupNumber || '',
-                insuranceType: ins.insuranceType || '',
-                deductible: ins.deductible || '',
-                doctor: ins.copay.doctor || '',
-                specialist: ins.copay.specialist || '',
-                emergency: ins.copay.emergency || '',
-                urgentCare: ins.copay.urgentCare || '',
-                brandName: ins.copay.prescription.brandName || '',
-                generic: ins.copay.prescription.generic || '',
-                edit: true
-            })
-        } else if (state && state.edit){
-            this.setState({edit: true})
+        if(this.props.location.state){
+            const {state} = this.props.location
+            const {ins} = state
+
+            if(ins){
+                this.setState({
+                    provider: ins.provider || '',
+                    idNumber: ins.idNumber || '',
+                    groupNumber: ins.groupNumber || '',
+                    insuranceType: ins.insuranceType || '',
+                    deductible: ins.deductible || '',
+                    doctor: ins.copay.doctor || '',
+                    specialist: ins.copay.specialist || '',
+                    emergency: ins.copay.emergency || '',
+                    urgentCare: ins.copay.urgentCare || '',
+                    brandName: ins.copay.prescription.brandName || '',
+                    generic: ins.copay.prescription.generic || '',
+                    edit: true
+                })
+            } 
+            
+            if (state.signup){
+                this.setState({signup: true})
+            }
+
+            if (state.update){
+                this.setState({update: true})
+            }
         }
     }
 
@@ -254,7 +263,7 @@ export default class InsuranceForm extends Component {
 		return (
 			<div className="insurance-form-container form">
 				{this.state.page === 1 ? 
-                    <h1 className="insurance-form-title">Please Enter Insurance Information</h1> :
+                    <h1 className="insurance-form-title">{this.state.update ? "Update" : "Please Enter"} Insurance Information</h1> :
                     <h1 className="insurance-form-title">Enter Co-pay Information</h1>}
                 <hr></hr>
                 {this.state.page ===1 ?
@@ -284,15 +293,24 @@ export default class InsuranceForm extends Component {
                     />}
             
             <div className="insurance-form-submit-container">
-                {this.state.edit &&
-                    <button className="insurance-form-next" type="button"
-                    onClick={this.state.page === 1 ? this.nextPage : this.prevpage}
-                    >{this.state.page === 1 ? "Next" : "Previous"}</button>
+                {this.state.signup &&
+                    <Link to={{pathname: "/", state: {details: true, currentPage: 4}}}>
+                        <button type="button">
+                            Back to Details Page
+                        </button>
+                    </Link>
                 }
 
+                    <button className="insurance-form-next" type="button"
+                    onClick={this.state.page === 1 ? this.nextPage : this.prevpage}
+                    >
+                        {this.state.page === 1 ? "Next" : "Previous"}
+                    </button>
+
                 <button className="insurance-form-submit" type="button"
-                onClick={this.state.edit ? () => this.update(this.props.match.params.id) : this.addInsurance}
-                >{this.state.edit ? "Update" : "Submit"}</button>
+                onClick={this.state.update ? () => this.update(this.props.match.params.id) : this.addInsurance}
+                    >{this.state.update ? "Update" : "Submit"}
+                </button>
             </div>
             </div>
 		);

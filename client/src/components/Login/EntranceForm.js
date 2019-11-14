@@ -15,25 +15,25 @@ class EntranceForm extends Component {
 
 	render() {                
 		return (
-			<div className={`form form-${this.props.state.loginActive ? 'existing' : 'new'}`}>
+			<div className={`form form-${this.props.loginActive ? 'existing' : 'new'}`}>
                 <div className="form-btn-wrapper">
                     <button
-                    disabled={this.props.state.signupActive}
-                    className={`form-btn form-btn-signup ${this.props.state.signupActive && 'disabled'}`}
+                    disabled={!this.props.loginActive}
+                    className={`form-btn form-btn-signup ${!this.props.loginActive && 'disabled'}`}
                     onClick={this.props.toggleSignUporLogIn}
                     >
                         Sign Up
                     </button>
                     <button
-                    disabled={this.state.loginActive}
-                    className={`form-btn form-btn-login ${this.state.loginActive && 'disabled'}`}
+                    disabled={this.props.loginActive}
+                    className={`form-btn form-btn-login ${this.props.loginActive && 'disabled'}`}
                     onClick={this.props.toggleSignUporLogIn}
                     >
                         Log In
                     </button>
                 </div>
 
-				{this.props.state.signupActive ? (
+				{!this.props.loginActive ? (
 					<SignupForm
 						togglePassword={this.props.togglePassword}
                         showPassword={this.state.showPassword}

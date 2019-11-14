@@ -48,12 +48,11 @@ module.exports = (app) => {
 
         const credentials = req.body.credentials;
         db.User.findOneAndUpdate(
-        {"data.email": credentials.email},
-        {lastLogin: moment(), loginToken: token, 'data.isLoggedIn': true},
-        {new: true})
-            .then(user=>{
-                // console.log(user);
-            bcrypt.compare(credentials.password, user.password, (err,verified)=>{
+            {'data.email': credentials.email},
+            {lastLogin: moment(), loginToken: token, 'data.isLoggedIn': true},
+            {new: true})
+            .then(user=>{                
+                bcrypt.compare(credentials.password, user.password).then(verified=>{
                 if(verified){
                     return res.json({userId: user._id, user: user.data, token: user.loginToken})
                 }

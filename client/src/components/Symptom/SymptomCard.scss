@@ -102,17 +102,23 @@
                 grid-column: 1/2;
             }
             &-severity {
-                font-style: italic;
                 font-size: 1.75rem;
-                text-align: left;
-                grid-column: 1/2;
+                grid-column: 2/3;
                 grid-row: 2/3;
+                font-weight: 600;
             }
             &-time {
                 font-weight: 600;
                 font-size: 2rem;
                 grid-column: 2/3;
                 grid-row: 1/2;
+            }
+            &-body {
+                font-style: italic;
+                font-size: 2rem;
+                grid-column: 1/2;
+                grid-row: 2/3;
+                text-align: left;
             }
         }
 
@@ -128,3 +134,14 @@
         }
     }
 }
+.symptom-delete{
+            color:black;
+            position: absolute;
+            right:0.5rem;
+            top:0.5rem;
+            cursor: pointer;
+        }
+        .symptom-delete:hover{
+            color:red;
+            transform: scale(1.5);
+        }

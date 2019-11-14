@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import Symptoms from '../Symptom/Card';
 // import MedicalHistory from "../Medical_History/MedicalHistory";
-import Providers from '../Provider/Card';
-import Contacts from '../Contact/Card';
-import Insurance from '../Insurance/Card';
+import Providers from "../Provider/Card";
+import Contacts from "../Contact/Card";
+import Insurance from "../Insurance/Card";
 import FormContainer from './FormContainer';
-import Nav from '../Nav';
+// import Modal from '../Modal/modal'
+import Nav from "../Nav";
 import Axios from 'axios';
 import { Route, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
-class Dashboard extends Component {
-	state = {
-		navOpen: false
-	};
+class Dashboard extends Component{
+    state = {
+        navOpen: false        
+    }
 
 	componentDidMount() {
 		if (this.props.location.state !== undefined && this.props.location.state.isLoggedIn) {
@@ -22,17 +23,28 @@ class Dashboard extends Component {
 		}
 	}
 
-	// change function to set state based on which component it comes from as well
-	expand = (e) => {
-		const { id } = e.currentTarget;
-		this.setState({ [id]: !this.state[id] });
-	};
+    //function to show modal
+    showModal = () =>{
+        this.setState({
+            show:true
+        })
+    }
 
-	deleteObject = (props) => {
-		Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then((user) => {
-			this.props.setUser(user.data);
-		});
-	};
+    // change function to set state based on which component it comes from as well
+    expand = e => {
+        const {id} = e.currentTarget;
+        this.setState({[id]: !this.state[id]})
+    }
+
+    deleteObject = props => {
+        if(window.confirm("Are you sure you want to delete all information?")){ 
+        Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then(user=>{
+            this.props.setUser(user.data);
+            this.setState({show:false})
+    })
+}
+
+    }
 
 	toggleNav = (e) => this.setState({ navOpen: !this.state.navOpen });
 
@@ -88,7 +100,9 @@ class Dashboard extends Component {
 					expand={this.expand}
 					itemIsExpanded={this.state}
 					card="insurance"
-					route="deleteinsurance"
+                    route="deleteinsurance"
+                    modal={this.showModal}                
+                    show={this.state.show} 
 				/>
 				{/* </section> */}
 				<Nav
