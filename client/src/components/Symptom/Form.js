@@ -103,7 +103,7 @@ export default class SymptomForm extends Component {
 		})
 			.then((res) => {
 				console.log(res.data)
-				this.setUser(res.data)
+				this.props.setUser(res.data)
 			})
 			.catch((err) => console.log(err));
 	};

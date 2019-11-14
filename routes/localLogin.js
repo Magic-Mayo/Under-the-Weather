@@ -45,15 +45,17 @@ module.exports = (app) => {
     })
 
     app.post('/login', (req,res)=>{
+
         const credentials = req.body.credentials;
         db.User.findOneAndUpdate(
-        {userName: credentials.username},
+        {"data.email": credentials.email},
         {lastLogin: moment(), loginToken: token, 'data.isLoggedIn': true},
         {new: true})
             .then(user=>{
-            bcrypt.compare(credentials.password, user.password).then(verified=>{
+                // console.log(user);
+            bcrypt.compare(credentials.password, user.password, (err,verified)=>{
                 if(verified){
-                    return res.json({userId: user._id, user: user.data, userName: user.userName, token: user.loginToken})
+                    return res.json({userId: user._id, user: user.data, token: user.loginToken})
                 }
                 res.json(false)
             }).catch(err=>console.log(err))

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export default function Providers(props) {
     if(props.providers.length > 0){
         return (
-            <div className="Providers card">
+            <div className="Providers card" data-simplebar>
                 <h2>Medical Providers</h2>
                 {props.providers.map(provider=>{
                 return (

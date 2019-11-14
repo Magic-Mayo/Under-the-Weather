@@ -62,7 +62,7 @@ export default function Symptoms(props) {
 
     if(props.symptoms.length > 0){
         return (
-            <div className="Symptoms card">
+            <div className="Symptoms card" data-simplebar>
                 <h2>Symptom History</h2>
                 <Filter 
                     data={formData}

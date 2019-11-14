@@ -1,11 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import 'simplebar';
+// import 'simplebar/dist/simplebar.min.css';
+// import 'simplebar/dist/simplebar.min.js';
+
 
 export default function ContactsCard(props) {
     if(props.contact.length > 0){
         return (
-            <div className="contact-card card">
+            <div className="contact-card card"  data-simplebar>
                 <h2>Emergency Contacts</h2>
                 {props.contact.map(contact => (
                     <div key={contact._id} className="contact-card-item card">                
@@ -36,7 +40,7 @@ export default function ContactsCard(props) {
                             size="2x" 
                             />
                         </Link>
-                        <br/>                
+                        <br/>
                     </div>
                 ))}
             </div>
@@ -44,7 +48,7 @@ export default function ContactsCard(props) {
     }
 
     return (
-        <div className="contact-card-empty card">
+        <div className="contact-card contact-card-empty card">
             <h2>Emergency Contacts</h2>
             <Link to={'/dashboard/form/contact'} className="contact-card-link" style={{textDecoration: "none"}}>
                 <div className="contact-card-link-container">

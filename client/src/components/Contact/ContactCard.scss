@@ -1,13 +1,9 @@
 .contact-card {
-    grid-column: 5/8;
+    grid-column: 9/14;
     grid-row: 2/3;
-    min-height: 35vh;
-
-    &-empty {
-        grid-column: 5/8;
-        grid-row: 2/3;
-        min-height: 35vh;    
-    }
+    min-height: 15vh;
+    max-height: 50vh;
+    // overflow-y: scroll;
 
     &-link{
         &-container {
@@ -50,5 +46,12 @@
     &-delete {
         position: absolute;
         right:1rem;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .contact-card {
+        grid-row: 3/4;
+        grid-column: 1/8;
     }
 }

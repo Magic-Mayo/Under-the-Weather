@@ -117,7 +117,7 @@ class App extends Component {
                     setUser={this.setUser}
                     />
                 : */}
-                    <>
+                    {/* <> */}
                         <Route
                         path='/(form)?/:formtype?'
                         >{this.state.isLoggedIn ? <Redirect to="/dashboard"/> :
@@ -143,7 +143,7 @@ class App extends Component {
                             logIn={this.logIn}
                             />
                         </Route>
-                    </>
+                    {/* </> */}
                     {/* } */}
 			</div>
 		);

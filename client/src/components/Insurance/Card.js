@@ -3,20 +3,23 @@ import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function InsuranceCard(props) {
-    let anyExpand;
-    for (let key in props.itemIsExpanded){
-        if(props.itemIsExpanded[key]){
-            anyExpand = "expand"
-        }
-    }
+
+
+
+    // let anyExpand;
+    // for (let key in props.itemIsExpanded){
+    //     if(props.itemIsExpanded[key]){
+    //         anyExpand = "expand"
+    //     }
+    // }
 
     if(props.insurance.length > 0){
         return(
-            <div className={anyExpand === "expand" ? "expanded Insurance card" : "Insurance card overflow-hidden"}>
+            <div className="Insurance card" data-simplebar>
                 <h2>Insurance Information</h2>
                 {props.insurance.map(ins=>(
                     <div
-                    className="insurance-item card"
+                    className={"insurance-item card"}
                     key={ins._id}>
                         <div>
                             <h3 className="insurance-item-provider">{ins.provider}</h3>
