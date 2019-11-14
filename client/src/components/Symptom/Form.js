@@ -35,9 +35,9 @@ export default class SymptomForm extends Component {
                     date: new Date(symptoms.time) || '',
                     type:  symptoms.painType || '',
                     severity: symptoms.severity || '',
-                    body:  symptoms.body || '',
+                    body:  symptoms.bodyPart || '',
                     time:  new Date(symptoms.time) || '',
-                    symptom: symptoms.symptom || '',
+                    symptom: symptoms.symptoms || '',
                     entry: this.props.location.state.entry
                 })
             }
@@ -46,6 +46,9 @@ export default class SymptomForm extends Component {
             }
             if(state.edit){
                 this.setState({edit: true});
+            }
+            if(state.update){
+                this.setState({update: true})
             }
         }
     }
@@ -95,7 +98,7 @@ export default class SymptomForm extends Component {
     };
 
 	handleSubmit = (event) => {
-		if (event) event.preventDefault()
+		event.preventDefault();
 		console.log('+++++++++++++++++++++++++++++');
 		console.log(this.state.symptomsValue);
 		console.log(this.props.userId);
@@ -106,7 +109,11 @@ export default class SymptomForm extends Component {
 		API.updateUser({
 			userId: this.props.userId,
 			symptom: {
-				symptoms: this.state.symptomsValue
+				symptoms: this.state.symptom,
+                bodyPart: this.state.body,
+                painType: this.state.type,
+                severity: this.state.severity,
+                time: `${this.state.date}, ${this.state.time}`,
 			},
 			route: 'addsymptom'
 		})
@@ -134,13 +141,15 @@ export default class SymptomForm extends Component {
 	render() {
 		return (
 			<div className="symptom-form-container">
-				<h1 className="symptom-form-title">What Symptom(s) Are You Experiencing?</h1>
-                <h3 className="symptom-form-subtitle link" onClick={this.setEdit}>
-                    {this.state.edit ? "Back to Search" : "If it isn't listed, write your own in here"}
-                </h3>
+				<h1 className="symptom-form-title">{this.state.update ? "Update a Symptom" : "What Symptom(s) Are You Experiencing?"}</h1>
+                {!this.state.update &&
+                    <h3 className="symptom-form-subtitle link" onClick={this.setEdit}>
+                     {this.state.edit ? "Back to Search" : "If it isn't listed, write your own in here"}
+                    </h3>
+                }
                 <hr></hr>
 
-                {!this.state.edit ?
+                {/* {!this.state.edit ?
                     <form className="symptom-form" onSubmit={this.handleSubmit}>
                         <input
                             value={this.state.symptomsValue}
@@ -159,11 +168,11 @@ export default class SymptomForm extends Component {
                                     </button>
                                 </div>
                             ))}
-                        </section>
+                        </section> */}
                         {/* <button type="submit">Submit</button> */}
-                    </form>
+                    {/* </form>
                 :
-                    <>
+                    <> */}
                         <FirstPage
                         date={this.state.date}
                         time={this.state.time}
@@ -176,13 +185,15 @@ export default class SymptomForm extends Component {
                         selectTime={this.selectTime}
                         />
 
-                        {/* <div className="symptom-form-submit-container">
-                            <button type="button" className="symptom-form-submit" onClick={this.setSymptom}>
-                                Add symptom
-                            </button>
-                        </div> */}
-                    </>
-                }
+                        {/* {this.state.update && */}
+                            <div className="symptom-form-submit-container">
+                                <button type="button" className="symptom-form-submit" onClick={this.update ? this.update : this.handleSubmit}>
+                                    {this.state.update ? "Update" : "Add symptom"}
+                                </button>
+                            </div>
+                        {/*}*/}
+                    {/* </>
+                } */}
                     {/* <Symptoms handleSubmit={this.handleSubmit} handleChange={this.handleChange} symptomsValue={this.state.symptomsValue}/> */}
             </div>
 		);
@@ -195,7 +206,7 @@ function FirstPage(props){
         <>
             <form className="symptom-form-manual-entry-grid">
                 <div className="input-container symptom-form-manual-entry-grid-item symptom-form-manual-entry-grid-item-symptom">
-                    <label htmlFor="symptom"><span>*</span>Symptom:</label>
+                    <label htmlFor="symptom">Symptom:</label>
                     <input
                     name="symptom"
                     placeholder="migraine"
@@ -215,6 +226,7 @@ function FirstPage(props){
                     type="radio"
                     value="Mild"
                     onChange={props.handleInput}
+                    checked={props.severity === "Mild"}
                     required
                     />
                     <span>Moderate</span>
@@ -223,6 +235,7 @@ function FirstPage(props){
                     type="radio"
                     value="Moderate"
                     onChange={props.handleInput}
+                    checked={props.severity === "Moderate"}
                     required
                     />
                     <span>Severe</span>
@@ -231,6 +244,7 @@ function FirstPage(props){
                     type="radio"
                     value="Severe"
                     onChange={props.handleInput}
+                    checked={props.severity === "Severe"}
                     required
                     />
                     <span>Very Severe</span>
@@ -239,6 +253,7 @@ function FirstPage(props){
                     type="radio"
                     value="Very Severe"
                     onChange={props.handleInput}
+                    checked={props.severity === "Very Severe"}
                     required
                     />
                 </div>
