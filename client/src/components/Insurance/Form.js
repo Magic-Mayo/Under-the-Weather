@@ -157,9 +157,6 @@ export default class InsuranceForm extends Component {
         if(this.props.location.state){
             const {state} = this.props.location
             const {ins} = state
-            if(state.add){
-                this.setState({add: true})
-            }
 
             if(ins){
                 this.setState({
@@ -178,12 +175,12 @@ export default class InsuranceForm extends Component {
                 })
             } 
             
-            if (state.edit){
-                this.setState({edit: true})
-            }
-
             if (state.signup){
                 this.setState({signup: true})
+            }
+
+            if (state.update){
+                this.setState({update: true})
             }
         }
     }
@@ -266,7 +263,7 @@ export default class InsuranceForm extends Component {
 		return (
 			<div className="insurance-form-container form">
 				{this.state.page === 1 ? 
-                    <h1 className="insurance-form-title">Please Enter Insurance Information</h1> :
+                    <h1 className="insurance-form-title">{this.state.update ? "Update" : "Please Enter"} Insurance Information</h1> :
                     <h1 className="insurance-form-title">Enter Co-pay Information</h1>}
                 <hr></hr>
                 {this.state.page ===1 ?
@@ -304,15 +301,15 @@ export default class InsuranceForm extends Component {
                     </Link>
                 }
 
-                {this.state.edit &&
                     <button className="insurance-form-next" type="button"
                     onClick={this.state.page === 1 ? this.nextPage : this.prevpage}
-                    >{this.state.page === 1 ? "Next" : "Previous"}</button>
-                }
+                    >
+                        {this.state.page === 1 ? "Next" : "Previous"}
+                    </button>
 
                 <button className="insurance-form-submit" type="button"
-                onClick={this.state.edit || !this.state.add ? () => this.update(this.props.match.params.id) : this.addInsurance}
-                >{!this.state.add ? "Update" : "Submit"}</button>
+                onClick={this.state.update ? () => this.update(this.props.match.params.id) : this.addInsurance}
+                >{this.state.update ? "Update" : "Submit"}</button>
             </div>
             </div>
 		);
