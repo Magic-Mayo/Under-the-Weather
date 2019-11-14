@@ -129,10 +129,6 @@ class SignupForm extends Component {
             this.signUpUser()
         }
 
-        if(this.state.currentPage === 3){
-            this.setState({currentPage: this.state.currentPage + 1})
-        }
-
     };
     
     prevPage = () => {
@@ -170,7 +166,7 @@ class SignupForm extends Component {
         }
 
 		return (
-			<div className="grid entrance">
+			<div className={this.state.currentPage > 2 ? "entrance" : "grid entrance"}>
 				<form className={`form-${this.props.loginType}-input-box form-input-area`}>
 					<h1 className="form-title">{this.state.currentPage < 3 ? this.props.headingText : "Welcome to Under the Weather!"}</h1>
 					{this.state.currentPage === 1 ? (
@@ -195,12 +191,7 @@ class SignupForm extends Component {
 							sex={this.state.sex}
 							age={this.state.age}
 						/>
-					) : this.state.currentPage === 3 ? (
-                        <ThirdPage
-                            handleInput={this.handleInput}
-                            redirect={this.state.redirect}
-                            />
-                    ) : <DetailsPage
+					) : <DetailsPage
                         redirect={this.state.redirect}
                         handleInput={this.handleInput}
                         {...this.props.match}
@@ -209,29 +200,33 @@ class SignupForm extends Component {
                     }
 
                     <div className="btn-container">
+                        {this.state.currentPage === 2 && 
+                            <button
+                            className="previous-btn btn"
+                            onClick={this.prevPage} type="button">
+                                Previous
+                            </button>}
+
                         {this.state.currentPage > 2 ?
                             (<button type="button" onClick={this.dashboard} className="continue-btn btn">
                                 Finish & Go To Dashboard
                             </button>)
                         :
-                        !this.state.error ?
-                            <button type="button" className="continue-btn btn" onClick={this.nextPage}>
-                                    Continue
-                            </button>
-                        :
-                        this.state.error &&
-                            <span className="sign-up-error">{this.state.error}
-                            </span>
+                            !this.state.error ?
+                                <button type="button" className="continue-btn btn" onClick={this.nextPage}>
+                                        Continue
+                                </button>
+                            :
+                            this.state.error &&
+                                <span className="sign-up-error">{this.state.error}
+                                </span>
                         }
-                        {this.state.currentPage > 1 && 
-                            <button
-                            className="previous-btn btn"
-                            onClick={this.state.currentPage === 3 ? this.nextPage : this.prevPage} type="button">
-                                {this.state.currentPage === 3 ? "Add more details" : "Previous"}
-                            </button>}
+
 					</div>
 				</form>
-                <SignInSocial setUser={this.props.setUser} />
+                {this.state.currentPage < 3 &&
+                    <SignInSocial setUser={this.props.setUser} />
+                }
 			</div>
 		);
 	}
@@ -310,7 +305,7 @@ function SecondPage(props) {
 			</div>
 			<div className="input-container">
 				<label htmlFor="lastname">
-					<span>*</span> Last Name:{' '}
+					Last Name:{' '}
 				</label>
 				<input 
 					type="text" 
@@ -322,35 +317,36 @@ function SecondPage(props) {
 					/>
 			</div>
 			<div className="flex-between">
-				<div className="input-container">
+				<div className="input-container choose-sex">
 					<label htmlFor="sex">
-						<span>*</span> Sex:{' '}
+						<span>*</span> Choose Sex:{' '}
 					</label>
-                    <label>
-                        <span>Male</span>
+                    <div className="choose-sex-male">
+                        <label for="Male">
+                            <span>Male: </span>
+                        </label>
                         <input
                             type="radio"
                             name="sex"
-                            id="sex"
                             value="Male"
                             onChange={props.handleInput}
-                            checked={props.sex}
-                            // required
+                            selected={props.sex}
+                            required
                         />
-                    </label>
-                    <label>
-                        <span>Female</span>
+                    </div>
+                    <div className="choose-sex-female">
+                        <label for="Female">
+                            <span>Female: </span>
+                        </label>
 					    <input
                             type="radio"
                             name="sex"
-                            id="sex"
                             value="Female"
-                            checked={props.sex}
+                            selected={props.sex}
                             onChange={props.handleInput}
-                            // required
-
+                            required
                         />
-                    </label>
+                    </div>
 				</div>
 				<div className="input-container">
 					<label htmlFor="age">
@@ -363,7 +359,7 @@ function SecondPage(props) {
 						value={props.age}
                         onChange={props.handleInput}
 						placeholder="36"
-						// required
+						required
 
 					/>
 				</div>
@@ -372,34 +368,30 @@ function SecondPage(props) {
 	);
 }
 
-function ThirdPage(props) {
-    return (
-        <>
-            <h3 className="form-subtitle">We recommend adding in some more details before heading over to the dashboard</h3>
-        </>
-    )
-}
-
 function DetailsPage(props) {
     console.log(props.url)
     return (
-        <div className="sign-up-details">
-            <Link to={{pathname: "/form/insurance", state: {signup: true}}}>
-                <button type="button" className="details-insurance" onClick={()=>props.openForm('insurance')}>
-                    Add Insurance Info
-                </button>
-            </Link>
-            <Link to={{pathname: "/form/provider", state: {signup: true}}}>
-                <button type="button" className="details-provider" onClick={()=>props.openForm('provider')}>
-                    Add Provider Info
-                </button>
-            </Link>
-            <Link to={{pathname: "/form/contact", state: {signup: true}}}>
-                <button type="button" className="details-contact" onClick={()=>props.openForm('contact')}>
-                    Add Emergency Contact Info
-                </button>
-            </Link>
-        </div>
+        <>
+            <h3 className="form-subtitle">We recommend adding in some more details before heading over to the dashboard</h3>
+            <div className="sign-up-details">
+                <Link to={{pathname: "/form/insurance", state: {signup: true}}}>
+                    <button type="button" className="details-insurance" onClick={()=>props.openForm('insurance')}>
+                        Add Insurance Info
+                    </button>
+                </Link>
+                <Link to={{pathname: "/form/provider", state: {signup: true}}}>
+                    <button type="button" className="details-provider" onClick={()=>props.openForm('provider')}>
+                        Add Provider Info
+                    </button>
+                </Link>
+                <Link to={{pathname: "/form/contact", state: {signup: true}}}>
+                    <button type="button" className="details-contact" onClick={()=>props.openForm('contact')}>
+                        Add Emergency Contact Info
+                    </button>
+                </Link>
+            </div>
+        </>
+
     )
 }
 

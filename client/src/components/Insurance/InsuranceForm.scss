@@ -9,7 +9,6 @@
     &-container {
         width: 100%;
         min-height: 45vh;
-        overflow-y: auto;
         margin: 7.5rem 5rem 0;
     }
 
@@ -105,7 +104,8 @@
         position: relative;
         display: flex;
         justify-content: center;
-        margin-top: 5rem
+        margin-top: 5rem;
+        padding: 0 .5rem;
     }
 
     &-grid {

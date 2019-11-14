@@ -57,12 +57,12 @@ export default class LoginForm extends Component {
 						>
 							Log In
 						</button>
-                        <label htmlFor="login-persist" className="login-persist">Keep me logged in</label>
+                        {/* <label htmlFor="login-persist" className="login-persist">Keep me logged in</label>
                         <input type="checkbox"
                             onChange={this.handleInput}
                             checked={this.state.loginpersist}
                             name="loginpersist"
-                        />
+                        /> */}
 					</div>
 				</form>
                 <SignInSocial setUser={this.props.setUser} />

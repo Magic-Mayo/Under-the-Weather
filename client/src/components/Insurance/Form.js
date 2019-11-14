@@ -198,7 +198,7 @@ export default class InsuranceForm extends Component {
         this.setState({page: this.state.page - 1})
     }
 
-	addInsurance = (e) => {
+	addInsurance = e => {
 		const insurance = {
 			route:"addinsurance",
 			insurance:{
@@ -295,7 +295,7 @@ export default class InsuranceForm extends Component {
             <div className="insurance-form-submit-container">
                 {this.state.signup &&
                     <Link to={{pathname: "/", state: {details: true, currentPage: 4}}}>
-                        <button type="button">
+                        <button type="button" className="back-to-details button">
                             Back to Details Page
                         </button>
                     </Link>
