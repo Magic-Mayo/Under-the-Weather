@@ -5,7 +5,7 @@
     grid-row: 2/3;
     display: grid;
     grid-template-columns: 2rem repeat(12,1fr) 2rem;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto;
     gap: .5rem;
     row-gap: 2rem;
     align-items: flex-start;
