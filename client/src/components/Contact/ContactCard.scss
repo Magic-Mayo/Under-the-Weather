@@ -17,15 +17,16 @@
     }
 
     &-item {
-        background: $blue-accent;
-        margin: .5rem 0;
+        background: white;
+        border: none;
         border-radius: .75rem;
         padding: .75rem;
         text-align: left;
         display: flex;
         justify-content: center;
         align-items: center;
-
+        margin: 1.5rem 0;
+        box-shadow: 0 0 1.5rem rgba($black, .25);
         // &-name {
         //     margin-bottom: 1rem;
         // }

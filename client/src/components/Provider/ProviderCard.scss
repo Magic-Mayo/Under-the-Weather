@@ -9,12 +9,15 @@
 
     &-item{
         display: flex;
-        background: $blue-accent;
+        background: white;
+        border: none;
         border-radius: .75rem;
         padding: .5rem;
         justify-content: center;
         // flex-wrap: wrap;
         align-items: center;
+        margin: 1.5rem 0;
+        box-shadow: 0 0 1.5rem rgba($black, .25);
 
         // &-name {
         //     grid-column: 1/3;

@@ -1,8 +1,8 @@
 .Symptoms {
     grid-row: 1/2;
     grid-column: 2/8;
-    min-height: 50vh;
-    max-height: 100%;
+    min-height: 30vh;
+    max-height: 45vh;
 }
 
 .filter-form {
@@ -156,8 +156,6 @@
     .Symptoms {
         grid-row: 1/2;
         grid-column: 2/9;
-        min-height: 50vh;
-        max-height: 100%;
     }
 }
 
@@ -165,8 +163,6 @@
     .Symptoms {
         grid-row: 1/2;
         grid-column: 2/14;
-        min-height: 40vh;
-        max-height: 100%;
     }
 }
 
