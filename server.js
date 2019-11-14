@@ -21,17 +21,19 @@ app.use(session({
     secret: "nothing to see here",
     resave: false,
     store: new MongoStore({mongooseConnection: mongoose.connection}),
-    saveUninitialized: false,
+    saveUninitialized: true,
     path: '/session'
 }));
+
+
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-// app.use((req, res, next) => {
+// app.use(session(req, res, next) => {
 //     if (req.cookies.under_weather && !req.session.user) {
-//         res.clearCookie('under_weather');
+//         // res.clearCookie('under_weather');
 //     }
 //     next();
 // });
@@ -49,7 +51,8 @@ app.use(routes);
 
 app.get('/googleb7dbc79786b470be.html',(req,res)=>{
     res.sendFile(path.join(__dirname, "./client/public/googleb7dbc79786b470be.html"));
-})
+});
+
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/public/index.html"));
