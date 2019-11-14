@@ -36,7 +36,7 @@ export default function ContactsCard(props) {
                         onClick={(e)=>props.expand(e)}
                         />
 
-                        <Link to={{pathname: `dashboard/form/contact/${contact._id}`, state: {contact}}}>
+                        <Link to={{pathname: `dashboard/form/contact/${contact._id}`, state: {update: true, contact}}}>
                             <FontAwesomeIcon
                             icon="edit"
                             className="contact-card-edit item-edit item"
