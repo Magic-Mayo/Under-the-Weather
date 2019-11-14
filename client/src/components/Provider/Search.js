@@ -63,7 +63,7 @@ class Search extends Component {
 					longitude={this.state.longitude}
                     drSearch={this.drSearch}
                     handleInputChange={this.props.handleInput}
-                    entry={this.props.entry}
+                    handleEntry={this.props.handleEntry}
 				/>
 				<section className={this.props.entry ? "provider-form-results hide" : "provider-form-results"}>
 					{this.state.results.map((res) => (
@@ -104,7 +104,7 @@ function Input(props) {
 					Submit
 				</button>{' '}
                 <span className="provider-form-link">Already have this information?{' '}
-                    <span className="link" onClick={props.entry}>Click here to input manually</span>
+                    <span className="link" onClick={props.handleEntry}>Click here to input manually</span>
                 </span>
 			</form>
 		</div>
