@@ -311,7 +311,7 @@ export default class InsuranceForm extends Component {
                 }
 
                 <button className="insurance-form-submit" type="button"
-                onClick={this.state.edit || !this.state.add ? () => this.update(this.props.match.params.id) : this.addInsurance}
+                onClick={this.state.update ? () => this.update(this.props.match.params.id) : this.addInsurance}
                 >{!this.state.add ? "Update" : "Submit"}</button>
             </div>
             </div>
