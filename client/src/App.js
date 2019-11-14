@@ -18,7 +18,7 @@ import {
 	faEye,
 	faEyeSlash,
 	faPen,
-	faMinusCircle,
+	faMinus,
     faEdit,
     faAngleDoubleDown,
     faAngleDoubleUp
@@ -39,7 +39,7 @@ library.add(
     faPen,
     fab,
     faEdit,
-    faMinusCircle,
+    faMinus,
     faAngleDoubleDown,
     faAngleDoubleUp);
 
