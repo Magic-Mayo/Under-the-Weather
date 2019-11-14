@@ -48,10 +48,6 @@ export default class ProviderForm extends Component {
                 })
             }
 
-            if (state && !state.provider){
-                this.setState({edit: state.edit})
-            }
-
             if (state.signup){
                 this.setState({signup: true})
             }
