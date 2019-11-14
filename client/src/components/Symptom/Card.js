@@ -100,7 +100,7 @@ export default function Symptoms(props) {
                                 }
                             </p>
                             <p className="symptoms-result-item-body">{symptoms.bodyPart}</p>
-                        <Link to={{pathname: `dashboard/form/symptom/${symptoms._id}`, state: {edit: true, symptoms}}}
+                        <Link to={{pathname: `dashboard/form/symptom/${symptoms._id}`, state: {update: true, edit: true, symptoms}}}
                         className="symptoms-result-edit">
                             <FontAwesomeIcon icon="edit" size="2x"/>
                         </Link>
