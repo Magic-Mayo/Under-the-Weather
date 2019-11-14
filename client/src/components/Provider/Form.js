@@ -56,6 +56,10 @@ export default class ProviderForm extends Component {
                 this.setState({signup: true})
             }
 
+            if (state.update){
+                this.setState({update: true})
+            }
+
         }
     }
     
@@ -121,7 +125,8 @@ export default class ProviderForm extends Component {
 						search={this.state.search}
 						submitProvider={this.submitProvider}
                         handleInput={this.handleInput}
-                        entry={this.entry}
+                        entry={this.state.entry}
+                        handleEntry={this.entry}
                         setSearchResults={this.setSearchResults}
 					/>
                     :
@@ -141,6 +146,7 @@ export default class ProviderForm extends Component {
                             entry={this.entry}
                             page={this.state.page}
                             nextPage={this.nextPage}
+                            update={this.state.update}
                         />
                     :
                         <SecondPage
@@ -150,6 +156,7 @@ export default class ProviderForm extends Component {
                         entry={this.entry}
                         page={this.state.page}
                         prevPage={this.prevPage}
+                        update={this.state.update}
                         />
                     )
                 }
@@ -184,9 +191,13 @@ const FirstPage = props => {
     }
     return (
         <div className="provider-form-manual-entry">
-            <h2 className="provider-form-title">Enter your Doctor's information below</h2>
-            <h5 className="form-subtitle">To run a search for a doctor,{' '}</h5>
-            <h5 className="link" onClick={props.entry}>Click here</h5>
+            <h2 className="provider-form-title">{props.update ? "Update ": "Enter "}your Doctor's information below</h2>
+            {!props.update &&
+                <>
+                    <h5 className="form-subtitle">To run a search for a doctor,{' '}</h5>
+                    <h5 className="link" onClick={props.entry}>Click here</h5>
+                </>
+            }
             <hr></hr>
             <form className="provider-form-manual-entry-grid">
                 <div className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-name">
@@ -273,7 +284,7 @@ const FirstPage = props => {
 function SecondPage(props){
     return (
         <div className="provider-form-manual-entry">
-            <h2 className="provider-form-title">Enter your Doctor's information below</h2>
+            <h2 className="provider-form-title">{props.update ? "Update" : "Please Enter"} your Doctor's information below</h2>
             <h5 className="form-subtitle">To run a search for a doctor,{' '}</h5>
             <h5 className="link" onClick={props.entry}>Click here</h5>
             <hr></hr>
