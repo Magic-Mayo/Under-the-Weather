@@ -49,7 +49,7 @@
 				&-container {
 					flex-grow: 10;
 					display: flex;
-					flex-direction: column;
+					flex-direction: row;
 					justify-content: center;
 					align-items: center;
 					width: 100%;
@@ -87,7 +87,7 @@
 		width: 82.5rem;
 		min-height: 90vh;
 		max-height: 90vh;
-		// overflow: hidden;
+		overflow-y: auto;
 		display: flex;
 		grid-template-rows: 10% auto;
 		border: .25rem solid transparent;
@@ -161,8 +161,24 @@
 	}
 
 	&-new {
-		h1 {
-			color: $blue-accent;
+		width: 100%;
+		&-input-box {
+			margin-left: 2rem;
+
+
+			label[for=lastname], label[for=Female], label[for=Male]{
+				margin: 0 2rem;
+				font-size: 1.8rem;
+				text-align: center;
+			}
+
+			input[type=radio]{
+				box-shadow: none;
+			}
+
+			h1 {
+				color: $blue-accent;
+			}
 		}
 	}
 
@@ -196,4 +212,9 @@
 	to {
 		border-color: $blue-accent;
 	}
+}
+
+.choose-sex-male, .choose-sex-female {
+	display: inline-block;
+	font-size: 1.5rem;
 }
