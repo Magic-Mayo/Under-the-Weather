@@ -6,20 +6,11 @@ export default function Providers(props) {
     if (props.providers.length > 0) {
         return (
             <div className="Providers card" data-simplebar>
+                <div style={{width: "100%"}}>
                 <h2>Medical Providers</h2>
-                {props.providers.map(provider => {
-                    return (
+                {props.providers.map(provider => (
                         <div key={provider._id} className="provider-item card">
-                            <h4 className="provider-item-name">{provider.name}
-                                <span>
-                                    <FontAwesomeIcon
-                                        icon="minus-circle"
-                                        className="insurance-delete"
-                                        size="1x"
-                                        onClick={() => props.delete({ _id: provider._id, card: props.card, route: props.route })}>
-                                    </FontAwesomeIcon>
-                                </span>
-                            </h4>
+                            <h4 className="provider-item-name">{provider.name}</h4>
 
                             {provider.doctorType &&
                                 <h5 className="provider-item-title">{provider.doctorType}</h5>}
@@ -37,15 +28,26 @@ export default function Providers(props) {
                                 id={provider._id}
                                 onClick={(e) => props.expand(e)}
                             />
-                            <Link to={{ pathname: `dashboard/form/provider/${provider._id}`, state: { update: true, provider, entry: true } }}>
+                            <span className="delete-icon-provider-wrapper">
+                                <FontAwesomeIcon
+                                    icon="minus"
+                                    className="delete-icon-provider"
+                                    size="1x"
+                                    onClick={() => props.delete({ _id: provider._id, card: props.card, route: props.route })}/>
+                            </span>
+                            <Link
+                            to={{ pathname: `dashboard/form/provider/${provider._id}`, 
+                                state: { update: true, provider, entry: true } }}
+                            className="provider-result-edit">
                                 <FontAwesomeIcon
                                     icon="edit"
-                                    className="provider-card-edit item-edit item"
+                                    className="edit-icon edit-icon-provider"
                                     size="2x"
                                 />
                             </Link>
                         </div>)
-                })}
+                )}
+                </div>
             </div>
         );
     }
