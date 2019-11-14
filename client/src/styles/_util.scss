@@ -46,7 +46,7 @@
         font-size: 2rem;
         padding: 1.5rem .25rem 1.5rem 2.5rem;
         margin-left: 2rem;
-        background-color: $white;
+        background-color: white;
         border: 0;
         box-shadow: 0 .5rem 1.5rem rgba($black, .275);
         border-radius: .25rem;
@@ -198,4 +198,13 @@
 
 :active, :focus {
     outline: none
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
 }
