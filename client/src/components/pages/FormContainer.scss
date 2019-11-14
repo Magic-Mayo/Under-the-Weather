@@ -86,7 +86,8 @@
 		z-index: 150;
 		width: 82.5rem;
 		min-height: 90vh;
-		overflow: hidden;
+		max-height: 90vh;
+		// overflow: hidden;
 		display: flex;
 		grid-template-rows: 10% auto;
 		border: .25rem solid transparent;
@@ -104,13 +105,13 @@
             height: 5rem;
             z-index: 151;
             position: absolute;
-            right: 2rem;
-            top: .6rem;
+            right: .75rem;
+            top: .75rem;
             font-weight: 600;
             font-size: 2.75rem;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end;
 
             &:hover {
                 background: $peach-contrast-heavy;
