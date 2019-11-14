@@ -60,11 +60,15 @@
     
 }
 .insurance-delete{   
-    color:$peach-contrast-heavy;
+    color:black;
     // margin-left:1.5rem;  
     position: absolute;
     right:0.5rem;
-   
-    
+    bottom: 0.5rem;
+    cursor: pointer;
+}
 
+.insurance-delete:hover{
+    color:red;
+    transform: scale(1.5);
 }

@@ -13,8 +13,7 @@ import { withRouter } from 'react-router';
 
 class Dashboard extends Component{
     state = {
-        navOpen: false,
-        show:false
+        navOpen: false        
     }
 
     componentDidMount(){
@@ -25,7 +24,10 @@ class Dashboard extends Component{
     }
 
     //function to show modal
-    showModal = () =>{       
+    showModal = () =>{
+        this.setState({
+            show:true
+        })       
               
     } 
 
@@ -39,6 +41,7 @@ class Dashboard extends Component{
         if(window.confirm("Are you sure you want to delete all information?")){ 
         Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then(user=>{
             this.props.setUser(user.data);
+            this.setState({show:false})
         
     })
 }
@@ -100,7 +103,8 @@ class Dashboard extends Component{
                 edit={this.editObject}
                 expand={this.expand}
                 itemIsExpanded={this.state}
-                modal={this.showModal} 
+                modal={this.showModal}                
+                show={this.state.show} 
                 card='insurance'
                 route='deleteinsurance'
                 />

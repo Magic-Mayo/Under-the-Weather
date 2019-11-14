@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Modal from '../Modal/modal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function InsuranceCard(props) {
@@ -9,7 +10,6 @@ export default function InsuranceCard(props) {
             anyExpand = "expand"
         }
     }
-    // onClick={() => props.delete({ _id: ins._id, card: props.card, route: props.route })}>
 
     if (props.insurance.length > 0) {
         return (
@@ -19,8 +19,9 @@ export default function InsuranceCard(props) {
                     <div
                         className="insurance-item card"
                         key={ins._id}>
-                        <div>
-                            <h3 className="insurance-item-provider">{ins.provider}
+                             {props.show && <div>
+                </div>} 
+                     <h3 className="insurance-item-provider">{ins.provider}
                             <FontAwesomeIcon
                             icon="minus-circle"
                             className="insurance-delete"
@@ -29,6 +30,7 @@ export default function InsuranceCard(props) {
                         </FontAwesomeIcon>
                             </h3>
                             <h4 className="insurance-item-type">{ins.insuranceType}</h4>
+                            <div>                 
                         </div>
 
 

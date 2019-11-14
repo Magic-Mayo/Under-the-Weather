@@ -132,3 +132,14 @@
         }
     }
 }
+.symptom-delete{
+            color:black;
+            position: absolute;
+            right:0.5rem;
+            top:0.5rem;
+            cursor: pointer;
+        }
+        .symptom-delete:hover{
+            color:red;
+            transform: scale(1.5);
+        }
