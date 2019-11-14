@@ -159,7 +159,7 @@ export default class ProviderForm extends Component {
                 <div className="provider-form-submit-container">
                     {this.state.signup &&
                         <Link to={{pathname: "/", state: {details: true, currentPage: 4}}}>
-                            <button type="button">
+                            <button type="button" className="back-to-details button">
                                 Back to Details Page
                             </button>
                         </Link>}
