@@ -52,9 +52,6 @@ class Search extends Component {
 	render() {
 		return (
 			<div>
-				<h1 className="provider-form-title form-title">What type of doctor are you looking for?</h1>
-				<h3 className="provider-form-subtitle">We'll Search Around The Area For You</h3>
-
 				<Input
 					latitude={this.state.latitude}
 					longitude={this.state.longitude}
