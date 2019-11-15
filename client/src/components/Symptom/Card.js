@@ -49,15 +49,18 @@ export default function Symptoms(props) {
 		return (
 			<div className="Symptoms card" data-simplebar>
 				<h2>Symptom History</h2>
-				<Filter data={formData} sort={sortSymptoms} />
+				{/* <Filter data={formData} sort={sortSymptoms} /> */}
 
 				<section className="symptoms-content-container">
 					{props.symptoms.map((symptoms) => (
-						<div key={symptoms._id} className="symptoms-result-container">
-							<p className="symptoms-result-item-type">
-								{symptoms.painType} {symptoms.symptoms}
+						<div key={symptoms._id}
+                        className={`symptoms-result-container ${symptoms.severity && "bottom-border"} ${symptoms.severity.toLowerCase()}`}>
+							<p className="symptoms-result-item-symptom">
+								{symptoms.symptoms} {symptoms.bodyPart && <span>({symptoms.bodyPart})</span>}
 							</p>
-							<p className="symptoms-result-item-severity">{symptoms.severity}</p>
+                            <p className="symptoms-result-item-type">
+                                {symptoms.painType}
+                            </p>
 							<p className="symptoms-result-item-time">
 								{moment().diff(symptoms.time, 'hours') > 0 &&
 								moment().diff(symptoms.time, 'hours') <= 23 ? (
@@ -79,7 +82,7 @@ export default function Symptoms(props) {
 									moment(symptoms.time).format('DD MMM | h:MM A')
 								)}
 							</p>
-							<p className="symptoms-result-item-body">{symptoms.bodyPart}</p>
+							{/* <p className="symptoms-result-item-body">{symptoms.bodyPart}</p> */}
 							<Link
 								to={{
 									pathname: `dashboard/form/symptom/${symptoms._id}`,
