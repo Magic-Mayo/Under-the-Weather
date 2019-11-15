@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import SymptomList from '../../data/symptoms.json';
 // import Symptoms from './symptoms';
-import API from '../../utils/SymptomAPI';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
@@ -18,7 +16,6 @@ export default class SymptomForm extends Component {
         date: new Date(),
         time: new Date(),
         severity: '',
-        type: '',
         symptom: '',
         body: '',
         edit: false
