@@ -51,7 +51,7 @@ export default function Symptoms(props) {
 				<h2>Symptom History</h2>
 				{/* <Filter data={formData} sort={sortSymptoms} /> */}
 
-				<section className="symptoms-content-container">
+				<section className="symptoms-content-container" style={{width: "100%"}}>
 					{props.symptoms.map((symptoms) => (
 						<div key={symptoms._id}
                         className={`symptoms-result-container ${symptoms.severity && "bottom-border"} ${symptoms.severity.toLowerCase()}`}>
@@ -109,7 +109,7 @@ export default function Symptoms(props) {
 	return (
 		<div className="Symptoms card">
 			<h2>Symptom History</h2>
-			<Filter data={formData} />
+			{/* <Filter data={formData} /> */}
 			<Link
 				to={{ pathname: '/dashboard/form/symptom', state: { add: true } }}
 				className="symptoms-card-link"
