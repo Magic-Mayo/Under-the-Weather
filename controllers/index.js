@@ -85,7 +85,8 @@ module.exports = {
     },
     findorCreate: (req,res)=>{
         console.log(req.body)
-        db.User.findOne({userName: req.body.userName}).then(user=>{
+        db.User.findOne({'data.email': req.body.data.email}).then(user=>{
+            console.log(user)
             if(!user){
                 return db.User.create(req.body)
                     .then(newUser=>{
