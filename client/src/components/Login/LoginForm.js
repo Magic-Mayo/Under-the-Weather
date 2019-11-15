@@ -27,7 +27,8 @@ export default class LoginForm extends Component {
 						<input
 							type="email"
 							name="email"
-							id="email"
+                            id="email"
+                            autoComplete="username"
 							value={this.state.email}
 							onChange={this.handleInput}
                             placeholder="janedoe24@gmail.com"
@@ -40,7 +41,8 @@ export default class LoginForm extends Component {
 						</label>
 						<input
 							type={this.props.showPassword ? 'text' : 'password'}
-							name="password"
+                            name="password"
+                            autoComplete="current-password"
 							value={this.state.password}
 							onChange={this.handleInput}
                             id="password"
