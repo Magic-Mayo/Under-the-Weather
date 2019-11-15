@@ -10,6 +10,7 @@ import {withRouter} from 'react-router';
 class FormContainer extends Component {
     state = {
         loginActive: true,
+        scroll: false
     }
 
     componentDidMount(){
@@ -41,7 +42,7 @@ class FormContainer extends Component {
 	render() {
         return (
 			<div className="FormContainer">
-                <section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
+                <section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`} data-simplebar>
                 {this.props.isLoggedIn &&
                     <Link to="/dashboard" className="form-container-close" title="Close Form">
                             X
