@@ -16,7 +16,7 @@
         justify-content: center;
         // flex-wrap: wrap;
         align-items: center;
-        margin: 1.5rem 0;
+        margin: 2.5rem 0;
         box-shadow: 0 0 1.5rem rgba($black, .25);
 
         // &-name {
@@ -46,6 +46,22 @@
             font-size: 2rem;
             font-style: oblique;
             font-weight: 550;
+        }
+    }
+
+    &-result{
+        &-edit {
+            position: absolute;
+            right: 0rem;
+            bottom: 0rem;
+            width: 5rem;
+            height: 5rem;
+            background-color: $blue-main;
+            border-radius: 50%;
+            transform: scale(.8) translate(25%,50%);
+            &:hover {
+                color: $black;
+            }
         }
     }
 }

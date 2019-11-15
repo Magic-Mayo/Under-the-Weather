@@ -29,12 +29,15 @@
         // &-deductible {
         // }
 
-        // &-copay {
-        //     &-title {
-        //     }
+        &-copay {
+            &-title {
+                font-weight: 600;
+                font-size: 1.7rem;
+                margin-top: .5rem;
+            }
         //     &-doctor {
         //     }
-        // }
+        }
 
         // &-expand {
         // }
@@ -56,21 +59,25 @@
             }
         } 
     }
+
+    &-result {
+        &-edit {
+            position: absolute;
+            right: 0rem;
+            bottom: 0rem;
+            width: 5rem;
+            height: 5rem;
+            background-color: $blue-main;
+            border-radius: 50%;
+            transform: scale(.8) translate(25%,50%);
+            &:hover {
+                color: $black;
+            }
+        }
+    }
     
 }
-.insurance-delete{   
-    color:black;
-    // margin-left:1.5rem;  
-    position: absolute;
-    right:0.5rem;
-    bottom: 0.5rem;
-    cursor: pointer;
-}
 
-.insurance-delete:hover{
-    color:red;
-    transform: scale(1.5);
-}
 
 @media only screen and (max-width: 1000px) {
     .Insurance {

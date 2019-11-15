@@ -1,52 +1,64 @@
-.contact-card {
-    grid-column: 9/14;
-    grid-row: 2/3;
-    min-height: 15vh;
-    max-height: 50vh;
-    // overflow-y: scroll;
+.contact {
 
-    &-link{
-        &-container {
-            width: 100%;
+    &-result{
+        &-edit {
+            position: absolute;
+            right: 0rem;
+            bottom: 0rem;
+            width: 5rem;
+            height: 5rem;
+            background-color: $blue-main;
+            border-radius: 50%;
+            transform: scale(.8) translate(25%,50%);
+            &:hover {
+                color: $black;
+            }
         }
-        &-add {
-            font-size: 2rem;
-            font-style: oblique;
-            font-weight: 550;
+    }
+
+    &-card {
+        grid-column: 9/14;
+        grid-row: 2/3;
+        min-height: 15vh;
+        max-height: 50vh;
+        // overflow-y: scroll;
+
+        &-link{
+            &-container {
+                width: 100%;
+            }
+            &-add {
+                font-size: 2rem;
+                font-style: oblique;
+                font-weight: 550;
+            }
         }
-    }
 
-    &-item {
-        background: white;
-        border: none;
-        border-radius: .75rem;
-        padding: .75rem;
-        text-align: left;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 1.5rem 0;
-        box-shadow: 0 0 1.5rem rgba($black, .25);
-        // &-name {
-        //     margin-bottom: 1rem;
-        // }
-        // &-city {
-        //     margin-bottom: 1rem;
-        // }
-        // &-phone {
-        //     margin-bottom: 1rem;
-        // }
-        // &-relationship {
-        //     margin-bottom: 1rem;
-        // }
-    }
-
-    &-expand {
-    }
-    
-    &-delete {
-        position: absolute;
-        right:1rem;
+        &-item {
+            background: white;
+            border: none;
+            border-radius: .75rem;
+            padding: .75rem;
+            text-align: left;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1.5rem 0;
+            box-shadow: 0 0 1.5rem rgba($black, .25);
+            &-name {
+                font-weight: 600;
+                font-size: 2rem;
+            }
+            // &-city {
+            //     margin-bottom: 1rem;
+            // }
+            // &-phone {
+            //     margin-bottom: 1rem;
+            // }
+            &-relationship {
+                font-style: italic;
+            }
+        }
     }
 }
 

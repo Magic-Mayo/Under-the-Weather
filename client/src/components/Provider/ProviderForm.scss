@@ -4,12 +4,11 @@
     width: 80%;
     max-width: 750px;
     justify-content: center;
-    margin: 4rem auto;
+    margin: 3rem auto;
     font-size: 2.35rem;
 
     &-container {
         width: 100%;
-        margin: 7.5rem 5rem 0;
     }
 
     &-link {
@@ -43,7 +42,8 @@
     }
 
     &-subtitle {
-        @include heading(2.2rem);
+        @include heading(1.9rem);
+        // font-style: italic;
         margin-top: .5rem;
     }
 

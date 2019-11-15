@@ -66,6 +66,11 @@
 
 .symptoms {
 
+    &-content {
+        &-container {
+            margin-top: 1.5rem;
+        }
+    }
     &-card {
         &-link {
             &-container {
@@ -97,18 +102,24 @@
         }
 
         &-item {
-            &-type {
+            &-symptom {
                 font-size: 2rem;
                 font-weight: 600;
                 text-align: left;
                 grid-row: 1/2;
                 grid-column: 1/2;
+
+                span {
+                    font-weight: 400;
+                    text-transform: lowercase
+                }
             }
-            &-severity {
-                font-size: 1.75rem;
-                grid-column: 2/3;
+            &-type {
+                font-size: 2rem;
+                font-style: italic;
+                text-align: left;
                 grid-row: 2/3;
-                font-weight: 600;
+                grid-column: 1/2;
             }
             &-time {
                 font-weight: 600;
@@ -117,11 +128,10 @@
                 grid-row: 1/2;
             }
             &-body {
-                font-style: italic;
                 font-size: 2rem;
-                grid-column: 1/2;
+                grid-column: 2/3;
                 grid-row: 2/3;
-                text-align: left;
+                text-align: center;
             }
         }
 
@@ -166,3 +176,19 @@
     }
 }
 
+.bottom-border {
+    border-bottom: 6px solid;
+
+    &.mild {
+        border-bottom-color: #99DDC8;
+    }
+    &.moderate {
+        border-bottom-color: #fcdd65;
+    }
+    &.severe {
+        border-bottom-color: #FFAF7C;
+        &.very {
+            border-bottom-color: #6d1528;
+        }
+    }
+}

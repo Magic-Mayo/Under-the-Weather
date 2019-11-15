@@ -65,12 +65,12 @@ class Dashboard extends Component{
 					itemIsExpanded={this.state}
 				/>
 				{/* <section className="container-right">
-                {/* Future use
+                Future use
 
                 <MedicalHistory
                 name={this.props.name}
                 user={this.props.user}
-                /> */}{' '}
+                /> {' '}
 				*/}
 				<Providers
 					name={this.props.user.name}
