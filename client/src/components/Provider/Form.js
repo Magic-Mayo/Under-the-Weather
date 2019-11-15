@@ -157,7 +157,7 @@ export default class ProviderForm extends Component {
                 }
                 {!this.state.entry && <hr></hr>}
 
-                {!this.state.entry ?
+                {/* {!this.state.entry ?
 					<Search
 						search={this.state.search}
 						submitProvider={this.submitProvider}
@@ -168,8 +168,8 @@ export default class ProviderForm extends Component {
                         setSearchResults={this.setSearchResults}
                         Drsearch={this.state.Drsearch}
 					/>
-                    :
-                    (this.state.page === 1 ?
+                    : */}
+                    {this.state.page === 1 ?
                         <FirstPage
                             submitProvider={this.submitProvider}
                             handleInput={this.handleInput}
@@ -197,7 +197,7 @@ export default class ProviderForm extends Component {
                         prevPage={this.prevPage}
                         update={this.state.update}
                         />
-                    )
+                    }
                 }
                 <div className="provider-form-submit-container">
                     {this.state.signup &&
