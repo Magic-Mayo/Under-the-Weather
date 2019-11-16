@@ -17,8 +17,7 @@ class Dashboard extends Component{
     }
 
 	componentDidMount() {
-		if (this.props.location.state !== undefined && this.props.location.state.isLoggedIn) {
-			console.log('not log');
+		if (this.props.location.state && this.props.location.state.isLoggedIn) {
 			this.props.logIn();
 		}
 	}
@@ -118,10 +117,8 @@ class Dashboard extends Component{
 						setUser={this.props.setUser}
 						user={this.props.user}
 						handleLogIn={this.handleLogIn}
-						logIn={this.logIn}
 						navOpen={this.state.navOpen}
 						toggleNav={this.toggleNav}
-						searchOrManual="entry"
 						isLoggedIn={this.props.isLoggedIn}
 						updateItem={this.editObject}
 					/>

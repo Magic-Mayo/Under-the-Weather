@@ -60,10 +60,7 @@ class FormContainer extends Component {
                 : 
                     <EntranceForm
                         handleLogIn={this.props.handleLogIn}
-                        setSignUp={this.setSignUp}
-                        setLogIn={this.setLogIn}
                         setUser={this.props.setUser}
-                        logInNewUser={this.props.logIn}
                         userId={this.props.userId}
                         loginActive={this.state.loginActive}
                         toggleSignUporLogIn={this.toggleSignUporLogIn}
