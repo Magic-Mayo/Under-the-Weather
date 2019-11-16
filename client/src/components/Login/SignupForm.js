@@ -51,11 +51,9 @@ class SignupForm extends Component {
                 gender: this.state.sex,
                 password: this.state.password
             }).then(user=>{
-                console.log(user)
                 if(user.data){
                     this.props.setUser({user: user.data.user, userId: user.data.userId})
                     this.setState({currentPage: this.state.currentPage + 1})
-                    // this.props.logInNewUser()
                 } else {
                     this.setState({error: "Error creating new account.  Please try again."})
                 }
