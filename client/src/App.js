@@ -69,7 +69,7 @@ class App extends Component {
 			} else {
 				sessionStorage.setItem('_underweather', user.data.token);
             }
-            this.setState({ loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true, userAuthenticated: true });
+            this.setState({ loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true });
 		});
 	};
 
@@ -81,10 +81,9 @@ class App extends Component {
         console.log(props)
 		if (props) {
 			this.setState(props);
-			return this.setState({loading: false});
+			return this.setState({loading: false, isLoggedIn: true});
 		}
         this.setState({ loading: false });
-        // return <Redirect to="/"/>
 	};
 
 	handleLogOut = () => {
@@ -92,7 +91,7 @@ class App extends Component {
 		sessionStorage.removeItem('_underweather');
 		this.setState({ loading: true, isLoggedIn: false });
 		axios.put(`/logout/${this.state.userId}`, { loggedIn: 'logout' }).then((loggedOut) => {
-            this.setState({ isLoggedIn: false, user: '', userId: '', loading: false, userAuthenticated: false });
+            this.setState({ isLoggedIn: false, user: '', userId: '', loading: false });
 		});
 	};
 
@@ -103,6 +102,9 @@ class App extends Component {
 	};
 
 	render() {
+
+
+
 		return (
 
 			<div className="App">
@@ -111,40 +113,42 @@ class App extends Component {
 					isLoggedIn={this.state.isLoggedIn}
 					handleLogOut={this.handleLogOut}
 				/>
-                {/* {!this.state.isLoggedIn ?
+                {this.state.loading ?
                     <Loading
                     loading={this.state.loading}
                     setUser={this.setUser}
                     />
-                : */}
-                    {/* <> */}
+                :
+                    <>
                         <Route
                         path='/(form)?/:formtype?'
-                        >{this.state.isLoggedIn ? <Redirect to="/dashboard"/> :
-                            <FormContainer
-                                isLoggedIn={this.state.isLoggedIn}
-                                userId={this.state.userId}
-                                setUser={this.setUser}
-                                user={this.state.user}
-                                handleLogIn={this.handleLogIn}
-                                error={this.state.error}
-                            />
-                        }
+                            >{this.state.isLoggedIn ? <Redirect to="/dashboard" /> :
+                                <FormContainer
+                                    isLoggedIn={this.state.isLoggedIn}
+                                    userId={this.state.userId}
+                                    setUser={this.setUser}
+                                    user={this.state.user}
+                                    handleLogIn={this.handleLogIn}
+                                    error={this.state.error}
+                                />
+                            }
                         </Route>
                         <Route path="/dashboard">
-                            <Dashboard
-                            setUser={this.setUser}
-                            user={this.state.user}
-                            userId={this.state.userId}
-                            menu={this.state.menu}
-                            toggleForm={this.toggleForm}
-                            formOpen={this.state.formOpen}
-                            isLoggedIn={this.state.isLoggedIn}
-                            logIn={this.logIn}
-                            />
+                            {!this.state.isLoggedIn ? <Redirect to="/" /> :
+                                <Dashboard
+                                setUser={this.setUser}
+                                user={this.state.user}
+                                userId={this.state.userId}
+                                menu={this.state.menu}
+                                toggleForm={this.toggleForm}
+                                formOpen={this.state.formOpen}
+                                isLoggedIn={this.state.isLoggedIn}
+                                logIn={this.logIn}
+                                />
+                            }
                         </Route>
-                    {/* </> */}
-                    {/* } */}
+                    </>
+                    }
 			</div>
 		);
 	}
