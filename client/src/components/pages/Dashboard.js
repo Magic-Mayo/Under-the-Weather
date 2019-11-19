@@ -36,7 +36,7 @@ class Dashboard extends Component{
     }
 
     deleteObject = props => {
-        if(window.confirm("Are you sure you want to delete all information?")){ 
+        if(window.confirm("Are you sure you want to delete this information?")){ 
         Axios.delete(`/account/${props.card}/${props.route}/${this.props.userId}/${props._id}`).then(user=>{
             this.props.setUser(user.data);
             this.setState({show:false})
