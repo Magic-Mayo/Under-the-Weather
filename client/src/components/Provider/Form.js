@@ -57,6 +57,9 @@ export default class ProviderForm extends Component {
                 this.setState({update: true})
             }
 
+            if (state.entry){
+                this.setState({entry: true})
+            }
         }
     }
     
@@ -93,7 +96,8 @@ export default class ProviderForm extends Component {
         if(this.state.name !== ''){
             Axios.post('/account/provider', provider).then(user=>{
                 this.props.setUser(user.data);
-                this.setState(this.initialState)
+                this.setState(this.initialState);
+                this.props.history.goBack();
             });
         }
         else{           
@@ -125,7 +129,8 @@ export default class ProviderForm extends Component {
         console.log(updatedData)
         return Axios.put('/account/provider', updatedData).then(user=>{
             console.log(user)
-            this.props.setUser(user.data)
+            this.props.setUser(user.data);
+            this.props.history.goBack();
         })
     }
 
@@ -198,7 +203,6 @@ export default class ProviderForm extends Component {
                         update={this.state.update}
                         />
                     }
-                }
                 <div className="provider-form-submit-container">
                     {this.state.signup &&
                         <Link to={{pathname: "/", state: {details: true, currentPage: 4}}}>
@@ -233,12 +237,12 @@ const FirstPage = props => {
     }
     return (
         <div className="provider-form-manual-entry">
-            {!props.update &&
+            {/* {!props.update &&
                 <>
                     <h5 className="form-subtitle">To run a search for a doctor,{' '}</h5>
                     <h5 className="link" onClick={props.entry}>Click here</h5>
                 </>
-            }
+            } */}
             <hr></hr>
             <form className="provider-form-manual-entry-grid">
                 <div className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-name">
@@ -325,9 +329,6 @@ const FirstPage = props => {
 function SecondPage(props){
     return (
         <div className="provider-form-manual-entry">
-            <h2 className="provider-form-title">{props.update ? "Update" : "Please Enter"} your Doctor's information below</h2>
-            <h5 className="form-subtitle">To run a search for a doctor,{' '}</h5>
-            <h5 className="link" onClick={props.entry}>Click here</h5>
             <hr></hr>
             <form className="provider-form-manual-entry-grid">
                 <div className="input-container provider-form-manual-entry-grid-item provider-form-manual-entry-grid-item-email">
