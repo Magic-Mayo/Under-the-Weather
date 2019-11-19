@@ -52,7 +52,9 @@ export default function Symptoms(props) {
 				{/* <Filter data={formData} sort={sortSymptoms} /> */}
 
 				<section className="symptoms-content-container">
-					{props.symptoms.map((symptoms) => (
+					{props.symptoms.sort((a,b)=>{
+						return new Date(b.time) - new Date(a.time);
+					}).map((symptoms) => (
 						<div key={symptoms._id}
                         className={`symptoms-result-container ${symptoms.severity && "bottom-border"} ${symptoms.severity.toLowerCase()}`}>
 							<p className="symptoms-result-item-symptom">
