@@ -226,7 +226,8 @@ export default class InsuranceForm extends Component {
 		Axios.post('/account/insurance', insurance).then((data) => {
 			console.log(data);
             this.setState({ provider: '', idNumber: '', groupNumber: '', insuranceType: '', deductible: '' });
-            this.props.setUser(data.data)
+            this.props.setUser(data.data);
+            this.props.history.goBack();
 		});
     };
 
@@ -254,8 +255,8 @@ export default class InsuranceForm extends Component {
         }
         console.log(updatedData)
         return Axios.put('/account/insurance', updatedData).then(user=>{
-            console.log(user)
-            this.props.setUser(user.data)
+            this.props.setUser(user.data);
+            this.props.history.goBack();
         })
     }
 

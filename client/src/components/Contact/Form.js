@@ -161,7 +161,8 @@ export default class Form extends Component {
         Axios.post('/account/contact', contacts).then(
             data => {
                 this.setState(this.initialState);
-                this.props.setUser(data.data)
+                this.props.setUser(data.data);
+                this.props.history.goBack();
             }
         )}
         else{
@@ -190,8 +191,8 @@ export default class Form extends Component {
         }
 
         return Axios.put('/account/contact', updatedData).then(user=>{
-            console.log(user)
-            this.props.setUser(user.data)
+            this.props.setUser(user.data);
+            this.props.history.goBack();
         })
     }
 

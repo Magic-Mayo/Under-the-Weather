@@ -110,9 +110,14 @@ export default class SymptomForm extends Component {
         }
 		// set state to reflect the new symptoms in the user - push new symptom
 		// once we pushed new symptom, submit the whole edited user to the db.
-		axios.post("/account/symptom", symptom)
-			.then((res) => this.props.setUser(res.data))
-			.catch((err) => console.log(err));
+        if(symptom.symptom.symptoms !== ''){
+    		axios.post("/account/symptom", symptom)
+    			.then((res) => {
+                    this.props.setUser(res.data);
+                    this.props.history.goBack();
+                })
+    			.catch((err) => console.log(err));
+        }
     };
 
     handleUpdate = id => {
@@ -132,7 +137,8 @@ export default class SymptomForm extends Component {
 
         axios.put("/account/symptom", symptom).then(user=>{
             console.log(user.data)
-            this.props.setUser(user.data)
+            this.props.setUser(user.data);
+            this.props.history.goBack();
         }).catch(err=>console.log(`Symptom update error: ${err}`))
     }
     
