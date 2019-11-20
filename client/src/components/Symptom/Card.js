@@ -53,7 +53,7 @@ export default function Symptoms(props) {
 
 				<section className="symptoms-content-container">
 					{props.symptoms.sort((a,b)=>{
-						return new Date(b.time) - new Date(a.time);
+						return moment(b.time) - moment(a.time);
 					}).map((symptoms) => (
 						<div key={symptoms._id}
                         className={`symptoms-result-container ${symptoms.severity && "bottom-border"} ${symptoms.severity.toLowerCase()}`}>
@@ -69,22 +69,21 @@ export default function Symptoms(props) {
 									`${moment().diff(symptoms.time, 'hours')} hours ago`
 								) : moment().diff(symptoms.time, 'hours') >= 24 &&
 								moment().diff(symptoms.time, 'hours') < 48 ? (
-									`Yesterday | ${moment(symptoms.time).format('h:MM A')}`
+									`Yesterday | ${moment(symptoms.time).format('h:mm A')}`
 								) : moment().diff(symptoms.time, 'days') === 2 ? (
-									`${moment().to(symptoms.time)} | ${moment(symptoms.time).format('h:MM A')}`
+									`${moment().to(symptoms.time)} | ${moment(symptoms.time).format('h:mm A')}`
 								) : moment().diff(symptoms.time, 'days') === 3 ? (
-									`${moment().to(symptoms.time)} | ${moment(symptoms.time).format('h:MM A')}`
+									`${moment().to(symptoms.time)} | ${moment(symptoms.time).format('h:mm A')}`
 								) : moment().diff(symptoms.time, 'days') === 4 ? (
-									`${moment().to(symptoms.time)} | ${moment(symptoms.time).format('h:MM A')}`
+									`${moment().to(symptoms.time)} | ${moment(symptoms.time).format('h:mm A')}`
 								) : moment().diff(symptoms.time, 'days') === 5 ? (
-									`${moment().to(symptoms.time)} | ${moment(symptoms.time).format('h:MM A')}`
+									`${moment().to(symptoms.time)} | ${moment(symptoms.time).format('h:mm A')}`
 								) : moment().diff(symptoms.time, 'days') === 6 ? (
-									`${moment().to(symptoms.time)} | ${moment(symptoms.time).format('h:MM A')}`
+									`${moment().to(symptoms.time)} | ${moment(symptoms.time).format('h:mm A')}`
 								) : (
-									moment(symptoms.time).format('DD MMM | h:MM A')
+									moment(symptoms.time).format('DD MMM | h:mm A')
 								)}
 							</p>
-							{/* <p className="symptoms-result-item-body">{symptoms.bodyPart}</p> */}
 							<Link
 								to={{
 									pathname: `dashboard/form/symptom/${symptoms._id}`,
