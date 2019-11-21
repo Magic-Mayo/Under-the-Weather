@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import GoogleLogin from 'react-google-login';
-import {FacebookProvider, LoginButton} from 'react-facebook';
+// import {FacebookProvider, LoginButton} from 'react-facebook';
 import Axios from 'axios'
 
 
 export default class SignInSocial extends Component {
 
       logIn = res => {
+        console.log(res)
         if(res.profile){
             const user = res.profile
             const data = {
@@ -31,7 +32,8 @@ export default class SignInSocial extends Component {
             userName: user.Eea,
             socialMedia: true,
             data: {
-                name: user.ig,
+                firstName: res.profileObj.givenName,
+                lastName: res.profileObj.familyName,
                 email: user.U3
             }
         }

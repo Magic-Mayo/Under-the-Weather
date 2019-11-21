@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SignInSocial from './SignInSocial';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class LoginForm extends Component {
@@ -18,7 +17,7 @@ export default class LoginForm extends Component {
 
 	render() {
 		return (
-			<div className="grid">
+			<div className="grid entrance">
 				<form className={`form-${this.props.loginType}-input-box form-input-area`}>
 					<h1 className="form-title">{this.props.headingText}</h1>
 					<div className="input-container">
@@ -28,7 +27,8 @@ export default class LoginForm extends Component {
 						<input
 							type="email"
 							name="email"
-							id="email"
+                            id="email"
+                            autoComplete="username"
 							value={this.state.email}
 							onChange={this.handleInput}
                             placeholder="janedoe24@gmail.com"
@@ -41,7 +41,8 @@ export default class LoginForm extends Component {
 						</label>
 						<input
 							type={this.props.showPassword ? 'text' : 'password'}
-							name="password"
+                            name="password"
+                            autoComplete="current-password"
 							value={this.state.password}
 							onChange={this.handleInput}
                             id="password"
@@ -49,6 +50,7 @@ export default class LoginForm extends Component {
 						/>
 						<FontAwesomeIcon icon={this.props.showPassword ? "eye-slash":"eye"} className="eye-icon" onClick={this.props.togglePassword} />
 					</div>
+                    <span className="login-error">{this.props.error}</span>
 					<div className="btn-container">
 						<button
 							type="button"
@@ -57,12 +59,12 @@ export default class LoginForm extends Component {
 						>
 							Log In
 						</button>
-                        <label htmlFor="login-persist" className="login-persist">Keep me logged in</label>
+                        {/* <label htmlFor="login-persist" className="login-persist">Keep me logged in</label>
                         <input type="checkbox"
                             onChange={this.handleInput}
                             checked={this.state.loginpersist}
                             name="loginpersist"
-                        />
+                        /> */}
 					</div>
 				</form>
                 <SignInSocial setUser={this.props.setUser} />

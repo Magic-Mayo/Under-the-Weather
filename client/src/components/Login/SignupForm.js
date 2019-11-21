@@ -7,7 +7,6 @@ import { withRouter } from 'react-router';
 import ProviderForm from '../Provider/Form'
 import ContactForm from '../Contact/Form'
 import InsuranceForm from '../Insurance/Form'
-import ProviderManualEntry from '../Provider/ManualEntry';
 
 
 class SignupForm extends Component {
@@ -21,10 +20,22 @@ class SignupForm extends Component {
 		sex: '',
 		age: '',
         currentPage: 1,
-	};
+        error: `Use at least one upper and lower case letter, 
+        one number and have a minimum of 8 characters in your password.`
+    };
+    
+    componentDidMount(){
+        if(this.props.location.state){
+            const {state} = this.props.location;
+
+            if(state.details){
+                this.setState({currentPage: state.currentPage})
+            }
+        }
+    }
 
 	handleInput = (e) => {
-        this.setState({error: false, emailInUse: false})
+        this.setState({emailInUse: false})
 		const { name, value } = e.target;
         this.setState({ [name]: value });
     };
@@ -40,11 +51,9 @@ class SignupForm extends Component {
                 gender: this.state.sex,
                 password: this.state.password
             }).then(user=>{
-                console.log(user)
                 if(user.data){
                     this.props.setUser({user: user.data.user, userId: user.data.userId})
                     this.setState({currentPage: this.state.currentPage + 1})
-                    // this.props.logInNewUser()
                 } else {
                     this.setState({error: "Error creating new account.  Please try again."})
                 }
@@ -58,23 +67,27 @@ class SignupForm extends Component {
         // Validates password as having one upper and lower case, one number, and at least 8 characters
         if (this.state.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/) ){
             console.log("password valid")
-                return this.setState({passwordValid: true})
+                return this.setState({error: false, passwordValid: true})
         }
         return this.setState({passwordValid: false})
     }
 
-    checkUser = () => {
+    checkEmail = () => {
         // Validates email is properly formatted
         const filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!filter.test(this.state.email)) {
             return this.setState({error: "Please enter a valid email address"});
         }
-        console.log(this.state.email)
         axios.get(`/check/${this.state.email}`).then(user=>{
             // Let client know user already exists
             if(user.data){
                 console.log(user.data)
-                return this.setState({emailInUse: true})
+                return this.setState({error: 'Email address already in use', emailInUse: true})
+            }
+
+            if(!this.state.passwordValid){
+                this.setState({error: `Use at least one upper and lower case letter, 
+                one number and have a minimum of 8 characters in your password.`})
             }
             // Let's client know name is available
             return this.setState({emailInUse: false})
@@ -114,10 +127,6 @@ class SignupForm extends Component {
             this.signUpUser()
         }
 
-        if(this.state.currentPage === 3){
-            this.setState({currentPage: this.state.currentPage + 1})
-        }
-
     };
     
     prevPage = () => {
@@ -125,7 +134,7 @@ class SignupForm extends Component {
     }
 
     dashboard = () => {
-        return this.setState({redirect: true})
+        return this.setState({dashboard: true})
     }
 
     openForm = props => {
@@ -140,7 +149,7 @@ class SignupForm extends Component {
     }
 
 	render() {
-        if(this.state.redirect){
+        if(this.state.dashboard){
             return <Redirect to={{pathname: "/dashboard", state: {isLoggedIn: true}}}/>
         }
         if(this.state.form){
@@ -155,9 +164,9 @@ class SignupForm extends Component {
         }
 
 		return (
-			<div className="grid">
+			<div className={this.state.currentPage > 2 ? "entrance" : "grid entrance"}>
 				<form className={`form-${this.props.loginType}-input-box form-input-area`}>
-					<h1 className="form-title">{this.props.headingText}</h1>
+					<h1 className="form-title">{this.state.currentPage < 3 ? this.props.headingText : "Welcome to Under the Weather!"}</h1>
 					{this.state.currentPage === 1 ? (
 						<FirstPage
 							handleInput={this.handleInput}
@@ -167,7 +176,7 @@ class SignupForm extends Component {
 							togglePassword={this.props.togglePassword}
                             passwordCheck={this.state.passwordCheck}
                             validatePassword={this.validatePassword}
-                            checkUser={this.checkUser}
+                            checkEmail={this.checkEmail}
                             error={this.state.error}
                             emailInUse={this.state.emailInUse}
                             passwordValid={this.state.passwordValid}
@@ -180,12 +189,7 @@ class SignupForm extends Component {
 							sex={this.state.sex}
 							age={this.state.age}
 						/>
-					) : this.state.currentPage === 3 ? (
-                        <ThirdPage
-                            handleInput={this.handleInput}
-                            redirect={this.state.redirect}
-                            />
-                    ) : <DetailsPage
+					) : <DetailsPage
                         redirect={this.state.redirect}
                         handleInput={this.handleInput}
                         {...this.props.match}
@@ -194,25 +198,33 @@ class SignupForm extends Component {
                     }
 
                     <div className="btn-container">
-                        {this.state.currentPage > 2 ?
-                            <button type="button" onClick={this.dashboard} className="continue-btn btn">
-                                Finish & Go To Dashboard
-                            </button>
-                        :
-
-                            <button type="button" className="continue-btn btn" onClick={this.nextPage}>
-                                    Continue
-                            </button>
-                        }
-                        {this.state.currentPage > 1 && 
+                        {this.state.currentPage === 2 && 
                             <button
                             className="previous-btn btn"
-                            onClick={this.state.currentPage === 3 ? this.nextPage : this.prevPage} type="button">
-                                {this.state.currentPage === 3 ? "Add more details" : "Previous"}
+                            onClick={this.prevPage} type="button">
+                                Previous
                             </button>}
+
+                        {this.state.currentPage > 2 ?
+                            (<button type="button" onClick={this.dashboard} className="continue-btn btn">
+                                Finish & Go To Dashboard
+                            </button>)
+                        :
+                            !this.state.error ?
+                                <button type="button" className="continue-btn btn" onClick={this.nextPage}>
+                                        Continue
+                                </button>
+                            :
+                            this.state.error &&
+                                <span className="sign-up-error">{this.state.error}
+                                </span>
+                        }
+
 					</div>
 				</form>
-                <SignInSocial setUser={this.props.setUser} />
+                {this.state.currentPage < 3 &&
+                    <SignInSocial setUser={this.props.setUser} />
+                }
 			</div>
 		);
 	}
@@ -220,7 +232,7 @@ class SignupForm extends Component {
 
 const FirstPage = (props) => {
 	return (
-		<div style={{width: "100%"}} className="sign-up">
+		<>
 			<div className="input-container">
 				<label htmlFor="email">
 					<span>*</span> Email:{' '}
@@ -233,9 +245,8 @@ const FirstPage = (props) => {
 					onChange={props.handleInput}
 					placeholder="johndoe24"
                     required
-                    onBlur={props.checkUser}
+                    onBlur={props.checkEmail}
 				/>
-                {props.emailInUse && <span className="sign-up-warning-email">Email already in use</span>}
 			</div>
 			<div className="input-container">
 				<label htmlFor="password">
@@ -255,9 +266,6 @@ const FirstPage = (props) => {
 					className="eye-icon"
 					onClick={props.togglePassword}
 				/>
-                <span className="password-invalid">{props.password ? (!props.passwordValid ? 
-                    "Password does not meet the requirements.  Please use at least one upper and lower case letter, one number and have a minimum of 8 characters." : "Password meets requirements!") : ""
-                }</span>
 			</div>
 			<div className="input-container">
 				<label htmlFor="password-check">
@@ -272,8 +280,7 @@ const FirstPage = (props) => {
 					required
 				/>
 			</div>
-            {props.error && <span className="sign-up-error">{props.error}</span>}
-		</div>
+		</>
 	);
 };
 
@@ -296,7 +303,7 @@ function SecondPage(props) {
 			</div>
 			<div className="input-container">
 				<label htmlFor="lastname">
-					<span>*</span> Last Name:{' '}
+					Last Name:{' '}
 				</label>
 				<input 
 					type="text" 
@@ -308,33 +315,36 @@ function SecondPage(props) {
 					/>
 			</div>
 			<div className="flex-between">
-				<div className="input-container">
+				<div className="input-container choose-sex">
 					<label htmlFor="sex">
-						<span>*</span> Sex:{' '}
+						<span>*</span> Choose Sex:{' '}
 					</label>
-                    <label>
-                        <span>Male</span>
+                    <div className="choose-sex-male">
+                        <label for="Male">
+                            <span>Male: </span>
+                        </label>
                         <input
                             type="radio"
                             name="sex"
-                            id="sex"
                             value="Male"
-                            onSelect={props.handleInput}
-                            // required
+                            onChange={props.handleInput}
+                            selected={props.sex}
+                            required
                         />
-                    </label>
-                    <label>
-                        <span>Female</span>
+                    </div>
+                    <div className="choose-sex-female">
+                        <label for="Female">
+                            <span>Female: </span>
+                        </label>
 					    <input
                             type="radio"
                             name="sex"
-                            id="sex"
                             value="Female"
-                            onSelect={props.handleInput}
-                            // required
-
+                            selected={props.sex}
+                            onChange={props.handleInput}
+                            required
                         />
-                    </label>
+                    </div>
 				</div>
 				<div className="input-container">
 					<label htmlFor="age">
@@ -345,9 +355,9 @@ function SecondPage(props) {
 						name="age"
 						id="age"
 						value={props.age}
-						onChange={props.handleInput}
+                        onChange={props.handleInput}
 						placeholder="36"
-						// required
+						required
 
 					/>
 				</div>
@@ -356,35 +366,30 @@ function SecondPage(props) {
 	);
 }
 
-function ThirdPage(props) {
-    return (
-        <div className="sign-up-third-page">
-            <h1 className="form-title">Welcome to Under the Weather!</h1>
-            <h3 className="form-subtitle">We recommend adding in some more details before heading over to the dashboard</h3>
-        </div>
-    )
-}
-
 function DetailsPage(props) {
     console.log(props.url)
     return (
-        <div className="sign-up=details">
-            {/* <Link to={`${props.url}form/insurance`}> */}
-                <button type="button" className="details-insurance" onClick={()=>props.openForm('insurance')}>
-                    Add Insurance Info
-                </button>
-            {/* </Link> */}
-            {/* <Link to={`${props.url}form/provider`}> */}
-                <button type="button" className="details-provider" onClick={()=>props.openForm('provider')}>
-                    Add Provider Info
-                </button>
-            {/* </Link> */}
-            {/* <Link to={`${props.url}form/contact`}> */}
-                <button type="button" className="details-contact" onClick={()=>props.openForm('contact')}>
-                    Add Emergency Contact Info
-                </button>
-            {/* </Link> */}
-        </div>
+        <>
+            <h3 className="form-subtitle">We recommend adding in some more details before heading over to the dashboard</h3>
+            <div className="sign-up-details">
+                <Link to={{pathname: "/form/insurance", state: {signup: true}}}>
+                    <button type="button" className="details-insurance" onClick={()=>props.openForm('insurance')}>
+                        Add Insurance Info
+                    </button>
+                </Link>
+                <Link to={{pathname: "/form/provider", state: {signup: true}}}>
+                    <button type="button" className="details-provider" onClick={()=>props.openForm('provider')}>
+                        Add Provider Info
+                    </button>
+                </Link>
+                <Link to={{pathname: "/form/contact", state: {signup: true}}}>
+                    <button type="button" className="details-contact" onClick={()=>props.openForm('contact')}>
+                        Add Emergency Contact Info
+                    </button>
+                </Link>
+            </div>
+        </>
+
     )
 }
 

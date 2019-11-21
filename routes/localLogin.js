@@ -15,7 +15,7 @@ sessionCheck = (req, res, next) => {
 
 module.exports = (app) => {
 
-    app.get('/check/:email', controller.findByName)
+    app.get('/check/:email', controller.findByEmail)
 
     app.post('/newlocal', (req,res)=>{
         console.log(req.body)
@@ -45,17 +45,18 @@ module.exports = (app) => {
     })
 
     app.post('/login', (req,res)=>{
+
         const credentials = req.body.credentials;
         db.User.findOneAndUpdate(
-        {userName: credentials.username},
-        {lastLogin: moment(), loginToken: token, 'data.isLoggedIn': true},
-        {new: true})
-            .then(user=>{
-            bcrypt.compare(credentials.password, user.password).then(verified=>{
+            {'data.email': credentials.email},
+            {lastLogin: moment(), loginToken: token, 'data.isLoggedIn': true},
+            {new: true})
+            .then(user=>{                
+                bcrypt.compare(credentials.password, user.password).then(verified=>{
                 if(verified){
-                    return res.json({userId: user._id, user: user.data, userName: user.userName, token: user.loginToken})
+                    return res.json({userId: user._id, user: user.data, token: user.loginToken})
                 }
-                res.json('Incorrect username and password combination')
+                res.json(false)
             }).catch(err=>console.log(err))
         }).catch(err=>console.log(err))
     });

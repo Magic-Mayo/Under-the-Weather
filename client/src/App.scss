@@ -25,11 +25,16 @@
   background-color: $blue-main;
   display: grid;
   grid-template-columns: 2rem repeat(12,1fr) 2rem;
-  grid-template-rows: 17.5vw auto;
+  grid-template-rows: 14vw auto;
   gap: .5rem;
   align-items: flex-start;
   min-height: 100vh;
   overflow-x: hidden; 
   padding-bottom: 12.5rem;
+  max-height: 100vh;
+}
+
+@media only screen and (max-width: 1200px) {
+
 }
 

@@ -1,20 +1,19 @@
 .Insurance {
-    grid-column: 1/8;
-    grid-row: 1/2;
-
-    min-height: 45vh;
-    max-height: 45vh;
+    grid-row: 2/3;
+    grid-column: 2/8;
+    min-height: 10vh;
+    // max-height: 45vh;
 }
 
 .insurance {
 
     &-item {
         display: flex;
-        background: $blue-accent;
+        background: white;
         justify-content: center;
         align-items: center;
-        margin: .75rem 0;
-
+        margin: 1.5rem 0;
+        box-shadow: 0 0 1.5rem rgba($black, .25);
         // &-provider {
         // }
 
@@ -30,18 +29,21 @@
         // &-deductible {
         // }
 
-        // &-copay {
-        //     &-title {
-        //     }
+        &-copay {
+            &-title {
+                font-weight: 600;
+                font-size: 1.7rem;
+                margin-top: .5rem;
+            }
         //     &-doctor {
         //     }
-        // }
+        }
 
         // &-expand {
         // }
 
-        &-delete {
-
+        &-delete {            
+            
         }
     }
 
@@ -57,5 +59,40 @@
             }
         } 
     }
+
+    &-result {
+        &-edit {
+            position: absolute;
+            right: 0rem;
+            bottom: 0rem;
+            width: 5rem;
+            height: 5rem;
+            background-color: $blue-main;
+            border-radius: 50%;
+            transform: scale(.8) translate(25%,50%);
+            &:hover {
+                color: $black;
+            }
+        }
+    }
     
+}
+
+
+@media only screen and (max-width: 1000px) {
+    .Insurance {
+        grid-row: 2/3;
+        grid-column: 2/9;
+        min-height: 15vh;
+        max-height: 100%;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .Insurance {
+        grid-row: 2/3;
+        grid-column: 9/14;
+        min-height: 22.5vh;
+        max-height: 100%;
+    }
 }

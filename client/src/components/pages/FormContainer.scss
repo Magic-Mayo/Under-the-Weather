@@ -12,15 +12,16 @@
 .grid {
 	display: grid;
 	grid-template-columns: 3fr 2fr;
-	height: 100%;
-	width: 100%;
+	height: 80vh;
+	width: 82.5rem;
+	margin-left: -5.5rem;
 }
 .form {
-	grid-row: 2/3;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	overflow-y: auto;
+	// grid-row: 2/3;
+	// display: flex;
+	// flex-direction: column;
+    // align-items: center;
+	// overflow-y: auto;
 
 	&-input {
 		&-area {
@@ -32,7 +33,7 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: space-between;
-			margin-bottom: 1rem;
+			margin-top: 5vh;
 
 			button {
 				font-family: "Nunito", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -49,29 +50,54 @@
 				&-container {
 					flex-grow: 10;
 					display: flex;
-					flex-direction: column;
+					flex-direction: row;
 					justify-content: center;
 					align-items: center;
 					width: 100%;
 				}
-			}
-		}
+            }
+            
+            .sign-up-error, .login-error {
+                color: red;
+                margin-top: 2rem;
+                font-size: 1.5rem;
+                width: 40rem;
+                position: relative;
+            }
+
+            .login-error {
+                bottom: 35rem;
+            }
+
+            .sign-up-error {
+                bottom: 7.5vh;
+            }
+        }
+        
+        &-password-invalid {
+            position: absolute;
+            width: 375px;
+            left: 2.5rem;
+            margin-top: .5rem
+        }
 	}
 
 	&-container {
 		position: relative;
 		z-index: 150;
-		width: 65vw;
-		min-width: 82.5rem;
-		// max-width: 90vw;
+		width: 82.5rem;
 		min-height: 90vh;
-		overflow: hidden;
-		display: grid;
+		max-height: 90vh;
+		overflow-y: auto;
+		overflow-x: hidden;
+		display: flex;
 		grid-template-rows: 10% auto;
 		border: .25rem solid transparent;
 		box-shadow: 0 1rem 5rem rgba($black, .3);
         border-radius: .2rem !important;
         background-color: $white;
+        justify-content: center;
+        padding: 5rem 5rem 0;
         
         &-close {
             background-color: transparent;
@@ -82,10 +108,13 @@
             height: 5rem;
             z-index: 151;
             position: absolute;
-            right: .6rem;
-            top: .6rem;
+            right: .75rem;
+            top: .75rem;
             font-weight: 600;
             font-size: 2.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
 
             &:hover {
                 background: $peach-contrast-heavy;
@@ -135,8 +164,24 @@
 	}
 
 	&-new {
-		h1 {
-			color: $blue-accent;
+		width: 100%;
+		&-input-box {
+			margin-left: 2rem;
+			height: 100%;
+
+			label[for=lastname], label[for=Female], label[for=Male]{
+				margin: 0 2rem;
+				font-size: 1.8rem;
+				text-align: center;
+			}
+
+			input[type=radio]{
+				box-shadow: none;
+			}
+
+			h1 {
+				color: $blue-accent;
+			}
 		}
 	}
 
@@ -170,4 +215,9 @@
 	to {
 		border-color: $blue-accent;
 	}
+}
+
+.choose-sex-male, .choose-sex-female {
+	display: inline-block;
+	font-size: 1.5rem;
 }
