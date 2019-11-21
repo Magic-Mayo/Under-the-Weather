@@ -4,6 +4,7 @@
 
 @import "./components/pages/FormContainer";
 @import "./components/pages/Dashboard";
+@import "./components/Demo/Header";
 
 
 @import "./styles/util";
@@ -32,6 +33,10 @@
   overflow-x: hidden; 
   padding-bottom: 12.5rem;
   max-height: 100vh;
+
+  &-demo {
+    background-color: $white;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
