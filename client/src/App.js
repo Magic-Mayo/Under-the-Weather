@@ -92,6 +92,7 @@ class App extends Component {
 		this.setState({ loading: true, isLoggedIn: false });
 		axios.put(`/logout/${this.state.userId}`, { loggedIn: 'logout' }).then((loggedOut) => {
             this.setState({ isLoggedIn: false, user: '', userId: '', loading: false });
+            this.props.history.push("/login/form")
 		});
 	};
 
@@ -125,8 +126,8 @@ class App extends Component {
                             <Route exact path="/">
                                 <Demo demo={true}/>
                             </ Route>
-                            <Route exact strict path="/dashboard" key={this.props.location.pathname}>
-                                {!this.state.isLoggedIn ? <Redirect to="/login" /> :
+                            <Route path="/dashboard" key={this.props.location.pathname}>
+                                {!this.state.isLoggedIn ? <Redirect to="/login/form" /> :
                                     <Dashboard
                                     setUser={this.setUser}
                                     user={this.state.user}
@@ -139,7 +140,8 @@ class App extends Component {
                                     />
                                 }
                             </Route>
-                            <Route exact strict path='/:dashOrLogin/(form)?/:formtype?' key={this.props.location.pathname}>
+                        </Switch>
+                            <Route exact strict path='/:dashOrLogin/(form)+/:formtype?' key={this.props.location.pathname}>
                                 <FormContainer
                                     isLoggedIn={this.state.isLoggedIn}
                                     userId={this.state.userId}
@@ -149,7 +151,7 @@ class App extends Component {
                                     error={this.state.error}
                                 />
                             </Route>
-                        </Switch>
+                        
                     </>
                     }
 			</div>
