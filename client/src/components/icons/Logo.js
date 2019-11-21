@@ -2,7 +2,7 @@ import React from 'react';
 
 function Logo(props) {
     return (
-        <div className="header-logo">
+        <div className={`header-logo${props.demo === "/" ? "-demo" : ""}`}>
             <svg 
             width={props.width} 
             height={props.height}

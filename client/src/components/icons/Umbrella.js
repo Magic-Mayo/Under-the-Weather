@@ -2,7 +2,7 @@ import React from 'react';
 
 function Header(props) {
     return (
-        <div className="header-icon-container">
+        <div className={`header-icon-container${props.demo === "/" ? "-demo" : ""}`}>
             <svg
                 width={props.width}
                 height={props.height}
