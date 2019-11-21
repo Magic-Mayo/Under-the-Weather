@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard';
+import Demo from './components/Demo/Demo'
 import FormContainer from './components/pages/FormContainer';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
@@ -78,7 +79,6 @@ class App extends Component {
 	};
 
 	setUser = (props) => {
-        console.log(props)
 		if (props) {
 			this.setState(props);
 			return this.setState({loading: false, isLoggedIn: true});
@@ -107,11 +107,12 @@ class App extends Component {
 
 		return (
 
-			<div className="App">
+			<div className={`App${this.props.location.pathname === '/' ? "-demo" : ""}`}>
                 <Header
 					name={this.state.user}
 					isLoggedIn={this.state.isLoggedIn}
 					handleLogOut={this.handleLogOut}
+                    demo={this.props.location.pathname}
 				/>
                 {this.state.loading ?
                     <Loading
@@ -120,9 +121,11 @@ class App extends Component {
                     />
                 :
                     <>
-                        <Route
-                        path='/(form)?/:formtype?'
-                            >{this.state.isLoggedIn ? <Redirect to="/dashboard" /> :
+                        <Switch>
+                            <Route exact path="/">
+                                <Demo demo={true}/>
+                            </ Route>
+                            <Route path='/:dashOrLogin/(form)?/:formtype?'>
                                 <FormContainer
                                     isLoggedIn={this.state.isLoggedIn}
                                     userId={this.state.userId}
@@ -131,9 +134,9 @@ class App extends Component {
                                     handleLogIn={this.handleLogIn}
                                     error={this.state.error}
                                 />
-                            }
-                        </Route>
-                        <Route path="/dashboard">
+                            </Route>
+                        </Switch>
+                        <Route exact path="/dashboard">
                             {!this.state.isLoggedIn ? <Redirect to="/" /> :
                                 <Dashboard
                                 setUser={this.setUser}
