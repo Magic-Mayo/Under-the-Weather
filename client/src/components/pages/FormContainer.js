@@ -43,7 +43,7 @@ class FormContainer extends Component {
         return (
 			<div className="FormContainer">
                 <section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`} data-simplebar>
-                {this.props.isLoggedIn &&
+                {this.props.location.pathname !== "/login/form" &&
                     <Link to="/dashboard" className="form-container-close" title="Close Form">
                             X
                     </Link>}

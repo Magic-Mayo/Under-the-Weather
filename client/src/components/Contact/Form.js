@@ -157,21 +157,19 @@ export default class Form extends Component {
             userId: this.state.userId
         };
         
-        if(this.state.cName !=='' && this.state.phone !== '' && this.state.relationship !== ''){
-        Axios.post('/account/contact', contacts).then(
-            data => {
+        if(this.state.name !== ''){
+            Axios.post('/account/contact', contacts).then(data => {
                 this.setState(this.initialState);
                 this.props.setUser(data.data);
-                this.props.history.goBack();
-            }
-        )}
-        else{
+                this.props.history.push("/dashboard");
+            })
+        }
+        else {
             this.setState({errors: '*Required*'})
         }
-    };
+    }
 
     update = id => {
-        console.log(id)
         const updatedData = {
             route: "updatecontact",
             contact: {"data.emergencyContacts.$": {
@@ -192,7 +190,7 @@ export default class Form extends Component {
 
         return Axios.put('/account/contact', updatedData).then(user=>{
             this.props.setUser(user.data);
-            this.props.history.goBack();
+            this.props.history.push("/dashboard");
         })
     }
 

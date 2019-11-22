@@ -1,0 +1,21 @@
+.demo {
+	&-header {
+		grid-row: 1/2;
+		grid-column: 1/15;
+		width:  100%;
+		background-color: $blue-accent;
+		height:  7.5rem;
+		position: fixed;
+		top:  0;
+		z-index: 100;
+		padding: 0 3rem;
+		align-items: center;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	&-login {
+		font-size: 2rem;
+		color:  $white;
+	}
+}

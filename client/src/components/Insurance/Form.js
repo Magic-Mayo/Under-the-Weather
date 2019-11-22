@@ -224,10 +224,9 @@ export default class InsuranceForm extends Component {
 		};
 
 		Axios.post('/account/insurance', insurance).then((data) => {
-			console.log(data);
             this.setState({ provider: '', idNumber: '', groupNumber: '', insuranceType: '', deductible: '' });
             this.props.setUser(data.data);
-            this.props.history.goBack();
+            this.props.history.push("/dashboard");
 		});
     };
 
@@ -253,10 +252,9 @@ export default class InsuranceForm extends Component {
             key: "data.mediData.insurance._id",
             id: id
         }
-        console.log(updatedData)
         return Axios.put('/account/insurance', updatedData).then(user=>{
             this.props.setUser(user.data);
-            this.props.history.goBack();
+            this.props.history.push("/dashboard");
         })
     }
 

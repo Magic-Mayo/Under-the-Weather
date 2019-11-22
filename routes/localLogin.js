@@ -51,12 +51,16 @@ module.exports = (app) => {
             {'data.email': credentials.email},
             {lastLogin: moment(), loginToken: token, 'data.isLoggedIn': true},
             {new: true})
-            .then(user=>{                
-                bcrypt.compare(credentials.password, user.password).then(verified=>{
-                if(verified){
-                    return res.json({userId: user._id, user: user.data, token: user.loginToken})
+            .then(user=>{
+                if(!user){
+                    return res.json(false)
                 }
-                res.json(false)
+                bcrypt.compare(credentials.password, user.password).then(verified=>{
+                    if(user && verified){
+                        return res.json({userId: user._id, user: user.data, token: user.loginToken})
+                    }
+                    
+                    res.json(false)
             }).catch(err=>console.log(err))
         }).catch(err=>console.log(err))
     });

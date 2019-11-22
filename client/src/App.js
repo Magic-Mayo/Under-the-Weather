@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Header from './components/Header';
 import Dashboard from './components/pages/Dashboard';
+import Demo from './components/Demo/Demo'
 import FormContainer from './components/pages/FormContainer';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
@@ -60,16 +61,15 @@ class App extends Component {
 	handleLogIn = (props) => {
 		this.setState({ loading: true });
 		return axios.post(`/login`, props).then((user) => {
-            console.log(user.data)
             if(!user.data){
                 return this.setState({error: "Incorrect email/password combination.  Please check to be sure you used the correct email and/or password"})
             }
-			if (props.credentials.loginpersist) {
+			if (!props.credentials.loginpersist) {
 				localStorage.setItem('_underweather', user.data.token);
 			} else {
 				sessionStorage.setItem('_underweather', user.data.token);
             }
-            this.setState({ loading: false, user: user.data.user, userId: user.data.userId, isLoggedIn: true });
+            this.setUser({user: user.data.user, userId: user.data.userId});
 		});
 	};
 
@@ -78,12 +78,12 @@ class App extends Component {
 	};
 
 	setUser = (props) => {
-        console.log(props)
-		if (props) {
-			this.setState(props);
-			return this.setState({loading: false, isLoggedIn: true});
-		}
         this.setState({ loading: false });
+		if (props) {
+			this.setState(props)
+            this.setState({isLoggedIn: true});
+			this.props.history.push("/dashboard")
+		}
 	};
 
 	handleLogOut = () => {
@@ -92,6 +92,7 @@ class App extends Component {
 		this.setState({ loading: true, isLoggedIn: false });
 		axios.put(`/logout/${this.state.userId}`, { loggedIn: 'logout' }).then((loggedOut) => {
             this.setState({ isLoggedIn: false, user: '', userId: '', loading: false });
+            this.props.history.push("/login/form")
 		});
 	};
 
@@ -107,11 +108,12 @@ class App extends Component {
 
 		return (
 
-			<div className="App">
+			<div className={`App${this.props.location.pathname === '/' ? "-demo" : ""}`}>
                 <Header
 					name={this.state.user}
 					isLoggedIn={this.state.isLoggedIn}
 					handleLogOut={this.handleLogOut}
+                    demo={this.props.location.pathname}
 				/>
                 {this.state.loading ?
                     <Loading
@@ -120,9 +122,26 @@ class App extends Component {
                     />
                 :
                     <>
-                        <Route
-                        path='/(form)?/:formtype?'
-                            >{this.state.isLoggedIn ? <Redirect to="/dashboard" /> :
+                        <Switch>
+                            <Route exact path="/">
+                                <Demo demo={true}/>
+                            </ Route>
+                            <Route path="/dashboard" key={this.props.location.pathname}>
+                                {!this.state.isLoggedIn ? <Redirect to="/login/form" /> :
+                                    <Dashboard
+                                    setUser={this.setUser}
+                                    user={this.state.user}
+                                    userId={this.state.userId}
+                                    menu={this.state.menu}
+                                    toggleForm={this.toggleForm}
+                                    formOpen={this.state.formOpen}
+                                    isLoggedIn={this.state.isLoggedIn}
+                                    logIn={this.logIn}
+                                    />
+                                }
+                            </Route>
+                        </Switch>
+                            <Route exact strict path='/:dashOrLogin/(form)+/:formtype?' key={this.props.location.pathname}>
                                 <FormContainer
                                     isLoggedIn={this.state.isLoggedIn}
                                     userId={this.state.userId}
@@ -131,22 +150,8 @@ class App extends Component {
                                     handleLogIn={this.handleLogIn}
                                     error={this.state.error}
                                 />
-                            }
-                        </Route>
-                        <Route path="/dashboard">
-                            {!this.state.isLoggedIn ? <Redirect to="/" /> :
-                                <Dashboard
-                                setUser={this.setUser}
-                                user={this.state.user}
-                                userId={this.state.userId}
-                                menu={this.state.menu}
-                                toggleForm={this.toggleForm}
-                                formOpen={this.state.formOpen}
-                                isLoggedIn={this.state.isLoggedIn}
-                                logIn={this.logIn}
-                                />
-                            }
-                        </Route>
+                            </Route>
+                        
                     </>
                     }
 			</div>
