@@ -97,7 +97,7 @@ export default class ProviderForm extends Component {
             Axios.post('/account/provider', provider).then(user=>{
                 this.props.setUser(user.data);
                 this.setState(this.initialState);
-                this.props.history.goBack();
+                this.props.history.push("/dashboard");
             });
         }
         else{           
@@ -126,11 +126,9 @@ export default class ProviderForm extends Component {
             key: "data.mediData.doctors._id",
             id: id
         }
-        console.log(updatedData)
         return Axios.put('/account/provider', updatedData).then(user=>{
-            console.log(user)
             this.props.setUser(user.data);
-            this.props.history.goBack();
+            this.props.history.push("/dashboard");
         })
     }
 
@@ -147,7 +145,6 @@ export default class ProviderForm extends Component {
     }
 
 	render() {
-        // console.log("THIS IS THE PROVIDER FORM PROPS",this.props)
 		return (
 			<div className="provider-form-container form">
                 {this.state.entry ?

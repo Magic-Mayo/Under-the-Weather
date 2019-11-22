@@ -8,7 +8,6 @@ import Axios from 'axios'
 export default class SignInSocial extends Component {
 
       logIn = res => {
-        console.log(res)
         if(res.profile){
             const user = res.profile
             const data = {

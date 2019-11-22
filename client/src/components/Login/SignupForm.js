@@ -63,10 +63,8 @@ class SignupForm extends Component {
     }
 
     validatePassword = () => {
-        console.log("password")
         // Validates password as having one upper and lower case, one number, and at least 8 characters
         if (this.state.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/) ){
-            console.log("password valid")
                 return this.setState({error: false, passwordValid: true})
         }
         return this.setState({passwordValid: false})
@@ -81,7 +79,6 @@ class SignupForm extends Component {
         axios.get(`/check/${this.state.email}`).then(user=>{
             // Let client know user already exists
             if(user.data){
-                console.log(user.data)
                 return this.setState({error: 'Email address already in use', emailInUse: true})
             }
 
@@ -281,8 +278,8 @@ const FirstPage = (props) => {
 				/>
 			</div>
 		</>
-	);
-};
+	)
+}
 
 function SecondPage(props) {
 	return (
@@ -367,7 +364,6 @@ function SecondPage(props) {
 }
 
 function DetailsPage(props) {
-    console.log(props.url)
     return (
         <>
             <h3 className="form-subtitle">We recommend adding in some more details before heading over to the dashboard</h3>

@@ -68,8 +68,6 @@ export default class SymptomForm extends Component {
 	}
 
 	handleChange = (event) => {
-		// console.log('THE INPUT THAT WAS SELECTED ' + event.target.value);
-
         const {value} = event.target;
 		this.setState({
 			symptomsValue: value
@@ -114,7 +112,7 @@ export default class SymptomForm extends Component {
     		axios.post("/account/symptom", symptom)
     			.then((res) => {
                     this.props.setUser(res.data);
-                    this.props.history.goBack();
+                    this.props.history.push("/dashboard");
                 })
     			.catch((err) => console.log(err));
         }
@@ -138,7 +136,7 @@ export default class SymptomForm extends Component {
         axios.put("/account/symptom", symptom).then(user=>{
             console.log(user.data)
             this.props.setUser(user.data);
-            this.props.history.goBack();
+            this.props.history.push("/dashboard");
         }).catch(err=>console.log(`Symptom update error: ${err}`))
     }
     

@@ -37,12 +37,6 @@ export default function Symptoms(props) {
 		]
 	};
 
-	const sortSymptoms = (e) => {
-		const { innerText } = e.target;
-		const text = innerText;
-		console.log(text);
-	};
-
 	// DUMMY DATA ENDS HERE
 
 	if (props.symptoms.length > 0) {
