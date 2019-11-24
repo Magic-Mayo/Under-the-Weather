@@ -55,7 +55,8 @@ class App extends Component {
 		loading: true,
 		formOpen: false,
         newUser: false,
-        error: false
+        error: false,
+        redriect: false
     };
 
 	handleLogIn = (props) => {
@@ -102,13 +103,17 @@ class App extends Component {
 		});
 	};
 
+    redirectToLogin = () => {
+        setTimeout(()=> this.setState({redirect: true}), 5000)
+    }
+
 	render() {
 
 
 
 		return (
 
-			<div className={`App${this.props.location.pathname === '/' ? "-demo" : ""}`}>
+			<div className={`App${this.props.location.pathname === '/' ? "-demo" : ""} App`}>
                 <Header
 					name={this.state.user}
 					isLoggedIn={this.state.isLoggedIn}
@@ -124,7 +129,11 @@ class App extends Component {
                     <>
                         <Switch>
                             <Route exact path="/">
-                                <Demo demo={true}/>
+                                <Demo
+                                demo={true}
+                                redirect={this.state.redirect}
+                                redirectToLogin={this.redirectToLogin}
+                                />
                             </ Route>
                             <Route path="/dashboard" key={this.props.location.pathname}>
                                 {!this.state.isLoggedIn ? <Redirect to="/login/form" /> :
