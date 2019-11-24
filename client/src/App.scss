@@ -4,7 +4,7 @@
 
 @import "./components/pages/FormContainer";
 @import "./components/pages/Dashboard";
-@import "./components/Demo/Header";
+@import "./components/Demo/Demo";
 
 
 @import "./styles/util";
@@ -36,6 +36,7 @@
 
   &-demo {
     background-color: $white;
+    height: 100vh;
   }
 }
 
