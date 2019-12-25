@@ -1,8 +1,9 @@
 import React from 'react';
 import moment from 'moment';
-import Filter from './Filter';
+// import Filter from './Filter';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SimpleBar from 'simplebar-react';
 
 export default function Symptoms(props) {
 	// DUMMY DATA STARTS HERE
@@ -41,11 +42,12 @@ export default function Symptoms(props) {
 
 	if (props.symptoms.length > 0) {
 		return (
-			<div className="Symptoms card" data-simplebar>
+            <SimpleBar>
+			<div className="Symptoms card">
 				<h2>Symptom History</h2>
 				{/* <Filter data={formData} sort={sortSymptoms} /> */}
 
-				<section className="symptoms-content-container">
+				{/* <section className="symptoms-content-container"> */}
 					{props.symptoms.sort((a,b)=>{
 						return moment(b.time) - moment(a.time);
 					}).map((symptoms) => (
@@ -96,8 +98,9 @@ export default function Symptoms(props) {
 							</span>
 						</div>
 					))}
-				</section>
+				{/* </section> */}
 			</div>
+            </SimpleBar>
 		);
 	}
 

@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SimpleBar from 'simplebar-react';
 
 export default function Providers(props) {
     if (props.providers.length > 0) {
         return (
-            <div className="Providers card" data-simplebar>
-                <div style={{width: "100%"}}>
-                    <h2>Medical Providers</h2>
-                    <div>
+            <SimpleBar>
+                <div className="Providers card">
+                    <div style={{width: "100%"}}>
+                        <h2>Medical Providers</h2>
                         {props.providers.map(provider => (
                                 <div key={provider._id} className="provider-item card">
                                     <h4 className="provider-item-name">{provider.name}</h4>
@@ -50,7 +51,7 @@ export default function Providers(props) {
                         )}
                     </div>
                 </div>
-            </div>
+            </SimpleBar>
         );
     }
 
