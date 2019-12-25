@@ -42,12 +42,11 @@ export default function Symptoms(props) {
 
 	if (props.symptoms.length > 0) {
 		return (
-            <SimpleBar>
-			<div className="Symptoms card">
+            <SimpleBar className="Symptoms card">
 				<h2>Symptom History</h2>
 				{/* <Filter data={formData} sort={sortSymptoms} /> */}
 
-				{/* <section className="symptoms-content-container"> */}
+				<section className="symptoms-content-container">
 					{props.symptoms.sort((a,b)=>{
 						return moment(b.time) - moment(a.time);
 					}).map((symptoms) => (
@@ -98,8 +97,7 @@ export default function Symptoms(props) {
 							</span>
 						</div>
 					))}
-				{/* </section> */}
-			</div>
+				</section>
             </SimpleBar>
 		);
 	}

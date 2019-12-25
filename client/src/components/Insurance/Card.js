@@ -14,8 +14,7 @@ export default function InsuranceCard(props) {
 
     if(props.insurance.length > 0){
         return(
-            <SimpleBar>
-            <div className="Insurance card">
+            <SimpleBar className="Insurance card">
                 <div style={{width: "100%"}}>
                     <h2>Insurance Information</h2>
                     {props.insurance.map(ins=>(
@@ -91,7 +90,6 @@ export default function InsuranceCard(props) {
                         </div>
                     ))}
                 </div>
-            </div>
             </SimpleBar>
         )
     }

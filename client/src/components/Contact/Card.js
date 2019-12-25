@@ -10,8 +10,7 @@ import SimpleBar from 'simplebar-react';
 export default function ContactsCard(props) {
     if(props.contact.length > 0){
         return (
-            <SimpleBar>
-            <div className="contact-card card">
+            <SimpleBar className="contact-card card">
                 <div style={{width: "100%"}}>
                     <h2>Emergency Contacts</h2>
                     {props.contact.map(contact => (
@@ -63,7 +62,6 @@ export default function ContactsCard(props) {
                         </div>
                     ))}
                 </div>
-            </div>
             </SimpleBar>
         )
     }
