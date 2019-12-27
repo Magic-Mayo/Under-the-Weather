@@ -7,6 +7,7 @@ import InsuranceForm from '../Insurance/Form'
 import { Link} from 'react-router-dom';
 import {withRouter} from 'react-router';
 import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 
 class FormContainer extends Component {
     state = {

@@ -2,8 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 // import 'simplebar';
-// import 'simplebar/dist/simplebar.min.css';
 // import 'simplebar/dist/simplebar.min.js';
 
 
