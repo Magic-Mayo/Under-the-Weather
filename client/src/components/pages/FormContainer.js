@@ -7,7 +7,7 @@ import InsuranceForm from '../Insurance/Form'
 import { Link} from 'react-router-dom';
 import {withRouter} from 'react-router';
 import SimpleBar from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
+
 
 class FormContainer extends Component {
     state = {
@@ -43,8 +43,8 @@ class FormContainer extends Component {
 
 	render() {
         return (
-			<SimpleBar className="FormContainer">
-                <section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
+			<div className="FormContainer">
+                <SimpleBar className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
                 {this.props.location.pathname !== "/login/form" &&
                     <Link to="/dashboard" className="form-container-close" title="Close Form">
                             X
@@ -69,8 +69,8 @@ class FormContainer extends Component {
                         error={this.props.error}
                     />
                 }
-                </section>
-			</SimpleBar>
+                </SimpleBar>
+			</div>
 		);
 	}
 }
