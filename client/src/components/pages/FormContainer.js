@@ -42,8 +42,8 @@ class FormContainer extends Component {
 
 	render() {
         return (
-			<div className="FormContainer">
-                <SimpleBar className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
+			<SimpleBar className="FormContainer">
+                <section className={`form-container ${this.state.loginActive ? 'loginActive' : 'signupActive'}`}>
                 {this.props.location.pathname !== "/login/form" &&
                     <Link to="/dashboard" className="form-container-close" title="Close Form">
                             X
@@ -68,8 +68,8 @@ class FormContainer extends Component {
                         error={this.props.error}
                     />
                 }
-                </SimpleBar>
-			</div>
+                </section>
+			</SimpleBar>
 		);
 	}
 }
